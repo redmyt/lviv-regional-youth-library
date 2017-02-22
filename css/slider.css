@@ -4,8 +4,9 @@
   position: relative;
 }
 
-.new-books-slider__new-book-item-wrapper {
+.new-books-slider__sliding-picture-wrapper {
   width: 200px;
+  height: 200px;
   position: absolute;
 }
 
@@ -15,16 +16,21 @@
 
 .new-books-slider__new-book-item-wrapper1 {
   top: -265px;
+  background-color: red;
 }
 .new-books-slider__new-book-item-wrapper2 {
   top: 0px;
+  background-color: blue;
 }
 .new-books-slider__new-book-item-wrapper3 {
-  top: 265px
+  top: 265px;
+  background-color: green;
 }
 .new-books-slider__new-book-item-wrapper4 {
   top: 530px;
+  background-color: brown;
 }
 .new-books-slider__new-book-item-wrapper5 {
   top: 795px;
+  background-color: orange;
 }

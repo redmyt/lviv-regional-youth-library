@@ -1,19 +1,25 @@
 (function () {
 
 // var sliderInterval = 
-// setInterval( slider(), 1000);
+var slidingPictures = $('.new-books-slider__sliding-picture-wrapper');
+setInterval(function() {
+  slidThePictures(slidingPictures); 
+}, 50);
 
-var items = $('.new-books-slider__new-book-item-wrapper');
+// setInterval(function(){ alert("Hello"); }, 3000);
 
-$('#btn').click(function() {
-  slider(items); 
-});
+// $('#btn').click(function() {
+//   slider(items); 
+// });
 
-function  slider(items) {
-  $(items).each(function() {
-    // debugger
+function  slidThePictures(itemsForSliding) {
+  $(itemsForSliding).each(function() {
     var startPosition = parseInt( $(this).css('top') );
-    var finalPosition = startPosition - 5 + 'px';
+    if (startPosition === -265) {
+      var finalPosition = 1060 + 'px';
+    } else {
+      var finalPosition = startPosition - 1 + 'px';
+    }
     $(this).css('top', finalPosition);
   }); 
 }
