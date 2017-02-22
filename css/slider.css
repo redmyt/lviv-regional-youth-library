@@ -1,0 +1,30 @@
+.new-books-slider__picteres-slide-section {
+  height: 480px;
+  overflow: hidden;
+  position: relative;
+}
+
+.new-books-slider__new-book-item-wrapper {
+  width: 200px;
+  position: absolute;
+}
+
+.new-books-slider__new-book-item {
+  max-width: 100%; 
+}
+
+.new-books-slider__new-book-item-wrapper1 {
+  top: -265px;
+}
+.new-books-slider__new-book-item-wrapper2 {
+  top: 0px;
+}
+.new-books-slider__new-book-item-wrapper3 {
+  top: 265px
+}
+.new-books-slider__new-book-item-wrapper4 {
+  top: 530px;
+}
+.new-books-slider__new-book-item-wrapper5 {
+  top: 795px;
+}
