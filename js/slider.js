@@ -1,8 +1,13 @@
+  window.addEventListener("load", function(event) {
+    console.log(document.body.scrollTop)
+    document.body.scrollTop = document.body.scrollTop;
+  });
+
 (function () {
 
-// Save all slide new book pictures to one variable 
+// Save all new book pictures for sliding to one variable 
 var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray();
-var par = $('.new-books-slider__picteres-slide-section');
+var slidingPicturesWrapper = $('.new-books-slider__picteres-slide-section');
 
 // Variable for checking the slider pause
 var isPaused = false;
@@ -10,43 +15,34 @@ var isPaused = false;
 // Start slide each of books picture
 var sliderInterval = setInterval(function() {
   if (isPaused === false) {
-    slidThePictures(slidingPictures, par);  
+    slidThePictures(slidingPictures, slidingPicturesWrapper);  
   }
 }, 25);
 
-
-// 
-// Implement the slider. Change position of picture and when it bacomes less than -265 add the picture to the flow start
+// Implement the slider. Change scroll position of picture parent and when the first element height becomes equals scroll position change the DOM picture position
 function  slidThePictures(itemsForSliding, slidingElementsWrapper) {
-  // $(itemsForSliding).each(function()
-  // {
-  var firstSlidingElement =  itemsForSliding[0];
-  var firstElementHeight = $(firstSlidingElement).height();
-  var parentElementScroll = $(slidingElementsWrapper).scrollTop();
-  if ( parentElementScroll === firstElementHeight ) {
-    // debugger
-    $(slidingElementsWrapper).append(firstSlidingElement);
-    itemsForSliding.shift();
-    itemsForSliding. push(firstSlidingElement);
+  var firstSlidingElement = itemsForSliding[0],
+      firstElementHeight = $(firstSlidingElement).height(),
+      parentElementScroll = $(slidingElementsWrapper).scrollTop();
+  
 
+  if (parentElementScroll === firstElementHeight + 5) {
+      console.log(document.body.scrollTop);
+    
+
+    // debugger
+    var a = document.body.scrollTop;
+    $(slidingElementsWrapper).append(firstSlidingElement);
+    document.body.scrollTop = a;
+
+
+
+    itemsForSliding.shift();
+    itemsForSliding. push(firstSlidingElement);;
   } else {
     parentElementScroll++;
     $(slidingElementsWrapper).scrollTop(parentElementScroll);
   }
-    // var aaray = itemsForSliding;
-    // var startPosition = parseInt( $(this).css('top') );
-    // var startPosition = $(this).position();
-    // var a = this.scrollTop;
-        // startPosition = startPosition.top;
-    // var elementHeight = $(this).height();
-    // if (startPosition === - elementHeight) {
-      // var finalPosition = 1060 + 'px';
-    // } else {
-      // var finalPosition = startPosition - 1;
-    // }
-    // $(this).css('top', finalPosition);
-    // $(this).offset( {top:finalPosition, left:0} );
-  // }); 
 }
 
 // Stop the slider when user hovers it

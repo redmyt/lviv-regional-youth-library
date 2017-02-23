@@ -1,3 +1,11 @@
+body {
+  height: 2000px;
+}
+
+.new-books-slider__books-picture-wrapper {
+  height: 500px;
+}
+
 .new-books-slider {
   width: 13%;
 }
@@ -6,14 +14,12 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  /*position: relative;*/
   border: 3px solid black;
-  height: 400px;
+  height: 500px;
 }
 
 .new-books-slider__sliding-picture-wrapper {
-  /*min-height: 100px;*/
-  /*position: absolute;*/
+  /*min-height: 200px;*/
 }
 
 .new-books-slider__new-book-item {
