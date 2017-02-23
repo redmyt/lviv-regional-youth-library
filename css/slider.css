@@ -1,20 +1,26 @@
+.new-books-slider {
+  width: 13%;
+}
+
 .new-books-slider__picteres-slide-section {
-  height: 480px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  position: relative;
+  /*position: relative;*/
+  border: 3px solid black;
+  height: 400px;
 }
 
 .new-books-slider__sliding-picture-wrapper {
-  width: 200px;
-  height: 200px;
-  position: absolute;
+  /*min-height: 100px;*/
+  /*position: absolute;*/
 }
 
 .new-books-slider__new-book-item {
-  max-width: 100%; 
+  width: 100%; 
 }
 
-.new-books-slider__new-book-item-wrapper1 {
+/*.new-books-slider__new-book-item-wrapper1 {
   top: -265px;
   background-color: red;
 }
@@ -33,4 +39,4 @@
 .new-books-slider__new-book-item-wrapper5 {
   top: 795px;
   background-color: orange;
-}
+}*/
