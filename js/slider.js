@@ -37,12 +37,13 @@
             parentElementScroll = parseInt( $(slidingElementsWrapper).scrollTop() );
         
         // Set first element at the end of picture list when picture wrapper scroll position becomes equal first element height or scroll picture wrapper one more 
-        if (parentElementScroll >= firstElementHeight) {
+        if (parentElementScroll === firstElementHeight) {
             var bodyScrollPosition = parseInt( document.body.scrollTop );
             $(slidingElementsWrapper).append(firstSlidingElement);
             document.body.scrollTop = bodyScrollPosition;
             itemsForSliding.shift();
             itemsForSliding. push(firstSlidingElement);
+            $(slidingElementsWrapper).scrollTop(0);
         } else {
             parentElementScroll++;
             $(slidingElementsWrapper).scrollTop(parentElementScroll);
