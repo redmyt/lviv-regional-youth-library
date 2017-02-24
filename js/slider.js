@@ -35,6 +35,7 @@
     // Stop the slider when user hovers it
     $(slidingPicturesWrapper).hover(function() {
         isPaused = true;
+        dis();
     }, function() {
         isPaused = false;
     });
@@ -44,7 +45,7 @@
 
 
 // to do start write function which move pictures when we scroll mouse
-// function mousePictureSlide(itemsForSliding) {
+// function mousePictureSlide(slidingElementsWrapper) {
 //   // debugger
 //   document.getElementById('id').addEventListener("mousewheel", function(e) {
 //     $(itemsForSliding).each(function() {
@@ -65,8 +66,41 @@
 // }
 
 
-// setInterval(function(){ alert("Hello"); }, 3000);
+function mousePictureSlide(slidingElementsWrapper) {
+  // debugger
+    $(slidingPicturesWrapper).on('mousewheel', function(e) {
+    $(itemsForSliding).each(function() {
+    var startPosition = parseInt( $(this).css('top') );
+    if (startPosition === -265) {
+      var finalPosition = 1060 + 'px';
+    }
+    if(e.deltaY === -100) {
+    // up
+      var finalPosition = startPosition - 50 + 'px';
+    } else {
+      // down
+      var finalPosition = startPosition + 50 + 'px';
+    }
+    $(this).css('top', finalPosition);
+  }); 
+  });
+}
 
+
+function dis() {
+$('body').on({
+    'mousewheel': function(e) {
+        if (e.target.id == 'el') return;
+        e.preventDefault();
+        e.stopPropagation();
+    }
+})
+}
+
+
+// $(slidingPicturesWrapper).on('mousewheel', function(event) {
+//     console.log(event.deltaX, event.deltaY, event.deltaFactor);
+// });
 
 // $('.btn').click(function() {
 //   slidThePictures(slidingPictures, slidingPicturesWrapper);
