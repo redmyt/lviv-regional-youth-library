@@ -1,57 +1,43 @@
-  window.addEventListener("load", function(event) {
-    console.log(document.body.scrollTop)
-    document.body.scrollTop = document.body.scrollTop;
-  });
-
 (function () {
 
-// Save all new book pictures for sliding to one variable 
-var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray();
-var slidingPicturesWrapper = $('.new-books-slider__picteres-slide-section');
+    // Save all new book pictures for sliding to one variable 
+    var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray(),
+        // Save sliding pictures wrapper to variable 
+        slidingPicturesWrapper = $('.new-books-slider__picteres-slide-section'), 
+        // Variable for checking the slider pause
+        isPaused = false;
 
-// Variable for checking the slider pause
-var isPaused = false;
+    // Start slide each of books picture
+    var sliderInterval = setInterval(function() {
+        if (isPaused === false) {
+            slidThePictures(slidingPictures, slidingPicturesWrapper);  
+        }
+    }, 25);
 
-// Start slide each of books picture
-var sliderInterval = setInterval(function() {
-  if (isPaused === false) {
-    slidThePictures(slidingPictures, slidingPicturesWrapper);  
-  }
-}, 25);
-
-// Implement the slider. Change scroll position of picture parent and when the first element height becomes equals scroll position change the DOM picture position
-function  slidThePictures(itemsForSliding, slidingElementsWrapper) {
-  var firstSlidingElement = itemsForSliding[0],
-      firstElementHeight = $(firstSlidingElement).height(),
-      parentElementScroll = $(slidingElementsWrapper).scrollTop();
+    // Implement the slider. Change scroll position of picture wrapper and when the first element height becomes equals scroll position change the DOM picture position
+    function  slidThePictures(itemsForSliding, slidingElementsWrapper) {
+        var firstSlidingElement = itemsForSliding[0],
+            firstElementHeight = parseInt( $(firstSlidingElement).css('height') ),
+            parentElementScroll = parseInt( $(slidingElementsWrapper).scrollTop() );
   
+        if (parentElementScroll >= firstElementHeight) {
+            var bodyScrollPosition = parseInt( document.body.scrollTop );
+            $(slidingElementsWrapper).append(firstSlidingElement);
+            document.body.scrollTop = bodyScrollPosition;
+            itemsForSliding.shift();
+            itemsForSliding. push(firstSlidingElement);;
+        } else {
+            parentElementScroll++;
+            $(slidingElementsWrapper).scrollTop(parentElementScroll);
+        }
+    }
 
-  if (parentElementScroll === firstElementHeight + 5) {
-      console.log(document.body.scrollTop);
-    
-
-    // debugger
-    var a = document.body.scrollTop;
-    $(slidingElementsWrapper).append(firstSlidingElement);
-    document.body.scrollTop = a;
-
-
-
-    itemsForSliding.shift();
-    itemsForSliding. push(firstSlidingElement);;
-  } else {
-    parentElementScroll++;
-    $(slidingElementsWrapper).scrollTop(parentElementScroll);
-  }
-}
-
-// Stop the slider when user hovers it
-// var slider = ('.new-books-slider__picteres-slide-section');
-// $(slider).hover(function() {
-//   isPaused = true;
-// }, function() {
-//   isPaused = false;
-// });
+    // Stop the slider when user hovers it
+    $(slidingPicturesWrapper).hover(function() {
+        isPaused = true;
+    }, function() {
+        isPaused = false;
+    });
 
 // Start mouse picture scroll function FOR TESTING
 // mousePictureSlide(slidingPictures);
@@ -81,9 +67,9 @@ function  slidThePictures(itemsForSliding, slidingElementsWrapper) {
 
 // setInterval(function(){ alert("Hello"); }, 3000);
 
-// $('#btn').click(function() {
-//   slidThePictures(slidingPictures, par); 
-// });
 
+// $('.btn').click(function() {
+//   slidThePictures(slidingPictures, slidingPicturesWrapper);
+// });
 
 })();
