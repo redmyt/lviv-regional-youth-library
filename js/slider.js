@@ -1,5 +1,4 @@
-(function () {
-
+(function initSlider () {
 
     // Save all new book pictures for sliding to one variable 
     var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray(),
@@ -18,6 +17,9 @@
     // Set mousewheel event listener to body for control one scrolling
     disableBodyScroling()
 
+    // Allow user's control for slider by mousewheel
+    mousePictureSliding(slidingPicturesWrapper);
+
     // Stop the slider when user hovers it
     $(slidingPicturesWrapper).hover(function() {
         isPaused = true;
@@ -29,10 +31,12 @@
 
     // Implement the slider. Change scroll position of picture wrapper and when the first element height becomes equals scroll position change the DOM picture position
     function  slidThePictures(itemsForSliding, slidingElementsWrapper) {
+        // Get firs slide picture element height and picture wrapper scroll position
         var firstSlidingElement = itemsForSliding[0],
             firstElementHeight = parseInt( $(firstSlidingElement).css('height') ),
             parentElementScroll = parseInt( $(slidingElementsWrapper).scrollTop() );
-  
+        
+        // Set first element at the end of picture list when picture wrapper scroll position becomes equal first element height or scroll picture wrapper one more 
         if (parentElementScroll >= firstElementHeight) {
             var bodyScrollPosition = parseInt( document.body.scrollTop );
             $(slidingElementsWrapper).append(firstSlidingElement);
@@ -48,6 +52,7 @@
     // Stop the body scrolling when user hover on the slider and allow scroling after that 
     function disableBodyScroling() {
         $('body').on('mousewheel', function(e) {
+            // Refuse or allo body scroll depending on slider paused
             if (isPaused === true) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -57,57 +62,26 @@
         });
     }
 
+    // When user rotate mouse cicle under the slide he can scroll it as one want
+    function mousePictureSliding(slidingElementsWrapper) {
+        // Add mousewheel event for slide wrpper
+        $(slidingPicturesWrapper).on('mousewheel', function(e) {
+            // identify mousewheel direction
+            var mousewheelDirection = parseInt(e.deltaY) === 1 ? 'up' : 'down';
+            // save previous wrapper scroll position
+            parentElementScroll = parseInt( $(slidingElementsWrapper).scrollTop() );
+            // change wrpper scroll position depending on mousewheel direction
+            if(mousewheelDirection === 'up') {
+                parentElementScroll -= 50;
+                $(slidingElementsWrapper).scrollTop(parentElementScroll);
+            } else {
+                parentElementScroll += 50;
+                $(slidingElementsWrapper).scrollTop(parentElementScroll);
+            }
+        }); 
+    }
 
 
-// Start mouse picture scroll function FOR TESTING
-mousePictureSlide(slidingPicturesWrapper);
-
-
-// to do start write function which move pictures when we scroll mouse
-// function mousePictureSlide(slidingElementsWrapper) {
-//   document.getElementById('id').addEventListener("mousewheel", function(e) {
-//   debugger
-//     $(itemsForSliding).each(function() {
-//     var startPosition = parseInt( $(this).css('top') );
-//     if (startPosition === -265) {
-//       var finalPosition = 1060 + 'px';
-//     }
-//     if(e.deltaY === -100) {
-//     // up
-//       var finalPosition = startPosition - 50 + 'px';
-//     } else {
-//       // down
-//       var finalPosition = startPosition + 50 + 'px';
-//     }
-//     $(this).css('top', finalPosition);
-//   }); 
-//   });
-// }
-
-
-function mousePictureSlide(slidingElementsWrapper) {
-    $(slidingPicturesWrapper).on('mousewheel', function(e) {
-        // debugger
-        var mousewheelDirection = parseInt(e.deltaY) === 1 ? 'up' : 'down';
-        parentElementScroll = parseInt( $(slidingElementsWrapper).scrollTop() );
-        if(mousewheelDirection === 'up') {
-            parentElementScroll -= 50;
-            $(slidingElementsWrapper).scrollTop(parentElementScroll);
-        } else {
-            parentElementScroll += 50;
-            $(slidingElementsWrapper).scrollTop(parentElementScroll);
-        }
-    }); 
-}
-
-
-
-
-
-
-// $(slidingPicturesWrapper).on('mousewheel', function(event) {
-//     console.log(event.deltaX, event.deltaY, event.deltaFactor);
-// });
 
 // $('.btn').click(function() {
 //   slidThePictures(slidingPictures, slidingPicturesWrapper);
