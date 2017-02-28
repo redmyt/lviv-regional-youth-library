@@ -1,40 +1,65 @@
-  <!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <link rel="icon" 
-      type="image/png" 
-      href="favicon-32x32.png.png">
     <meta charset="UTF-8">
-    <!-- to do flavicon -->
-    <link rel="stylesheet" type="text/css" href="css/slider.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
   <body>
-    <div class="new-books-slider">
-      <div class="new-books-slider__books-picture-wrapper">
-        BOOKS
-      </div>
-      <div class="new-books-slider__picteres-slide-section" id="id">
-        <div class="new-books-slider__sliding-picture-wrapper new-books-slider__new-book-item-wrapper1">
-          <img src="img/black-pen.jpg" alt="" class="new-books-slider__new-book-item">
+    <div class="container">
+      <!-- header start-->
+      <header class="header">
+        <div class="logo">
+          <figure class="logo__logo-wrapper"><a class="logo__main-page-link" href="index.html"><img class="logo__logo-picture page-picture"></a></figure>
         </div>
-        <div class="new-books-slider__sliding-picture-wrapper new-books-slider__new-book-item-wrapper2">
-          <img src="img/book-stolen.jpg" alt="" class="new-books-slider__new-book-item">
-        </div>
-        <div class="new-books-slider__sliding-picture-wrapper new-books-slider__new-book-item-wrapper3">
-          <img src="img/bye-the-elephant.jpg" alt="" class="new-books-slider__new-book-item">
-        </div>
-        <div class="new-books-slider__sliding-picture-wrapper new-books-slider__new-book-item-wrapper4">
-          <img src="img/child.jpg" alt="" class="new-books-slider__new-book-item">
-        </div>
-        <div class="new-books-slider__sliding-picture-wrapper new-books-slider__new-book-item-wrapper5">
-          <img src="img/city.jpg" alt="" class="new-books-slider__new-book-item">
-        </div>
-      </div>
+        <nav class="navigation">
+          <ul class="navigation__nav-list">
+            <li class="navigation__nav-item"><a class="navigation__nav-link" href="#">
+                <svg height="35" width="35" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve">
+                  <g>
+                    <g>
+                      <path class="navigation__keyhole-icon" d="M71.094,94.372c2.2,0,3.497-1.729,2.883-3.841L60.629,44.643c-0.614-2.112,0.097-5.17,1.58-6.794    c0,0,4.749-5.199,4.749-11.02c0-9.297-7.536-16.833-16.833-16.833s-16.833,7.537-16.833,16.833c0,5.82,4.749,11.02,4.749,11.02    c1.483,1.625,2.194,4.682,1.58,6.794L26.273,90.531c-0.614,2.112,0.683,3.841,2.883,3.841H71.094z"></path>
+                    </g>
+                  </g>
+                </svg><span class="navigation__nav-text">Новини</span></a></li>
+            <li class="navigation__nav-item"><a class="navigation__nav-link" href="#">
+                <svg height="35" width="35" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve">
+                  <g>
+                    <g>
+                      <path class="navigation__keyhole-icon" d="M71.094,94.372c2.2,0,3.497-1.729,2.883-3.841L60.629,44.643c-0.614-2.112,0.097-5.17,1.58-6.794    c0,0,4.749-5.199,4.749-11.02c0-9.297-7.536-16.833-16.833-16.833s-16.833,7.537-16.833,16.833c0,5.82,4.749,11.02,4.749,11.02    c1.483,1.625,2.194,4.682,1.58,6.794L26.273,90.531c-0.614,2.112,0.683,3.841,2.883,3.841H71.094z"></path>
+                    </g>
+                  </g>
+                </svg><span class="navigation__nav-text">Проекти</span></a></li>
+            <li class="navigation__nav-item"><a class="navigation__nav-link" href="#">
+                <svg height="35" width="35" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve">
+                  <g>
+                    <g>
+                      <path class="navigation__keyhole-icon" d="M71.094,94.372c2.2,0,3.497-1.729,2.883-3.841L60.629,44.643c-0.614-2.112,0.097-5.17,1.58-6.794    c0,0,4.749-5.199,4.749-11.02c0-9.297-7.536-16.833-16.833-16.833s-16.833,7.537-16.833,16.833c0,5.82,4.749,11.02,4.749,11.02    c1.483,1.625,2.194,4.682,1.58,6.794L26.273,90.531c-0.614,2.112,0.683,3.841,2.883,3.841H71.094z"></path>
+                    </g>
+                  </g>
+                </svg><span class="navigation__nav-text">Вікно в Америку</span></a></li>
+            <li class="navigation__nav-item"><a class="navigation__nav-link" href="#">
+                <svg height="35" width="35" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve">
+                  <g>
+                    <g>
+                      <path class="navigation__keyhole-icon" d="M71.094,94.372c2.2,0,3.497-1.729,2.883-3.841L60.629,44.643c-0.614-2.112,0.097-5.17,1.58-6.794    c0,0,4.749-5.199,4.749-11.02c0-9.297-7.536-16.833-16.833-16.833s-16.833,7.537-16.833,16.833c0,5.82,4.749,11.02,4.749,11.02    c1.483,1.625,2.194,4.682,1.58,6.794L26.273,90.531c-0.614,2.112,0.683,3.841,2.883,3.841H71.094z"></path>
+                    </g>
+                  </g>
+                </svg><span class="navigation__nav-text">Про нас</span></a></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- header end-->
+      <!-- main-content start-->
+      <main class="main-content">
+        <section class="news-board"></section>
+        <section class="new-books-slider"></section>
+      </main>
+      <!-- main-content end-->
+      <footer class="footer"></footer>
     </div>
-
-    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/slider.js"></script>
   </body>
-  </html>
+</html>
