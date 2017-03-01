@@ -1,6 +1,19 @@
+/*temporary styles */
+
+body {
+    height: 2000px;
+}
+
+
 /*general styles start*/
+
 a {
     text-decoration: none;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
 }
 
 .page-picture {
@@ -10,6 +23,16 @@ a {
 /*general styles end*/
 
 /*header styles start*/
+
+.logo {
+    height: 200px;
+    background-color: blue;
+}
+
+.navigation_fixed {
+    position: fixed;
+    top: 0;
+}
 
 .navigation_style_gold {
     width: 100%;
