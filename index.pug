@@ -1,8 +1,10 @@
 doctype
-html(lang='en')
+html(lang='uk')
     head
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(name="keywords" content="бібліотека, юнацтво, львів, книга, читання, проект")
+        meta(name="description" content="Сайт Львівської державної бібліотеки для юнацтва")
         title Main page
         link(rel="stylesheet" type="text/css" href="css/normalize.css")
         link(rel="stylesheet" type="text/css" href="css/font-awesome.min.css")
@@ -14,8 +16,8 @@ html(lang='en')
                 div.logo
                     figure.logo__logo-wrapper
                         a.logo__main-page-link(href="index.html")
-                            img.logo__logo-picture.page-picture
-                nav.navigation
+                            img.logo__logo-picture.page-picture(src="#" alt="Logo picture")
+                nav.navigation.navigation_style_gold
                     ul.navigation__nav-list
                         each item in ['Новини', 'Проекти', 'Вікно в Америку', 'Про нас']
                             li.navigation__nav-item
@@ -32,8 +34,8 @@ html(lang='en')
                                         xml:space="preserve")
                                         g
                                             g
-                                                path(class="navigation__keyhole-icon" 
-                                                    d="M71.094,94.372c2.2,0,3.497-1.729,2.883-3.841L60.629,44.643c-0.614-2.112,0.097-5.17,1.58-6.794    c0,0,4.749-5.199,4.749-11.02c0-9.297-7.536-16.833-16.833-16.833s-16.833,7.537-16.833,16.833c0,5.82,4.749,11.02,4.749,11.02    c1.483,1.625,2.194,4.682,1.58,6.794L26.273,90.531c-0.614,2.112,0.683,3.841,2.883,3.841H71.094z")
+                                                path.navigation__keyhole-icon( 
+                                                d="M71.094,94.372c2.2,0,3.497-1.729,2.883-3.841L60.629,44.643c-0.614-2.112,0.097-5.17,1.58-6.794    c0,0,4.749-5.199,4.749-11.02c0-9.297-7.536-16.833-16.833-16.833s-16.833,7.537-16.833,16.833c0,5.82,4.749,11.02,4.749,11.02    c1.483,1.625,2.194,4.682,1.58,6.794L26.273,90.531c-0.614,2.112,0.683,3.841,2.883,3.841H71.094z")
                                     span.navigation__nav-text=item
             // header end
             // main-content start
