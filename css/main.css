@@ -13,7 +13,7 @@ a {
 
 .navigation_style_gold {
     width: 100%;
-    /*border: 1px solid red;*/
+    border-top: 1px solid red;
     box-shadow: 0 4px 2px -2px gray;
 }
 
@@ -37,12 +37,18 @@ a {
 
 .navigation__nav-link:hover {
     fill: red;
-    box-shadow: 0px 0px 0px 1px rgba(244, 101, 66, 0.5);
+    box-shadow: 0px 0px 0px 2px rgba(244, 101, 66, 0.5);
 }
 
-.navigation__keyhole-icon-wrapper {
-    display: inline;
-    margin: 0;
-    padding: 0;
-    line-height: 0;
+.navigation__nav-link_active, .navigation__nav-link_active:hover {
+    box-shadow: none;
 }
+
+.navigation__open-book-picture, .navigation__nav-link_active .navigation__keyhole-picture {
+    display: none;
+}
+
+.navigation__nav-link_active .navigation__open-book-picture {
+    display: inline;
+} 
+
