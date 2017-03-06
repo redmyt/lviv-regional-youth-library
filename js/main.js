@@ -1,4 +1,4 @@
-// Initialize Owl carousel slider on the page 
+// Initialize Owl-carousel slider on the page 
 $(document).ready(function(){
   $(".owl-carousel").owlCarousel();
 });
@@ -9,7 +9,8 @@ $(document).ready(function(){
     // Save navigation block and navigation links to a variable. Also get logo-block-element height an save it
     var $navigation = $('.navigation'),
         $navLinks = $('.navigation__nav-link'),
-        logoHeight = parseInt( $('.logo').height() );
+        $logo = $('.logo'),
+        logoHeight = parseInt( $($logo).height() );
 
     // Add scroll event hendler for window and make navigation fixed when user scroll window over logo height
     $(window).on("scroll", function () {
@@ -19,9 +20,11 @@ $(document).ready(function(){
 
         // When scroll position is over logo height add fixed styles for navigation block
         if (windowTopScroll > logoHeight) {
-            $($navigation).addClass('navigation_fixed');            
+            $($navigation).addClass('navigation_fixed');  
+            $($logo).css( "margin-bottom", $($navigation).height() );        
         } else {
             $($navigation).removeClass('navigation_fixed');
+            $($logo).css( "margin-bottom", 0);        
         }
     });
 
