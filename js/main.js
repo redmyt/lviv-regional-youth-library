@@ -1,3 +1,8 @@
+// Initialize Owl carousel slider on the page 
+$(document).ready(function(){
+  $(".owl-carousel").owlCarousel();
+});
+
 // Following function controls all navigation behavior
 (function initNavigationChanges() {
 

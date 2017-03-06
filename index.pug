@@ -6,8 +6,11 @@ html(lang='uk')
         meta(name="keywords" content="бібліотека, юнацтво, львів, книга, читання, проект")
         meta(name="description" content="Сайт Львівської державної бібліотеки для юнацтва")
         title Main page
+        link(rel="icon" type="image/png" href="favicon.ico")
         link(rel="stylesheet" type="text/css" href="css/normalize.css")
         link(rel="stylesheet" type="text/css" href="css/font-awesome.min.css")
+        link(rel="stylesheet" type="text/css" href="css/owl.carousel.min.css")
+        link(rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css")
         link(rel="stylesheet" type="text/css" href="css/main.css")
     body
         div.container
@@ -63,7 +66,13 @@ html(lang='uk')
                                     img.page-picture(src=newBooksSliderPicturesSourses[i] 
                                         alt="one of new books picture")
             // main-content end
+            sectioo.partners-panel
+                div.owl-carousel.owl-theme.partners-panel__slider
+                    each item in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+                        div.partners-panel__item=item
+            </div>
             footer.footer
             script(src="js/jquery-3.1.1.min.js")
             script(src="js/jquery.mousewheel.min.js")
+            script(src="js/owl.carousel.min.js")
             script(src="js/main.js")
