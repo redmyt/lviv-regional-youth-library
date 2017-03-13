@@ -38,9 +38,9 @@
         
         // Set first element at the end of picture list when picture wrapper scroll position becomes equal first element height or scroll picture wrapper one more 
         if (parentElementScroll === firstElementHeight) {
-            // var bodyScrollPosition = parseInt( document.body.scrollTop );
+            var bodyScrollPosition = parseInt( document.body.scrollTop );
             $(slidingElementsWrapper).append(firstSlidingElement);
-            // document.body.scrollTop = bodyScrollPosition;
+            document.body.scrollTop = bodyScrollPosition;
             itemsForSliding.shift();
             itemsForSliding. push(firstSlidingElement);
             $(slidingElementsWrapper).scrollTop(0);
@@ -53,7 +53,7 @@
     // Stop the body scrolling when user hover on the slider and allow scroling after that 
     function disableBodyScroling() {
         $('body').on('mousewheel', function(e) {
-            // Refuse or allo body scroll depending on slider paused
+            // Refuse or allow body scroll depending on slider paused
             if (isPaused === true) {
                 e.preventDefault();
                 e.stopPropagation();

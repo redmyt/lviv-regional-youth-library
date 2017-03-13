@@ -36,10 +36,12 @@ figure {
 .navigation_fixed {
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 
 .navigation_style_default {
     width: 100%;
+    background: white;
     border-top: 1px solid red;
     box-shadow: 0 4px 2px -2px gray;
     margin-bottom: 10px;
@@ -102,6 +104,7 @@ figure {
 
 .new-books-slider {
   width: 175px;
+  position: relative;
 }
 
 .new-books-slider__picteres-slide-section {
@@ -113,6 +116,12 @@ figure {
 
 .new-books-slider__picteres-slide-section_style_default {
   border: 12px solid brown;
+}
+
+.new-books-slider__control-button {
+    position: absolute;
+    top: 125px;
+    left: 72px;
 }
 
 /*slider styles end*/
