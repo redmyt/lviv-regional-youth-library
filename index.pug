@@ -68,9 +68,11 @@ html(lang='uk')
             // main-content end
             section.partners-panel
                 div.owl-carousel.owl-theme.partners-panel__slider
-                    each item in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-                        div.partners-panel__item=item
-            </div>
+                    - for (var i = 0; i < 10; i++) {
+                        div.partners-panel__partner-item
+                            a.partners-panel__link(href="#")
+                                img.partners-panel__link-image.page-picture(src="http://placehold.it/200x200" alt="Partner picture")
+                    - }
             footer.footer
             script(src="js/jquery-3.1.1.min.js")
             script(src="js/jquery.mousewheel.min.js")
