@@ -4,6 +4,10 @@ body {
     height: 2000px;
 }
 
+.nightStyle {
+    background: violet;
+}
+
 
 /*general styles start*/
 

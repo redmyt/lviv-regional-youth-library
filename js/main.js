@@ -175,3 +175,17 @@
 
 })();
 
+function getUkraineTime() {
+    var currentUserHour = new Date().getHours(),
+        userTimeZone = (new Date().getTimezoneOffset() / 60),
+        timeZoneHoursDifference = userTimeZone - (-2);
+    return currentUserHour + timeZoneHoursDifference;
+};
+
+function switchTimeStyles(element) {
+    if (getUkraineTime() > 18 || getUkraineTime() < 9) {
+        $(element).addClass('nightStyle');
+    }
+}
+
+switchTimeStyles(document.body);
