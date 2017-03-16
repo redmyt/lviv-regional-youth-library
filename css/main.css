@@ -7,11 +7,11 @@ body {
 
 /*general styles start*/
 
-a {
+.page-link {
     text-decoration: none;
 }
 
-figure {
+.picture-wrapper {
     margin: 0;
     padding: 0;
 }
@@ -36,7 +36,7 @@ figure {
 .navigation_fixed {
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 2;
 }
 
 .navigation_style_default {
@@ -144,3 +144,22 @@ figure {
 
 /*partners panel styles end*/
 
+/*footer styles start*/
+
+.footer {
+    display: flex;
+    background: green;
+    justify-content: space-around;
+}
+
+.coordinates-schedule {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-information {
+    display: flex;
+    flex-direction: column;
+}
+
+/*footer styles end*/
