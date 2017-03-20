@@ -84,27 +84,26 @@ body {
     box-shadow: 0px 0px 0px 2px rgba(116, 62, 18, 1);
 }
 
-
 .navigation__item_inactive:hover, .navigation__item_active {
-    color: rgb(224, 157, 30);
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    box-shadow: 0px 0px 15px 10px rgba(224, 157, 30, 1), 0px 0px 15px 5px rgba(224, 157, 30, 1) inset;
     fill: rgb(224, 157, 30);
     stroke: black;
     stroke-width: 3px;
+    color: rgb(224, 157, 30);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    box-shadow: 0px 0px 15px 10px rgba(224, 157, 30, 1), 0px 0px 15px 5px rgba(224, 157, 30, 1) inset;
 }
 
 .navigation__item_active {
     box-shadow: 0px 0px 0px 2px rgba(224, 157, 30, 1);
 }
 
-.navigation__open-book-picture, .navigation__nav-link_active .navigation__keyhole-picture {
+.navigation__open-book-picture, .navigation__keyhole-picture {
     display: none;
 }
 
-.navigation__nav-link_active .navigation__open-book-picture {
+.navigation__item_active .navigation__open-book-picture, .navigation__item_inactive .navigation__keyhole-picture {
     display: inline;
-} 
+}
 
 .navigation__link-text {
     font-size: 26px;
