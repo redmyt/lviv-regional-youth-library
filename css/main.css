@@ -41,16 +41,15 @@ body {
 
 .header__navigation {
     position: absolute;
-    bottom: 0;   
+    bottom: 0;
 }
 
-/*TODO fixed menu when user scroll tha page*/
-
-/*.navigation_fixed {
+.header__navigation_fixed {
     position: fixed;
     top: 0;
-    z-index: 2;
-}*/
+    z-index: 1;
+    bottom: auto;
+}
 
 .navigation_style_defult {
     width: 100%;

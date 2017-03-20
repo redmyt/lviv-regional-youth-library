@@ -48,30 +48,29 @@
 // Following function controls all navigation behavior
 (function initNavigationChanges() {
 
-    // Save navigation block, navigation links and logo section to a variable. Also get logo-block-element height an save it
+    // Save navigation block, navigation items and header section to a variables. Also get header-block-element and navigation-block-element heights an save them
     var $navigation = $('.navigation'),
-        $navLinks = $('.navigation__nav-link'),
-        $logo = $('.logo'),
-        logoHeight = parseInt( $($logo).height() );
+        $navItems = $('.navigation__item'),
+        $header = $('.header'),
+        headerHeight = parseInt( $($header).height() ),
+        navigationHeight = parseInt( $($navigation).height() );
 
-    // Add scroll event hendler for window and make navigation fixed when user scroll window over logo height
+    // Add scroll event hendler for window and make navigation fixed when user scroll window over the navigation block
     $(window).on("scroll", function () {
         
         // Get current window scroll position
         var windowTopScroll = parseInt( $(window).scrollTop() );
 
-        // When scroll position is over logo height add fixed styles for navigation block and add margin bottom for logo which equal navigation height
-        if (windowTopScroll > logoHeight) {
-            $($navigation).addClass('navigation_fixed');  
-            $($logo).css( "margin-bottom", $($navigation).height() );        
+        // When scroll position is over header height add fixed styles for navigation block
+        if (windowTopScroll > headerHeight - navigationHeight) {
+            $($navigation).addClass('header__navigation_fixed');  
         } else {
-            $($navigation).removeClass('navigation_fixed');
-            $($logo).css("margin-bottom", 0);        
+            $($navigation).removeClass('header__navigation_fixed');
         }
     });
 
     // Add click event hendler for each nav-link
-    $navLinks.each(function () {
+    $navItems.each(function () {
         $(this).on('click', function () {
 
             // Remove 'active' style from all nav-links and add it for link been clicked 
