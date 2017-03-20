@@ -46,9 +46,9 @@ body {
 
 .header__navigation_fixed {
     position: fixed;
-    top: 0;
-    z-index: 1;
     bottom: auto;
+    top: 0;
+    z-index: 10;
 }
 
 .navigation_style_defult {

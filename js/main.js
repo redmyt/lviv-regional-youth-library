@@ -69,22 +69,16 @@
         }
     });
 
-    // Add click event hendler for each nav-link
+    // Add click event hendler for each nav-item
     $navItems.each(function () {
         $(this).on('click', function () {
 
-            // Remove 'active' style from all nav-links and add it for link been clicked 
-            removeClassFromElements($navLinks, 'navigation__nav-link_active');
-            $(this).addClass('navigation__nav-link_active');
+            // Remove 'active' style and add 'inactive' stlye from all nav-items and make 'active' onle one link been clicked 
+            $navItems.removeClass('navigation__item_active').addClass('navigation__item_inactive');
+            $(this).toggleClass('navigation__item_active navigation__item_inactive');
         });
     });
-
-    // Followind function remove some class from group of elements
-    function removeClassFromElements(elements, className) {
-        $(elements).each(function () {
-            $(this).removeClass(className);  
-        });
-    }
+    
 })();
 
 // Provides core logic for new-books slider
