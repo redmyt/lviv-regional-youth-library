@@ -46,8 +46,8 @@ body {
 
 .header__navigation_fixed {
     position: fixed;
-    bottom: auto;
     top: 0;
+    bottom: auto;
     z-index: 10;
 }
 
@@ -69,10 +69,10 @@ body {
 
 .navigation__item {
     align-items: center;
-    padding: 1px 14px 1px 1px;
 }
 
 .navigation__item_style_default {
+    padding: 1px 14px 1px 1px;
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
