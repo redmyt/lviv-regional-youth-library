@@ -35,8 +35,22 @@ body {
 
 /*header styles start*/
 
-.header {
+.header, .logo {
     position: relative;
+}
+
+.logo__title-wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.logo__title-text {
+    font-size: 50px;
+    color: rgb(224, 157, 30);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .header__navigation {
