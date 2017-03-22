@@ -56,18 +56,18 @@
     // Add scroll event hendler for window and make navigation fixed when user scroll window over the navigation block
     $(window).on("scroll", function () {
 
-        // Get header-block-element and navigation-block-element heights an save them
-        var headerHeight = parseInt( $($header).height() ),
-            navigationHeight = parseInt( $($navigation).height() );
-        
-        // Get current window scroll position
-        var windowTopScroll = parseInt( $(window).scrollTop() );
-        
+        // Get header-block-element and navigation-block-element heights an save them. Also get current window scroll position.
+        var navigationHeight = parseInt( $($navigation).outerHeight() ),
+            windowTopScroll = parseInt( $(window).scrollTop() ),
+            headerHeight =  parseInt( $($header).outerHeight() );
+
         // When scroll position is over header height add fixed styles for navigation block
         if (windowTopScroll > headerHeight - navigationHeight) {
-            $($navigation).addClass('header__navigation_fixed');  
+            $($navigation).addClass('header__navigation_fixed');
+            $($header).css("padding-bottom", navigationHeight);
         } else {
             $($navigation).removeClass('header__navigation_fixed');
+            $($header).css( "padding-bottom", 0);
         }
     });
 
