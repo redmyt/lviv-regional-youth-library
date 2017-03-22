@@ -39,39 +39,48 @@ body {
     position: relative;
 }
 
-.logo__title-wrapper {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.header_style_default {
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.logo__title-text {
-    font-size: 60px;
-    width: 800px;
+.header_style_day {
+    background-image: url("../img/logo-bg-day.jpg");
+}
+
+.header_style_night {
+    background-image: url("../img/logo-bg-night.jpg");
+}
+
+.header__library-name {
+    margin: 0;
+    padding-top: 20px;
+    font-size: 400%;
+    font-weight: normal;
     text-align: center;
     color: rgb(224, 157, 30);
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.header__navigation {
-    position: absolute;
-    bottom: 0;
+.library-name__text-row {
+    display: inline-block;
+    width: 100%;
 }
 
-.header__navigation_fixed {
-    position: fixed;
-    top: 0;
-    bottom: auto;
-    z-index: 10;
+.header__logo {
+    width: 50%;
+    margin: 0 auto;
 }
 
 .navigation_style_defult {
     width: 100%;
     box-shadow: 0 1px 20px white, 0 -1px 20px white;
+}
+
+.header__navigation_fixed {
+    position: fixed;
+    top: 0;
+    z-index: 10;
 }
 
 .navigation_style_day {
