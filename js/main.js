@@ -115,6 +115,7 @@
         isPaused = false;
     });
 
+    // TODO
     controlButtons.on('click', function() {
         changePictureSlidingScrollPosition(this.dataset.scrollDirection);
     });
@@ -139,8 +140,9 @@
             document.body.scrollTop = bodyScrollPosition;
             itemsForSliding.shift();
             itemsForSliding. push(firstSlidingElement);
+
+            // Set sliding elements wrapper scroll top like the nubmer which we got from subtracting height of first element from slider wrapper scroll top and add scrollStap for avionding the slider to stop
             $(slidingElementsWrapper).scrollTop(parentElementScroll + scrollStap);
-        debugger
         } else {
             // Change scroll top of sliding elements wrapper on certain scrollStap
             parentElementScroll = parentElementScroll + scrollStap;
@@ -161,7 +163,6 @@
         });
     }
 
-    var scrollStap;
     // When user rotate mouse cicle under the slide he can scroll it as one want
     function mousePictureSliding() {
 
@@ -170,11 +171,7 @@
             
             // Identify mousewheel direction
             var mousewheelDirection = parseInt(e.deltaY) === 1 ? 'up' : 'down';
-
-            scrollStap = 50;
-            slidThePictures(slidingPictures, slidingPicturesWrapper, scrollStap);
-
-            // changePictureSlidingScrollPosition(mousewheelDirection);
+            changePictureSlidingScrollPosition(mousewheelDirection);
         }); 
     }
 
@@ -182,9 +179,9 @@
     function changePictureSlidingScrollPosition(direction) {
 
         // Save previous wrapper scroll position
-        parentElementScroll = parseInt( $(slidingPicturesWrapper).scrollTop() );
+        var parentElementScroll = parseInt( $(slidingPicturesWrapper).scrollTop() );
         
-        // Chage slider wrapper scroll position
+        // Chage sliding elements wrapper scroll position
         if(direction === 'up') {
             parentElementScroll -= 50;
             $(slidingPicturesWrapper).scrollTop(parentElementScroll);
