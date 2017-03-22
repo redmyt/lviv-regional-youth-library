@@ -91,7 +91,9 @@
         // Save sliding pictures wrapper to variable 
         slidingPicturesWrapper = $('.new-books-slider__picteres-slide-section'), 
         // Variable for checking the slider pause
-        isPaused = false;
+        isPaused = false,
+        // Save slider control buttons to one variable
+        controlButtons = $('.new-books-slider__control-button');
 
     // Start slide each of books picture
     var sliderInterval = setInterval(function() {
@@ -113,17 +115,22 @@
         isPaused = false;
     });
 
+    controlButtons.on('click', function() {
+        changePictureSlidingScrollPosition(this.dataset.scrollDirection);
+    });
+
     // function descriptions ------------------------------------------------------------------------------------------
 
     // Implement the slider. Change scroll position of picture wrapper and when the first element height becomes equals scroll position change the DOM picture position
-    function  slidThePictures(itemsForSliding, slidingElementsWrapper) {
+    function  slidThePictures(itemsForSliding, slidingElementsWrapper, scrollValue) {
         // Get firs slide picture element height and picture wrapper scroll position
         var firstSlidingElement = itemsForSliding[0],
             firstElementHeight = parseInt( $(firstSlidingElement).css('height') ),
             parentElementScroll = parseInt( $(slidingElementsWrapper).scrollTop() );
         
+
         // Set first element at the end of picture list when picture wrapper scroll position becomes equal first element height or scroll picture wrapper one more 
-        if (parentElementScroll === firstElementHeight) {
+        if (parentElementScroll >= firstElementHeight) {
             var bodyScrollPosition = parseInt( document.body.scrollTop );
             $(slidingElementsWrapper).append(firstSlidingElement);
             document.body.scrollTop = bodyScrollPosition;
@@ -131,7 +138,8 @@
             itemsForSliding. push(firstSlidingElement);
             $(slidingElementsWrapper).scrollTop(0);
         } else {
-            parentElementScroll++;
+            // debugger
+            parentElementScroll = scrollValue || ++parentElementScroll;
             $(slidingElementsWrapper).scrollTop(parentElementScroll);
         }
     }
@@ -149,23 +157,38 @@
         });
     }
 
+            var scroll = 0;
     // When user rotate mouse cicle under the slide he can scroll it as one want
-    function mousePictureSliding(slidingElementsWrapper) {
+    function mousePictureSliding() {
+
         // Add mousewheel event for slide wrpper
         $(slidingPicturesWrapper).on('mousewheel', function(e) {
-            // identify mousewheel direction
+            
+            // Identify mousewheel direction
             var mousewheelDirection = parseInt(e.deltaY) === 1 ? 'up' : 'down';
-            // save previous wrapper scroll position
-            parentElementScroll = parseInt( $(slidingElementsWrapper).scrollTop() );
-            // change wrpper scroll position depending on mousewheel direction
-            if(mousewheelDirection === 'up') {
-                parentElementScroll -= 50;
-                $(slidingElementsWrapper).scrollTop(parentElementScroll);
-            } else {
-                parentElementScroll += 50;
-                $(slidingElementsWrapper).scrollTop(parentElementScroll);
-            }
+
+            scroll += 10
+debugger
+            slidThePictures(slidingPictures, slidingPicturesWrapper, 10);
+
+            // changePictureSlidingScrollPosition(mousewheelDirection);
         }); 
+    }
+
+    // Change slider wrapper scroll position depending on user's choosed direction
+    function changePictureSlidingScrollPosition(direction) {
+
+        // Save previous wrapper scroll position
+        parentElementScroll = parseInt( $(slidingPicturesWrapper).scrollTop() );
+        
+        // Chage slider wrapper scroll position
+        if(direction === 'up') {
+            parentElementScroll -= 50;
+            $(slidingPicturesWrapper).scrollTop(parentElementScroll);
+        } else {
+            parentElementScroll += 50;
+            $(slidingPicturesWrapper).scrollTop(parentElementScroll);
+        }
     }
 
 })();
