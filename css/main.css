@@ -278,4 +278,13 @@ body {
     flex-direction: column;
 }
 
+.taglines {
+    display: flex;
+    justify-content: space-around;
+}
+
+.talines__item.picture-wrapper {
+    width: 50px
+}
+
 /*footer styles end*/
