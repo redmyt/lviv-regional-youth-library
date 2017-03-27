@@ -3,17 +3,22 @@
     src: url(../fonts/Intro_Script_R_H2_Base.otf);
 }
 
+@font-face {
+    font-family: Lugatype;
+    src: url(../fonts/Tkachev-Lugatype.otf);
+}
+
 /*general styles start*/
 
 body {
-    font-family: scriptBase, "Comic Sans MS", cursive, sans-serif;
+    font-family: Lugatype, "Comic Sans MS", cursive, sans-serif;
 }
 
-.body-style-day {
+.body_style_day {
     background: #b0c7ea;
 }
 
-.body-style-night {
+.body_style_night {
     background: #a6a4b3;
 }
 
@@ -31,7 +36,9 @@ body {
     width: 100%;
 }
 
-.navigation__items-list, .navigation__item, .main-page-content {
+.navigation__items-list,
+.navigation__item,
+.main-page-content {
     display: flex;
 }
 
@@ -39,7 +46,8 @@ body {
 
 /*header styles start*/
 
-.header, .logo {
+.header,
+.logo {
     position: relative;
 }
 
@@ -81,6 +89,10 @@ body {
     box-shadow: 0 1px 20px white, 0 -1px 20px white;
 }
 
+.navigation_style_day {
+    background: rgba(82, 124, 178, 0.5);
+}
+
 .navigation_style_night {
     background: rgba(121, 118, 140, 0.5); 
 }
@@ -91,8 +103,12 @@ body {
     z-index: 10;
 }
 
-.navigation_style_day {
-    background: rgba(82, 124, 178, 0.5);
+.header__navigation_fixed.navigation_style_day {
+    background: rgba(82, 124, 178, 1);
+}
+
+.header__navigation_fixed.navigation_style_night {
+    background: rgba(121, 118, 140, 1); 
 }
 
 .navigation__items-list {
@@ -161,15 +177,25 @@ body {
 }
 
 .main-page-content_style_default {
+    position: relative;
+}
+
+.main-page-content_style_default::after {
+    content: "";
     background-image: url("../img/main-bg-modified1.png");
     background-size: contain;
     background-repeat: no-repeat;
-        filter: opacity(0.6);
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: -1;
 }
 
 .news-board {
     width: 75%;
-    /*background: yellow;*/
 }
 
 /*slider styles start*/
@@ -193,10 +219,6 @@ body {
     height: 278px;
     top: 258px;
     left: 45px;
-}
-
-.new-books-slider__picteres-slide-section_style_default {
-  /*border: 12px solid brown;*/
 }
 
 .new-books-slider__control-button_up {
@@ -235,10 +257,15 @@ body {
 
 /*footer styles start*/
 
-.footer {
+.footer_style_default {
+    background-image: url(../img/footer-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.footer-information {
     display: flex;
-    background: green;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .coordinates-schedule {

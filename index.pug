@@ -12,7 +12,7 @@ html(lang='uk')
         link(rel="stylesheet" type="text/css" href="css/owl.carousel.min.css")
         link(rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css")
         link(rel="stylesheet" type="text/css" href="css/main.css")
-    body.body-style-day
+    body.body.body_style_day
         div.wrapper
             // header start
             header.header.header_style_default.header_style_day
@@ -57,8 +57,6 @@ html(lang='uk')
             section.main-page-content.main-page-content_style_default
                 main.news-board
                 aside.new-books-slider
-                    figure.new-books-slider__books-picture-wrapper.picture-wrapper
-                        img.new-books-slider__books-picture.page-picture(src="img/book-stack.jpg" alt="book stak")
                     div.new-books-slider__picteres-slide-section.new-books-slider__picteres-slide-section_style_default
                         button.new-books-slider__control-button.new-books-slider__control-button_up(data-scroll-direction="up") Up
                         button.new-books-slider__control-button.new-books-slider__control-button_down(data-scroll-direction="down") Down
@@ -75,19 +73,24 @@ html(lang='uk')
                             a.partners-panel__link(href="#")
                                 img.partners-panel__link-image.page-picture(src="http://placehold.it/200x200" alt="Partner picture")
                     - }
-            footer.footer
-                div.coordinates-schedule
-                    span.coordinates-schedule__work-schedule Mond - Friday 
-                        time 09.00 - 18.00
-                    span.coordinates-schedule__address.
-                        Lviv Runok Squre ...
-                div.contact-information
-                    span.contact-information__phone-number +38000 00 000 00 
-                    a.contact-information__facebook-link.page-link(href="#") Facebook
-                    a.contact-information__instagram-link.page-link(href="#") Instagram
-                    span.contact-information__email email 
-                    span.contact-information__skype skype 
-                div.google-map
+            footer.footer.footer_style_default
+                div.footer-information
+                    div.coordinates-schedule
+                        span.coordinates-schedule__work-schedule Mond - Friday 
+                            time 09.00 - 18.00
+                        span.coordinates-schedule__address.
+                            Lviv Runok Squre ...
+                    div.contact-information
+                        span.contact-information__phone-number +38000 00 000 00 
+                        a.contact-information__facebook-link.page-link(href="#") Facebook
+                        a.contact-information__instagram-link.page-link(href="#") Instagram
+                        span.contact-information__email email 
+                        span.contact-information__skype skype 
+                    div.google-map
+                div.taglines
+                figure.books-row-wrapper.picture-wrapper
+                    img.books-row.page-picture(src="img/books-row.png" alt="books row picture")
+
             script(src="js/jquery-3.1.1.min.js")
             script(src="js/jquery.mousewheel.min.js")
             script(src="js/owl.carousel.min.js")
