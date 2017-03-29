@@ -1,3 +1,29 @@
+// Set night styles when it is evening in the Ukraine
+(function setNightStyles () {
+
+    // Switch styles for all needed elements
+    switchTimeStyles('.body', 'body_style_night');
+    switchTimeStyles('.header', 'header_style_night');
+    switchTimeStyles('.navigation', 'navigation_style_night');
+    switchTimeStyles('.navigation__item', 'navigation__item_style_night');
+
+    // Get Ukraine time from any point of word
+    function getUkraineTime() {
+        var currentUserHour = new Date().getHours(),
+            userTimeZone = (new Date().getTimezoneOffset() / 60),
+            timeZoneHoursDifference = userTimeZone - (-2);
+        return currentUserHour + timeZoneHoursDifference;
+    };
+
+    // Switch element styles at evening and morning
+    function switchTimeStyles(element, classWithStyles) {
+        if (getUkraineTime() > 18 || getUkraineTime() < 9) {
+            $(element).addClass(classWithStyles);
+        }
+    }
+
+})();
+
 // Provides initializing and completely settings for owl-carousel slider
 (function initOwlSlider() {
     // Initialize owl-carousel slider on the page 
@@ -43,7 +69,6 @@
     );
 
 })();
-
 
 // Following function controls all navigation behavior
 (function initNavigationChanges() {
@@ -192,18 +217,3 @@
     }
 
 })();
-
-function getUkraineTime() {
-    var currentUserHour = new Date().getHours(),
-        userTimeZone = (new Date().getTimezoneOffset() / 60),
-        timeZoneHoursDifference = userTimeZone - (-2);
-    return currentUserHour + timeZoneHoursDifference;
-};
-
-function switchTimeStyles(element) {
-    if (getUkraineTime() > 18 || getUkraineTime() < 9) {
-        $(element).addClass('nightStyle');
-    }
-}
-
-switchTimeStyles(document.body);
