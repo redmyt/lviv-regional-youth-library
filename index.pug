@@ -5,7 +5,8 @@ html(lang='uk')
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         meta(name="keywords" content="бібліотека, юнацтво, львів, книга, читання, проект")
         meta(name="description" content="Сайт Львівської обласної бібліотеки для юнацтва")
-        title Львівська Обласна Бібліотека для Юнацтва
+        title Львівська обласна бібліотека для юнацтва
+        // TODO favicon
         link(rel="icon" type="image/png" href="favicon.ico")
         link(rel="stylesheet" type="text/css" href="css/normalize.css")
         link(rel="stylesheet" type="text/css" href="css/font-awesome.min.css")
@@ -25,7 +26,7 @@ html(lang='uk')
                 nav.navigation.navigation_style_defult.navigation_style_day
                     ul.navigation__items-list
                         each item in ['Новини', 'Проекти', 'Вікно в Америку', 'Нові книги', 'Про нас']
-                            li.navigation__item.navigation__item_style_default.navigation__item_inactive
+                            li.navigation__item.navigation__item_style_default.navigation__item_inactive.navigation__item_style_day
                                 svg.navigation__keyhole-picture(height="35"
                                         width="35"
                                         xmlns="http://www.w3.org/2000/svg" 
