@@ -76,17 +76,24 @@ html(lang='uk')
                     - }
             footer.footer.footer_style_default
                 section.footer-information
-                    div.coordinates-schedule
-                        span.coordinates-schedule__work-schedule Mond - Friday 
-                            time 09.00 - 18.00
-                        span.coordinates-schedule__address.
-                            Lviv Runok Squre ...
+                    div.coordinates-schedule.coordinates-schedule_style_default
+                        - var days = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Субота', 'Неділя'];
+                        - var hours = ['10-18', '10-18', '10-18', '10-20', '10-20', 'Зачинено', '10-18'];
+                        for day, dayNumber in days
+                            span.coordinates-schedule__work-schedule
+                                span.coordinates-schedule__day=day
+                                time.coordinates-schedule__working-hours=hours[dayNumber]
+                        span.coordinates-schedule__street-address.
+                            площа Ринок, 9
+                        span.coordinates-schedule__city-address.
+                            Львівська область, м. Львів, 79000
                     div.contact-information
-                        span.contact-information__phone-number +38000 00 000 00 
+                        span.contact-information__phone-number 032 235 66 84 
+                        span.contact-information__phone-number 032 235 60 18  
                         a.contact-information__facebook-link.page-link(href="#") Facebook
                         a.contact-information__instagram-link.page-link(href="#") Instagram
-                        span.contact-information__email email 
-                        span.contact-information__skype skype 
+                        span.contact-information__email email bibliolviv@ukr.net
+                        span.contact-information__skype skype bibliolviv
                     div.google-map
                 section.taglines
                     figure.talines__item.picture-wrapper

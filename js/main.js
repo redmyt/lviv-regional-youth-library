@@ -11,7 +11,7 @@
     function getUkraineTime() {
         var currentUserHour = new Date().getHours(),
             userTimeZone = (new Date().getTimezoneOffset() / 60),
-            timeZoneHoursDifference = userTimeZone - (-2);
+            timeZoneHoursDifference = userTimeZone - (-3);
         return currentUserHour + timeZoneHoursDifference;
     };
 

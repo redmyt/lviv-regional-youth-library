@@ -38,7 +38,10 @@ body {
 
 .navigation__items-list,
 .navigation__item,
-.main-page-content {
+.main-page-content,
+.footer-information,
+.coordinates-schedule,
+.contact-information {
     display: flex;
 }
 
@@ -263,17 +266,18 @@ body {
 }
 
 .footer-information {
-    display: flex;
     justify-content: space-between;
 }
 
 .coordinates-schedule {
-    display: flex;
     flex-direction: column;
 }
 
+.coordinates-schedule_style_default {
+
+}
+
 .contact-information {
-    display: flex;
     flex-direction: column;
 }
 
