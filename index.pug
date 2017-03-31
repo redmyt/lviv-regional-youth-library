@@ -12,10 +12,8 @@ html(lang='uk')
         link(rel="stylesheet" type="text/css" href="css/font-awesome.min.css")
         link(rel="stylesheet" type="text/css" href="css/owl.carousel.min.css")
         link(rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css")
-        <script src="https://maps.googleapis.com/maps/api/js?key=&extension=.js"></script> 
-        <script src="https://cdn.mapkit.io/v1/infobox.js"></script> 
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet"> 
-        <link href="https://cdn.mapkit.io/v1/infobox.css" rel="stylesheet" > 
+        link(href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet") 
+        link(href="https://cdn.mapkit.io/v1/infobox.css" rel="stylesheet") 
         link(rel="stylesheet" type="text/css" href="css/main.css")
     body.body.body_style_day
         div.wrapper
@@ -99,7 +97,7 @@ html(lang='uk')
                         span.contact-information__email email bibliolviv@ukr.net
                         span.contact-information__skype skype bibliolviv
                     div.google-map
-                        <div id='google-map-frame'></div>
+                        div#google-map-frame
                 section.taglines
                     figure.talines__item.picture-wrapper
                         img.taglines__key-image.page-picture(src="img/logo-key.png" alt="books row picture")
@@ -108,8 +106,9 @@ html(lang='uk')
                     span.talines__item #Бібліотека_на_Ринку_9
                 figure.books-row-wrapper.picture-wrapper
                     img.books-row.page-picture(src="img/books-row.png" alt="books row picture")
-
-            script(src="js/jquery-3.1.1.min.js")
-            script(src="js/jquery.mousewheel.min.js")
-            script(src="js/owl.carousel.min.js")
-            script(src="js/main.js")
+        script(src="js/jquery-3.1.1.min.js")
+        script(src="js/jquery.mousewheel.min.js")
+        script(src="js/owl.carousel.min.js")
+        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeOCxGWlidjZbCULcJYed2ANDLiomKm4&extension=.js") 
+        script(src="https://cdn.mapkit.io/v1/infobox.js")
+        script(src="js/main.js")
