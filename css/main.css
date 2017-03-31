@@ -270,7 +270,10 @@ body {
 }
 
 .coordinates-schedule {
+    width: 33.33%;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .coordinates-schedule_style_default {
@@ -278,8 +281,30 @@ body {
 }
 
 .contact-information {
+    width: 33.33%;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+#google-map-frame {
+    width: 100%;
+    height:300px;
+}
+
+.google-map {
+    width: 33.33%;
+    padding: 25px;
+}
+
+
+
+
+
+
+
+
+
 
 .taglines {
     display: flex;
