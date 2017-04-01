@@ -335,7 +335,7 @@
     function init() {
         var mapOptions = {
             center: new google.maps.LatLng(49.84187833736642,24.03229847171019),
-            zoom: 18,
+            zoom: 17,
             gestureHandling: 'auto',
             fullscreenControl: false,
             zoomControl: true,
@@ -345,7 +345,7 @@
                 style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
             },
             scaleControl: true,
-            scrollwheel: true,
+            scrollwheel: false,
             streetViewControl: true,
             draggable : true,
             clickableIcons: false,
