@@ -277,7 +277,6 @@ body {
     width: 33.33%;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .coordinates-schedule_style_default {
@@ -288,7 +287,6 @@ body {
     width: 33.33%;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 #google-map-frame {
@@ -318,6 +316,14 @@ body {
 
 .talines__item.picture-wrapper {
     width: 200px
+}
+
+.taglines__image-label_style_dafault {
+    font-size: 20px;
+    font-family: scriptBase;
+    color: brown;
+    text-align: center;
+    text-shadow: none;
 }
 
 /*footer styles end*/
