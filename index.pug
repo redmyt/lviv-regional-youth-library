@@ -78,22 +78,53 @@ html(lang='uk')
                     - }
             footer.footer.footer_style_default
                 section.footer-information
-                    div.coordinates-schedule.coordinates-schedule_style_default
+                    acticle.coordinates-schedule.coordinates-schedule_style_default
+                        h2.coordinates-schedule__schedule-header Графік роботи
                         - var days = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Субота', 'Неділя'];
                         - var hours = ['10-18', '10-18', '10-18', '10-20', '10-20', 'Зачинено', '10-18'];
                         for day, dayNumber in days
-                            span.coordinates-schedule__work-schedule
+                            span.coordinates-schedule__day-schedule
                                 span.coordinates-schedule__day=day
                                 time.coordinates-schedule__working-hours=hours[dayNumber]
+                        h2.coordinates-schedule__addres-header Адреса
                         span.coordinates-schedule__street-address.
                             площа Ринок, 9
                         span.coordinates-schedule__city-address.
                             Львівська область, м. Львів, 79000
-                    div.contact-information
+                    article.contact-information
+                        h2.contact-information__header Контакти
                         span.contact-information__phone-number 032 235 66 84 
                         span.contact-information__phone-number 032 235 60 18  
-                        a.contact-information__facebook-link.page-link(href="#") Facebook
-                        a.contact-information__instagram-link.page-link(href="#") Instagram
+                        a.contact-information__facebook-link.page-link(href="#")
+                            svg(version="1.1"
+                                id="Capa_1" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                x="0px" 
+                                y="0px"
+                                width="60.734px" 
+                                height="60.733px" 
+                                viewBox="0 0 60.734 60.733" 
+                                style="enable-background:new 0 0 60.734 60.733;"
+                                xml:space="preserve")
+                                g
+                                    path(d="M57.378,0.001H3.352C1.502,0.001,0,1.5,0,3.353v54.026c0,1.853,1.502,3.354,3.352,3.354h29.086V37.214h-7.914v-9.167h7.914v-6.76c0-7.843,4.789-12.116,11.787-12.116c3.355,0,6.232,0.251,7.071,0.36v8.198l-4.854,0.002c-3.805,0-4.539,1.809-4.539,4.462v5.851h9.078l-1.187,9.166h-7.892v23.52h15.475c1.852,0,3.355-1.503,3.355-3.351V3.351C60.731,1.5,59.23,0.001,57.378,0.001z")
+                        a.contact-information__instagram-link.page-link(href="#")
+                            svg(width="60.734px" 
+                                height="60.733px" 
+                                version="1.1" 
+                                id="Layer_1" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                x="0px" 
+                                y="0px"
+                                viewBox="0 0 56.7 56.7" 
+                                enable-background="new 0 0 56.7 56.7" 
+                                xml:space="preserve")
+                                g
+                                    path(d="M28.2,16.7c-7,0-12.8,5.7-12.8,12.8s5.7,12.8,12.8,12.8S41,36.5,41,29.5S35.2,16.7,28.2,16.7z M28.2,37.7c-4.5,0-8.2-3.7-8.2-8.2s3.7-8.2,8.2-8.2s8.2,3.7,8.2,8.2S32.7,37.7,28.2,37.7z")
+                                    circle(cx="41.5" cy="16.4" r="2.9")
+                                    path(d="M49,8.9c-2.6-2.7-6.3-4.1-10.5-4.1H17.9c-8.7,0-14.5,5.8-14.5,14.5v20.5c0,4.3,1.4,8,4.2,10.7c2.7,2.6,6.3,3.9,10.4,3.9h20.4c4.3,0,7.9-1.4,10.5-3.9c2.7-2.6,4.1-6.3,4.1-10.6V19.3C53,15.1,51.6,11.5,49,8.9z M48.6,39.9c0,3.1-1.1,5.6-2.9,7.3s-4.3,2.6-7.3,2.6H18c-3,0-5.5-0.9-7.3-2.6C8.9,45.4,8,42.9,8,39.8V19.3c0-3,0.9-5.5,2.7-7.3c1.7-1.7,4.3-2.6,7.3-2.6h20.6c3,0,5.5,0.9,7.3,2.7c1.7,1.8,2.7,4.3,2.7,7.2V39.9L48.6,39.9z")
                         span.contact-information__email email bibliolviv@ukr.net
                         span.contact-information__skype skype bibliolviv
                     div.google-map
