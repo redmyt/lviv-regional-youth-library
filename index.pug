@@ -71,10 +71,12 @@ html(lang='uk')
             // main-content end
             section.partners-panel
                 div.owl-carousel.owl-theme.partners-panel__slider
+                    - var images = ['img/partners-img/UBA-logo.jpg', 'img/partners-img/Old-lion-logo.jpg', 'img/partners-img/Kamenyar.jpg', 'img/partners-img/urbino.jpg', 'img/partners-img/black-sheeps.jpg', 'img/partners-img/owl.jpg', 'img/partners-img/ridnamova.jpg', 'img/partners-img/forum.jpg'];
+                    - var paths = ['https://ula.org.ua/'];
                     - for (var i = 0; i < 10; i++) {
                         div.partners-panel__partner-item
-                            a.partners-panel__link(href="#")
-                                img.partners-panel__link-image.page-picture(src="http://placehold.it/200x200" alt="Partner picture")
+                            a.partners-panel__link(href=paths[i])
+                                img.partners-panel__link-image.page-picture(src=images[i] alt="Partner picture")
                     - }
             footer.footer.footer_style_default
                 section.footer-information

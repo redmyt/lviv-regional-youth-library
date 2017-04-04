@@ -249,10 +249,13 @@ body {
     margin-top: 15px;
 }
 
-.partners-panel__item {
-    background: green;
-    /*width: 100px;*/
-    /*height: 100px;*/
+.partners-panel__partner-item {
+    height: 200px;
+}
+
+.partners-panel__link-image {
+    width: 200px;
+    height: 200px;
 }
 
 /*partners panel styles end*/
