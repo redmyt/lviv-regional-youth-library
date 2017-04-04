@@ -36,8 +36,8 @@
         loop: true,
         margin: 10,
         dotsEach: true,
-        // autoplay: true,
-        autoplayTimeout: 1000,
+        autoplay: true,
+        autoplayTimeout: 2000,
         autoplayHoverPause:true,
         responsiveClass: true,
         responsive: {
@@ -60,13 +60,13 @@
     });    
 
     // Stop the slider when user hover it and star one againg after user's mouseleave 
-    // $('.partners-panel').hover(
-    //     function () {
-    //         $('.owl-carousel').trigger('stop.owl.autoplay');
-    //     }, function () {
-    //         $('.owl-carousel').trigger('play.owl.autoplay', [1000, 1000]);
-    //     }
-    // );
+    $('.partners-panel').hover(
+        function () {
+            $('.owl-carousel').trigger('stop.owl.autoplay');
+        }, function () {
+            $('.owl-carousel').trigger('play.owl.autoplay', [2000, 2000]);
+        }
+    );
 
 })();
 
