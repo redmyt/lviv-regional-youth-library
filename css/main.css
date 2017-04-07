@@ -36,14 +36,22 @@ body {
     width: 100%;
 }
 
+.page-header {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
 .navigation__items-list,
 .navigation__item,
-.main-page-content,
-.footer-information,
-.schedule,
-.schedule__days-panel,
-.contact-information {
+.main-page-content {
     display: flex;
+}
+
+.pale-text {
+    color: #c6c4cf;
 }
 
 /*general styles end*/
@@ -266,22 +274,49 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     color: #ffffff;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .footer-information {
     justify-content: space-between;
 }
 
-.schedule {
+.schedule-address-panel {
     width: 33.33%;
+}
+
+.schedule {
     flex-direction: column;
     align-items: center;
 }
 
-.coordinates-schedule_style_default {
-
+.schedule__days-panel {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+.schedule__days-wrapper {
+    flex-direction: column;
+}
+
+.schedule__certain-day-schedule {
+    margin: 2px 0;
+}
+
+
+
+
+
+
+.address {
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
 
 .contact-information {
     width: 33.33%;
