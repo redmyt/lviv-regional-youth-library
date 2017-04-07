@@ -77,7 +77,7 @@ html(lang='uk')
                     
                     for item, i in images
                         div.partners-panel__partner-item
-                            a.partners-panel__link(href=paths[i])
+                            a.partners-panel__link(href=paths[i] target="_blank")
                                 img.partners-panel__link-image.page-picture(src=images[i] alt="Partner picture")
             // footer start
             footer.footer.footer_style_default
@@ -102,14 +102,19 @@ html(lang='uk')
                                 площа Ринок, 9
                             span.address__city.pale-text.
                                 м. Львів, 79000
-                    section.contact-information
-                        h2.contact-information__header Контакти
-                        span.contact-information__phone-number 032 235 66 84 
-                        span.contact-information__phone-number 032 235 60 18  
-                        a.contact-information__facebook-link.page-link(href="#")
-                        a.contact-information__instagram-link.page-link(href="#")
-                        span.contact-information__email email bibliolviv@ukr.net
-                        span.contact-information__skype skype bibliolviv
+                    section.contacts.flex
+                        h2.contacts__header Контакти
+                        span.contacts__phone-number
+                            span.pale-text 032 
+                            | 235 66 84 
+                        span.contacts__phone-number 
+                            span.pale-text 032 
+                            | 235 60 18
+                        div.contacts__links-wrapper  
+                            a.contact-information__facebook-link.page-link(href="#")
+                            a.contact-information__instagram-link.page-link(href="#")
+                            span.contact-information__email email bibliolviv@ukr.net
+                            span.contact-information__skype skype bibliolviv
                     div.google-map
                         div#google-map-frame
                 section.taglines

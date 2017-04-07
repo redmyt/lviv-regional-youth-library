@@ -285,7 +285,8 @@ body {
     width: 33.33%;
 }
 
-.schedule {
+.schedule,
+.address {
     flex-direction: column;
     align-items: center;
 }
@@ -309,20 +310,18 @@ body {
 
 
 
-.address {
-    flex-direction: column;
-    align-items: center;
-}
-
-
-
-
-
-.contact-information {
+.contacts {
     width: 33.33%;
     flex-direction: column;
     align-items: center;
 }
+
+
+
+
+
+
+
 
 #google-map-frame {
     height:300px;
