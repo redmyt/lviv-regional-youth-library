@@ -24,6 +24,7 @@ body {
 
 .page-link {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .picture-wrapper {
@@ -52,6 +53,14 @@ body {
 
 .pale-text {
     color: #c6c4cf;
+}
+
+.invisible-element {
+    display: none;
+}
+
+.visible-inline-element {
+    display: inline;
 }
 
 /*general styles end*/
@@ -319,13 +328,14 @@ body {
 .contacts__links-wrapper {
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 40%;
+    width: 35%;
     margin-top: 25px;
 }
 
 .contacts__link {
     display: inline-block;
     width: 60px;
+    margin-bottom: 10px;
 }
 
 

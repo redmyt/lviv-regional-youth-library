@@ -218,6 +218,41 @@
 
 })();
 
+(function initFooterChanges() {
+
+    // Shown email and skype when user click the certain icon
+    var $mailIcon = $('.contact-information__mail-link'),
+        $skypeIcon = $('.contact-information__skype-link'),
+        $mailText = $('.contacts__mail-text'),
+        $skypeText = $('.contacts__skype-text');
+
+    var contactsShowingElements = [$mailText, $skypeText];
+
+
+    $mailIcon.click(function() {
+        showOneOfSetElement($mailText, contactsShowingElements, 'inline');        
+    });
+
+    $skypeIcon.click(function() {
+        showOneOfSetElement($skypeText, contactsShowingElements, 'inline');        
+    });
+
+
+})();
+todo ////////// i add class invis and after that i add class visible and in the end element has two classes
+function showOneOfSetElement(element, setOfElements, typeOfElement) {
+    setOfElements.forEach(function(elem) {
+        debugger
+        elem.addClass('invisible-element');
+
+    })
+
+    if (typeOfElement === 'inline') {
+        $(element).addClass('visible-inline-element');
+    } else {
+        $(element).addClass('visible-block-element');
+    }
+}
 
 // Google maps module
 (function initGoogleMap() {
