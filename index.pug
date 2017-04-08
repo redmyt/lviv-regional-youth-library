@@ -123,12 +123,15 @@ html(lang='uk')
                         span.contacts__skype-text.invisible bibliolviv
                     div.google-map
                         div#google-map-frame
-                section.taglines
-                    figure.talines__item.picture-wrapper
-                        img.taglines__key-image.page-picture(src="img/logo-key.png" alt="books row picture")
-                        figcaption.taglines__image-label.taglines__image-label_style_dafault #artrakov
-                    span.talines__item Тут живуть секрети...
-                    span.talines__item #Бібліотека_на_Ринку_9
+                section.taglines.flex
+                    div.taglines-key
+                        figure.taglines-key__wrapper.picture-wrapper
+                            img.taglines-key__picture.page-picture(src="img/logo-key.png" alt="books row picture")
+                            figcaption.taglines-key__picture-label.taglines-key__picture-label_style_dafault #artrakov
+                    div.taglines-secrets
+                        span.taglines-secrets__text Тут живуть секрети...
+                    div.taglines-hashtag
+                        span.taglines-hashtag #Бібліотека_на_Ринку_9
                 figure.books-row-wrapper.picture-wrapper
                     img.books-row.page-picture(src="img/books-row.png" alt="books row picture")
         script(src="js/jquery-3.1.1.min.js")
