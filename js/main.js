@@ -220,23 +220,24 @@
 
 (function initFooterChanges() {
 
-    // Shown email and skype when user click the certain icon
+    // Save mail and skype icons and texts
     var $mailIcon = $('.contact-information__mail-link'),
         $skypeIcon = $('.contact-information__skype-link'),
         $mailText = $('.contacts__mail-text'),
         $skypeText = $('.contacts__skype-text');
 
+    // Add mail and skype texts to one set
     var contactsShowingElements = [$mailText, $skypeText];
 
-
+    // Show the mail text when user click the mail icon
     $mailIcon.click(function() {
         emphasizeOneOfTheSetElement($mailText, contactsShowingElements, 'visible-inline');        
     });
 
+    // Show the mail text when user click the mail icon
     $skypeIcon.click(function() {
         emphasizeOneOfTheSetElement($skypeText, contactsShowingElements, 'visible-inline');        
     });
-
 
 })();
 
