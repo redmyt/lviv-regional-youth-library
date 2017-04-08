@@ -25,7 +25,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
     // Switch element styles at evening and morning
     function switchTimeStyles(element, classWithStyles) {
-        if (17 > 18 || 17 < 9) {
+        if (getUkraineTime() > 18 || getUkraineTime() < 9) {
             $(element).addClass(classWithStyles);
         }
     }
