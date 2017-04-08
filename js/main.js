@@ -1,3 +1,11 @@
+// Add certain emphasize class for the one of the set elemet and remove that class from the other set elements
+function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
+    $(setOfElements).each(function() {
+        $(this).removeClass(emphasizeClass);
+    })
+    $(element).addClass(emphasizeClass);
+}
+
 // Set night styles when it is evening in the Ukraine
 (function setNightStyles () {
 
@@ -241,15 +249,6 @@
 
 })();
 
-function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
-    
-    $(setOfElements).each(function() {
-        $(this).removeClass(emphasizeClass);
-    })
-        
-    $(element).addClass(emphasizeClass);
-
-}
 
 // Google maps module
 (function initGoogleMap() {

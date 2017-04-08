@@ -288,6 +288,7 @@ body {
 
 .footer-information {
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .schedule-address-panel {
@@ -314,11 +315,6 @@ body {
     margin: 2px 0;
 }
 
-
-
-
-
-
 .contacts {
     width: 33.33%;
     flex-direction: column;
@@ -328,30 +324,26 @@ body {
 .contacts__links-wrapper {
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 35%;
+    width: 150px;
     margin-top: 25px;
+    width: 40%;
 }
 
 .contacts__link {
     display: inline-block;
-    width: 60px;
+    width: 38%;
     margin-bottom: 10px;
-}
-
-
-
-
-
-
-#google-map-frame {
-    height:300px;
-    width:100%;
 }
 
 .google-map {
     text-shadow: none;
     width: 33.33%;
     padding: 25px;
+}
+
+#google-map-frame {
+    height:300px;
+    width:100%;
 }
 
 
