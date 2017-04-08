@@ -55,11 +55,11 @@ body {
     color: #c6c4cf;
 }
 
-.invisible-element {
+.invisible {
     display: none;
 }
 
-.visible-inline-element {
+.visible-inline {
     display: inline;
 }
 

@@ -230,28 +230,24 @@
 
 
     $mailIcon.click(function() {
-        showOneOfSetElement($mailText, contactsShowingElements, 'inline');        
+        emphasizeOneOfTheSetElement($mailText, contactsShowingElements, 'visible-inline');        
     });
 
     $skypeIcon.click(function() {
-        showOneOfSetElement($skypeText, contactsShowingElements, 'inline');        
+        emphasizeOneOfTheSetElement($skypeText, contactsShowingElements, 'visible-inline');        
     });
 
 
 })();
-todo ////////// i add class invis and after that i add class visible and in the end element has two classes
-function showOneOfSetElement(element, setOfElements, typeOfElement) {
-    setOfElements.forEach(function(elem) {
-        debugger
-        elem.addClass('invisible-element');
 
+function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
+    
+    $(setOfElements).each(function() {
+        $(this).removeClass(emphasizeClass);
     })
+        
+    $(element).addClass(emphasizeClass);
 
-    if (typeOfElement === 'inline') {
-        $(element).addClass('visible-inline-element');
-    } else {
-        $(element).addClass('visible-block-element');
-    }
 }
 
 // Google maps module
