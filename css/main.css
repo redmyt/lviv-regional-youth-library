@@ -84,7 +84,7 @@ body {
 .header__library-name {
     margin: 0;
     padding-top: 20px;
-    font-size: 74px;
+    font-size: 6vw;
     font-weight: bold;
     text-align: center;
     color: rgb(224, 157, 30);
