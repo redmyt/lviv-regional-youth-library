@@ -25,7 +25,9 @@ html(lang='uk')
                     a.logo__link(href="index.html")
                         img.logo__key-picture.page-picture(src="img/logo-key.png" alt="Key logo picture")
                 nav.navigation.navigation_style_defult.navigation_style_day
-                    ul.navigation__items-list
+                    div.navigation__collapsed-button-wrapper
+                        button.navigation__collapsed-button BTN
+                    ul.navigation__items-list.navigation__items-list_style_collapsed.flex
                         each item in ['Новини', 'Проекти', 'Вікно в Америку', 'Нові книги', 'Про нас']
                             li.navigation__item.navigation__item_style_default.navigation__item_inactive.navigation__item_style_day.flex
                                 svg.navigation__keyhole-picture(height="35"

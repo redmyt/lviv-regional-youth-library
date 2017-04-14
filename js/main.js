@@ -82,12 +82,14 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 (function initNavigationChanges() {
 
     // Save navigation block, navigation items and header section to a variables.
-    var $navigation = $('.navigation'),
+    var $header = $('.header'),
+        $navigation = $('.navigation'),
         $navItems = $('.navigation__item'),
-        $header = $('.header');
+        $navItemsList = $('.navigation__items-list'),
+        $collapsedButton = $('.navigation__collapsed-button');
 
     // Add scroll event hendler for window and make navigation fixed when user scroll window over the navigation block
-    $(window).on("scroll", function () {
+    $(window).on('scroll', function () {
 
         // Get header-block-element and navigation-block-element heights an save them. Also get current window scroll position.
         var navigationHeight = parseInt( $($navigation).outerHeight() ),
@@ -112,6 +114,10 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             $navItems.removeClass('navigation__item_active').addClass('navigation__item_inactive');
             $(this).toggleClass('navigation__item_active navigation__item_inactive');
         });
+    });
+
+    $collapsedButton.on('click', function() {
+        $navItemsList.toggleClass('navigation__items-list_style_collapsed');
     });
     
 })();
