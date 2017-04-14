@@ -13,7 +13,8 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
     switchTimeStyles('.body', 'body_style_night');
     switchTimeStyles('.header', 'header_style_night');
     switchTimeStyles('.navigation', 'navigation_style_night');
-    switchTimeStyles('.navigation__item', 'navigation__item_style_night');
+    switchTimeStyles('.navigation__item', 'navigation__item_style_night'),
+    switchTimeStyles('.navigation__collapsed-button', 'navigation__collapsed-button_style_night');
 
     // Get Ukraine time from any point of word
     function getUkraineTime() {
@@ -25,7 +26,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
     // Switch element styles at evening and morning
     function switchTimeStyles(element, classWithStyles) {
-        if (getUkraineTime() > 18 || getUkraineTime() < 9) {
+        if (19 > 18 || getUkraineTime() < 9) {
             $(element).addClass(classWithStyles);
         }
     }

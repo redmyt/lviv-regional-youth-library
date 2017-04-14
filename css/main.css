@@ -14,11 +14,13 @@ body {
     font-family: Lugatype, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-.body_style_day {
+.body_style_day,
+.navigation__collapsed-button_style_day {
     background: #b0c7ea;
 }
 
-.body_style_night {
+.body_style_night,
+.navigation__collapsed-button_style_night {
     background: #a6a4b3;
 }
 
@@ -127,7 +129,7 @@ body {
 
 .navigation__collapsed-button {
     display: inline-block;
-    margin: 10px 10px;
+    margin: 3% 4%;
 }
 
 .navigation__collapsed-button_style_default {
@@ -136,8 +138,14 @@ body {
     box-shadow: none;
     border: none;
     outline: none;
+}
+
+.navigation__collapsed-button_style_day {
     fill: #3f260c;
-    background: #b0c7ea;
+}
+
+.navigation__collapsed-button_style_night {
+    fill: #c6c4cf;
 }
 
 .navigation__items-list {
