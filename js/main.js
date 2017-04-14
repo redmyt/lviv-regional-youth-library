@@ -102,7 +102,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             $($header).css("padding-bottom", navigationHeight);
         } else {
             $($navigation).removeClass('header__navigation_fixed');
-            $($header).css( "padding-bottom", 0);
+            $($header).css("padding-bottom", 0);
         }
     });
 
@@ -118,6 +118,11 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
     $collapsedButton.on('click', function() {
         $navItemsList.toggleClass('navigation__items-list_style_collapsed');
+        // debugger
+            $($header).css("padding-bottom", 0);
+        
+        var headerHeight =  parseInt( $($header).outerHeight() );
+        $(window).scroll();
     });
     
 })();
