@@ -130,6 +130,16 @@ body {
     margin: 10px 10px;
 }
 
+.navigation__collapsed-button_style_default {
+    border-radius: 6px;
+    padding-top: 4px;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    fill: #3f260c;
+    background: #b0c7ea;
+}
+
 .navigation__items-list {
     flex-direction: column;
     justify-content: space-around;
