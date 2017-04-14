@@ -116,12 +116,12 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         });
     });
 
+    // Show or hide collapsed menu when user click the collapsed button
     $collapsedButton.on('click', function() {
-        $navItemsList.toggleClass('navigation__items-list_style_collapsed');
-        // debugger
-            $($header).css("padding-bottom", 0);
+        $navItemsList.toggleClass('navigation__items-list_style_collapsed');    
         
-        var headerHeight =  parseInt( $($header).outerHeight() );
+        // Remove large paddin which been added when menu was open
+        $($header).css("padding-bottom", 0);
         $(window).scroll();
     });
     
