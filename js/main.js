@@ -109,10 +109,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
     // Add click event hendler for each nav-item
     $navItems.each(function () {
         $(this).on('click', function () {
-
-            // Remove 'active' style and add 'inactive' stlye from all nav-items and make 'active' onle one link been clicked 
-            $navItems.removeClass('navigation__item_active').addClass('navigation__item_inactive');
-            $(this).toggleClass('navigation__item_active navigation__item_inactive');
+            emphasizeOneOfTheSetElement(this, $navItems, 'navigation__item_active');
         });
     });
 
