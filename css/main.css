@@ -19,8 +19,7 @@ body {
     background: #b0c7ea;
 }
 
-.body_style_night,
-.navigation__collapsed-button_style_night {
+.body_style_night {
     background: #a6a4b3;
 }
 
@@ -49,14 +48,6 @@ body {
 
 .pale-text {
     color: #c6c4cf;
-}
-
-.invisible {
-    display: none;
-}
-
-.visible-inline {
-    display: inline;
 }
 
 /*general styles end*/
@@ -129,7 +120,7 @@ body {
 
 .navigation__collapsed-button {
     display: inline-block;
-    margin: 3% 4%;
+    margin: 2% 3%;
 }
 
 .navigation__collapsed-button_style_default {
@@ -145,6 +136,7 @@ body {
 }
 
 .navigation__collapsed-button_style_night {
+    background: #55516a;
     fill: #c6c4cf;
 }
 
@@ -215,15 +207,15 @@ body {
 
 /*main page content styles start*/
 
-.main-page-content {
+.main-content {
     justify-content: space-around;
 }
 
-.main-page-content_style_default {
+.main-content_style_default {
     position: relative;
 }
 
-.main-page-content_style_default::after {
+.main-content_style_default::after {
     content: "";
     background-image: url("../img/main-bg-modified1.png");
     background-size: contain;
@@ -238,8 +230,14 @@ body {
     z-index: -1;
 }
 
-.news-board {
+.main-comtent__item {
+    display: none;
     width: 75%;
+    font-size: 50px;
+}
+
+.main-comtent__item_active {
+    display: block;
 }
 
 /*slider styles start*/
@@ -363,6 +361,15 @@ body {
     display: inline-block;
     width: 38%;
     margin-bottom: 10px;
+}
+
+.contacts__mail-text,
+.contacts__skype-text {
+    display: none;
+}
+
+.contacts__skype-mail-text_visible {
+    display: inline;
 }
 
 .google-map {

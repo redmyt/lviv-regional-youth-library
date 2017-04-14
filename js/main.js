@@ -26,7 +26,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
     // Switch element styles at evening and morning
     function switchTimeStyles(element, classWithStyles) {
-        if (19 > 18 || getUkraineTime() < 9) {
+        if (getUkraineTime() > 18 || getUkraineTime() < 9) {
             $(element).addClass(classWithStyles);
         }
     }
@@ -82,12 +82,15 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 // Following function controls all navigation behavior
 (function initNavigationChanges() {
 
-    // Save navigation block, navigation items and header section to a variables.
+    // Save navigation block, navigation items, header section and collapser button to a variables.
     var $header = $('.header'),
         $navigation = $('.navigation'),
         $navItems = $('.navigation__item'),
         $navItemsList = $('.navigation__items-list'),
         $collapsedButton = $('.navigation__collapsed-button');
+    
+    // Save all main content items for shanging its visibility    
+    var $mainContentItems = $('.main-comtent__item');
 
     // Add scroll event hendler for window and make navigation fixed when user scroll window over the navigation block
     $(window).on('scroll', function () {
@@ -110,7 +113,13 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
     // Add click event hendler for each nav-item
     $navItems.each(function () {
         $(this).on('click', function () {
+            // Make clicked item style active
             emphasizeOneOfTheSetElement(this, $navItems, 'navigation__item_active');
+
+            // Get visible main content item
+            var $visibleMainContentItem = $(this.dataset.target);
+            // Make other main content items invisible
+            emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-comtent__item_active');
         });
     });
 
@@ -123,6 +132,11 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         $(window).scroll();
     });
     
+})();
+
+// Following function controls all main content behavior
+(function initMainContentChnges() {
+
 })();
 
 // Provides core logic for new-books slider
@@ -235,6 +249,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
 })();
 
+// Following function controls all footer behavior
 (function initFooterChanges() {
 
     // Save mail and skype icons and texts
@@ -248,16 +263,15 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
     // Show the mail text when user click the mail icon
     $mailIcon.click(function() {
-        emphasizeOneOfTheSetElement($mailText, contactsShowingElements, 'visible-inline');        
+        emphasizeOneOfTheSetElement($mailText, contactsShowingElements, 'contacts__skype-mail-text_visible');
     });
 
     // Show the mail text when user click the mail icon
     $skypeIcon.click(function() {
-        emphasizeOneOfTheSetElement($skypeText, contactsShowingElements, 'visible-inline');        
+        emphasizeOneOfTheSetElement($skypeText, contactsShowingElements, 'contacts__skype-mail-text_visible');
     });
 
 })();
-
 
 // Google maps module
 (function initGoogleMap() {
