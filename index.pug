@@ -155,9 +155,9 @@ html(lang='uk')
             footer.footer.footer_style_default
                 section.footer-information.flex
                     section.schedule-address-panel.footer-information__item
-                        article.schedule.flex
+                        article.schedule.flex.column.flex-center
                             h2.schedule__header.page-header Графік роботи:
-                            div.schedule__days-panel
+                            div.schedule__days-panel.column.flex-center
                                 - var days = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Субота', 'Неділя'];
                                  - var hours = [ ['10', '18'], ['10', '18'], ['10', '20'], ['10', '20'], ['10', '20'], ['Зачинено'], ['10', '18'] ];
                                 for day, dayNumber in days
@@ -168,13 +168,13 @@ html(lang='uk')
                                                 sup 00
                                                 = - hours[dayNumber][1]
                                                 sup 00 
-                        article.address.flex
+                        article.address.flex.column.flex-center
                             h2.address__header.page-header Адреса:
                             span.address__street.
                                 площа Ринок, 9
                             span.address__city.pale-text.
                                 м. Львів, 79000
-                    section.contacts.flex.footer-information__item
+                    section.contacts.flex.column.flex-center.footer-information__item
                         h2.contacts__header Контакти
                         span.contacts__phone-number
                             span.pale-text 032 
@@ -202,9 +202,9 @@ html(lang='uk')
                             figcaption.taglines-key__picture-label.taglines-key__picture-label_style_dafault
                                 a.page-link(href="https://www.facebook.com/artrakov?fref=hovercard" target="_blank") #artrakov
                     div.taglines-secrets
-                        span.taglines-secrets__text Тут живуть секрети...
+                        h2.taglines-secrets__text.page-header Тут живуть секрети...
                     div.taglines-hashtag
-                        span.taglines-hashtag__text #Бібліотека_на_Ринку_9
+                        h2.taglines-hashtag__text.page-header #Бібліотека_на_Ринку_9
                 figure.books-row-wrapper.picture-wrapper
                     img.books-row.page-picture(src="img/books-row.png" alt="books row picture")
         script(src="js/jquery-3.1.1.min.js")
