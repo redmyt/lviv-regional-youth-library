@@ -12,6 +12,7 @@
 
 body {
     font-family: Lugatype, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 22px;
 }
 
 .body_style_day,
@@ -26,6 +27,7 @@ body {
 .page-link {
     text-decoration: none;
     cursor: pointer;
+    color: inherit;
 }
 
 .picture-wrapper {
@@ -311,7 +313,6 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     color: #ffffff;
-    font-size: 22px;
 }
 
 .footer-information {
@@ -345,15 +346,14 @@ body {
 
 .contacts__links-wrapper {
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 150px;
     margin-top: 25px;
-    width: 40%;
 }
 
 .contacts__link {
     display: inline-block;
-    width: 38%;
+    width: 64px;
     margin-bottom: 10px;
 }
 
@@ -377,13 +377,16 @@ body {
 }
 
 .taglines {
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
 .taglines-key,
 .taglines-secrets,
 .taglines-hashtag {
-    width: 33%;
+    /*width: 33%;*/
+    margin: 10px;
 }
 
 .taglines-key__wrapper {
@@ -454,6 +457,19 @@ body {
     .footer-information__item {
         width: 33.33%;
     }
+
+    .taglines {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taglines-key,
+.taglines-secrets,
+.taglines-hashtag {
+    width: 33%;
+    /*margin: 10px;*/
+}
 
 }
 
