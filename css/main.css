@@ -37,7 +37,7 @@ body {
 }
 
 .page-picture {
-    max-width: 100%;
+    width: 100%;
 }
 
 .page-header {
@@ -209,7 +209,7 @@ body {
     display: inline;
 }
 
-.navigation__link-text {
+.navigation__link_style_default {
     font-size: 26px;
 }
 
@@ -292,7 +292,7 @@ body {
 /*partners panel styles start*/
 
 .partners-panel__heading_style_default {
-    font-size: 46px;
+    font-size: 2.2em;
 }
 
 .partners-panel__slider {
@@ -418,14 +418,6 @@ body {
         margin: 0;
     }
 
-
-
-
-
-
-
-
-
     .footer-information {
         flex-direction: row;
         justify-content: space-around;
@@ -448,3 +440,45 @@ body {
 }
 
 /*large screens styles end*/
+
+/*extra-large screens styles start*/
+
+@media screen and (min-width: 1360px) {
+    
+    body,
+    .navigation__link_style_default,
+    .taglines-key__picture-label_style_dafault {
+        font-size: 2vw;
+    }
+
+    .partners-panel__partner-item {
+        height: 11vw;
+    }
+
+    .partners-panel__link-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .contacts__links-wrapper {
+        width: 30%;
+        margin-top: 5%;
+    }
+
+    .contacts__link {
+        width: 45%;
+        margin-bottom: 3%;
+    }
+
+    .google-map {
+        text-shadow: none;
+        padding: 2% 2%;
+        box-sizing: border-box;
+    }
+
+    #google-map-frame {
+        height: 17vw;
+        width:100%;
+    }
+
+}
