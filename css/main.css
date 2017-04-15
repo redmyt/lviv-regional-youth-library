@@ -82,10 +82,10 @@ body {
 .header__library-name {
     margin: 0;
     padding-top: 20px;
-    font-size: 6vw;
+    font-size: 7vw;
     font-weight: bold;
     text-align: center;
-    color: rgb(224, 157, 30);
+    color: #e09d1e;
 }
 
 .library-name__text-row {
@@ -100,7 +100,7 @@ body {
 
 .navigation_style_defult {
     width: 100%;
-    box-shadow: 0 1px 20px white, 0 -1px 20px white;
+    box-shadow: 0 1px 20px #fff, 0 -1px 20px #fff;
 }
 
 .navigation_style_day {
@@ -152,11 +152,10 @@ body {
 }
 
 .navigation__items-list {
-    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     list-style: none;
-    padding: 0 0 16px 0;
+    padding: 0 0 16px;
     margin: 0;
 }
 
@@ -179,26 +178,26 @@ body {
 .navigation__item_style_day {
     color: #3f260c;
     fill: #3f260c;
-    box-shadow: 0px 0px 0px 2px #3f260c;
+    box-shadow: 0 0 0 2px #3f260c;
 }
 
 .navigation__item_style_night {
     color: #c6c4cf;
     fill: #c6c4cf;
-    box-shadow: 0px 0px 0px 2px #c6c4cf;
+    box-shadow: 0 0 0 2px #c6c4cf;
 }
 
 .navigation__item_style_default:hover,
 .navigation__item_active {
-    fill: rgb(224, 157, 30);
+    fill: #e09d1e;
     stroke-width: 3px;
-    color: rgb(224, 157, 30);
-    box-shadow: 0px 0px 15px 10px rgba(224, 157, 30, 1), 0px 0px 15px 5px rgba(224, 157, 30, 1) inset;
+    color: #e09d1e;
+    box-shadow: 0 0 15px 10px #e09d1e, 0 0 15px 5px #e09d1e inset;
 }
 
 .navigation__item_active,
 .navigation__item_active:hover {
-    box-shadow: 0px 0px 0px 2px rgba(224, 157, 30, 1);
+    box-shadow: 0 0 0 2px #e09d1e;
 }
 
 .navigation__open-book-picture,
@@ -293,7 +292,6 @@ body {
 /*partners panel styles start*/
 
 .partners-panel__heading_style_default {
-    text-align: center;
     font-size: 46px;
 }
 
@@ -319,8 +317,8 @@ body {
     background-image: url(../img/footer-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    box-shadow: 0 -1px 20px white;
-    color: #ffffff;
+    box-shadow: 0 -1px 20px #fff;
+    color: #fff;
 }
 
 .footer-information {
@@ -352,10 +350,12 @@ body {
 .contacts__mail-text,
 .contacts__skype-text {
     visibility: hidden;
+    text-align: left;
 }
 
 .contacts__skype-mail-text_visible {
     visibility: visible;
+    text-align: center;
 }
 
 .google-map {

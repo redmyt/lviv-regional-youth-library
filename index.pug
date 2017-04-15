@@ -57,7 +57,7 @@ html(lang='uk')
                                     path(d="M112,6H12C5.4,6,0,11.4,0,18s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,6,112,6z")
                                     path(d="M112,50H12C5.4,50,0,55.4,0,62c0,6.6,5.4,12,12,12h100c6.6,0,12-5.4,12-12C124,55.4,118.6,50,112,50z")
                                     path(d="M112,94H12c-6.6,0-12,5.4-12,12s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,94,112,94z")
-                    ul.navigation__items-list.navigation__items-list_style_collapsed.flex
+                    ul.navigation__items-list.navigation__items-list_style_collapsed.flex.column
                         - var mainContentTargets = ['.news-board', '.projects', '.window-on-america', '.top-books', '.about-us'];
                         each item, i in ['Новини', 'Проекти', 'Вікно в Америку', 'Нові книги', 'Про нас']
                             if i === 0
@@ -142,7 +142,7 @@ html(lang='uk')
                                         alt="one of new books picture")
             // main-content end
             section.partners-panel
-                h2.partners-panel__heading.partners-panel__heading_style_default Наші партнери
+                h2.partners-panel__heading.partners-panel__heading_style_default.page-header Наші партнери
                 div.owl-carousel.owl-theme.partners-panel__slider
                     - var images = ['img/partners-img/UBA-logo.jpg', 'img/partners-img/Old-lion-logo.jpg', 'img/partners-img/Kamenyar.jpg', 'img/partners-img/urbino.jpg', 'img/partners-img/black-sheeps.jpg', 'img/partners-img/owl.jpg', 'img/partners-img/meridian.jpg', 'img/partners-img/darina-foundation.jpg', 'img/partners-img/ridnamova.jpg', 'img/partners-img/forum.jpg', 'img/partners-img/books-yard.jpg', 'img/partners-img/first-theatre.jpg', 'img/partners-img/gurt.png', 'img/partners-img/slowly.jpg', 'img/partners-img/joryi-kloc.jpg', 'img/partners-img/hand-made.jpg', 'img/partners-img/lapudiki.jpg', 'img/partners-img/uku.png', 'img/partners-img/lef.jpg', 'img/partners-img/sourse.jpg', 'img/partners-img/eco.jpg', 'img/partners-img/sushi.jpg', 'img/partners-img/child-train.jpg', 'img/partners-img/events.jpg', 'img/partners-img/corali.jpg', 'img/partners-img/red-noses.jpg', 'img/partners-img/open-hearts.jpg', 'img/partners-img/dikart.jpg', 'img/partners-img/hist-museum.jpg'];
                     - var paths = ['https://ula.org.ua/', 'http://starylev.com.ua/', 'http://www.kamenyar.com.ua/', 'http://urbino.com.ua/', 'https://www.facebook.com/ChorniVivtsi/', 'http://sovapublish.com/', 'http://www.meridiancz.com/', 'http://zholdak.org/', 'http://www.ridna-mova.com/', 'http://bookforum.ua/', 'https://www.facebook.com/%D0%9A%D0%BD%D0%B8%D0%B3%D0%B0%D1%80%D0%BD%D1%8F-%D0%9A%D0%BD%D0%B8%D0%B6%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9-%D0%B4%D0%B2%D0%BE%D1%80%D0%B8%D0%BA-1433111456924133/', 'http://nashteatr.lviv.ua/', 'http://gurt.org.ua/', 'https://vk.com/club22233858', 'https://www.facebook.com/Joryj.Kloc.wataga/', 'https://www.facebook.com/HMlviv/', 'https://www.facebook.com/lapudyky/', 'http://ucu.edu.ua/', 'http://www.lef.org.ua/ua/', 'http://www.dzherelocentre.org.ua/', 'https://www.facebook.com/ekozaxid/', 'https://www.sushiya.ua/ua/', 'http://ldz-lviv.at.ua/', 'https://www.facebook.com/EventsLviv/', 'http://koralli.if.ua/', 'https://www.facebook.com/rednosedayua/', 'http://openhearts.ua/', 'http://www.dikart.com.ua/', 'http://www.lhm.lviv.ua/'];
