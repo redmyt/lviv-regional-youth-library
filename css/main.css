@@ -350,12 +350,14 @@ body {
 .contacts__mail-text,
 .contacts__skype-text {
     visibility: hidden;
-    text-align: left;
+}
+
+.contacts__skype-mail-text_invisible {
+    display: none;
 }
 
 .contacts__skype-mail-text_visible {
     visibility: visible;
-    text-align: center;
 }
 
 .google-map {

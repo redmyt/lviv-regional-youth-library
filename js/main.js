@@ -264,11 +264,13 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
     // Show the mail text when user click the mail icon
     $mailIcon.click(function() {
         emphasizeOneOfTheSetElement($mailText, contactsShowingElements, 'contacts__skype-mail-text_visible');
+        emphasizeOneOfTheSetElement($skypeText, contactsShowingElements, 'contacts__skype-mail-text_invisible');
     });
 
     // Show the mail text when user click the mail icon
     $skypeIcon.click(function() {
         emphasizeOneOfTheSetElement($skypeText, contactsShowingElements, 'contacts__skype-mail-text_visible');
+        emphasizeOneOfTheSetElement($mailText, contactsShowingElements, 'contacts__skype-mail-text_invisible');
     });
 
 })();
