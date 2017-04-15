@@ -329,6 +329,7 @@ body {
 
 .schedule__days-panel {
     display: inline-flex;
+    align-items: flex-start;
 }
 
 .schedule__certain-day-schedule {
