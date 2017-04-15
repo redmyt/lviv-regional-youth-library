@@ -165,8 +165,6 @@ body {
 }
 
 .navigation__item {
-    justify-content: center;
-    align-items: center;
     width: 75%;
     margin: 6px 0;
 }
@@ -321,6 +319,7 @@ body {
     background-image: url(../img/footer-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    box-shadow: 0 -1px 20px white;
     color: #ffffff;
 }
 
@@ -351,11 +350,11 @@ body {
 
 .contacts__mail-text,
 .contacts__skype-text {
-    display: none;
+    visibility: hidden;
 }
 
 .contacts__skype-mail-text_visible {
-    display: inline;
+    visibility: visible;
 }
 
 .google-map {
@@ -411,8 +410,6 @@ body {
     }
 
     .navigation__item {
-        justify-content: center;
-        align-items: center;
         padding: 1px 14px 1px 1px;
         width: auto;
         margin: 0;
@@ -440,10 +437,10 @@ body {
     }
 
     .taglines {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
 
 }
 
