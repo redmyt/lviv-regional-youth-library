@@ -149,18 +149,35 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             $(data).find('article').each(function() {
                 newsArticles.push(this);
             });
+            parseNewsItemsToHtml(newsArticles);
         }
     });
 
     function parseNewsItemsToHtml(newsArticles) {
         $(newsArticles).each(function () {
-            // var 
+            debugger
+            var $newsArticle = $('<article>');
+            var $newsHeading = $('<h3>');
+            var $newsPicture = $('<img>');
+            var $newsParagraph = $('<p>');
+            var $newsLink = $('<a>');
+
+            
+            $newsHeading.text( $(this).find('name').text() );
+            $newsPicture.attr( 'src', $(this).find('image').text() );
+            $newsParagraph.text( $(this).find('content').text() );
+            $newsLink.text( $(this).find('facebookLink').text() );
+
+            $newsArticle.append($newsPicture);
+            $newsArticle.append($newsParagraph);
+            $newsArticle.append($newsLink);
+
+            $('.main-comtent__item').append($newsArticle);
         });
     }
 
-
 })();
-console.log(arr);
+
 // Provides core logic for new-books slider
 (function initNewBooksSlier() {
     
