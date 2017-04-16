@@ -135,18 +135,30 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 })();
 
 // Following function controls all main content behavior
-var arr = [];
 (function initMainContentChnges() {
+
+    // Array for saving all news articles from the "news" document
+    var newsArticles = [];
+
+    // Get AJAX request for the "news" document and put all separate news articles to array 
     $.ajax({
+        type: 'GET',
         url: "../news.xml",
         dataType: "xml",
         success: function(data) {
             $(data).find('article').each(function() {
-            debugger
-                arr.push(this);
+                newsArticles.push(this);
             });
         }
     });
+
+    function parseNewsItemsToHtml(newsArticles) {
+        $(newsArticles).each(function () {
+            // var 
+        });
+    }
+
+
 })();
 console.log(arr);
 // Provides core logic for new-books slider

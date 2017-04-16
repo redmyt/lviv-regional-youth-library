@@ -241,7 +241,11 @@ body {
 .main-comtent__item {
     display: none;
     width: 75%;
-    font-size: 50px;
+    /*font-size: px;*/
+}
+
+.news-board__item_style_default {
+    margin: 15px 0 15px 15px;
 }
 
 .main-comtent__item_active {
