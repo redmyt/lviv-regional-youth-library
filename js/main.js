@@ -135,10 +135,20 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 })();
 
 // Following function controls all main content behavior
+var arr = [];
 (function initMainContentChnges() {
-
+    $.ajax({
+        url: "../news.xml",
+        dataType: "xml",
+        success: function(data) {
+            $(data).find('article').each(function() {
+            debugger
+                arr.push(this);
+            });
+        }
+    });
 })();
-
+console.log(arr);
 // Provides core logic for new-books slider
 (function initNewBooksSlier() {
     
