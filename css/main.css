@@ -44,6 +44,12 @@ body {
     text-align: center;
 }
 
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 .flex {
     display: flex;
 }
@@ -244,8 +250,19 @@ body {
     /*font-size: px;*/
 }
 
-.news-board__item_style_default {
-    margin: 15px 0 15px 15px;
+.news-article_style_default {
+    margin-left: 15px;
+    padding-right: 15px;
+    text-align: right;
+}
+
+.news-article__picture-wrapper {
+    float: left;
+    margin-right: 10px;
+}
+
+.news-article__paragraph_style_default {
+    text-align: left;
 }
 
 .main-comtent__item_active {
