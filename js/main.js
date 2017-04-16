@@ -137,44 +137,58 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 // Following function controls all main content behavior
 (function initMainContentChnges() {
 
-    // Array for saving all news articles from the "news" document
-    var newsArticles = [];
+    // Array for saving all xml news articles from the "news" document
+    var xmlNewsArticles = [];
 
-    // Get AJAX request for the "news" document and put all separate news articles to array 
+    // Get AJAX request for the "news" document and put all separate xml news articles to array 
     $.ajax({
         type: 'GET',
         url: "../news.xml",
         dataType: "xml",
         success: function(data) {
             $(data).find('article').each(function() {
-                newsArticles.push(this);
+                xmlNewsArticles.push(this);
             });
-            parseNewsItemsToHtml(newsArticles);
+            addElementsToPage( parseNewsItemsToHtml(xmlNewsArticles), $('.news-board') );
         }
     });
 
-    function parseNewsItemsToHtml(newsArticles) {
-        $(newsArticles).each(function () {
-            debugger
-            var $newsArticle = $('<article>');
-            var $newsHeading = $('<h3>');
-            var $newsPicture = $('<img>');
-            var $newsParagraph = $('<p>');
-            var $newsLink = $('<a>');
 
-            
+    function parseNewsItemsToHtml(xmlNewsArticles) {
+
+        // Array for saving all html news articles after its parsing
+        var htmlNewsArticles = [];
+
+        $(xmlNewsArticles).each(function () {
+
+            // Create elements for the html markup
+            var $newsArticle = $('<article>'),
+                $newsHeading = $('<h3>'),
+                $newsPicture = $('<img>'),
+                $newsParagraph = $('<p>'),
+                $newsLink = $('<a>');
+
+            // Get needed value for certain xml tags
             $newsHeading.text( $(this).find('name').text() );
             $newsPicture.attr( 'src', $(this).find('image').text() );
             $newsParagraph.text( $(this).find('content').text() );
             $newsLink.text( $(this).find('facebookLink').text() );
 
+            // Add all html article's children to one
+            $newsArticle.append($newsHeading);
             $newsArticle.append($newsPicture);
             $newsArticle.append($newsParagraph);
             $newsArticle.append($newsLink);
 
-            $('.main-comtent__item').append($newsArticle);
+            // Add complete article to the articles array
+            htmlNewsArticles.push($newsArticle);
         });
+        return htmlNewsArticles;
     }
+
+    function addElementsToPage(elements, appendElementTo) {
+        $(appendElementTo).append(elements);
+    };
 
 })();
 

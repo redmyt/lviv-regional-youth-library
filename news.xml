@@ -8,4 +8,28 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa reprehenderit recusandae at, modi, dolorem impedit? Dolores animi cupiditate beatae aut, quas. Dolorum ex minus cumque, obcaecati. Tenetur iusto minima nobis.
         </content>
     </article>
+    <article>
+        <name>Second</name>
+        <facebookLink>link</facebookLink>
+        <image>http://placehold.it/200x200</image>
+        <content>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa reprehenderit recusandae at, modi, dolorem impedit? Dolores animi cupiditate beatae aut, quas. Dolorum ex minus cumque, obcaecati. Tenetur iusto minima nobis.
+        </content>
+    </article>
+    <article>
+        <name>Third</name>
+        <facebookLink>link</facebookLink>
+        <image>http://placehold.it/200x200</image>
+        <content>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa reprehenderit recusandae at, modi, dolorem impedit? Dolores animi cupiditate beatae aut, quas. Dolorum ex minus cumque, obcaecati. Tenetur iusto minima nobis.
+        </content>
+    </article>
+    <article>
+        <name>Fourth</name>
+        <facebookLink>link</facebookLink>
+        <image>http://placehold.it/200x200</image>
+        <content>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa reprehenderit recusandae at, modi, dolorem impedit? Dolores animi cupiditate beatae aut, quas. Dolorum ex minus cumque, obcaecati. Tenetur iusto minima nobis.
+        </content>
+    </article>
 </news>
