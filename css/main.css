@@ -228,21 +228,9 @@ body {
 
 .main-content_style_default {
     padding: 2% 0 2% 2%;
-}
-
-.main-content_style_default::after {
-    content: "";
-    background-image: url("../img/main-bg-modified1.png");
+    background-image: linear-gradient( rgba(166,164,179, 0.6), rgba(166,164,179, 0.6) ), url("../img/main-bg-modified1.png");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: -40px;
-    width: 800px;
-    height: 900px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.6;
-    z-index: -1;
 }
 
 .main-comtent__item {
