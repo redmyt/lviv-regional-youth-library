@@ -148,7 +148,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
     // Get AJAX request for the "news" document and put all separate html news articles to array 
     $.ajax({
         type: 'GET',
-        url: "../news.xml",
+        url: "./news.xml",
         dataType: "xml",
         success: function(data) {
             // Parse each xml news article to html and save them
