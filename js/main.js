@@ -162,21 +162,23 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         $(xmlNewsArticles).each(function () {
 
             // Create elements for the html markup
-            var $newsArticle = $('<article>'),
-                $newsHeading = $('<h3>'),
-                $newsPicture = $('<img>'),
-                $newsParagraph = $('<p>'),
-                $newsLink = $('<a>');
+            var $newsArticle = createPageElement('<article>', 'news-article news-article_style_default clearfix'),
+                $newsHeading = createPageElement('<h3>', 'news-article__heading page-header'),
+                $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper picture-wrapper'),
+                $newsPicture = createPageElement('<img>', 'news-article__pictire'),
+                $newsParagraph = createPageElement('<p>', 'news-article__paragraph news-article__paragraph_style_default'),
+                $newsLink = createPageElement('<a>', 'news-article__link page-link');
 
             // Get needed value for certain xml tags
             $newsHeading.text( $(this).find('name').text() );
+            $newsPictureWrapper.append($newsPicture);
             $newsPicture.attr( 'src', $(this).find('image').text() );
             $newsParagraph.text( $(this).find('content').text() );
             $newsLink.text( $(this).find('facebookLink').text() );
 
             // Add all html article's children to one
             $newsArticle.append($newsHeading);
-            $newsArticle.append($newsPicture);
+            $newsArticle.append($newsPictureWrapper);
             $newsArticle.append($newsParagraph);
             $newsArticle.append($newsLink);
 
@@ -188,7 +190,13 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
     function addElementsToPage(elements, appendElementTo) {
         $(appendElementTo).append(elements);
-    };
+    }
+
+    function createPageElement(elementTag, elementClasses) {
+        var $newPageElement = $(elementTag);
+        $newPageElement.addClass(elementClasses);
+        return $newPageElement;
+    }
 
 })();
 
