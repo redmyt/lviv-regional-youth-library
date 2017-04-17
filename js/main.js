@@ -142,15 +142,19 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
     // Array for saving all html news articles after its parsing
     var htmlNewsArticles = [];
 
-    // Get AJAX request for the "news" document and put all separate xml news articles to array 
+    // Save index of the next element that must be showed on the page
+    var nextShowingElementIndex = 0;
+
+    // Get AJAX request for the "news" document and put all separate html news articles to array 
     $.ajax({
         type: 'GET',
         url: "../news.xml",
         dataType: "xml",
         success: function(data) {
+            // Parse each xml news article to html and save them
             $(data).find('article').each(function(index, xmlNewsArticle) {
-                // Parse each xml news article to html
-                parseNewsItemToHtml(xmlNewsArticle);
+                var $currentArticle = parseNewsItemToHtml(xmlNewsArticle);
+                htmlNewsArticles.push($currentArticle);
             });
             showNewsArticles(0, 4);
         }
@@ -186,8 +190,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         $newsArticle.append($newsArticleBody);
         $newsArticle.append($newsLink);
 
-        // Add complete article to the articles array
-        htmlNewsArticles.push($newsArticle);
+        return $newsArticle;
     }
 
     function createPageElement(elementTag, elementClasses) {
