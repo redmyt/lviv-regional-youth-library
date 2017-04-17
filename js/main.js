@@ -198,7 +198,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         $newsHeading.text( $(xmlNewsArticle).find('name').text() );
         $newsPicture.attr( 'src', $(xmlNewsArticle).find('image').text() );
         $newsPictureWrapper.append($newsPicture);
-        $newsArticleBody.append($newsPictureWrapper, newsParagraphes);
+        $newsArticleBody.append($newsPictureWrapper, newsHtmlParagraphes);
         $newsLink.text( $(xmlNewsArticle).find('link').text() );
 
         // Add all html article's children to one
