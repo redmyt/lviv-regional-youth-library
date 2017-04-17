@@ -160,9 +160,11 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         }
     });
 
-    function showNewsArticles(fromElementIndex, toElementIndex) {
-        for (var i = fromElementIndex; i < toElementIndex; i++) {
-            $showMoreButton.before(htmlNewsArticles[i]);            
+    // Show five next invisible news articles 
+    function showNewsArticles() {
+        for (var i = 0; i < 5; i++) {
+            $showMoreButton.before(htmlNewsArticles[nextShowingElementIndex]);
+            nextShowingElementIndex++;
         }
     }
 
@@ -192,6 +194,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
         return $newsArticle;
     }
+    
 
     function createPageElement(elementTag, elementClasses) {
         var $newPageElement = $(elementTag);
