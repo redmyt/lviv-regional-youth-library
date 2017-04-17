@@ -122,15 +122,17 @@ html(lang='uk')
             // main-content start
             section.main-content.main-content_style_default.flex
                 main.main-comtent__item.main-comtent__item_active.news-board
-                    article.news-article.news-article_style_default.clearfix
+                    article.news-article.news-board__article.news-article_style_default
                         h3.news-article__heading.page-header Title
-                        figure.news-article__picture-wrapper.picture-wrapper
-                            img.news-article__pictire(src="http://placehold.it/200x200")
-                        p.news-article__paragraph.news-article__paragraph_style_default
-                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam temporibus est voluptatum incidunt provident vitae voluptas eveniet quis qui esse laboriosam excepturi, dolore dolor maxime dignissimos, harum odit, reprehenderit facilis!  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ratione pariatur. Laudantium incidunt alias quasi natus sed aliquid est asperiores harum, consequatur autem at ratione enim nobis ut vero illum?
-                        p.news-article__paragraph.news-article__paragraph_style_default
-                            |  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit quae dicta, praesentium, harum commodi enim natus cupiditate, asperiores amet consectetur, numquam facere nesciunt beatae error magni molestias saepe voluptatem deserunt maxime eius cumque voluptates dolores. Officia itaque sint consequuntur doloremque, est animi accusantium nobis, sunt magnam iure vero provident! Iure quia nesciunt eligendi nostrum provident placeat, ratione obcaecati eaque ullam odio, fugiat quisquam ex similique odit beatae blanditiis, sed aliquam. Facilis deleniti accusamus quasi culpa! 
+                        section.news-article__body.clearfix
+                            figure.news-article__picture-wrapper.picture-wrapper
+                                img.news-article__pictire(src="http://placehold.it/200x200")
+                            p.news-article__paragraph.news-article__paragraph_style_default.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam temporibus est voluptatum incidunt provident vitae voluptas eveniet quis qui esse laboriosam excepturi, dolore dolor maxime dignissimos, harum odit, reprehenderit facilis!  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ratione pariatur. Laudantium incidunt alias quasi natus sed aliquid est asperiores harum, consequatur autem at ratione enim nobis ut vero illum?
+                            p.news-article__paragraph.news-article__paragraph_style_default.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit quae dicta, praesentium, harum commodi enim natus cupiditate, asperiores amet consectetur, numquam facere nesciunt beatae error magni molestias saepe voluptatem deserunt maxime eius cumque voluptates dolores. Officia itaque sint consequuntur doloremque, est animi accusantium nobis, sunt magnam iure vero provident! Iure quia nesciunt eligendi nostrum provident placeat, ratione obcaecati eaque ullam odio, fugiat quisquam ex similique odit beatae blanditiis, sed aliquam. Facilis deleniti accusamus quasi culpa! 
                         a.news-article__link.page-link Дізнатися більше
+                    button.show-more-button(type="button") Більше новин
                 main.main-comtent__item.projects.
                     PROGECTS
                 main.main-comtent__item.window-on-america.

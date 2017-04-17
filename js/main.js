@@ -137,8 +137,10 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 // Following function controls all main content behavior
 (function initMainContentChnges() {
 
-    // Array for saving all xml news articles from the "news" document
-    var xmlNewsArticles = [];
+    var $showMoreButton = $('.show-more-button');
+
+    // Array for saving all html news articles after its parsing
+    var htmlNewsArticles = [];
 
     // Get AJAX request for the "news" document and put all separate xml news articles to array 
     $.ajax({
@@ -146,50 +148,46 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         url: "../news.xml",
         dataType: "xml",
         success: function(data) {
-            $(data).find('article').each(function() {
-                xmlNewsArticles.push(this);
+            $(data).find('article').each(function(index, xmlNewsArticle) {
+                // Parse each xml news article to html
+                parseNewsItemToHtml(xmlNewsArticle);
             });
-            addElementsToPage( parseNewsItemsToHtml(xmlNewsArticles), $('.news-board') );
+            showNewsArticles(0, 4);
         }
     });
 
-
-    function parseNewsItemsToHtml(xmlNewsArticles) {
-
-        // Array for saving all html news articles after its parsing
-        var htmlNewsArticles = [];
-
-        $(xmlNewsArticles).each(function () {
-
-            // Create elements for the html markup
-            var $newsArticle = createPageElement('<article>', 'news-article news-article_style_default clearfix'),
-                $newsHeading = createPageElement('<h3>', 'news-article__heading page-header'),
-                $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper picture-wrapper'),
-                $newsPicture = createPageElement('<img>', 'news-article__pictire'),
-                $newsParagraph = createPageElement('<p>', 'news-article__paragraph news-article__paragraph_style_default'),
-                $newsLink = createPageElement('<a>', 'news-article__link page-link');
-
-            // Get needed value for certain xml tags
-            $newsHeading.text( $(this).find('name').text() );
-            $newsPictureWrapper.append($newsPicture);
-            $newsPicture.attr( 'src', $(this).find('image').text() );
-            $newsParagraph.text( $(this).find('content').text() );
-            $newsLink.text( $(this).find('facebookLink').text() );
-
-            // Add all html article's children to one
-            $newsArticle.append($newsHeading);
-            $newsArticle.append($newsPictureWrapper);
-            $newsArticle.append($newsParagraph);
-            $newsArticle.append($newsLink);
-
-            // Add complete article to the articles array
-            htmlNewsArticles.push($newsArticle);
-        });
-        return htmlNewsArticles;
+    function showNewsArticles(fromElementIndex, toElementIndex) {
+        for (var i = fromElementIndex; i < toElementIndex; i++) {
+            $showMoreButton.before(htmlNewsArticles[i]);            
+        }
     }
 
-    function addElementsToPage(elements, appendElementTo) {
-        $(appendElementTo).append(elements);
+    function parseNewsItemToHtml(xmlNewsArticle) {
+        
+        // Create elements for the html markup
+        var $newsArticle = createPageElement('<article>', 'news-article news-board__article news-article_style_default'),
+            $newsHeading = createPageElement('<h3>', 'news-article__heading page-header'),
+            $newsArticleBody = createPageElement('<section>', 'news-article__body clearfix'),
+            $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper picture-wrapper'),
+            $newsPicture = createPageElement('<img>', 'news-article__pictire'),
+            $newsParagraph = createPageElement('<p>', 'news-article__paragraph news-article__paragraph_style_default'),
+            $newsLink = createPageElement('<a>', 'news-article__link page-link');
+
+        // Get needed value for certain xml tags and set elemnt's attachment
+        $newsHeading.text( $(xmlNewsArticle).find('name').text() );
+        $newsArticleBody.append($newsPictureWrapper, $newsParagraph);
+        $newsPictureWrapper.append($newsPicture);
+        $newsPicture.attr( 'src', $(xmlNewsArticle).find('image').text() );
+        $newsParagraph.text( $(xmlNewsArticle).find('content').text() );
+        $newsLink.text( $(xmlNewsArticle).find('facebookLink').text() );
+
+        // Add all html article's children to one
+        $newsArticle.append($newsHeading);
+        $newsArticle.append($newsArticleBody);
+        $newsArticle.append($newsLink);
+
+        // Add complete article to the articles array
+        htmlNewsArticles.push($newsArticle);
     }
 
     function createPageElement(elementTag, elementClasses) {

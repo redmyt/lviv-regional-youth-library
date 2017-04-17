@@ -251,8 +251,16 @@ body {
     line-height: 30px;
 }
 
-.news-article_style_default {
+.main-comtent__item_active {
+    display: block;
+}
+
+.news-board__article {
     padding: 0 15px;
+    margin-bottom: 10px; 
+}
+
+.news-article_style_default {
     text-align: right;
     border: 1px solid red;          
 }
@@ -266,9 +274,6 @@ body {
     text-align: left;
 }
 
-.main-comtent__item_active {
-    display: block;
-}
 
 /*slider styles start*/
 
