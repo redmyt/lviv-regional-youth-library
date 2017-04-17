@@ -223,10 +223,11 @@ body {
 
 .main-content {
     justify-content: space-around;
+    position: relative;
 }
 
 .main-content_style_default {
-    position: relative;
+    padding: 2% 0 2% 2%;
 }
 
 .main-content_style_default::after {
@@ -247,13 +248,13 @@ body {
 .main-comtent__item {
     display: none;
     width: 75%;
-    /*font-size: px;*/
+    line-height: 30px;
 }
 
 .news-article_style_default {
-    margin-left: 15px;
-    padding-right: 15px;
+    padding: 0 15px;
     text-align: right;
+    border: 1px solid red;          
 }
 
 .news-article__picture-wrapper {
