@@ -181,7 +181,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             $newsHeading = createPageElement('<h3>', 'news-article__heading page-header'),
             $newsArticleBody = createPageElement('<section>', 'news-article__body clearfix'),
             $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper picture-wrapper'),
-            $newsPicture = createPageElement('<img>', 'news-article__pictire'),
+            $newsPicture = createPageElement('<img>', 'news-article__pictire page-picture'),
             $newsParagraph = createPageElement('<p>', 'news-article__paragraph news-article__paragraph_style_default'),
             $newsLink = createPageElement('<a>', 'news-article__link page-link');
 
