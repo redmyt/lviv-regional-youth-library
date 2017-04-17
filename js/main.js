@@ -216,6 +216,12 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         return $newPageElement;
     }
 
+TODO //////////////////////////////
+    $('.news-article__body ').trunk8({
+        lines: 5,
+        fill: '&hellip;<a></a>'
+    });
+
 })();
 
 // Provides core logic for new-books slider
