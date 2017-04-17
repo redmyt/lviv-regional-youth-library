@@ -182,16 +182,24 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             $newsArticleBody = createPageElement('<section>', 'news-article__body clearfix'),
             $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper picture-wrapper'),
             $newsPicture = createPageElement('<img>', 'news-article__pictire page-picture'),
-            $newsParagraph = createPageElement('<p>', 'news-article__paragraph news-article__paragraph_style_default'),
             $newsLink = createPageElement('<a>', 'news-article__link page-link');
+
+        // Array for one or more articles paragraphes
+        var newsHtmlParagraphes = [];
+
+        // Create neede amount of articles paragraphes
+        $(xmlNewsArticle).find('paragraph').each(function(index, currentXmlArticlePragraph) {
+            $currentParagraph = createPageElement('<p>', 'news-article__paragraph news-article__paragraph_style_default');
+            $currentParagraph.text( $(currentXmlArticlePragraph).text() );
+            newsHtmlParagraphes.push($currentParagraph);
+        });
 
         // Get needed value for certain xml tags and set elemnt's attachment
         $newsHeading.text( $(xmlNewsArticle).find('name').text() );
-        $newsArticleBody.append($newsPictureWrapper, $newsParagraph);
-        $newsPictureWrapper.append($newsPicture);
         $newsPicture.attr( 'src', $(xmlNewsArticle).find('image').text() );
-        $newsParagraph.text( $(xmlNewsArticle).find('content').text() );
-        $newsLink.text( $(xmlNewsArticle).find('facebookLink').text() );
+        $newsPictureWrapper.append($newsPicture);
+        $newsArticleBody.append($newsPictureWrapper, newsParagraphes);
+        $newsLink.text( $(xmlNewsArticle).find('link').text() );
 
         // Add all html article's children to one
         $newsArticle.append($newsHeading);
