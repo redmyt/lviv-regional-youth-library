@@ -156,8 +156,13 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
                 var $currentArticle = parseNewsItemToHtml(xmlNewsArticle);
                 htmlNewsArticles.push($currentArticle);
             });
-            showNewsArticles(0, 4);
+            showNewsArticles();
         }
+    });
+
+    // Show next five invisible articles
+    $showMoreButton.click(function() {
+        showNewsArticles();
     });
 
     // Show five next invisible news articles 
@@ -168,6 +173,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         }
     }
 
+    // Parse certain xml news article to a html news article
     function parseNewsItemToHtml(xmlNewsArticle) {
         
         // Create elements for the html markup
@@ -194,8 +200,8 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
         return $newsArticle;
     }
-    
 
+    //  Create needed html element with certain classes
     function createPageElement(elementTag, elementClasses) {
         var $newPageElement = $(elementTag);
         $newPageElement.addClass(elementClasses);
