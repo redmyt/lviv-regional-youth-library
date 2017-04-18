@@ -157,14 +157,14 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
                 htmlNewsArticles.push($currentArticle);
             });
             showNewsArticles();
-            sfds();
+            truncateSpillingText();
         }
     });
 
     // Show next five invisible articles
     $showMoreButton.click(function() {
         showNewsArticles();
-        sfds();
+        truncateSpillingText();
     });
 
     // Show five next invisible news articles 
@@ -218,35 +218,25 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         return $newPageElement;
     }
 
-    // Trunc
-    function sfds() {
+    // Truncate text which spilling over the paragraph at mobile screen 
+    function truncateSpillingText() {
+        // Truncate text when screen width less that 880 pixels
+        if ( parseInt( $(window).width() ) < 880) {
+            $('.news-article__body p:first-of-type:not(.news-article__paragraph_style_truncated)').addClass('news-article__paragraph_style_truncated');
+            $('.news-article__body p:first-of-type').trunk8({
+                lines: 2,
+                fill: '<a class="read-more page-link">&nbsp;&raquo;&nbsp;</a>'
+            });
 
-
-    if ( parseInt( $(window).width() ) < 880) {
-        $('.news-article__body p:first-of-type:not(.news-article__paragraph_style_truncated)').addClass('news-article__paragraph_style_truncated');
-        
-    $('.news-article__body p:first-of-type').trunk8({
-        lines: 2,
-        fill: '<a class="read-more page-link">&nbsp;&raquo;&nbsp;</a>'
-    });
-
-
-
-$('.read-more').click(function (event) {
-    var $readLessButton = $('<a class="read-less">read less</a>');
-    $readLessButton.click(function() {
-        $(this).parent().trunk8();
-    });
-    $(this).parent().trunk8('revert').append($readLessButton);
-});
-
-    }
-// $(document).live('click', '#read-less', function (event) {
-    
-  // return false;
-// });
-
- }
+            $('.read-more').click(function (event) {
+                var $readLessButton = $('<a class="read-less">read less</a>');
+                $readLessButton.click(function() {
+                    $(this).parent().trunk8();
+                });
+                $(this).parent().trunk8('revert').append($readLessButton);
+            });
+        }
+    } 
 
 
 
