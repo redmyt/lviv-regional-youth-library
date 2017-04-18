@@ -234,9 +234,14 @@ body {
 }
 
 .main-comtent__item {
-    display: none;
     width: 75%;
     line-height: 30px;
+}
+
+.main-comtent__item,
+.news-article__paragraph,
+.news-article__link {
+    display: none;
 }
 
 .main-comtent__item_active {
@@ -245,6 +250,7 @@ body {
 
 .news-article__picture-wrapper {
     max-width: 250px;
+    /*margin: 0 auto;*/
 }
 
 .news-board__article {
@@ -261,6 +267,9 @@ body {
     text-align: left;
 }
 
+.news-article__paragraph_style_truncated {
+    display: block;
+}
 
 /*slider styles start*/
 
@@ -444,6 +453,8 @@ body {
         margin: 0;
     }
 
+    .news-article__paragraph,
+    .news-article__link,
     .new-books-slider {
         display: block;
     }

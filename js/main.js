@@ -216,10 +216,12 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         return $newPageElement;
     }
 
-TODO //////////////////////////////
-    $('.news-article__body ').trunk8({
-        lines: 5,
-        fill: '&hellip;<a></a>'
+// TODO //////////////////////////////
+// debugger
+    $('.news-article__body p:first-of-type').addClass('news-article__paragraph_style_truncated');
+    $('.news-article__body p:first').trunk8({
+        lines: 2,
+        fill: '<a>&nbsp;&raquo;&nbsp;</a>'
     });
 
 })();
