@@ -221,8 +221,32 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
     $('.news-article__body p:first-of-type').addClass('news-article__paragraph_style_truncated');
     $('.news-article__body p:first').trunk8({
         lines: 2,
-        fill: '<a>&nbsp;&raquo;&nbsp;</a>'
+        fill: '<a class="read-more page-link">&nbsp;&raquo;&nbsp;</a>'
     });
+
+
+
+$('.read-more').click(function (event) {
+    var $readLessButton = $('<a class="read-less">read less</a>');
+    $readLessButton.click(function() {
+        $(this).parent().trunk8();
+    });
+    $(this).parent().trunk8('revert').append($readLessButton);
+});
+
+// $(document).live('click', '#read-less', function (event) {
+    
+  // return false;
+// });
+
+
+
+
+
+
+
+
+
 
 })();
 
