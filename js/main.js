@@ -220,26 +220,28 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
     // Truncate text which spilling over the paragraph at mobile screen 
     function truncateSpillingText() {
-        // Truncate text when screen width less that 880 pixels
-        if ( parseInt( $(window).width() ) < 880) {
-            $('.news-article__body p:first-of-type:not(.news-article__paragraph_style_truncated)').addClass('news-article__paragraph_style_truncated');
-            $('.news-article__body p:first-of-type').trunk8({
-                lines: 2,
-                fill: '<a class="read-more page-link">&nbsp;&raquo;&nbsp;</a>'
-            });
+        // Determine truncate lines amount which depend on user screen size
+        var truncateLinesAmount = $(window).width() > 556 ? 5 : 2;
 
-            $('.read-more').click(function (event) {
-                var $readLessButton = $('<a class="read-less">read less</a>');
-                $readLessButton.click(function() {
-                    $(this).parent().trunk8();
-                });
-                $(this).parent().trunk8('revert').append($readLessButton);
+        // Save all paragraphs which are not be truncated  
+        var $notTrunkatedParagraphes = $('.news-article__body p:first-of-type:not(.news-article__paragraph_style_trunkated)');
+
+        // Show the first paragraph of each visible article and trankate one 
+        $notTrunkatedParagraphes.addClass('news-article__paragraph_style_trunkated');
+        $notTrunkatedParagraphes.trunk8({
+            lines: truncateLinesAmount,
+            fill: '<a class="read-more page-link">&nbsp;&raquo;&nbsp;</a>'
+        });
+
+        // Allow user read full article and show it if it wants
+        $(document).on('click', '.read-more', function() {
+            var $readLessButton = $('<a class="read-less">read less</a>');
+            $(document).on('click', '.read-less', function() {
+                $(this).parent().trunk8();
             });
-        }
+            $(this).parent().trunk8('revert').append($readLessButton);
+        });
     } 
-
-
-
 
 
 

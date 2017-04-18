@@ -239,8 +239,7 @@ body {
 }
 
 .main-comtent__item,
-.news-article__paragraph,
-.news-article__link {
+.news-article__paragraph {
     display: none;
 }
 
@@ -267,7 +266,7 @@ body {
     text-align: left;
 }
 
-.news-article__paragraph_style_truncated {
+.news-article__paragraph_style_trunkated {
     display: block;
 }
 
