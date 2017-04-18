@@ -157,14 +157,18 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
                 htmlNewsArticles.push($currentArticle);
             });
             showNewsArticles();
-            truncateSpillingText();
+            if (parseInt( $(window).width() ) < 880) {
+                truncateSpillingText();
+            }
         }
     });
 
     // Show next five invisible articles
     $showMoreButton.click(function() {
         showNewsArticles();
-        truncateSpillingText();
+        if (parseInt( $(window).width() ) < 880) {
+            truncateSpillingText();
+        }
     });
 
     // Show five next invisible news articles 
@@ -221,33 +225,44 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
     // Truncate text which spilling over the paragraph at mobile screen 
     function truncateSpillingText() {
         // Determine truncate lines amount which depend on user screen size
-        var truncateLinesAmount = $(window).width() > 556 ? 5 : 2;
+        var truncatedLinesAmount = $(window).width() > 556 ? 5 : 2;
 
-        // Save all paragraphs which are not be truncated  
-        var $notTrunkatedFirstParagraphes = $('.news-article__body p:first-of-type:not(.news-article__paragraph_style_trunkated)');
+        var $trunkatedParagraphs = $('.news-article__body').find('p:first-of-type');
+            // $allParagraphs = $('.news-article__body').find('p');
+            // $lastArticleParagraph = article.find('p:last-of-type');
+
+            $trunkatedParagraphs.addClass('news-article__paragraph_style_trunkated');
+
 
         // Show the first paragraph of each visible article and trankate one 
-        $notTrunkatedFirstParagraphes.addClass('news-article__paragraph_style_trunkated');
-        $notTrunkatedFirstParagraphes.trunk8({
-            lines: truncateLinesAmount,
+
+        $trunkatedParagraphs.trunk8({
+            lines: truncatedLinesAmount,
             fill: '<a class="read-more pale-text page-link">&nbsp;&raquo;&nbsp;</a>'
         });
 
+
         // Allow user read full article and show it if it wants
         $(document).on('click', '.read-more', function() {
-            var firstP = $(this).parent();
-
-            $(this).parents('.news-article__body').children('p:not(.news-article__paragraph_style_trunkated)').addClass('news-article__paragraph_style_visible');
-
+            // debugger
+            $currentTrankatedParagrapg = $(this).parent();
+            $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p');
+            $lastArticleParagraph = $(this).parents('.news-article__body').children('p:last-of-type');
+            $allArtuicleParagraphs.addClass('news-article__paragraph_style_visible');
             var $readLessButton = $('<a class="read-less trankated-button">&nbsp;&laquo;&nbsp;</a>');
+            
             $(document).on('click', '.read-less', function() {
-                $(this).parents('.news-article__body').children('p:not(.news-article__paragraph_style_trunkated)').removeClass('news-article__paragraph_style_visible');
-                $(this).parent().trunk8();
-            });
-            $(this).parents('.news-article__body').children('p:last-of-type').append($readLessButton);
-            $(this).parent().trunk8('revert');
-        });
+                $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p');
+                $allArtuicleParagraphs.removeClass('news-article__paragraph_style_visible');
+                $(this).parents('.news-article__body').children('p:first-of-type').trunk8();
+                $(this).remove();
+                return false;
+            })
 
+            $(this).parent().trunk8('revert');
+            $lastArticleParagraph.append($readLessButton);
+            return false;
+        });
 
     } 
 
