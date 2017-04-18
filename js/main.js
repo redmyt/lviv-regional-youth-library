@@ -254,7 +254,9 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             $(document).on('click', '.read-less', function() {
                 $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p');
                 $allArtuicleParagraphs.removeClass('news-article__paragraph_style_visible');
-                $(this).parents('.news-article__body').children('p:first-of-type').trunk8();
+                $(this).parents('.news-article__body').children('p:first-of-type').trunk8({
+                    lines: truncatedLinesAmount
+                });
                 $(this).remove();
                 return false;
             })
