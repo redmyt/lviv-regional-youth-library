@@ -157,12 +157,14 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
                 htmlNewsArticles.push($currentArticle);
             });
             showNewsArticles();
+            sfds();
         }
     });
 
     // Show next five invisible articles
     $showMoreButton.click(function() {
         showNewsArticles();
+        sfds();
     });
 
     // Show five next invisible news articles 
@@ -216,10 +218,14 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         return $newPageElement;
     }
 
-// TODO //////////////////////////////
-// debugger
-    $('.news-article__body p:first-of-type').addClass('news-article__paragraph_style_truncated');
-    $('.news-article__body p:first').trunk8({
+    // Trunc
+    function sfds() {
+
+
+    if ( parseInt( $(window).width() ) < 880) {
+        $('.news-article__body p:first-of-type:not(.news-article__paragraph_style_truncated)').addClass('news-article__paragraph_style_truncated');
+        
+    $('.news-article__body p:first-of-type').trunk8({
         lines: 2,
         fill: '<a class="read-more page-link">&nbsp;&raquo;&nbsp;</a>'
     });
@@ -234,11 +240,13 @@ $('.read-more').click(function (event) {
     $(this).parent().trunk8('revert').append($readLessButton);
 });
 
+    }
 // $(document).live('click', '#read-less', function (event) {
     
   // return false;
 // });
 
+ }
 
 
 
