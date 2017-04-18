@@ -224,23 +224,31 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         var truncateLinesAmount = $(window).width() > 556 ? 5 : 2;
 
         // Save all paragraphs which are not be truncated  
-        var $notTrunkatedParagraphes = $('.news-article__body p:first-of-type:not(.news-article__paragraph_style_trunkated)');
+        var $notTrunkatedFirstParagraphes = $('.news-article__body p:first-of-type:not(.news-article__paragraph_style_trunkated)');
 
         // Show the first paragraph of each visible article and trankate one 
-        $notTrunkatedParagraphes.addClass('news-article__paragraph_style_trunkated');
-        $notTrunkatedParagraphes.trunk8({
+        $notTrunkatedFirstParagraphes.addClass('news-article__paragraph_style_trunkated');
+        $notTrunkatedFirstParagraphes.trunk8({
             lines: truncateLinesAmount,
             fill: '<a class="read-more page-link">&nbsp;&raquo;&nbsp;</a>'
         });
 
         // Allow user read full article and show it if it wants
         $(document).on('click', '.read-more', function() {
+
+            $(this).parents('.news-article__body').children('p:not(.news-article__paragraph_style_trunkated)').addClass('news-article__paragraph_style_visible');
+
             var $readLessButton = $('<a class="read-less">read less</a>');
             $(document).on('click', '.read-less', function() {
+                // debugger
+                $(this).parents('.news-article__body').children('p:not(.news-article__paragraph_style_trunkated)').removeClass('news-article__paragraph_style_visible');
                 $(this).parent().trunk8();
             });
+
             $(this).parent().trunk8('revert').append($readLessButton);
         });
+
+
     } 
 
 

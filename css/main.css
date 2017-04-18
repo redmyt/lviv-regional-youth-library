@@ -266,7 +266,8 @@ body {
     text-align: left;
 }
 
-.news-article__paragraph_style_trunkated {
+.news-article__paragraph_style_trunkated,
+.news-article__paragraph_style_visible {
     display: block;
 }
 
