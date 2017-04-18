@@ -230,22 +230,22 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         $notTrunkatedFirstParagraphes.addClass('news-article__paragraph_style_trunkated');
         $notTrunkatedFirstParagraphes.trunk8({
             lines: truncateLinesAmount,
-            fill: '<a class="read-more page-link">&nbsp;&raquo;&nbsp;</a>'
+            fill: '<a class="read-more pale-text page-link">&nbsp;&raquo;&nbsp;</a>'
         });
 
         // Allow user read full article and show it if it wants
         $(document).on('click', '.read-more', function() {
+            var firstP = $(this).parent();
 
             $(this).parents('.news-article__body').children('p:not(.news-article__paragraph_style_trunkated)').addClass('news-article__paragraph_style_visible');
 
-            var $readLessButton = $('<a class="read-less">read less</a>');
+            var $readLessButton = $('<a class="read-less trankated-button">&nbsp;&laquo;&nbsp;</a>');
             $(document).on('click', '.read-less', function() {
-                // debugger
                 $(this).parents('.news-article__body').children('p:not(.news-article__paragraph_style_trunkated)').removeClass('news-article__paragraph_style_visible');
                 $(this).parent().trunk8();
             });
-
-            $(this).parent().trunk8('revert').append($readLessButton);
+            $(this).parents('.news-article__body').children('p:last-of-type').append($readLessButton);
+            $(this).parent().trunk8('revert');
         });
 
 
