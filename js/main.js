@@ -80,7 +80,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 })();
 
 // Following function controls all navigation behavior
-(function initNavigationChanges() {
+var navigationModule = (function () {
 
     // Save navigation block, navigation items, header section and collapser button to a variables.
     var $header = $('.header'),
@@ -94,11 +94,9 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
     // Add scroll event hendler for window and make navigation fixed when user scroll window over the navigation block
     $(window).on('scroll', function () {
-
-        // Get header-block-element and navigation-block-element heights an save them. Also get current window scroll position.
-        var navigationHeight = parseInt( $($navigation).outerHeight() ),
-            windowTopScroll = parseInt( $(window).scrollTop() ),
-            headerHeight =  parseInt( $($header).outerHeight() );
+        var navigationHeight = getHeaderItemsParameters().navigationHeight,
+            windowTopScroll = getHeaderItemsParameters().windowTopScroll,
+            headerHeight =  getHeaderItemsParameters().headerHeight;
 
         // When scroll position is over header height add fixed styles for navigation block
         if (windowTopScroll > headerHeight - navigationHeight) {
@@ -121,12 +119,10 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             // Make other main content items invisible
             emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-comtent__item_active');
 
-            // Get header items parameters
-            var navigationHeight = parseInt( $($navigation).outerHeight() ),
-                windowTopScroll = parseInt( $(window).scrollTop() ),
-                headerHeight =  parseInt( $($header).outerHeight() );
-
             // Set the window scroll top at the beginning of the main content section
+            var navigationHeight = getHeaderItemsParameters().navigationHeight,
+                windowTopScroll = getHeaderItemsParameters().windowTopScroll,
+                headerHeight =  getHeaderItemsParameters().headerHeight;
             if (windowTopScroll > headerHeight) {
                 $(window).scrollTop(parseInt($visibleMainContentItem.offset().top) - navigationHeight);
             }
@@ -141,6 +137,24 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         $($header).css("padding-bottom", 0);
         $(window).scroll();
     });
+
+    // Get header-block-element and navigation-block-element heights an save them. Also get current window scroll position.
+    function getHeaderItemsParameters() {
+        var navigationHeight = parseInt( $($navigation).outerHeight() ),
+            windowTopScroll = parseInt( $(window).scrollTop() ),
+            headerHeight =  parseInt( $($header).outerHeight() );
+
+        return {
+            navigationHeight: navigationHeight,
+            windowTopScroll: windowTopScroll,
+            headerHeight: headerHeight
+        }
+    }
+
+    // Allow get the header parameters from all modules
+    return {
+        getHeaderItemsParameters: getHeaderItemsParameters
+    }
     
 })();
 
@@ -258,12 +272,15 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             
             // Add click event handler for the read-less button
             $(document).on('click', '.read-less', function() {
-                var $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p'),
+                var currentArticlePosition = parseInt($(this).parents('.news-article').offset().top);
+                    $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p'),
                     $firstArticleParagraph = $(this).parents('.news-article__body').children('p:first-of-type');
                 $allArtuicleParagraphs.removeClass('news-article__paragraph_style_visible');
                 $firstArticleParagraph.trunk8({
                     lines: truncatedLinesAmount
                 });
+                var navigationHeight = navigationModule.getHeaderItemsParameters().navigationHeight;
+                $(window).scrollTop(currentArticlePosition - navigationHeight);
                 $(this).remove();
                 return false;
             })
