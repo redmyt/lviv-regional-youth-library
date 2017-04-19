@@ -224,48 +224,45 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 
     // Truncate text which spilling over the paragraph at mobile screen 
     function truncateSpillingText() {
-        // Determine truncate lines amount which depend on user screen size
+        // Determine trunkated lines amount which depend on user screen size
         var truncatedLinesAmount = $(window).width() > 556 ? 5 : 2;
 
-        var $trunkatedParagraphs = $('.news-article__body').find('p:first-of-type');
-            // $allParagraphs = $('.news-article__body').find('p');
-            // $lastArticleParagraph = article.find('p:last-of-type');
-
-            $trunkatedParagraphs.addClass('news-article__paragraph_style_trunkated');
-
-
         // Show the first paragraph of each visible article and trankate one 
-
+        var $trunkatedParagraphs = $('.news-article__body').find('p:first-of-type');
+        $trunkatedParagraphs.addClass('news-article__paragraph_style_trunkated');
         $trunkatedParagraphs.trunk8({
             lines: truncatedLinesAmount,
-            fill: '<a class="read-more pale-text page-link">&nbsp;&raquo;&nbsp;</a>'
+            fill: '<a class="read-more trankated-button page-link">&nbsp;&raquo;&nbsp;</a>'
         });
-
 
         // Allow user read full article and show it if it wants
         $(document).on('click', '.read-more', function() {
-            // debugger
-            $currentTrankatedParagrapg = $(this).parent();
-            $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p');
-            $lastArticleParagraph = $(this).parents('.news-article__body').children('p:last-of-type');
-            $allArtuicleParagraphs.addClass('news-article__paragraph_style_visible');
-            var $readLessButton = $('<a class="read-less trankated-button">&nbsp;&laquo;&nbsp;</a>');
+            // Save needed article paragraphs
+            var $currentTrankatedParagrapg = $(this).parent(),
+                $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p'),
+                $lastArticleParagraph = $(this).parents('.news-article__body').children('p:last-of-type');
             
+            // Make all article paragraphs visible and create read-less button
+            $allArtuicleParagraphs.addClass('news-article__paragraph_style_visible');
+            var $readLessButton = $('<a class="read-less trankated-button page-link">&nbsp;&laquo;&nbsp;</a>');
+            
+            // Add click event handler for the read-less button
             $(document).on('click', '.read-less', function() {
-                $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p');
+                var $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p'),
+                    $firstArticleParagraph = $(this).parents('.news-article__body').children('p:first-of-type');
                 $allArtuicleParagraphs.removeClass('news-article__paragraph_style_visible');
-                $(this).parents('.news-article__body').children('p:first-of-type').trunk8({
+                $firstArticleParagraph.trunk8({
                     lines: truncatedLinesAmount
                 });
                 $(this).remove();
                 return false;
             })
 
-            $(this).parent().trunk8('revert');
+            // Show the trunkated paragraph and add read-less button to the last one 
+            $currentTrankatedParagrapg.trunk8('revert');
             $lastArticleParagraph.append($readLessButton);
             return false;
         });
-
     } 
 
 
