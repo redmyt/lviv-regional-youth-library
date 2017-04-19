@@ -26,6 +26,9 @@ html(lang='uk')
         link(rel="stylesheet" type="text/css" href="css/normalize.css")
         link(rel="stylesheet" type="text/css" href="css/owl.carousel.min.css")
         link(rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css")
+        link(rel="stylesheet" type="text/css" href="css/jquery-ui.min.css")
+        link(rel="stylesheet" type="text/css" href="css/jquery-ui.structure.min.css")
+        link(rel="stylesheet" type="text/css" href="css/jquery-ui.theme.min.css")
         link(href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet") 
         link(href="https://cdn.mapkit.io/v1/infobox.css" rel="stylesheet") 
         link(rel="stylesheet" type="text/css" href="css/main.css")
@@ -174,7 +177,7 @@ html(lang='uk')
                                     span.schedule__certain-day-schedule
                                         span.schedule__day-name.pale-text=day
                                         time.schedule__working-hours=hours[dayNumber][0] 
-                                            if day !== 'Субота'
+                                            if day !== 'Субота '
                                                 sup 00
                                                 = - hours[dayNumber][1]
                                                 sup 00 
@@ -218,6 +221,7 @@ html(lang='uk')
                 figure.books-row-wrapper.picture-wrapper
                     img.books-row.page-picture(src="img/books-row.png" alt="books row picture")
         script(src="js/jquery-3.1.1.min.js")
+        script(src="js/jquery-ui.min.js")
         script(src="js/jquery.mousewheel.min.js")
         script(src="js/owl.carousel.min.js")
         script(src="js/trunk8.js")

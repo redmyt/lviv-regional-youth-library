@@ -124,10 +124,18 @@ var navigationModule = (function () {
                 windowTopScroll = getHeaderItemsParameters().windowTopScroll,
                 headerHeight =  getHeaderItemsParameters().headerHeight;
             if (windowTopScroll > headerHeight) {
-                $(window).scrollTop(parseInt($visibleMainContentItem.offset().top) - navigationHeight);
+                $('body').stop().animate({
+                    scrollTop: parseInt($visibleMainContentItem.offset().top - navigationHeight)
+                }, {
+                    easing: 'easeInOutCubic',
+                    duration: 1250
+                });
             }
+
         });
     });
+
+
 
     // Show or hide collapsed menu when user click the collapsed button
     $collapsedButton.on('click', function() {
