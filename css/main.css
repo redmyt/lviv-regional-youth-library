@@ -228,9 +228,16 @@ body {
 
 .main-content_style_default {
     padding: 2% 0 2% 2%;
-    background-image: linear-gradient( rgba(166,164,179, 0.6), rgba(166,164,179, 0.6) ), url("../img/main-bg-modified1.png");
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.main-content_style_day {
+    background-image: linear-gradient( rgba(176,199,234, 0.6), rgba(176,199,234, 0.6) ), url("../img/main-bg-modified1.png");
+}
+
+.main-content_style_night {
+    background-image: linear-gradient( rgba(166,164,179, 0.6), rgba(166,164,179, 0.6) ), url("../img/main-bg-modified1.png");
 }
 
 .main-comtent__item {
