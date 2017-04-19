@@ -7,7 +7,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 }
 
 // Set night styles when it is evening in the Ukraine
-(function setNightStyles () {
+var setNightStylesModule = (function  () {
 
     // Switch styles for all needed elements
     switchTimeStyles('.body', 'body_style_night');
@@ -34,7 +34,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 })();
 
 // Provides initializing and completely settings for owl-carousel slider
-(function initOwlSlider() {
+var owlSlider = (function () {
     // Initialize owl-carousel slider on the page 
     $(document).ready(function(){
       $(".owl-carousel").owlCarousel();
@@ -159,7 +159,7 @@ var navigationModule = (function () {
 })();
 
 // Following function controls all main content behavior
-(function initMainContentChnges() {
+var mainContentModule = (function () {
 
     var $showMoreButton = $('.show-more-button');
 
@@ -294,7 +294,7 @@ var navigationModule = (function () {
 })();
 
 // Provides core logic for new-books slider
-(function initNewBooksSlier() {
+var newBooksSlierModule = (function () {
     
     // Save all new book pictures for sliding to one variable 
     var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray(),
@@ -404,7 +404,7 @@ var navigationModule = (function () {
 })();
 
 // Following function controls all footer behavior
-(function initFooterChanges() {
+var footerModule = (function () {
 
     // Save mail and skype icons and texts
     var $mailIcon = $('.contact-information__mail-link'),
@@ -430,7 +430,7 @@ var navigationModule = (function () {
 })();
 
 // Google maps module
-(function initGoogleMap() {
+var googleMapModule = (function () {
     google.maps.event.addDomListener(window, 'load', init);
     var map, markersArray = [];
 
