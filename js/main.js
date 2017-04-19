@@ -121,13 +121,15 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             // Make other main content items invisible
             emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-comtent__item_active');
 
+            // Get header items parameters
+            var navigationHeight = parseInt( $($navigation).outerHeight() ),
+                windowTopScroll = parseInt( $(window).scrollTop() ),
+                headerHeight =  parseInt( $($header).outerHeight() );
 
-// --------------------------------------------------------------------------------------
-            var navigationHeight = parseInt( $($navigation).outerHeight() );
-            console.log($visibleMainContentItem.offset().top );
-            // debugger
-            $(window).scrollTop(parseInt($visibleMainContentItem.offset().top) - navigationHeight)
-            // ---------------------------------------------------------------
+            // Set the window scroll top at the beginning of the main content section
+            if (windowTopScroll > headerHeight) {
+                $(window).scrollTop(parseInt($visibleMainContentItem.offset().top) - navigationHeight);
+            }
         });
     });
 
@@ -271,13 +273,7 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             $lastArticleParagraph.append($readLessButton);
             return false;
         });
-    } 
-
-
-
-
-
-
+    }
 })();
 
 // Provides core logic for new-books slider
