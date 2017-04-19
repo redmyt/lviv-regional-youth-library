@@ -120,6 +120,14 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
             var $visibleMainContentItem = $(this.dataset.target);
             // Make other main content items invisible
             emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-comtent__item_active');
+
+
+// --------------------------------------------------------------------------------------
+            var navigationHeight = parseInt( $($navigation).outerHeight() );
+            console.log($visibleMainContentItem.offset().top );
+            // debugger
+            $(window).scrollTop(parseInt($visibleMainContentItem.offset().top) - navigationHeight)
+            // ---------------------------------------------------------------
         });
     });
 
