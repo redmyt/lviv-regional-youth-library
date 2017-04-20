@@ -16,6 +16,7 @@ var setNightStylesModule = (function  () {
     switchTimeStyles('.navigation__item', 'navigation__item_style_night');
     switchTimeStyles('.navigation__collapsed-button', 'navigation__collapsed-button_style_night');
     switchTimeStyles('.main-content__article', 'main-content_style_night');
+    switchTimeStyles('.news-board__more-articles-button', 'news-board__more-articles-button_stlye_night');
     
 
     // Get Ukraine time from any point of word

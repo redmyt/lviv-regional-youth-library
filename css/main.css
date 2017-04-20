@@ -138,12 +138,14 @@ body {
 }
 
 .header__navigation_fixed.navigation_style_day,
-.main-content__article_style_day {
+.main-content__article_style_day,
+.news-board__more-articles-button_style_day {
     background: rgba(123, 149, 189, 1);
 }
 
 .header__navigation_fixed.navigation_style_night,
-.main-content__article_style_night {
+.main-content__article_style_night,
+.news-board__more-articles-button_stlye_night {
     background: rgba(121, 118, 140, 1); 
 }
 
@@ -291,7 +293,8 @@ body {
 .news-board__more-articles-button {
     padding: 10px;
     font-size: 28px;
-    width: 40%;
+    width: 100%;
+    color: #e09d1e;
 }
 
 .trankated-button {
