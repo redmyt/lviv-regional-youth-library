@@ -13,8 +13,9 @@ var setNightStylesModule = (function  () {
     switchTimeStyles('.body', 'body_style_night');
     switchTimeStyles('.header', 'header_style_night');
     switchTimeStyles('.navigation', 'navigation_style_night');
-    switchTimeStyles('.navigation__item', 'navigation__item_style_night'),
+    switchTimeStyles('.navigation__item', 'navigation__item_style_night');
     switchTimeStyles('.navigation__collapsed-button', 'navigation__collapsed-button_style_night');
+    switchTimeStyles('.main-content__article', 'main-content__article_style_night');
 
     // Get Ukraine time from any point of word
     function getUkraineTime() {
@@ -26,7 +27,7 @@ var setNightStylesModule = (function  () {
 
     // Switch element styles at evening and morning
     function switchTimeStyles(element, classWithStyles) {
-        if (getUkraineTime() > 18 || getUkraineTime() < 9) {
+        if (19 > 18 || getUkraineTime() < 9) {
             $(element).addClass(classWithStyles);
         }
     }
@@ -90,7 +91,7 @@ var navigationModule = (function () {
         $collapsedButton = $('.navigation__collapsed-button');
     
     // Save all main content items for shanging its visibility    
-    var $mainContentItems = $('.main-comtent__item');
+    var $mainContentItems = $('.main-content__item');
 
     // Add scroll event hendler for window and make navigation fixed when user scroll window over the navigation block
     $(window).on('scroll', function () {
@@ -117,7 +118,7 @@ var navigationModule = (function () {
             // Get visible main content item
             var $visibleMainContentItem = $(this.dataset.target);
             // Make other main content items invisible
-            emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-comtent__item_active');
+            emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
 
             // Set the window scroll top at the beginning of the main content section
             var navigationHeight = getHeaderItemsParameters().navigationHeight,
@@ -215,7 +216,7 @@ var mainContentModule = (function () {
     function parseNewsItemToHtml(xmlNewsArticle) {
         
         // Create elements for the html markup
-        var $newsArticle = createPageElement('<article>', 'news-article news-board__article news-article_style_default'),
+        var $newsArticle = createPageElement('<article>', 'news-article main-content__article main-content__article_style_default rounded-element main-content__article_style_day'),
             $newsHeading = createPageElement('<h3>', 'news-article__heading page-header'),
             $newsArticleBody = createPageElement('<section>', 'news-article__body clearfix'),
             $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper picture-wrapper'),
