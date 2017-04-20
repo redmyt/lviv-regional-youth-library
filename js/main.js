@@ -15,7 +15,8 @@ var setNightStylesModule = (function  () {
     switchTimeStyles('.navigation', 'navigation_style_night');
     switchTimeStyles('.navigation__item', 'navigation__item_style_night');
     switchTimeStyles('.navigation__collapsed-button', 'navigation__collapsed-button_style_night');
-    switchTimeStyles('.main-content__article', 'main-content__article_style_night');
+    switchTimeStyles('.main-content__article', 'main-content_style_night');
+    
 
     // Get Ukraine time from any point of word
     function getUkraineTime() {
@@ -27,9 +28,13 @@ var setNightStylesModule = (function  () {
 
     // Switch element styles at evening and morning
     function switchTimeStyles(element, classWithStyles) {
-        if (19 > 18 || getUkraineTime() < 9) {
+        if (getUkraineTime() > 18 || getUkraineTime() < 9) {
             $(element).addClass(classWithStyles);
         }
+    }
+
+    return {
+        switchTimeStyles: switchTimeStyles
     }
 
 })();
@@ -170,7 +175,7 @@ var navigationModule = (function () {
 // Following function controls all main content behavior
 var mainContentModule = (function () {
 
-    var $showMoreButton = $('.show-more-button');
+    var $showMoreButton = $('.news-board__more-articles-button');
 
     // Array for saving all html news articles after its parsing
     var htmlNewsArticles = [];
@@ -190,6 +195,7 @@ var mainContentModule = (function () {
                 htmlNewsArticles.push($currentArticle);
             });
             showNewsArticles();
+            setNightStylesModule.switchTimeStyles('.main-content__article', 'main-content__article_style_night');
             if (parseInt( $(window).width() ) < 880) {
                 truncateSpillingText();
             }
@@ -199,6 +205,7 @@ var mainContentModule = (function () {
     // Show next five invisible articles
     $showMoreButton.click(function() {
         showNewsArticles();
+        setNightStylesModule.switchTimeStyles('.main-content__article', 'main-content__article_style_night');
         if (parseInt( $(window).width() ) < 880) {
             truncateSpillingText();
         }

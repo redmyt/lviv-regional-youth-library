@@ -15,13 +15,16 @@ body {
     font-size: 22px;
 }
 
-.body_style_day,
-.navigation__collapsed-button_style_day {
+.body_style_day {
     background: #b0c7ea;
+    color: #281501;
+    fill: #3f260c;
 }
 
 .body_style_night {
     background: #a6a4b3;
+    color: #c6c4cf;
+    fill: #c6c4cf;
 }
 
 .page-link {
@@ -42,6 +45,13 @@ body {
 
 .page-header {
     text-align: center;
+}
+
+.page-button {
+    box-shadow: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
 }
 
 .clearfix::after {
@@ -127,11 +137,13 @@ body {
     z-index: 1000;
 }
 
-.header__navigation_fixed.navigation_style_day {
+.header__navigation_fixed.navigation_style_day,
+.main-content__article_style_day {
     background: rgba(123, 149, 189, 1);
 }
 
-.header__navigation_fixed.navigation_style_night {
+.header__navigation_fixed.navigation_style_night,
+.main-content__article_style_night {
     background: rgba(121, 118, 140, 1); 
 }
 
@@ -146,18 +158,14 @@ body {
 
 .navigation__collapsed-button_style_default {
     padding-top: 4px;
-    box-shadow: none;
-    border: none;
-    outline: none;
 }
 
 .navigation__collapsed-button_style_day {
-    fill: #3f260c;
+    background: #b0c7ea;
 }
 
 .navigation__collapsed-button_style_night {
     background: #55516a;
-    fill: #c6c4cf;
 }
 
 .navigation__items-list {
@@ -184,14 +192,10 @@ body {
 }
 
 .navigation__item_style_day {
-    color: #3f260c;
-    fill: #3f260c;
     box-shadow: 0 0 0 2px #3f260c;
 }
 
 .navigation__item_style_night {
-    color: #c6c4cf;
-    fill: #c6c4cf;
     box-shadow: 0 0 0 2px #c6c4cf;
 }
 
@@ -256,6 +260,10 @@ body {
     display: block;
 }
 
+.main-content__item_style_default {
+    text-align: center;
+}
+
 .news-article__picture-wrapper {
     max-width: 250px;
     margin: 0 auto;
@@ -271,16 +279,6 @@ body {
     border: 1px solid transparent;
 }
 
-.main-content__article_style_day {
-    color: #281501;
-    background: rgba(123, 149, 189, 1);       
-}
-
-.main-content__article_style_night {
-    background: rgba(121, 118, 140, 1);
-    color: #c6c4cf;
-}
-
 .news-article__paragraph_style_default {
     text-align: left;
 }
@@ -288,6 +286,12 @@ body {
 .news-article__paragraph_style_trunkated,
 .news-article__paragraph_style_visible {
     display: block;
+}
+
+.news-board__more-articles-button {
+    padding: 10px;
+    font-size: 28px;
+    width: 40%;
 }
 
 .trankated-button {
