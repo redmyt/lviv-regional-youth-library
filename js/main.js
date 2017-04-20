@@ -15,7 +15,8 @@ var setNightStylesModule = (function  () {
     switchTimeStyles('.navigation', 'navigation_style_night');
     switchTimeStyles('.navigation__item', 'navigation__item_style_night');
     switchTimeStyles('.navigation__collapsed-button', 'navigation__collapsed-button_style_night');
-    switchTimeStyles('.main-content__article', 'main-content_style_night');
+    switchTimeStyles('.main-content', 'main-content_style_night');
+    switchTimeStyles('.main-content__article', 'main-content__article_style_night');
     switchTimeStyles('.news-board__more-articles-button', 'news-board__more-articles-button_stlye_night');
     
 
@@ -29,7 +30,7 @@ var setNightStylesModule = (function  () {
 
     // Switch element styles at evening and morning
     function switchTimeStyles(element, classWithStyles) {
-        if (getUkraineTime() > 18 || getUkraineTime() < 9) {
+        if (19 > 18 || getUkraineTime() < 9) {
             $(element).addClass(classWithStyles);
         }
     }
@@ -60,14 +61,27 @@ var owlSlider = (function () {
             0: {
                 items: 1,
                 nav: false,
+                dots: false,
                 loop: true
             },
-            600: {
+            450: {
+                items: 2,
+                dots: false,
+                nav: false,
+                loop: true
+            },
+            740: {
                 items: 3,
+                dots: false,
                 nav: false,
                 loop: true
             },
             1000: {
+                items: 4,
+                nav: false,
+                loop: true
+            },
+            1200: {
                 items: 5,
                 nav: false,
                 loop: true
