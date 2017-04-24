@@ -280,7 +280,7 @@ var mainContentModule = (function () {
     // Truncate text which spilling over the paragraph at mobile screen 
     function truncateSpillingText() {
         // Determine trunkated lines amount which depend on user screen size
-        var truncatedLinesAmount = $(window).width() > 556 ? 5 : 2;
+        var truncatedLinesAmount = $(window).width() > 556 ? 7 : 4;
 
         // Show the first paragraph of each visible article and trankate one 
         var $trunkatedParagraphs = $('.main-content-article__body').find('p:first-of-type');

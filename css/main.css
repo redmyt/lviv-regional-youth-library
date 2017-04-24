@@ -73,6 +73,10 @@ body {
     align-items: center;
 }
 
+.centered {
+    margin: 0 auto;
+}
+
 .pale-text {
     color: #c6c4cf;
 }
@@ -115,7 +119,6 @@ body {
 
 .header__logo {
     width: 50%;
-    margin: 0 auto;
 }
 
 .navigation_style_defult {
@@ -230,12 +233,13 @@ body {
 /*main page content styles start*/
 
 .main-content {
-    justify-content: space-around;
+    justify-content: space-between;
     position: relative;
 }
 
 .main-content_style_default {
-    padding: 20px 0 20px 20px;
+    /*padding: 1.5% 0 1.5%  1.5%;*/
+    padding: 25px 0;
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -250,7 +254,8 @@ body {
 
 .main-content__item {
     width: 75%;
-    line-height: 1.3em;
+    margin: 0 auto;
+    line-height: 1.4em;
 }
 
 .main-content__item,
@@ -267,18 +272,13 @@ body {
 }
 
 .main-content-article {
-    padding: 0 15px 15px;
-    margin-bottom: 15px; 
+    padding: 0 20px 10px;
+    margin-bottom: 10px;
 }
 
 .main-content-article_style_default {
     text-align: right;
     border: 1px solid transparent;
-}
-
-.main-content-article__picture-wrapper {
-    max-width: 250px;
-    margin: 0 auto;
 }
 
 .main-content-article__paragraph {
@@ -291,12 +291,12 @@ body {
 }
 
 .news-board__more-articles-button {
-    padding: 10px;
+    padding: 1%;
     width: 90%;
 }
 
 .news-board__more-articles-button_style_default {
-    font-size: 32px;
+    font-size: 1.5em;
     color: #e09d1e;
     cursor: pointer;
 }
@@ -436,7 +436,6 @@ body {
 
 .taglines-key__wrapper {
     width: 63%;
-    margin: 0 auto;
     position: relative;
 }
 
@@ -456,9 +455,20 @@ body {
 /*middle screens styles start*/
 
 @media screen and (min-width: 556px) {
+        
+        .main-content_style_default {
+            padding: 1.5% 0 1.5%  1.5%;
+        }
+
+        .main-content-article {
+            padding: 0 2% 2%;
+            margin-bottom: 2%; 
+        }
+
         .main-content-article__picture-wrapper {
             float: left;
-            margin-right: 10px;
+            max-width: 28%;
+            margin-right: 4%;
         }
 
         .schedule__days-panel {
@@ -495,6 +505,10 @@ body {
     .main-content-article__link,
     .new-books-slider {
         display: block;
+    }
+
+    .main-content__item {
+        margin: initial;
     }
 
     .footer-information {
