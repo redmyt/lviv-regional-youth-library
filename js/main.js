@@ -30,7 +30,7 @@ var setNightStylesModule = (function  () {
 
     // Switch element styles at evening and morning
     function switchTimeStyles(element, classWithStyles) {
-        if (19 > 18 || getUkraineTime() < 9) {
+        if (getUkraineTime() > 18 || getUkraineTime() < 9) {
             $(element).addClass(classWithStyles);
         }
     }
@@ -238,19 +238,19 @@ var mainContentModule = (function () {
     function parseNewsItemToHtml(xmlNewsArticle) {
         
         // Create elements for the html markup
-        var $newsArticle = createPageElement('<article>', 'news-article main-content-article main-content-article_style_default rounded-element main-content-article_style_day'),
-            $newsHeading = createPageElement('<h3>', 'news-article__heading page-header'),
-            $newsArticleBody = createPageElement('<section>', 'news-article__body clearfix'),
-            $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper picture-wrapper'),
-            $newsPicture = createPageElement('<img>', 'news-article__pictire page-picture'),
-            $newsLink = createPageElement('<a>', 'news-article__link page-link');
+        var $newsArticle = createPageElement('<article>', 'news-article main-content-article main-content-article_style_default main-content-article_style_day rounded-element'),
+            $newsHeading = createPageElement('<h3>', 'news-article__heading main-content-article__heading page-header'),
+            $newsArticleBody = createPageElement('<section>', 'news-article__body main-content-article__body clearfix'),
+            $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper main-content-article__picture-wrapper picture-wrapper'),
+            $newsPicture = createPageElement('<img>', 'news-article__pictire main-content-article__picture page-picture'),
+            $newsLink = createPageElement('<a>', 'news-article__link main-content-article__link page-link');
 
         // Array for one or more articles paragraphes
         var newsHtmlParagraphes = [];
 
         // Create neede amount of articles paragraphes
         $(xmlNewsArticle).find('paragraph').each(function(index, currentXmlArticlePragraph) {
-            $currentParagraph = createPageElement('<p>', 'news-article__paragraph news-article__paragraph_style_default');
+            $currentParagraph = createPageElement('<p>', 'news-article__paragraph main-content-article__paragraph main-content-article__paragraph_style_default');
             $currentParagraph.text( $(currentXmlArticlePragraph).text() );
             newsHtmlParagraphes.push($currentParagraph);
         });
@@ -283,8 +283,8 @@ var mainContentModule = (function () {
         var truncatedLinesAmount = $(window).width() > 556 ? 5 : 2;
 
         // Show the first paragraph of each visible article and trankate one 
-        var $trunkatedParagraphs = $('.news-article__body').find('p:first-of-type');
-        $trunkatedParagraphs.addClass('news-article__paragraph_style_trunkated');
+        var $trunkatedParagraphs = $('.main-content-article__body').find('p:first-of-type');
+        $trunkatedParagraphs.addClass('main-content-article__paragraph_style_trunkated');
         $trunkatedParagraphs.trunk8({
             lines: truncatedLinesAmount,
             fill: '<a class="read-more trankated-button page-link">&nbsp;&raquo;&nbsp;</a>'
@@ -294,19 +294,19 @@ var mainContentModule = (function () {
         $(document).on('click', '.read-more', function() {
             // Save needed article paragraphs
             var $currentTrankatedParagrapg = $(this).parent(),
-                $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p'),
-                $lastArticleParagraph = $(this).parents('.news-article__body').children('p:last-of-type');
+                $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
+                $lastArticleParagraph = $(this).parents('.main-content-article__body').children('p:last-of-type');
             
             // Make all article paragraphs visible and create read-less button
-            $allArtuicleParagraphs.addClass('news-article__paragraph_style_visible');
+            $allArtuicleParagraphs.addClass('main-content-article__paragraph_style_visible');
             var $readLessButton = $('<a class="read-less trankated-button page-link">&nbsp;&laquo;&nbsp;</a>');
             
             // Add click event handler for the read-less button
             $(document).on('click', '.read-less', function() {
-                var currentArticlePosition = parseInt($(this).parents('.news-article').offset().top);
-                    $allArtuicleParagraphs = $(this).parents('.news-article__body').children('p'),
-                    $firstArticleParagraph = $(this).parents('.news-article__body').children('p:first-of-type');
-                $allArtuicleParagraphs.removeClass('news-article__paragraph_style_visible');
+                var currentArticlePosition = parseInt($(this).parents('.main-content-article').offset().top);
+                    $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
+                    $firstArticleParagraph = $(this).parents('.main-content-article__body').children('p:first-of-type');
+                $allArtuicleParagraphs.removeClass('main-content-article__paragraph_style_visible');
                 $firstArticleParagraph.trunk8({
                     lines: truncatedLinesAmount
                 });

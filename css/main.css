@@ -298,7 +298,7 @@ body {
 .news-board__more-articles-button_style_default {
     font-size: 32px;
     color: #e09d1e;
-    
+    cursor: pointer;
 }
 
 .trankated-button {
@@ -491,8 +491,8 @@ body {
         margin: 0;
     }
 
-    .news-article__paragraph,
-    .news-article__link,
+    .main-content-article__paragraph,
+    .main-content-article__link,
     .new-books-slider {
         display: block;
     }
