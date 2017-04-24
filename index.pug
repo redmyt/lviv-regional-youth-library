@@ -62,7 +62,7 @@ html(lang='uk')
                                     path(d="M112,94H12c-6.6,0-12,5.4-12,12s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,94,112,94z")
                     ul.navigation__items-list.navigation__items-list_style_collapsed.flex.column
                         - var mainContentTargets = ['.news-board', '.projects', '.window-on-america', '.top-books', '.about-us'];
-                        each item, i in ['Новини', 'Проекти', 'Вікно в Америку', 'Нові книги', 'Про нас']
+                        each item, i in ['Новини', 'Проекти', 'Вікно в Америку', 'Книжкова шафа', 'Про нас']
                             if i === 0
                                 li.navigation__item.navigation__item_style_default.navigation__item_style_day.navigation__item_active.flex.flex-center.rounded-element(data-target=mainContentTargets[i])
                                     svg.navigation__keyhole-picture(height="35"
@@ -125,16 +125,16 @@ html(lang='uk')
             // main-content start
             section.main-content.main-content_style_default.main-content_style_day.flex
                 main.main-content__item.main-content__item_active.main-content__item_style_default.news-board
-                    article.news-article.main-content__article.main-content__article_style_default.main-content__article_style_day.rounded-element
-                        h3.news-article__heading.page-header Title
-                        section.news-article__body.clearfix
-                            figure.news-article__picture-wrapper.picture-wrapper
-                                img.news-article__pictire.page-picture(src="http://placehold.it/200x200")
-                            p.news-article__paragraph.news-article__paragraph_style_default.
+                    article.news-article.main-content-article.main-content-article_style_default.main-content-article_style_day.rounded-element
+                        h3.news-article__heading.main-content-article__heading.page-header Title
+                        section.news-article__body.main-content-article__body.clearfix
+                            figure.news-article__picture-wrapper.main-content-article__picture-wrapper.picture-wrapper
+                                img.news-article__picture.main-content-article__picture.page-picture(src="http://placehold.it/200x200")
+                            p.news-article__paragraph.main-content-article__paragraph.main-content-article__paragraph_style_default.
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam temporibus est voluptatum incidunt provident vitae voluptas eveniet quis qui esse laboriosam excepturi, dolore dolor maxime dignissimos, harum odit, reprehenderit facilis!  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ratione pariatur. Laudantium incidunt alias quasi natus sed aliquid est asperiores harum, consequatur autem at ratione enim nobis ut vero illum?
-                            p.news-article__paragraph.news-article__paragraph_style_default.
+                            p.news-article__paragraph.main-content-article__paragraph.main-content-article__paragraph_style_default.
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit quae dicta, praesentium, harum commodi enim natus cupiditate, asperiores amet consectetur, numquam facere nesciunt beatae error magni molestias saepe voluptatem deserunt maxime eius cumque voluptates dolores. Officia itaque sint consequuntur doloremque, est animi accusantium nobis, sunt magnam iure vero provident! Iure quia nesciunt eligendi nostrum provident placeat, ratione obcaecati eaque ullam odio, fugiat quisquam ex similique odit beatae blanditiis, sed aliquam. Facilis deleniti accusamus quasi culpa! 
-                        a.news-article__link.page-link Дізнатися більше
+                        a.news-article__link.main-content-article__link.page-link Дізнатися більше
                     button.news-board__more-articles-button.news-board__more-articles-button_style_default.news-board__more-articles-button_style_day.page-button.rounded-element(type="button") Більше новин
                 main.main-content__item.projects.
                     PROGECTS

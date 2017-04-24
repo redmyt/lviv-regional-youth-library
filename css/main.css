@@ -12,7 +12,7 @@
 
 body {
     font-family: Lugatype, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 22px;
+    font-size: 23px;
 }
 
 .body_style_day {
@@ -138,13 +138,13 @@ body {
 }
 
 .header__navigation_fixed.navigation_style_day,
-.main-content__article_style_day,
+.main-content-article_style_day,
 .news-board__more-articles-button_style_day {
     background: rgba(123, 149, 189, 1);
 }
 
 .header__navigation_fixed.navigation_style_night,
-.main-content__article_style_night,
+.main-content-article_style_night,
 .news-board__more-articles-button_stlye_night {
     background: rgba(121, 118, 140, 1); 
 }
@@ -235,7 +235,7 @@ body {
 }
 
 .main-content_style_default {
-    padding: 2% 0 2% 2%;
+    padding: 20px 0 20px 20px;
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -250,7 +250,7 @@ body {
 
 .main-content__item {
     width: 75%;
-    line-height: 30px;
+    line-height: 1.3em;
 }
 
 .main-content__item,
@@ -266,35 +266,39 @@ body {
     text-align: center;
 }
 
-.news-article__picture-wrapper {
-    max-width: 250px;
-    margin: 0 auto;
+.main-content-article {
+    padding: 0 15px 15px;
+    margin-bottom: 15px; 
 }
 
-.main-content__article {
-    padding: 0 15px;
-    margin-bottom: 10px; 
-}
-
-.main-content__article_style_default {
+.main-content-article_style_default {
     text-align: right;
     border: 1px solid transparent;
 }
 
-.news-article__paragraph_style_default {
+.main-content-article__picture-wrapper {
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.main-content-article__paragraph {
     text-align: left;
 }
 
-.news-article__paragraph_style_trunkated,
-.news-article__paragraph_style_visible {
+.main-content-article__paragraph_style_trunkated,
+.main-content-article__paragraph_style_visible {
     display: block;
 }
 
 .news-board__more-articles-button {
     padding: 10px;
-    font-size: 28px;
-    width: 100%;
+    width: 90%;
+}
+
+.news-board__more-articles-button_style_default {
+    font-size: 32px;
     color: #e09d1e;
+    
 }
 
 .trankated-button {
@@ -452,7 +456,7 @@ body {
 /*middle screens styles start*/
 
 @media screen and (min-width: 556px) {
-        .news-article__picture-wrapper {
+        .main-content-article__picture-wrapper {
             float: left;
             margin-right: 10px;
         }

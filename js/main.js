@@ -16,7 +16,7 @@ var setNightStylesModule = (function  () {
     switchTimeStyles('.navigation__item', 'navigation__item_style_night');
     switchTimeStyles('.navigation__collapsed-button', 'navigation__collapsed-button_style_night');
     switchTimeStyles('.main-content', 'main-content_style_night');
-    switchTimeStyles('.main-content__article', 'main-content__article_style_night');
+    switchTimeStyles('.main-content-article', 'main-content-article_style_night');
     switchTimeStyles('.news-board__more-articles-button', 'news-board__more-articles-button_stlye_night');
     
 
@@ -210,7 +210,7 @@ var mainContentModule = (function () {
                 htmlNewsArticles.push($currentArticle);
             });
             showNewsArticles();
-            setNightStylesModule.switchTimeStyles('.main-content__article', 'main-content__article_style_night');
+            setNightStylesModule.switchTimeStyles('.main-content-article', 'main-content-article_style_night');
             if (parseInt( $(window).width() ) < 880) {
                 truncateSpillingText();
             }
@@ -220,7 +220,7 @@ var mainContentModule = (function () {
     // Show next five invisible articles
     $showMoreButton.click(function() {
         showNewsArticles();
-        setNightStylesModule.switchTimeStyles('.main-content__article', 'main-content__article_style_night');
+        setNightStylesModule.switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         if (parseInt( $(window).width() ) < 880) {
             truncateSpillingText();
         }
@@ -238,7 +238,7 @@ var mainContentModule = (function () {
     function parseNewsItemToHtml(xmlNewsArticle) {
         
         // Create elements for the html markup
-        var $newsArticle = createPageElement('<article>', 'news-article main-content__article main-content__article_style_default rounded-element main-content__article_style_day'),
+        var $newsArticle = createPageElement('<article>', 'news-article main-content-article main-content-article_style_default rounded-element main-content-article_style_day'),
             $newsHeading = createPageElement('<h3>', 'news-article__heading page-header'),
             $newsArticleBody = createPageElement('<section>', 'news-article__body clearfix'),
             $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper picture-wrapper'),
