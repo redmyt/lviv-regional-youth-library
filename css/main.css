@@ -281,6 +281,11 @@ body {
     border: 1px solid transparent;
 }
 
+.main-content-article__picture__style_default {
+    box-shadow: 0px 0px 10px 2px #fff;
+    border-radius: 6px;
+}
+
 .main-content-article__paragraph {
     text-align: left;
 }

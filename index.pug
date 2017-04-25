@@ -61,7 +61,7 @@ html(lang='uk')
                                     path(d="M112,50H12C5.4,50,0,55.4,0,62c0,6.6,5.4,12,12,12h100c6.6,0,12-5.4,12-12C124,55.4,118.6,50,112,50z")
                                     path(d="M112,94H12c-6.6,0-12,5.4-12,12s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,94,112,94z")
                     ul.navigation__items-list.navigation__items-list_style_collapsed.flex.column
-                        - var mainContentTargets = ['.news-board', '.projects', '.window-on-america', '.top-books', '.about-us'];
+                        - var mainContentTargets = ['.news-board', '.projects', '.window-on-america', '.bookshelf', '.about-us'];
                         each item, i in ['Новини', 'Проекти', 'Вікно в Америку', 'Книжкова шафа', 'Про нас']
                             if i === 0
                                 li.navigation__item.navigation__item_style_default.navigation__item_style_day.navigation__item_active.flex.flex-center.rounded-element(data-target=mainContentTargets[i])
@@ -151,8 +151,16 @@ html(lang='uk')
                         Крім того, львівський центр Вікно в Америку проводить різноманітні заходи, що залучають до спілкування українську та американську сторони. Зокрема, регулярно проводяться зустрічі з волонтером Корпусу Миру Кетрін Фітч, а також залучається активна молодь для обговорень питань медіаграмотності та академічної доброчесності. Центр брав участь у проведенні днів США у Львові, приймав посла США в Україні Джеффрі Пайєта та організовував зустріч з представниками 173 повітряно-десантної бригади Збройних Сил США.
                     p.
                         Центр завжди готовий надавати всі необхідні ресурси для вивчення англійської та суспільного життя США, а також інформувати про американські програми допомоги та обміну.
-                main.main-content__item.top-books.
-                    TOP BOOKS
+                main.main-content__item.main-content__item_style_default.bookshelf
+                    article.news-article.main-content-article.main-content-article_style_default.main-content-article_style_day.rounded-element
+                        h3.news-article__heading.main-content-article__heading.page-header.
+                            Слава Світова «Жила-була Я»
+                        section.news-article__body.main-content-article__body.clearfix
+                            figure.news-article__picture-wrapper.main-content-article__picture-wrapper.picture-wrapper
+                                img.main-content-article__picture.main-content-article__picture__style_default.page-picture(src="img/15895106_1757075954612467_185385383520782109_n.jpg")
+                            p.news-article__paragraph.main-content-article__paragraph.main-content-article__paragraph_style_default.
+                                Часом трапляються ситуації коли мусиш писати, ось як сьогодні... Слава Світова в реалі... не київське метро, а львівський трамвай із колядками. Смуга добирання на роботу ...Стоїть дядько при вході "об'ємний" такий - ні туди, ні сюди, лагідно просиш - поступіться...нема куди..., А ззаду таких же габаритів мужчина - ходіть сюди до мене.... хвиля сміху на весь вагон, трамвай номер 3 "зробив" мій день....Пригадую, що десь таке читала...згадую Слава Світова "Жила була Я" - збірочка оповідань для жіночої торбинки, яка підіймає настрій, збірочка життєвих історій котрі можуть трапитися із кожною чи кожним...
+                                Трішки повчальна... це я про пошук корабельних дверей і приготування чаю. А ще переїзди на таксі, ооооо !!!неперевершений людський фактор... Я хочу навчитися їздити на коні... такі емоції і рефлексії викликають в мене теплі історії від Слави Світовоїі. Читайте - насолоджуйтесь, відпочивайте.
                 main.main-content__item.about-us.
                     ABOUT US
                 aside.new-books-slider
