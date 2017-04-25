@@ -206,7 +206,7 @@ var mainContentModule = (function () {
         success: function(data) {
             // Parse each xml news article to html and save them
             $(data).find('article').each(function(index, xmlNewsArticle) {
-                var $currentArticle = parseNewsItemToHtml(xmlNewsArticle);
+                var $currentArticle = parseXmlArticleItemToHtml(xmlNewsArticle, 'news');
                 htmlNewsArticles.push($currentArticle);
             });
             showNewsArticles();
@@ -261,73 +261,41 @@ var mainContentModule = (function () {
     }
 
     // Parse certain xml news article to a html news article
-    function parseNewsItemToHtml(xmlNewsArticle) {
+    function parseXmlArticleItemToHtml(xmlArticle, articleType) {
         
         // Create elements for the html markup
-        var $newsArticle = createPageElement('<article>', 'news-article main-content-article main-content-article_style_default main-content-article_style_day rounded-element'),
-            $newsHeading = createPageElement('<h3>', 'news-article__heading main-content-article__heading page-header'),
-            $newsArticleBody = createPageElement('<section>', 'news-article__body main-content-article__body clearfix'),
-            $newsPictureWrapper = createPageElement('<figure>', 'news-article__picture-wrapper main-content-article__picture-wrapper picture-wrapper'),
-            $newsPicture = createPageElement('<img>', 'news-article__pictire main-content-article__picture page-picture'),
-            $newsLink = createPageElement('<a>', 'news-article__link main-content-article__link page-link');
+        var $article = createPageElement('<article>', 'main-content-article main-content-article_style_default main-content-article_style_day rounded-element'),
+            $articleHeading = createPageElement('<h3>', 'main-content-article__heading page-header'),
+            $articleBody = createPageElement('<section>', 'main-content-article__body clearfix'),
+            $articlePictureWrapper = createPageElement('<figure>', 'main-content-article__picture-wrapper picture-wrapper'),
+            $articlePicture = createPageElement('<img>', 'main-content-article__picture page-picture');
 
         // Array for one or more articles paragraphes
-        var newsHtmlParagraphes = [];
+        var articleParagraphes = [];
 
         // Create neede amount of articles paragraphes
-        $(xmlNewsArticle).find('paragraph').each(function(index, currentXmlArticlePragraph) {
-            $currentParagraph = createPageElement('<p>', 'news-article__paragraph main-content-article__paragraph main-content-article__paragraph_style_default');
+        $(xmlArticle).find('paragraph').each(function(index, currentXmlArticlePragraph) {
+            $currentParagraph = createPageElement('<p>', 'main-content-article__paragraph main-content-article__paragraph_style_default');
             $currentParagraph.text( $(currentXmlArticlePragraph).text() );
-            newsHtmlParagraphes.push($currentParagraph);
+            articleParagraphes.push($currentParagraph);
         });
 
         // Get needed value for certain xml tags and set elemnt's attachment
-        $newsHeading.text( $(xmlNewsArticle).find('name').text() );
-        $newsPicture.attr( 'src', $(xmlNewsArticle).find('image').text() );
-        $newsPictureWrapper.append($newsPicture);
-        $newsArticleBody.append($newsPictureWrapper, newsHtmlParagraphes);
-        $newsLink.text( $(xmlNewsArticle).find('link').text() );
+        $articleHeading.text( $(xmlArticle).find('name').text() );
+        $articlePicture.attr( 'src', $(xmlArticle).find('image').text() );
+        $articlePictureWrapper.append($articlePicture);
+        $articleBody.append($articlePictureWrapper, articleParagraphes);
 
-        // Add all html article's children to one
-        $newsArticle.append($newsHeading);
-        $newsArticle.append($newsArticleBody);
-        $newsArticle.append($newsLink);
+        $article.append($articleHeading);
+        $article.append($articleBody);
 
-        return $newsArticle;
-    }
+        if (articleType === 'news') {
+            $articleLink = createPageElement('<a>', 'main-content-article__link page-link');
+            $articleLink.text( $(xmlArticle).find('link').text() );
+            $article.append($articleLink);
+        }
 
-    function parseBookItemToHtml(xmlBookItem) {
-        // Create elements for the html markup
-        var $bookArticle = createPageElement('<article>', 'book-article main-content-article main-content-article_style_default main-content-article_style_day rounded-element'),
-            $bookHeading = createPageElement('<h3>', 'book-article__heading main-content-article__heading page-header'),
-            $bookArticleBody = createPageElement('<section>', 'news-article__body main-content-article__body clearfix'),
-            $bookPictureWrapper = createPageElement('<figure>', 'book-article__picture-wrapper main-content-article__picture-wrapper picture-wrapper'),
-            $bookPicture = createPageElement('<img>', 'book-article__picture main-content-article__picture main-content-article__picture__style_default page-picture'),
-            $bookParagraph = createPageElement('<p>', 'book-article__paragraph main-content-article__paragraph main-content-article__paragraph_style_default');
-
-
-        // Array for one or more articles paragraphes
-        var newsHtmlParagraphes = [];
-
-        // Create neede amount of articles paragraphes
-        $(xmlBookItem).find('paragraph').each(function(index, currentXmlArticlePragraph) {
-            $currentParagraph = createPageElement('<p>', 'book-article__paragraph main-content-article__paragraph main-content-article__paragraph_style_default');
-            $currentParagraph.text( $(currentXmlArticlePragraph).text() );
-            newsHtmlParagraphes.push($currentParagraph);
-        });
-
-        // Get needed value for certain xml tags and set elemnt's attachment
-        $bookHeading.text( $(xmlBookItem).find('name').text() );
-        $bookPicture.attr( 'src', 'img/bookshelf-img/' + $(xmlBookItem).find('image').text() );
-        $bookPictureWrapper.append($bookPicture);
-        $bookParagraph.text( $(xmlBookItem).find('description').text() );
-        
-        // Add all html article's children to one
-        $bookArticle.append($bookHeading);
-        $bookArticle.append($bookPictureWrapper);
-        $bookArticle.append($bookParagraph);
-
-        return $bookArticle;
+        return $article;
     }
 
     //  Create needed html element with certain classes

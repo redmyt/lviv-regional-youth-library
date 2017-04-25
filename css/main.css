@@ -239,7 +239,6 @@ body {
 }
 
 .main-content_style_default {
-    /*padding: 1.5% 0 1.5%  1.5%;*/
     padding: 25px 0;
     background-size: contain;
     background-repeat: no-repeat;
@@ -260,7 +259,7 @@ body {
 }
 
 .main-content__item,
-.news-article__paragraph {
+.main-content-article__paragraph {
     display: none;
 }
 
