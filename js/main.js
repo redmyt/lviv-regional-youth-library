@@ -298,11 +298,23 @@ var mainContentModule = (function () {
 
     function parseBookItemToHtml(xmlBookItem) {
         // Create elements for the html markup
-        var $bookArticle = createPageElement('<article>', 'book-article main-content-article main-content-article_style_default main-content-article_style_day rounded-element clearfix'),
+        var $bookArticle = createPageElement('<article>', 'book-article main-content-article main-content-article_style_default main-content-article_style_day rounded-element'),
             $bookHeading = createPageElement('<h3>', 'book-article__heading main-content-article__heading page-header'),
+            $bookArticleBody = createPageElement('<section>', 'news-article__body main-content-article__body clearfix'),
             $bookPictureWrapper = createPageElement('<figure>', 'book-article__picture-wrapper main-content-article__picture-wrapper picture-wrapper'),
             $bookPicture = createPageElement('<img>', 'book-article__picture main-content-article__picture main-content-article__picture__style_default page-picture'),
             $bookParagraph = createPageElement('<p>', 'book-article__paragraph main-content-article__paragraph main-content-article__paragraph_style_default');
+
+
+        // Array for one or more articles paragraphes
+        var newsHtmlParagraphes = [];
+
+        // Create neede amount of articles paragraphes
+        $(xmlBookItem).find('paragraph').each(function(index, currentXmlArticlePragraph) {
+            $currentParagraph = createPageElement('<p>', 'book-article__paragraph main-content-article__paragraph main-content-article__paragraph_style_default');
+            $currentParagraph.text( $(currentXmlArticlePragraph).text() );
+            newsHtmlParagraphes.push($currentParagraph);
+        });
 
         // Get needed value for certain xml tags and set elemnt's attachment
         $bookHeading.text( $(xmlBookItem).find('name').text() );
