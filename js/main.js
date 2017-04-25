@@ -240,7 +240,7 @@ var mainContentModule = (function () {
                 var $currentBook = parseBookItemToHtml(xmlBook);
                 bookshelfItems.push($currentBook);
             });
-            
+
             bookshelfItems.forEach(function(htmlBookItem) {
                 $('.bookshelf').append(htmlBookItem);
             });
@@ -298,7 +298,7 @@ var mainContentModule = (function () {
 
     function parseBookItemToHtml(xmlBookItem) {
         // Create elements for the html markup
-        var $bookArticle = createPageElement('<article>', 'book-article main-content-article main-content-article_style_default main-content-article_style_day rounded-element'),
+        var $bookArticle = createPageElement('<article>', 'book-article main-content-article main-content-article_style_default main-content-article_style_day rounded-element clearfix'),
             $bookHeading = createPageElement('<h3>', 'book-article__heading main-content-article__heading page-header'),
             $bookPictureWrapper = createPageElement('<figure>', 'book-article__picture-wrapper main-content-article__picture-wrapper picture-wrapper'),
             $bookPicture = createPageElement('<img>', 'book-article__picture main-content-article__picture main-content-article__picture__style_default page-picture'),
@@ -306,7 +306,7 @@ var mainContentModule = (function () {
 
         // Get needed value for certain xml tags and set elemnt's attachment
         $bookHeading.text( $(xmlBookItem).find('name').text() );
-        $bookPicture.attr( 'src', 'img/' + $(xmlBookItem).find('image').text() );
+        $bookPicture.attr( 'src', 'img/bookshelf-img/' + $(xmlBookItem).find('image').text() );
         $bookPictureWrapper.append($bookPicture);
         $bookParagraph.text( $(xmlBookItem).find('description').text() );
         
