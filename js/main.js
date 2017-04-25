@@ -196,7 +196,7 @@ var mainContentModule = (function () {
     var htmlNewsArticles = [];
 
     // Save index of the next element that must be showed on the page
-    var nextShowingElementIndex = 0;
+    var nextShowingNewsItemIndex = 0;
 
     // Get AJAX request for the "news" document and put all separate html news articles to array 
     $.ajax({
@@ -226,11 +226,37 @@ var mainContentModule = (function () {
         }
     });
 
+    // Array for saving all html book articles after its parsing
+    var bookshelfItems = [];
+
+    // Get AJAX request for the "books" document and put all separate html book items to array 
+    $.ajax({
+        type: 'GET',
+        url: "./books.xml",
+        dataType: "xml",
+        success: function(data) {
+            // Parse each xml book item to html and save them
+            $(data).find('book').each(function(index, xmlBook) {
+                var $currentBook = parseBookItemToHtml(xmlBook);
+                bookshelfItems.push($currentBook);
+            });
+            
+            bookshelfItems.forEach(function(htmlBookItem) {
+                $('.bookshelf').append(htmlBookItem);
+            });
+
+            setNightStylesModule.switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+            if (parseInt( $(window).width() ) < 880) {
+                truncateSpillingText();
+            }
+        }
+    });
+
     // Show five next invisible news articles 
     function showNewsArticles() {
         for (var i = 0; i < 5; i++) {
-            $showMoreButton.before(htmlNewsArticles[nextShowingElementIndex]);
-            nextShowingElementIndex++;
+            $showMoreButton.before(htmlNewsArticles[nextShowingNewsItemIndex]);
+            nextShowingNewsItemIndex++;
         }
     }
 
@@ -268,6 +294,28 @@ var mainContentModule = (function () {
         $newsArticle.append($newsLink);
 
         return $newsArticle;
+    }
+
+    function parseBookItemToHtml(xmlBookItem) {
+        // Create elements for the html markup
+        var $bookArticle = createPageElement('<article>', 'book-article main-content-article main-content-article_style_default main-content-article_style_day rounded-element'),
+            $bookHeading = createPageElement('<h3>', 'book-article__heading main-content-article__heading page-header'),
+            $bookPictureWrapper = createPageElement('<figure>', 'book-article__picture-wrapper main-content-article__picture-wrapper picture-wrapper'),
+            $bookPicture = createPageElement('<img>', 'book-article__picture main-content-article__picture main-content-article__picture__style_default page-picture'),
+            $bookParagraph = createPageElement('<p>', 'book-article__paragraph main-content-article__paragraph main-content-article__paragraph_style_default');
+
+        // Get needed value for certain xml tags and set elemnt's attachment
+        $bookHeading.text( $(xmlBookItem).find('name').text() );
+        $bookPicture.attr( 'src', 'img/' + $(xmlBookItem).find('image').text() );
+        $bookPictureWrapper.append($bookPicture);
+        $bookParagraph.text( $(xmlBookItem).find('description').text() );
+        
+        // Add all html article's children to one
+        $bookArticle.append($bookHeading);
+        $bookArticle.append($bookPictureWrapper);
+        $bookArticle.append($bookParagraph);
+
+        return $bookArticle;
     }
 
     //  Create needed html element with certain classes
