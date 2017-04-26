@@ -139,7 +139,8 @@ var navigationModule = (function () {
             var $visibleMainContentItem = $(this.dataset.target);
             // Make other main content items invisible
             emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
-            mainContentModule.truncateSpillingText();
+
+            mainContentModule.applicationSpillingTextTruncating();
 
             // Set the window scroll top at the beginning of the main content section
             var navigationHeight = getHeaderItemsParameters().navigationHeight,
@@ -193,6 +194,38 @@ var mainContentModule = (function () {
     // Determine trunkated lines amount which depend on user screen size
     var truncatedLinesAmount = $(window).width() > 556 ? 7 : 4;
 
+   // Allow user read full article and show it if it wants
+    $(document).on('click', '.read-more', function() {
+        // Save needed article paragraphs
+        var $currentTrankatedParagrapg = $(this).parent(),
+            $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
+            $lastArticleParagraph = $(this).parents('.main-content-article__body').children('p:last-of-type');
+        
+        // Make all article paragraphs visible and create read-less button
+        $allArtuicleParagraphs.addClass('main-content-article__paragraph_style_visible');
+        var $readLessButton = $('<a class="read-less trankated-button page-link">&nbsp;&laquo;&nbsp;</a>');
+        
+        // Show the trunkated paragraph and add read-less button to the last one 
+        $currentTrankatedParagrapg.trunk8('revert');
+        $lastArticleParagraph.append($readLessButton);
+        return false;
+    });
+            
+    // Add click event handler for the read-less button
+    $(document).on('click', '.read-less', function() {
+        var currentArticlePosition = parseInt($(this).parents('.main-content-article').offset().top);
+            $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
+            $firstArticleParagraph = $(this).parents('.main-content-article__body').children('p:first-of-type');
+        $allArtuicleParagraphs.removeClass('main-content-article__paragraph_style_visible');
+        $firstArticleParagraph.trunk8({
+            lines: truncatedLinesAmount
+        });
+        var navigationHeight = navigationModule.getHeaderItemsParameters().navigationHeight;
+        $(window).scrollTop(currentArticlePosition - navigationHeight);
+        $(this).remove();
+        return false;
+    });
+
     // Array for saving all html news articles after its parsing
     var htmlNewsArticles = [];
 
@@ -211,9 +244,7 @@ var mainContentModule = (function () {
                 htmlNewsArticles.push($currentArticle);
             });
             showNewsArticles();
-            if (parseInt( $(window).width() ) < 880) {
-                truncateSpillingText();
-            }
+            applicationSpillingTextTruncating();
         }
     });
 
@@ -221,9 +252,7 @@ var mainContentModule = (function () {
     $showMoreButton.click(function() {
         showNewsArticles();
         setNightStylesModule.switchTimeStyles('.main-content-article', 'main-content-article_style_night');
-        if (parseInt( $(window).width() ) < 880) {
-            truncateSpillingText();
-        }
+        applicationSpillingTextTruncating();
     });
 
     // Array for saving all html book articles after its parsing
@@ -320,40 +349,15 @@ var mainContentModule = (function () {
         });
     }
 
-    // Allow user read full article and show it if it wants
-    $(document).on('click', '.read-more', function() {
-        // Save needed article paragraphs
-        var $currentTrankatedParagrapg = $(this).parent(),
-            $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
-            $lastArticleParagraph = $(this).parents('.main-content-article__body').children('p:last-of-type');
-        
-        // Make all article paragraphs visible and create read-less button
-        $allArtuicleParagraphs.addClass('main-content-article__paragraph_style_visible');
-        var $readLessButton = $('<a class="read-less trankated-button page-link">&nbsp;&laquo;&nbsp;</a>');
-        
-        // Show the trunkated paragraph and add read-less button to the last one 
-        $currentTrankatedParagrapg.trunk8('revert');
-        $lastArticleParagraph.append($readLessButton);
-        return false;
-    });
-            
-    // Add click event handler for the read-less button
-    $(document).on('click', '.read-less', function() {
-        var currentArticlePosition = parseInt($(this).parents('.main-content-article').offset().top);
-            $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
-            $firstArticleParagraph = $(this).parents('.main-content-article__body').children('p:first-of-type');
-        $allArtuicleParagraphs.removeClass('main-content-article__paragraph_style_visible');
-        $firstArticleParagraph.trunk8({
-            lines: truncatedLinesAmount
-        });
-        var navigationHeight = navigationModule.getHeaderItemsParameters().navigationHeight;
-        $(window).scrollTop(currentArticlePosition - navigationHeight);
-        $(this).remove();
-        return false;
-    });
+    // Apply the spilling text truncate when user screen width more than 880px
+    function applicationSpillingTextTruncating() {
+        if (parseInt( $(window).width() ) < 880) {
+            truncateSpillingText();
+        }
+    }
 
     return {
-        truncateSpillingText: truncateSpillingText        
+        applicationSpillingTextTruncating: applicationSpillingTextTruncating        
     }
 
 })();
