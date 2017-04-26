@@ -237,7 +237,7 @@ var mainContentModule = (function () {
         success: function(data) {
             // Parse each xml book item to html and save them
             $(data).find('book').each(function(index, xmlBook) {
-                var $currentBook = parseBookItemToHtml(xmlBook);
+                var $currentBook = parseXmlArticleItemToHtml(xmlBook, 'book');
                 bookshelfItems.push($currentBook);
             });
 
@@ -268,7 +268,7 @@ var mainContentModule = (function () {
             $articleHeading = createPageElement('<h3>', 'main-content-article__heading page-header'),
             $articleBody = createPageElement('<section>', 'main-content-article__body clearfix'),
             $articlePictureWrapper = createPageElement('<figure>', 'main-content-article__picture-wrapper picture-wrapper'),
-            $articlePicture = createPageElement('<img>', 'main-content-article__picture page-picture');
+            $articlePicture = createPageElement('<img>', 'main-content-article__picture main-content-article__picture__style_default page-picture');
 
         // Array for one or more articles paragraphes
         var articleParagraphes = [];
@@ -283,6 +283,9 @@ var mainContentModule = (function () {
         // Get needed value for certain xml tags and set elemnt's attachment
         $articleHeading.text( $(xmlArticle).find('name').text() );
         $articlePicture.attr( 'src', $(xmlArticle).find('image').text() );
+        if (articleType === 'book') {
+            $articlePicture.attr( 'src', './img/bookshelf-img/' + $(xmlArticle).find('image').text() );
+        }
         $articlePictureWrapper.append($articlePicture);
         $articleBody.append($articlePictureWrapper, articleParagraphes);
 
@@ -331,6 +334,7 @@ var mainContentModule = (function () {
             
             // Add click event handler for the read-less button
             $(document).on('click', '.read-less', function() {
+                debugger
                 var currentArticlePosition = parseInt($(this).parents('.main-content-article').offset().top);
                     $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
                     $firstArticleParagraph = $(this).parents('.main-content-article__body').children('p:first-of-type');
