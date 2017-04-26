@@ -125,31 +125,23 @@ html(lang='uk')
             // main-content start
             section.main-content.main-content_style_default.main-content_style_day.flex
                 main.main-content__item.main-content__item_active.main-content__item_style_default.news-board
-                    article.news-article.main-content-article.main-content-article_style_default.main-content-article_style_day.rounded-element
-                        h3.news-article__heading.main-content-article__heading.page-header Title
-                        section.news-article__body.main-content-article__body.clearfix
-                            figure.news-article__picture-wrapper.main-content-article__picture-wrapper.picture-wrapper
-                                img.news-article__picture.main-content-article__picture.page-picture(src="http://placehold.it/200x200")
-                            p.news-article__paragraph.main-content-article__paragraph.main-content-article__paragraph_style_default.
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam temporibus est voluptatum incidunt provident vitae voluptas eveniet quis qui esse laboriosam excepturi, dolore dolor maxime dignissimos, harum odit, reprehenderit facilis!  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ratione pariatur. Laudantium incidunt alias quasi natus sed aliquid est asperiores harum, consequatur autem at ratione enim nobis ut vero illum?
-                            p.news-article__paragraph.main-content-article__paragraph.main-content-article__paragraph_style_default.
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit quae dicta, praesentium, harum commodi enim natus cupiditate, asperiores amet consectetur, numquam facere nesciunt beatae error magni molestias saepe voluptatem deserunt maxime eius cumque voluptates dolores. Officia itaque sint consequuntur doloremque, est animi accusantium nobis, sunt magnam iure vero provident! Iure quia nesciunt eligendi nostrum provident placeat, ratione obcaecati eaque ullam odio, fugiat quisquam ex similique odit beatae blanditiis, sed aliquam. Facilis deleniti accusamus quasi culpa! 
-                        a.news-article__link.main-content-article__link.page-link Дізнатися більше
                     button.news-board__more-articles-button.news-board__more-articles-button_style_default.news-board__more-articles-button_style_day.page-button.rounded-element(type="button") Більше новин
                 main.main-content__item.projects.
                     PROGECTS
-                main.main-content__item.window-on-america
-                    figure.picture-wrapper.news-article__picture-wrapper
-                        img.page-picture(src="http://placehold.it/350x150")
-                    p.
+                main.main-content__item.window-on-america.window-on-america_style_default
+                    figure.window-on-america__picture-wrapper.picture-wrapper
+                        img.main-content-article__picture.main-content-article__picture__style_default.page-picture(src="http://placehold.it/350x150")
+                    p.window-on-america__paragraph.
                         Львівський центр Вікно в Америку слугує інформаційним осередком американської культури в Україні. Один з 29 регіональних відділів, він був заснований у 2222 за підтримки відділу преси, освіти та культури Посольства США в Україні. Центр було відкрито з метою надання актуальної інформації про США та поповнення фондів бібліотек англомовними виданнями. Проект сприяє взаєморозумінню між народом США та України; саме тут ви можете:
-                    ul
+                    ul.window-on-america__opportunities-list
                         - var opportunities = ['знайти необхідну інформацію про історію, уряд, суспільство та цінності США;', 'дізнатись про можливі програми обміну для учнів та студентів (Flex, Fullbright) та консультації з приводу отримання Green Card;', 'взяти участь в англомовних клуба з носіями мови і не тільки;', 'скористатися ліцензійними програмами вивчення англійської мови, зокрема Rosetta Stone;', 'отримати безкоштовний доступ до мережі Інтернет, користуючись сучасними комп’ютерами, планшетами, iPad-ами та електронними рідерами.'];
                         for item in opportunities
-                            li=item
-                    p.
+                            li.window-on-america__opportunities-item=item
+                    figure.window-on-america__picture-wrapper.window-on-america__picture-wrapper_floated_right.picture-wrapper
+                        img.main-content-article__picture.main-content-article__picture__style_default.page-picture(src="http://placehold.it/350x150")
+                    p.window-on-america__paragraph.
                         Крім того, львівський центр Вікно в Америку проводить різноманітні заходи, що залучають до спілкування українську та американську сторони. Зокрема, регулярно проводяться зустрічі з волонтером Корпусу Миру Кетрін Фітч, а також залучається активна молодь для обговорень питань медіаграмотності та академічної доброчесності. Центр брав участь у проведенні днів США у Львові, приймав посла США в Україні Джеффрі Пайєта та організовував зустріч з представниками 173 повітряно-десантної бригади Збройних Сил США.
-                    p.
+                    p.window-on-america__paragraph.
                         Центр завжди готовий надавати всі необхідні ресурси для вивчення англійської та суспільного життя США, а також інформувати про американські програми допомоги та обміну.
                 main.main-content__item.main-content__item_style_default.bookshelf
                 main.main-content__item.about-us.
