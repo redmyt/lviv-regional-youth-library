@@ -285,6 +285,7 @@ var mainContentModule = (function () {
     function showNewsArticles() {
         for (var i = 0; i < 5; i++) {
             $showMoreButton.before(htmlNewsArticles[nextShowingNewsItemIndex]);
+            setNightStylesModule.switchTimeStyles('.main-content-article', 'main-content-article_style_night');
             nextShowingNewsItemIndex++;
         }
     }
@@ -354,6 +355,31 @@ var mainContentModule = (function () {
         if (parseInt( $(window).width() ) < 880) {
             truncateSpillingText();
         }
+    }
+
+TODO
+    function smoothlySwitchPictures(picture, anotherPictureSrc) {
+        $(picture).attr('src', anotherPictureSrc);
+    }
+
+
+    var $firstWindowOnAmericaImage = $('.window-on-america__first-picture'),
+        $secondWindowOnAmericaImage = $('.window-on-america__second-picture');
+
+    var a = setInterval(function() {
+        windowOnAmericaImangeAniation($firstWindowOnAmericaImage, ['img/window-on-america-img/woa-img-0.jpg', 'img/window-on-america-img/woa-img-1.jpg', 'img/window-on-america-img/woa-img-2.jpg']);        
+    }, 10000)
+
+    function windowOnAmericaImangeAniation(animateImage, imagesSources) {
+            var animateImageSource = $(animateImage).attr('src');
+            var currentSourcePosition = imagesSources.indexOf(animateImageSource);
+            var sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : ++currentSourcePosition;
+
+            animateImage.fadeOut(2500, function() {
+    // debugger
+                smoothlySwitchPictures(animateImage, imagesSources[sourcePosition]);
+                animateImage.fadeIn(2500);
+            })
     }
 
     return {
