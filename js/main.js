@@ -139,8 +139,12 @@ var navigationModule = (function () {
             var $visibleMainContentItem = $(this.dataset.target);
             // Make other main content items invisible
             emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
-
             mainContentModule.applicationSpillingTextTruncating();
+
+            // TODO
+            if(this.dataset.target === '.window-on-america') {
+                mainContentModule.toggleWindowOnAmericaPictureAnimation();                
+            }
 
             // Set the window scroll top at the beginning of the main content section
             var navigationHeight = getHeaderItemsParameters().navigationHeight,
@@ -358,13 +362,12 @@ var mainContentModule = (function () {
     }
 
 
-    function switchImageSource(continer, anotherPictureSrc) {
-        $(continer).css('background-image', anotherPictureSrc);
+    function switchImageSource(picture, anotherPictureSrc) {
+        $(picture).attr('src', anotherPictureSrc);
     }
 
-
-    var $firstWindowOnAmericaImage = $('.woa-wrap'),
-        // $secondWindowOnAmericaImage = $('.window-on-america__second-picture');
+    var $firstWindowOnAmericaImage = $('.window-on-america__first-picture'),
+        $secondWindowOnAmericaImage = $('.window-on-america__second-picture');
         firstImageSources = [
             'img/window-on-america-img/woa-img-1.jpg', 
             'img/window-on-america-img/woa-img-5.jpg', 
@@ -388,28 +391,34 @@ var mainContentModule = (function () {
             'img/window-on-america-img/woa-img-14.jpg',
         ];
 
-    var a = setInterval(function() {
-        windowOnAmericaImangeAniation($firstWindowOnAmericaImage, firstImageSources);        
-    }, 10000)
-
-    // var b = setInterval(function() {
-        // windowOnAmericaImangeAniation($secondWindowOnAmericaImage, secondImageSources);        
-    // }, 10000)
-
     function windowOnAmericaImangeAniation(animateImage, imagesSources) {
-        
-        var animateImageSource = $(animateImage).css('background-image');
+        var animateImageSource = $(animateImage).attr('src');
         var currentSourcePosition = imagesSources.indexOf(animateImageSource);
         var sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : (currentSourcePosition + 1);
-
+        animateImage.fadeOut(2500, function() {
             switchImageSource(animateImage, imagesSources[sourcePosition]);
-        // animateImage.fadeOut(2500, function() {
-            // animateImage.fadeIn(2500);
-        // })
+            animateImage.fadeIn(2500);
+        })
+    }
+
+    function toggleWindowOnAmericaPictureAnimation() {
+        if (firstImageAnimation && secondImageAnimation) {
+            clearInterval(firstImageAnimation);
+            clearInterval(secondImageAnimation);
+        } else {
+            var firstImageAnimation = setInterval(function() {
+                windowOnAmericaImangeAniation($firstWindowOnAmericaImage, firstImageSources);        
+            }, 10000)
+
+            var secondImageAnimation = setInterval(function() {
+                windowOnAmericaImangeAniation($secondWindowOnAmericaImage, secondImageSources);        
+            }, 10000)    
+        }
     }
 
     return {
-        applicationSpillingTextTruncating: applicationSpillingTextTruncating        
+        applicationSpillingTextTruncating: applicationSpillingTextTruncating,
+        toggleWindowOnAmericaPictureAnimation: toggleWindowOnAmericaPictureAnimation        
     }
 
 })();
