@@ -240,16 +240,27 @@ body {
 
 .main-content_style_default {
     padding: 25px 0;
+}
+
+.main-content_style_default,
+.main-content::after {
     background-size: contain;
     background-repeat: no-repeat;
+
 }
 
-.main-content_style_day {
-    background-image: linear-gradient( rgba(176,199,234, 0.6), rgba(176,199,234, 0.6) ), url("../img/main-bg-modified1.png");
-}
-
-.main-content_style_night {
-    background-image: linear-gradient( rgba(166,164,179, 0.6), rgba(166,164,179, 0.6) ), url("../img/main-bg-modified1.png");
+.main-content::after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url('../img/main-bg-modified1.png');
+    background-position: -40px;
+    width: 100%;
+    height: 100%;
+    opacity : 1;
+    z-index: -1;
 }
 
 .main-content__item {
@@ -312,6 +323,15 @@ body {
 
 .window-on-america_style_default {
     color: #281501;
+}
+
+.woa-wrap {
+    width: 28%;
+    height: 25%;
+    background-image: url('/img/window-on-america-img/woa-img-1.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+     transition: background-image 1s ease-in-out;
 }
 
 .window-on-america__picture-wrapper,

@@ -357,29 +357,55 @@ var mainContentModule = (function () {
         }
     }
 
-TODO
-    function smoothlySwitchPictures(picture, anotherPictureSrc) {
-        $(picture).attr('src', anotherPictureSrc);
+
+    function switchImageSource(continer, anotherPictureSrc) {
+        $(continer).css('background-image', anotherPictureSrc);
     }
 
 
-    var $firstWindowOnAmericaImage = $('.window-on-america__first-picture'),
-        $secondWindowOnAmericaImage = $('.window-on-america__second-picture');
+    var $firstWindowOnAmericaImage = $('.woa-wrap'),
+        // $secondWindowOnAmericaImage = $('.window-on-america__second-picture');
+        firstImageSources = [
+            'img/window-on-america-img/woa-img-1.jpg', 
+            'img/window-on-america-img/woa-img-5.jpg', 
+            'img/window-on-america-img/woa-img-8.jpg',
+            'img/window-on-america-img/woa-img-15.jpg',
+            'img/window-on-america-img/woa-img-2.jpg',
+            'img/window-on-america-img/woa-img-6.jpg',
+            'img/window-on-america-img/woa-img-9.jpg',
+            'img/window-on-america-img/woa-img-16.jpg',
+            'img/window-on-america-img/woa-img-3.jpg',
+            'img/window-on-america-img/woa-img-10.jpg',
+        ],
+        secondImageSources = [
+            'img/window-on-america-img/woa-img-4.jpg', 
+            'img/window-on-america-img/woa-img-7.jpg', 
+            'img/window-on-america-img/woa-img-11.jpg',
+            'img/window-on-america-img/woa-img-17.jpg',
+            'img/window-on-america-img/woa-img-12.jpg',
+            'img/window-on-america-img/woa-img-18.jpg',
+            'img/window-on-america-img/woa-img-13.jpg',
+            'img/window-on-america-img/woa-img-14.jpg',
+        ];
 
     var a = setInterval(function() {
-        windowOnAmericaImangeAniation($firstWindowOnAmericaImage, ['img/window-on-america-img/woa-img-0.jpg', 'img/window-on-america-img/woa-img-1.jpg', 'img/window-on-america-img/woa-img-2.jpg']);        
+        windowOnAmericaImangeAniation($firstWindowOnAmericaImage, firstImageSources);        
     }, 10000)
 
-    function windowOnAmericaImangeAniation(animateImage, imagesSources) {
-            var animateImageSource = $(animateImage).attr('src');
-            var currentSourcePosition = imagesSources.indexOf(animateImageSource);
-            var sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : ++currentSourcePosition;
+    // var b = setInterval(function() {
+        // windowOnAmericaImangeAniation($secondWindowOnAmericaImage, secondImageSources);        
+    // }, 10000)
 
-            animateImage.fadeOut(2500, function() {
-    // debugger
-                smoothlySwitchPictures(animateImage, imagesSources[sourcePosition]);
-                animateImage.fadeIn(2500);
-            })
+    function windowOnAmericaImangeAniation(animateImage, imagesSources) {
+        
+        var animateImageSource = $(animateImage).css('background-image');
+        var currentSourcePosition = imagesSources.indexOf(animateImageSource);
+        var sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : (currentSourcePosition + 1);
+
+            switchImageSource(animateImage, imagesSources[sourcePosition]);
+        // animateImage.fadeOut(2500, function() {
+            // animateImage.fadeIn(2500);
+        // })
     }
 
     return {
