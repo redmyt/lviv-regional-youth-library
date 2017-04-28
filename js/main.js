@@ -141,7 +141,6 @@ var navigationModule = (function () {
             emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
             mainContentModule.applicationSpillingTextTruncating();
 
-            // TODO
             if(this.dataset.target === '.window-on-america') {
                 mainContentModule.toggleWindowOnAmericaPictureAnimation();                
             }
@@ -361,7 +360,7 @@ var mainContentModule = (function () {
         }
     }
 
-
+    // Switch certain image source
     function switchImageSource(picture, anotherPictureSrc) {
         $(picture).attr('src', anotherPictureSrc);
     }
@@ -372,47 +371,51 @@ var mainContentModule = (function () {
             'img/window-on-america-img/woa-img-1.jpg', 
             'img/window-on-america-img/woa-img-5.jpg', 
             'img/window-on-america-img/woa-img-8.jpg',
+            'img/window-on-america-img/woa-img-4.jpg',
             'img/window-on-america-img/woa-img-15.jpg',
             'img/window-on-america-img/woa-img-2.jpg',
             'img/window-on-america-img/woa-img-6.jpg',
             'img/window-on-america-img/woa-img-9.jpg',
             'img/window-on-america-img/woa-img-16.jpg',
-            'img/window-on-america-img/woa-img-3.jpg',
-            'img/window-on-america-img/woa-img-10.jpg',
         ],
-        secondImageSources = [
-            'img/window-on-america-img/woa-img-4.jpg', 
+        secondImageSources = [ 
             'img/window-on-america-img/woa-img-7.jpg', 
             'img/window-on-america-img/woa-img-11.jpg',
             'img/window-on-america-img/woa-img-17.jpg',
             'img/window-on-america-img/woa-img-12.jpg',
             'img/window-on-america-img/woa-img-18.jpg',
+            'img/window-on-america-img/woa-img-10.jpg',
             'img/window-on-america-img/woa-img-13.jpg',
             'img/window-on-america-img/woa-img-14.jpg',
         ];
 
-    function windowOnAmericaImangeAniation(animateImage, imagesSources) {
-        var animateImageSource = $(animateImage).attr('src');
-        var currentSourcePosition = imagesSources.indexOf(animateImageSource);
-        var sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : (currentSourcePosition + 1);
+    // Implement the pictures animation
+    function windowOnAmericaImageAniation(animateImage, imagesSources) {
+        var animateImageSource = $(animateImage).attr('src'),
+            currentSourcePosition = imagesSources.indexOf(animateImageSource),
+            sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : (currentSourcePosition + 1);
+
         animateImage.fadeOut(2500, function() {
             switchImageSource(animateImage, imagesSources[sourcePosition]);
             animateImage.fadeIn(2500);
-        })
+        });
     }
 
+    // Apply the woa pictures animation when user go to woa section
     function toggleWindowOnAmericaPictureAnimation() {
         if (firstImageAnimation && secondImageAnimation) {
             clearInterval(firstImageAnimation);
             clearInterval(secondImageAnimation);
         } else {
             var firstImageAnimation = setInterval(function() {
-                windowOnAmericaImangeAniation($firstWindowOnAmericaImage, firstImageSources);        
-            }, 10000)
+                windowOnAmericaImageAniation($firstWindowOnAmericaImage, firstImageSources);        
+            }, 20000);
 
-            var secondImageAnimation = setInterval(function() {
-                windowOnAmericaImangeAniation($secondWindowOnAmericaImage, secondImageSources);        
-            }, 10000)    
+            setTimeout(function() {
+                var secondImageAnimation = setInterval(function() {
+                    windowOnAmericaImageAniation($secondWindowOnAmericaImage, secondImageSources);        
+                }, 20000);   
+            }, 5000);
         }
     }
 

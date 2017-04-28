@@ -251,7 +251,6 @@ body {
     background-image: url('../img/main-bg-modified1.png');
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: -40px;
     opacity: 0.6;
     width: 100%;
     height: 100%;
@@ -318,15 +317,6 @@ body {
 
 .window-on-america_style_default {
     color: #281501;
-}
-
-.woa-wrap {
-    width: 28%;
-    height: 25%;
-    background-image: url('/img/window-on-america-img/woa-img-1.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-     transition: background-image 1s ease-in-out;
 }
 
 .window-on-america__picture-wrapper,
@@ -501,6 +491,16 @@ body {
             margin-right: 4%;
         }
 
+        .window-on-america__picture-wrapper {
+            max-height: 21%;
+            max-width: initial;
+        }
+
+        .window-on-america__picture-wrapper,
+        .window-on-america__paragraph {
+            margin-top: 1%;
+        }
+
         .window-on-america__picture-wrapper_floated_right {
             float: right;
             margin-right: 0;
@@ -545,6 +545,11 @@ body {
 
     .main-content__item {
         margin: initial;
+    }
+
+    .window-on-america__picture-wrapper {
+        max-height: 25%;
+        max-width: 28%
     }
 
     .footer-information {
