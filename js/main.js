@@ -1,13 +1,4 @@
-// Add certain emphasize class for the one of the set elemet and remove that class from the other set elements
-function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
-    $(setOfElements).each(function() {
-        $(this).removeClass(emphasizeClass);
-    })
-    $(element).addClass(emphasizeClass);
-}
-
-// Set night styles when it is evening in the Ukraine
-var setNightStylesModule = (function  () {
+(function() {
 
     // Switch styles for all needed elements
     switchTimeStyles('.body', 'body_style_night');
@@ -19,7 +10,6 @@ var setNightStylesModule = (function  () {
     switchTimeStyles('.main-content-article', 'main-content-article_style_night');
     switchTimeStyles('.news-board__more-articles-button', 'news-board__more-articles-button_stlye_night');
     
-
     // Get Ukraine time from any point of word
     function getUkraineTime() {
         var currentUserHour = new Date().getHours(),
@@ -35,73 +25,7 @@ var setNightStylesModule = (function  () {
         }
     }
 
-    return {
-        switchTimeStyles: switchTimeStyles
-    }
-
-})();
-
-// Provides initializing and completely settings for owl-carousel slider
-var owlSlider = (function () {
-    // Initialize owl-carousel slider on the page 
-    $(document).ready(function(){
-      $(".owl-carousel").owlCarousel();
-    });
-
-    // Make slider responsive and set basic settings 
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        dotsEach: true,
-        autoplay: true,
-        autoplayTimeout: 2000,
-        autoplayHoverPause:true,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-                nav: false,
-                dots: false,
-                loop: true
-            },
-            450: {
-                items: 2,
-                dots: false,
-                nav: false,
-                loop: true
-            },
-            740: {
-                items: 3,
-                dots: false,
-                nav: false,
-                loop: true
-            },
-            1000: {
-                items: 4,
-                nav: false,
-                loop: true
-            },
-            1200: {
-                items: 5,
-                nav: false,
-                loop: true
-            }
-        }
-    });    
-
-    // Stop the slider when user hover it and star one againg after user's mouseleave 
-    $('.partners-panel').hover(
-        function () {
-            $('.owl-carousel').trigger('stop.owl.autoplay');
-        }, function () {
-            $('.owl-carousel').trigger('play.owl.autoplay', [2000, 2000]);
-        }
-    );
-
-})();
-
-// Following function controls all navigation behavior
-var navigationModule = (function () {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Save navigation block, navigation items, header section and collapser button to a variables.
     var $header = $('.header'),
@@ -129,10 +53,6 @@ var navigationModule = (function () {
         }
     });
 
-    // Variables for savind id of woa picture animations
-    var firstWoaAnimation,
-        secondWoaAnimation;
-
     // Add click event hendler for each nav-item
     $navItems.each(function () {
         $(this).on('click', function () {
@@ -143,15 +63,7 @@ var navigationModule = (function () {
             var $visibleMainContentItem = $(this.dataset.target);
             // Make other main content items invisible
             emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
-            mainContentModule.applicationSpillingTextTruncating();
-
-            if(this.dataset.target === '.window-on-america') {
-                firstWoaAnimation = mainContentModule.switchOnWoaAnimation(mainContentModule.$firstWindowOnAmericaImage, firstImageSources, 20000);                
-                secondWoaAnimation = mainContentModule.switchOnWoaAnimation(mainContentModule.$secondWindowOnAmericaImage, secondImageSources, 25000);                
-            } else {
-                mainContentModule.switchOfWoaAnimation(firstWoaAnimation);
-                mainContentModule.switchOfWoaAnimation(secondWoaAnimation);
-            }
+            applicationSpillingTextTruncating();
 
             // Set the window scroll top at the beginning of the main content section
             var navigationHeight = getHeaderItemsParameters().navigationHeight,
@@ -190,15 +102,7 @@ var navigationModule = (function () {
         }
     }
 
-    // Allow get the header parameters from all modules
-    return {
-        getHeaderItemsParameters: getHeaderItemsParameters
-    }
-    
-})();
-
-// Following function controls all main content behavior
-var mainContentModule = (function () {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     var $showMoreButton = $('.news-board__more-articles-button');
 
@@ -231,7 +135,7 @@ var mainContentModule = (function () {
         $firstArticleParagraph.trunk8({
             lines: truncatedLinesAmount
         });
-        var navigationHeight = navigationModule.getHeaderItemsParameters().navigationHeight;
+        var navigationHeight = getHeaderItemsParameters().navigationHeight;
         $(window).scrollTop(currentArticlePosition - navigationHeight);
         $(this).remove();
         return false;
@@ -262,7 +166,7 @@ var mainContentModule = (function () {
     // Show next five invisible articles
     $showMoreButton.click(function() {
         showNewsArticles();
-        setNightStylesModule.switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+        switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         applicationSpillingTextTruncating();
     });
 
@@ -285,7 +189,8 @@ var mainContentModule = (function () {
                 $('.bookshelf').append(htmlBookItem);
             });
 
-            setNightStylesModule.switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+            switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+
             if (parseInt( $(window).width() ) < 880) {
                 truncateSpillingText();
             }
@@ -296,7 +201,7 @@ var mainContentModule = (function () {
     function showNewsArticles() {
         for (var i = 0; i < 5; i++) {
             $showMoreButton.before(htmlNewsArticles[nextShowingNewsItemIndex]);
-            setNightStylesModule.switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+            switchTimeStyles('.main-content-article', 'main-content-article_style_night');
             nextShowingNewsItemIndex++;
         }
     }
@@ -368,75 +273,7 @@ var mainContentModule = (function () {
         }
     }
 
-    // Switch certain image source
-    function switchImageSource(picture, anotherPictureSrc) {
-        $(picture).attr('src', anotherPictureSrc);
-    }
-
-    var $firstWindowOnAmericaImage = $('.window-on-america__first-picture'),
-        $secondWindowOnAmericaImage = $('.window-on-america__second-picture');
-        firstImageSources = [
-            'img/window-on-america-img/woa-img-1.jpg', 
-            'img/window-on-america-img/woa-img-5.jpg', 
-            'img/window-on-america-img/woa-img-8.jpg',
-            'img/window-on-america-img/woa-img-4.jpg',
-            'img/window-on-america-img/woa-img-15.jpg',
-            'img/window-on-america-img/woa-img-2.jpg',
-            'img/window-on-america-img/woa-img-6.jpg',
-            'img/window-on-america-img/woa-img-9.jpg',
-            'img/window-on-america-img/woa-img-16.jpg',
-        ],
-        secondImageSources = [ 
-            'img/window-on-america-img/woa-img-7.jpg', 
-            'img/window-on-america-img/woa-img-11.jpg',
-            'img/window-on-america-img/woa-img-17.jpg',
-            'img/window-on-america-img/woa-img-12.jpg',
-            'img/window-on-america-img/woa-img-18.jpg',
-            'img/window-on-america-img/woa-img-10.jpg',
-            'img/window-on-america-img/woa-img-13.jpg',
-            'img/window-on-america-img/woa-img-14.jpg',
-        ];
-
-    // Implement the pictures animation
-    function windowOnAmericaImageAniation(animateImage, imagesSources) {
-        var animateImageSource = $(animateImage).attr('src'),
-            currentSourcePosition = imagesSources.indexOf(animateImageSource),
-            sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : (currentSourcePosition + 1);
-
-        animateImage.fadeOut(2500, function() {
-            switchImageSource(animateImage, imagesSources[sourcePosition]);
-            animateImage.fadeIn(2500);
-        });
-    }
-
-    // Apply the woa pictures animation when user go to woa section
-    function switchOnWoaAnimation(animationImage, otherImageSources, animationdDuretion) {
-        return setInterval(function() {
-            windowOnAmericaImageAniation(animationImage, otherImageSources);        
-        }, animationdDuretion);
-    }
-
-    // Stop the certain animation
-    function switchOfWoaAnimation(animation) {
-        if (animation) {
-            clearInterval(animation);
-        }
-    }
-
-    return {
-        applicationSpillingTextTruncating: applicationSpillingTextTruncating,
-        $firstWindowOnAmericaImage: $firstWindowOnAmericaImage,
-        $secondWindowOnAmericaImage: $secondWindowOnAmericaImage,
-        firstImageSources: firstImageSources,
-        secondImageSources: secondImageSources,
-        switchOnWoaAnimation: switchOnWoaAnimation,  
-        switchOfWoaAnimation: switchOfWoaAnimation
-    }
-
-})();
-
-// Provides core logic for new-books slider
-var newBooksSlierModule = (function () {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     // Save all new book pictures for sliding to one variable 
     var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray(),
@@ -543,10 +380,7 @@ var newBooksSlierModule = (function () {
         }
     }
 
-})();
-
-// Following function controls all footer behavior
-var footerModule = (function () {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Save mail and skype icons and texts
     var $mailIcon = $('.contact-information__mail-link'),
@@ -569,169 +403,238 @@ var footerModule = (function () {
         emphasizeOneOfTheSetElement($mailText, contactsShowingElements, 'contacts__skype-mail-text_invisible');
     });
 
-})();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Google maps module
-var googleMapModule = (function () {
-    google.maps.event.addDomListener(window, 'load', init);
-    var map, markersArray = [];
+    // Google maps module
+    var googleMapModule = (function () {
+        google.maps.event.addDomListener(window, 'load', init);
+        var map, markersArray = [];
 
-    function bindInfoWindow(marker, map, location) {
-        google.maps.event.addListener(marker, 'click', function() {
-            function close(location) {
-                location.ib.close();
-                location.infoWindowVisible = false;
-                location.ib = null;
-            }
-
-            if (location.infoWindowVisible === true) {
-                close(location);
-            } else {
-                markersArray.forEach(function(loc, index){
-                    if (loc.ib && loc.ib !== null) {
-                        close(loc);
-                    }
-                });
-
-                var boxText = document.createElement('div');
-                boxText.style.cssText = 'background: #fff;';
-                boxText.classList.add('md-whiteframe-2dp');
-
-                function buildPieces(location, el, part, icon) {
-                    if (location[part] === '') {
-                        return '';
-                    } else if (location.iw[part]) {
-                        switch(el){
-                            case 'photo':
-                                if (location.photo){
-                                    return '<div class="iw-photo" style="background-image: url(' + location.photo + ');"></div>';
-                                 } else {
-                                    return '';
-                                }
-                                break;
-                            case 'iw-toolbar':
-                                return '<div class="iw-toolbar"><h3 class="md-subhead">' + location.title + '</h3></div>';
-                                break;
-                            case 'div':
-                                switch(part){
-                                    case 'email':
-                                        return '<div class="iw-details"><i class="material-icons" style="color:#4285f4;"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><span><a href="mailto:' + location.email + '" target="_blank">' + location.email + '</a></span></div>';
-                                        break;
-                                    case 'web':
-                                        return '<div class="iw-details"><i class="material-icons" style="color:#4285f4;"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><span><a href="' + location.web + '" target="_blank">' + location.web_formatted + '</a></span></div>';
-                                        break;
-                                    case 'desc':
-                                        return '<label class="iw-desc" for="cb_details"><input type="checkbox" id="cb_details"/><h3 class="iw-x-details">Details</h3><i class="material-icons toggle-open-details"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><p class="iw-x-details">' + location.desc + '</p></label>';
-                                        break;
-                                    default:
-                                        return '<div class="iw-details"><i class="material-icons"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><span>' + location[part] + '</span></div>';
-                                    break;
-                                }
-                                break;
-                            case 'open_hours':
-                                var items = '';
-                                if (location.open_hours.length > 0){
-                                    for (var i = 0; i < location.open_hours.length; ++i) {
-                                        if (i !== 0){
-                                            items += '<li><strong>' + location.open_hours[i].day + '</strong><strong>' + location.open_hours[i].hours +'</strong></li>';
-                                        }
-                                        var first = '<li><label for="cb_hours"><input type="checkbox" id="cb_hours"/><strong>' + location.open_hours[0].day + '</strong><strong>' + location.open_hours[0].hours +'</strong><i class="material-icons toggle-open-hours"><img src="//cdn.mapkit.io/v1/icons/keyboard_arrow_down.svg"/></i><ul>' + items + '</ul></label></li>';
-                                    }
-                                    return '<div class="iw-list"><i class="material-icons first-material-icons" style="color:#4285f4;"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><ul>' + first + '</ul></div>';
-                                 } else {
-                                    return '';
-                                }
-                                break;
-                         }
-                    } else {
-                        return '';
-                    }
+        function bindInfoWindow(marker, map, location) {
+            google.maps.event.addListener(marker, 'click', function() {
+                function close(location) {
+                    location.ib.close();
+                    location.infoWindowVisible = false;
+                    location.ib = null;
                 }
 
-                boxText.innerHTML = 
-                    buildPieces(location, 'photo', 'photo', '') +
-                    buildPieces(location, 'iw-toolbar', 'title', '') +
-                    buildPieces(location, 'div', 'address', 'location_on') +
-                    buildPieces(location, 'div', 'web', 'public') +
-                    buildPieces(location, 'div', 'email', 'email') +
-                    buildPieces(location, 'div', 'tel', 'phone') +
-                    buildPieces(location, 'div', 'int_tel', 'phone') +
-                    buildPieces(location, 'open_hours', 'open_hours', 'access_time') +
-                    buildPieces(location, 'div', 'desc', 'keyboard_arrow_down');
+                if (location.infoWindowVisible === true) {
+                    close(location);
+                } else {
+                    markersArray.forEach(function(loc, index){
+                        if (loc.ib && loc.ib !== null) {
+                            close(loc);
+                        }
+                    });
 
-                var myOptions = {
-                    alignBottom: true,
-                    content: boxText,
-                    disableAutoPan: true,
-                    maxWidth: 0,
-                    pixelOffset: new google.maps.Size(-140, -40),
-                    zIndex: null,
-                    boxStyle: {
-                        opacity: 1,
-                        width: '280px'
-                    },
-                    closeBoxMargin: '0px 0px 0px 0px',
-                    infoBoxClearance: new google.maps.Size(1, 1),
-                    isHidden: false,
-                    pane: 'floatPane',
-                    enableEventPropagation: false
-                };
+                    var boxText = document.createElement('div');
+                    boxText.style.cssText = 'background: #fff;';
+                    boxText.classList.add('md-whiteframe-2dp');
 
-                location.ib = new InfoBox(myOptions);
-                location.ib.open(map, marker);
-                location.infoWindowVisible = true;
-            }
-        });
-    }
+                    function buildPieces(location, el, part, icon) {
+                        if (location[part] === '') {
+                            return '';
+                        } else if (location.iw[part]) {
+                            switch(el){
+                                case 'photo':
+                                    if (location.photo){
+                                        return '<div class="iw-photo" style="background-image: url(' + location.photo + ');"></div>';
+                                     } else {
+                                        return '';
+                                    }
+                                    break;
+                                case 'iw-toolbar':
+                                    return '<div class="iw-toolbar"><h3 class="md-subhead">' + location.title + '</h3></div>';
+                                    break;
+                                case 'div':
+                                    switch(part){
+                                        case 'email':
+                                            return '<div class="iw-details"><i class="material-icons" style="color:#4285f4;"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><span><a href="mailto:' + location.email + '" target="_blank">' + location.email + '</a></span></div>';
+                                            break;
+                                        case 'web':
+                                            return '<div class="iw-details"><i class="material-icons" style="color:#4285f4;"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><span><a href="' + location.web + '" target="_blank">' + location.web_formatted + '</a></span></div>';
+                                            break;
+                                        case 'desc':
+                                            return '<label class="iw-desc" for="cb_details"><input type="checkbox" id="cb_details"/><h3 class="iw-x-details">Details</h3><i class="material-icons toggle-open-details"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><p class="iw-x-details">' + location.desc + '</p></label>';
+                                            break;
+                                        default:
+                                            return '<div class="iw-details"><i class="material-icons"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><span>' + location[part] + '</span></div>';
+                                        break;
+                                    }
+                                    break;
+                                case 'open_hours':
+                                    var items = '';
+                                    if (location.open_hours.length > 0){
+                                        for (var i = 0; i < location.open_hours.length; ++i) {
+                                            if (i !== 0){
+                                                items += '<li><strong>' + location.open_hours[i].day + '</strong><strong>' + location.open_hours[i].hours +'</strong></li>';
+                                            }
+                                            var first = '<li><label for="cb_hours"><input type="checkbox" id="cb_hours"/><strong>' + location.open_hours[0].day + '</strong><strong>' + location.open_hours[0].hours +'</strong><i class="material-icons toggle-open-hours"><img src="//cdn.mapkit.io/v1/icons/keyboard_arrow_down.svg"/></i><ul>' + items + '</ul></label></li>';
+                                        }
+                                        return '<div class="iw-list"><i class="material-icons first-material-icons" style="color:#4285f4;"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><ul>' + first + '</ul></div>';
+                                     } else {
+                                        return '';
+                                    }
+                                    break;
+                             }
+                        } else {
+                            return '';
+                        }
+                    }
 
-    function init() {
-        var mapOptions = {
-            center: new google.maps.LatLng(49.84187833736642,24.03229847171019),
-            zoom: 17,
-            gestureHandling: 'auto',
-            fullscreenControl: false,
-            zoomControl: true,
-            disableDoubleClickZoom: true,
-            mapTypeControl: true,
-            mapTypeControlOptions: {
-                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-            },
-            scaleControl: true,
-            scrollwheel: false,
-            streetViewControl: true,
-            draggable : true,
-            clickableIcons: false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-        }
-        var mapElement = document.getElementById('google-map-frame');
-        var map = new google.maps.Map(mapElement, mapOptions);
-        var locations = [
-            {"title":"площа Ринок, 9","address":"площа Ринок, 9, Львів, Львівська область, Украина","desc":"","tel":"","int_tel":"","email":"","web":"","web_formatted":"","open":"","time":"","lat":49.841895,"lng":24.033230000000003,"vicinity":"Галицький район","open_hours":"","marker":{"url":"https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi_hdpi.png","scaledSize":{"width":25,"height":42,"j":"px","f":"px"},"origin":{"x":0,"y":0},"anchor":{"x":12,"y":42}},"iw":{"address":true,"desc":true,"email":true,"enable":true,"int_tel":true,"open":true,"open_hours":true,"photo":true,"tel":true,"title":true,"web":true}}
-        ];
-        for (i = 0; i < locations.length; i++) {
-            marker = new google.maps.Marker({
-                icon: locations[i].marker,
-                position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
-                map: map,
-                title: locations[i].title,
-                address: locations[i].address,
-                desc: locations[i].desc,
-                tel: locations[i].tel,
-                int_tel: locations[i].int_tel,
-                vicinity: locations[i].vicinity,
-                open: locations[i].open,
-                open_hours: locations[i].open_hours,
-                photo: locations[i].photo,
-                time: locations[i].time,
-                email: locations[i].email,
-                web: locations[i].web,
-                iw: locations[i].iw
+                    boxText.innerHTML = 
+                        buildPieces(location, 'photo', 'photo', '') +
+                        buildPieces(location, 'iw-toolbar', 'title', '') +
+                        buildPieces(location, 'div', 'address', 'location_on') +
+                        buildPieces(location, 'div', 'web', 'public') +
+                        buildPieces(location, 'div', 'email', 'email') +
+                        buildPieces(location, 'div', 'tel', 'phone') +
+                        buildPieces(location, 'div', 'int_tel', 'phone') +
+                        buildPieces(location, 'open_hours', 'open_hours', 'access_time') +
+                        buildPieces(location, 'div', 'desc', 'keyboard_arrow_down');
+
+                    var myOptions = {
+                        alignBottom: true,
+                        content: boxText,
+                        disableAutoPan: true,
+                        maxWidth: 0,
+                        pixelOffset: new google.maps.Size(-140, -40),
+                        zIndex: null,
+                        boxStyle: {
+                            opacity: 1,
+                            width: '280px'
+                        },
+                        closeBoxMargin: '0px 0px 0px 0px',
+                        infoBoxClearance: new google.maps.Size(1, 1),
+                        isHidden: false,
+                        pane: 'floatPane',
+                        enableEventPropagation: false
+                    };
+
+                    location.ib = new InfoBox(myOptions);
+                    location.ib.open(map, marker);
+                    location.infoWindowVisible = true;
+                }
             });
-            markersArray.push(marker);
+        }
 
-            if (locations[i].iw.enable === true){
-                bindInfoWindow(marker, map, locations[i]);
+        function init() {
+            var mapOptions = {
+                center: new google.maps.LatLng(49.84187833736642,24.03229847171019),
+                zoom: 17,
+                gestureHandling: 'auto',
+                fullscreenControl: false,
+                zoomControl: true,
+                disableDoubleClickZoom: true,
+                mapTypeControl: true,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                },
+                scaleControl: true,
+                scrollwheel: false,
+                streetViewControl: true,
+                draggable : true,
+                clickableIcons: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+            }
+            var mapElement = document.getElementById('google-map-frame');
+            var map = new google.maps.Map(mapElement, mapOptions);
+            var locations = [
+                {"title":"площа Ринок, 9","address":"площа Ринок, 9, Львів, Львівська область, Украина","desc":"","tel":"","int_tel":"","email":"","web":"","web_formatted":"","open":"","time":"","lat":49.841895,"lng":24.033230000000003,"vicinity":"Галицький район","open_hours":"","marker":{"url":"https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi_hdpi.png","scaledSize":{"width":25,"height":42,"j":"px","f":"px"},"origin":{"x":0,"y":0},"anchor":{"x":12,"y":42}},"iw":{"address":true,"desc":true,"email":true,"enable":true,"int_tel":true,"open":true,"open_hours":true,"photo":true,"tel":true,"title":true,"web":true}}
+            ];
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    icon: locations[i].marker,
+                    position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
+                    map: map,
+                    title: locations[i].title,
+                    address: locations[i].address,
+                    desc: locations[i].desc,
+                    tel: locations[i].tel,
+                    int_tel: locations[i].int_tel,
+                    vicinity: locations[i].vicinity,
+                    open: locations[i].open,
+                    open_hours: locations[i].open_hours,
+                    photo: locations[i].photo,
+                    time: locations[i].time,
+                    email: locations[i].email,
+                    web: locations[i].web,
+                    iw: locations[i].iw
+                });
+                markersArray.push(marker);
+
+                if (locations[i].iw.enable === true){
+                    bindInfoWindow(marker, map, locations[i]);
+                }
             }
         }
+    })();
+
+    // Provides initializing and completely settings for owl-carousel slider
+    var owlSlider = (function () {
+        // Initialize owl-carousel slider on the page 
+        $(document).ready(function(){
+          $(".owl-carousel").owlCarousel();
+        });
+
+        // Make slider responsive and set basic settings 
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            dotsEach: true,
+            autoplay: true,
+            autoplayTimeout: 2000,
+            autoplayHoverPause:true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false,
+                    dots: false,
+                    loop: true
+                },
+                450: {
+                    items: 2,
+                    dots: false,
+                    nav: false,
+                    loop: true
+                },
+                740: {
+                    items: 3,
+                    dots: false,
+                    nav: false,
+                    loop: true
+                },
+                1000: {
+                    items: 4,
+                    nav: false,
+                    loop: true
+                },
+                1200: {
+                    items: 5,
+                    nav: false,
+                    loop: true
+                }
+            }
+        });    
+
+        // Stop the slider when user hover it and star one againg after user's mouseleave 
+        $('.partners-panel').hover(
+            function () {
+                $('.owl-carousel').trigger('stop.owl.autoplay');
+            }, function () {
+                $('.owl-carousel').trigger('play.owl.autoplay', [2000, 2000]);
+            }
+        );
+
+    })();
+
+    // Add certain emphasize class for the one of the set elemet and remove that class from the other set elements
+    function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
+        $(setOfElements).each(function() {
+            $(this).removeClass(emphasizeClass);
+        })
+        $(element).addClass(emphasizeClass);
     }
+
 })();
