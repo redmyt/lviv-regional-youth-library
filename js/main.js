@@ -30,7 +30,7 @@ var setNightStylesModule = (function  () {
 
     // Switch element styles at evening and morning
     function switchTimeStyles(element, classWithStyles) {
-        if (19 > 18 || getUkraineTime() < 9) {
+        if (getUkraineTime() > 18 || getUkraineTime() < 9) {
             $(element).addClass(classWithStyles);
         }
     }
