@@ -129,6 +129,10 @@ var navigationModule = (function () {
         }
     });
 
+    // Variables for savind id of woa picture animations
+    var firstWoaAnimation,
+        secondWoaAnimation;
+
     // Add click event hendler for each nav-item
     $navItems.each(function () {
         $(this).on('click', function () {
@@ -142,7 +146,11 @@ var navigationModule = (function () {
             mainContentModule.applicationSpillingTextTruncating();
 
             if(this.dataset.target === '.window-on-america') {
-                mainContentModule.toggleWindowOnAmericaPictureAnimation();                
+                firstWoaAnimation = mainContentModule.switchOnWoaAnimation(mainContentModule.$firstWindowOnAmericaImage, firstImageSources, 20000);                
+                secondWoaAnimation = mainContentModule.switchOnWoaAnimation(mainContentModule.$secondWindowOnAmericaImage, secondImageSources, 25000);                
+            } else {
+                mainContentModule.switchOfWoaAnimation(firstWoaAnimation);
+                mainContentModule.switchOfWoaAnimation(secondWoaAnimation);
             }
 
             // Set the window scroll top at the beginning of the main content section
@@ -402,26 +410,27 @@ var mainContentModule = (function () {
     }
 
     // Apply the woa pictures animation when user go to woa section
-    function toggleWindowOnAmericaPictureAnimation() {
-        if (firstImageAnimation && secondImageAnimation) {
-            clearInterval(firstImageAnimation);
-            clearInterval(secondImageAnimation);
-        } else {
-            var firstImageAnimation = setInterval(function() {
-                windowOnAmericaImageAniation($firstWindowOnAmericaImage, firstImageSources);        
-            }, 20000);
+    function switchOnWoaAnimation(animationImage, otherImageSources, animationdDuretion) {
+        return setInterval(function() {
+            windowOnAmericaImageAniation(animationImage, otherImageSources);        
+        }, animationdDuretion);
+    }
 
-            setTimeout(function() {
-                var secondImageAnimation = setInterval(function() {
-                    windowOnAmericaImageAniation($secondWindowOnAmericaImage, secondImageSources);        
-                }, 20000);   
-            }, 5000);
+    // Stop the certain animation
+    function switchOfWoaAnimation(animation) {
+        if (animation) {
+            clearInterval(animation);
         }
     }
 
     return {
         applicationSpillingTextTruncating: applicationSpillingTextTruncating,
-        toggleWindowOnAmericaPictureAnimation: toggleWindowOnAmericaPictureAnimation        
+        $firstWindowOnAmericaImage: $firstWindowOnAmericaImage,
+        $secondWindowOnAmericaImage: $secondWindowOnAmericaImage,
+        firstImageSources: firstImageSources,
+        secondImageSources: secondImageSources,
+        switchOnWoaAnimation: switchOnWoaAnimation,  
+        switchOfWoaAnimation: switchOfWoaAnimation
     }
 
 })();

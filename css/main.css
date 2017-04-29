@@ -369,7 +369,8 @@ body {
 /*partners panel styles start*/
 
 .partners-panel__heading_style_default {
-    font-size: 2.2em;
+    font-size: 2.2em;   
+    color: #281501;
 }
 
 .partners-panel__slider {
