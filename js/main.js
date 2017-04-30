@@ -273,6 +273,69 @@
         }
     }
 
+        // Switch certain image source
+    // function switchImageSource(picture, anotherPictureSrc) {
+        // $(picture).attr('src', anotherPictureSrc);
+    // }
+
+    var $firstWindowOnAmericaImage = $('.window-on-america__first-picture');
+        // $secondWindowOnAmericaImage = $('.window-on-america__second-picture';
+        firstImageSources = [
+            'img/window-on-america-img/woa-img-1.jpg', 
+            'img/window-on-america-img/woa-img-5.jpg', 
+            'img/window-on-america-img/woa-img-8.jpg',
+            'img/window-on-america-img/woa-img-4.jpg',
+            'img/window-on-america-img/woa-img-15.jpg',
+            'img/window-on-america-img/woa-img-2.jpg',
+            'img/window-on-america-img/woa-img-6.jpg',
+            'img/window-on-america-img/woa-img-9.jpg',
+            'img/window-on-america-img/woa-img-16.jpg',
+        ];
+        // secondImageSources = [ 
+        //     'img/window-on-america-img/woa-img-7.jpg', 
+        //     'img/window-on-america-img/woa-img-11.jpg',
+        //     'img/window-on-america-img/woa-img-17.jpg',
+        //     'img/window-on-america-img/woa-img-12.jpg',
+        //     'img/window-on-america-img/woa-img-18.jpg',
+        //     'img/window-on-america-img/woa-img-10.jpg',
+        //     'img/window-on-america-img/woa-img-13.jpg',
+        //     'img/window-on-america-img/woa-img-14.jpg',
+        // ];
+
+    // Implement the pictures animation
+    function windowOnAmericaImageAniation(animateImage, imagesSources) {
+        var animateImageSource = $(animateImage).attr('src'),
+            currentSourcePosition = imagesSources.indexOf(animateImageSource),
+            sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : (currentSourcePosition + 1);
+
+        $(animateImage).fadeOut(2500, function() {
+            $(animateImage).attr('src', imagesSources[sourcePosition]);
+            animateImage.get(0).onload = function() {
+                animateImage.fadeIn(2500);
+            }
+        });
+
+        // $('.woa').attr('src', imagesSources[sourcePosition + 1]);
+    }
+
+    setInterval(function() {
+        windowOnAmericaImageAniation($firstWindowOnAmericaImage, firstImageSources);
+    }, 7000);
+
+    // Apply the woa pictures animation when user go to woa section
+    function switchOnWoaAnimation(animationImage, otherImageSources, animationdDuretion) {
+        return setInterval(function() {
+            windowOnAmericaImageAniation(animationImage, otherImageSources);        
+        }, animationdDuretion);
+    }
+
+    // Stop the certain animation
+    function switchOfWoaAnimation(animation) {
+        if (animation) {
+            clearInterval(animation);
+        }
+    }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     // Save all new book pictures for sliding to one variable 
