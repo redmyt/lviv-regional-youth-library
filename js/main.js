@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     // Switch styles for all needed elements
     switchTimeStyles('.body', 'body_style_night');
@@ -9,14 +9,14 @@
     switchTimeStyles('.main-content', 'main-content_style_night');
     switchTimeStyles('.main-content-article', 'main-content-article_style_night');
     switchTimeStyles('.news-board__more-articles-button', 'news-board__more-articles-button_stlye_night');
-    
+
     // Get Ukraine time from any point of word
     function getUkraineTime() {
         var currentUserHour = new Date().getHours(),
             userTimeZone = (new Date().getTimezoneOffset() / 60),
             timeZoneHoursDifference = userTimeZone - (-3);
         return currentUserHour + timeZoneHoursDifference;
-    };
+    }
 
     // Switch element styles at evening and morning
     function switchTimeStyles(element, classWithStyles) {
@@ -33,7 +33,7 @@
         $navItems = $('.navigation__item'),
         $navItemsList = $('.navigation__items-list'),
         $collapsedButton = $('.navigation__collapsed-button');
-    
+
     // Save all main content items for shanging its visibility    
     var $mainContentItems = $('.main-content__item');
 
@@ -41,7 +41,7 @@
     $(window).on('scroll', function () {
         var navigationHeight = getHeaderItemsParameters().navigationHeight,
             windowTopScroll = getHeaderItemsParameters().windowTopScroll,
-            headerHeight =  getHeaderItemsParameters().headerHeight;
+            headerHeight = getHeaderItemsParameters().headerHeight;
 
         // When scroll position is over header height add fixed styles for navigation block
         if (windowTopScroll > headerHeight - navigationHeight) {
@@ -65,10 +65,21 @@
             emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
             applicationSpillingTextTruncating();
 
+            // var firstWoaAnimation,
+            //     secondWoaAnimation;
+            // if(this.dataset.target === '.window-on-america') {
+            //     firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, firstImageSources, 10000);
+            //     secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, secondImageSources, 10000);
+            // } else {
+            //     switchOfWoaAnimation(firstWoaAnimation);
+            //     switchOfWoaAnimation(secondWoaAnimation);
+            // }
+
+
             // Set the window scroll top at the beginning of the main content section
             var navigationHeight = getHeaderItemsParameters().navigationHeight,
                 windowTopScroll = getHeaderItemsParameters().windowTopScroll,
-                headerHeight =  getHeaderItemsParameters().headerHeight;
+                headerHeight = getHeaderItemsParameters().headerHeight;
             if (windowTopScroll > headerHeight) {
                 $('body').stop().animate({
                     scrollTop: parseInt($visibleMainContentItem.offset().top - navigationHeight)
@@ -81,9 +92,9 @@
     });
 
     // Show or hide collapsed menu when user click the collapsed button
-    $collapsedButton.on('click', function() {
-        $navItemsList.toggleClass('navigation__items-list_style_collapsed');    
-        
+    $collapsedButton.on('click', function () {
+        $navItemsList.toggleClass('navigation__items-list_style_collapsed');
+
         // Remove large paddin which been added when menu was open
         $($header).css("padding-bottom", 0);
         $(window).scroll();
@@ -91,9 +102,9 @@
 
     // Get header-block-element and navigation-block-element heights an save them. Also get current window scroll position.
     function getHeaderItemsParameters() {
-        var navigationHeight = parseInt( $($navigation).outerHeight() ),
-            windowTopScroll = parseInt( $(window).scrollTop() ),
-            headerHeight =  parseInt( $($header).outerHeight() );
+        var navigationHeight = parseInt($($navigation).outerHeight()),
+            windowTopScroll = parseInt($(window).scrollTop()),
+            headerHeight = parseInt($($header).outerHeight());
 
         return {
             navigationHeight: navigationHeight,
@@ -109,27 +120,27 @@
     // Determine trunkated lines amount which depend on user screen size
     var truncatedLinesAmount = $(window).width() > 556 ? 7 : 4;
 
-   // Allow user read full article and show it if it wants
-    $(document).on('click', '.read-more', function() {
+    // Allow user read full article and show it if it wants
+    $(document).on('click', '.read-more', function () {
         // Save needed article paragraphs
         var $currentTrankatedParagrapg = $(this).parent(),
             $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
             $lastArticleParagraph = $(this).parents('.main-content-article__body').children('p:last-of-type');
-        
+
         // Make all article paragraphs visible and create read-less button
         $allArtuicleParagraphs.addClass('main-content-article__paragraph_style_visible');
         var $readLessButton = $('<a class="read-less trankated-button page-link">&nbsp;&laquo;&nbsp;</a>');
-        
+
         // Show the trunkated paragraph and add read-less button to the last one 
         $currentTrankatedParagrapg.trunk8('revert');
         $lastArticleParagraph.append($readLessButton);
         return false;
     });
-            
+
     // Add click event handler for the read-less button
-    $(document).on('click', '.read-less', function() {
+    $(document).on('click', '.read-less', function () {
         var currentArticlePosition = parseInt($(this).parents('.main-content-article').offset().top);
-            $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
+        $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
             $firstArticleParagraph = $(this).parents('.main-content-article__body').children('p:first-of-type');
         $allArtuicleParagraphs.removeClass('main-content-article__paragraph_style_visible');
         $firstArticleParagraph.trunk8({
@@ -152,9 +163,9 @@
         type: 'GET',
         url: './news.xml',
         dataType: 'xml',
-        success: function(data) {
+        success: function (data) {
             // Parse each xml news article to html and save them
-            $(data).find('article').each(function(index, xmlNewsArticle) {
+            $(data).find('article').each(function (index, xmlNewsArticle) {
                 var $currentArticle = parseXmlArticleItemToHtml(xmlNewsArticle, 'news');
                 htmlNewsArticles.push($currentArticle);
             });
@@ -164,7 +175,7 @@
     });
 
     // Show next five invisible articles
-    $showMoreButton.click(function() {
+    $showMoreButton.click(function () {
         showNewsArticles();
         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         applicationSpillingTextTruncating();
@@ -178,20 +189,20 @@
         type: 'GET',
         url: './books.xml',
         dataType: 'xml',
-        success: function(data) {
+        success: function (data) {
             // Parse each xml book item to html and save them
-            $(data).find('book').each(function(index, xmlBook) {
+            $(data).find('book').each(function (index, xmlBook) {
                 var $currentBook = parseXmlArticleItemToHtml(xmlBook, 'book');
                 bookshelfItems.push($currentBook);
             });
 
-            bookshelfItems.forEach(function(htmlBookItem) {
+            bookshelfItems.forEach(function (htmlBookItem) {
                 $('.bookshelf').append(htmlBookItem);
             });
 
             switchTimeStyles('.main-content-article', 'main-content-article_style_night');
 
-            if (parseInt( $(window).width() ) < 880) {
+            if (parseInt($(window).width()) < 880) {
                 truncateSpillingText();
             }
         }
@@ -208,7 +219,7 @@
 
     // Parse certain xml news article to a html news article
     function parseXmlArticleItemToHtml(xmlArticle, articleType) {
-        
+
         // Create elements for the html markup
         var $article = createPageElement('<article>', 'main-content-article main-content-article_style_default main-content-article_style_day rounded-element'),
             $articleHeading = createPageElement('<h3>', 'main-content-article__heading page-header'),
@@ -220,17 +231,17 @@
         var articleParagraphes = [];
 
         // Create neede amount of articles paragraphes
-        $(xmlArticle).find('paragraph').each(function(index, currentXmlArticlePragraph) {
+        $(xmlArticle).find('paragraph').each(function (index, currentXmlArticlePragraph) {
             $currentParagraph = createPageElement('<p>', 'main-content-article__paragraph main-content-article__paragraph_style_default');
-            $currentParagraph.text( $(currentXmlArticlePragraph).text() );
+            $currentParagraph.text($(currentXmlArticlePragraph).text());
             articleParagraphes.push($currentParagraph);
         });
 
         // Get needed value for certain xml tags and set elemnt's attachment
-        $articleHeading.text( $(xmlArticle).find('name').text() );
-        $articlePicture.attr( 'src', $(xmlArticle).find('image').text() );
+        $articleHeading.text($(xmlArticle).find('name').text());
+        $articlePicture.attr('src', $(xmlArticle).find('image').text());
         if (articleType === 'book') {
-            $articlePicture.attr( 'src', './img/bookshelf-img/' + $(xmlArticle).find('image').text() );
+            $articlePicture.attr('src', './img/bookshelf-img/' + $(xmlArticle).find('image').text());
         }
         $articlePictureWrapper.append($articlePicture);
         $articleBody.append($articlePictureWrapper, articleParagraphes);
@@ -240,7 +251,7 @@
 
         if (articleType === 'news') {
             $articleLink = createPageElement('<a>', 'main-content-article__link page-link');
-            $articleLink.text( $(xmlArticle).find('link').text() );
+            $articleLink.text($(xmlArticle).find('link').text());
             $article.append($articleLink);
         }
 
@@ -268,21 +279,18 @@
 
     // Apply the spilling text truncate when user screen width more than 880px
     function applicationSpillingTextTruncating() {
-        if (parseInt( $(window).width() ) < 880) {
+        if (parseInt($(window).width()) < 880) {
             truncateSpillingText();
         }
     }
 
-        // Switch certain image source
-    // function switchImageSource(picture, anotherPictureSrc) {
-        // $(picture).attr('src', anotherPictureSrc);
-    // }
 
-    var $firstWindowOnAmericaImage = $('.window-on-america__first-picture');
-        // $secondWindowOnAmericaImage = $('.window-on-america__second-picture';
+    // TODO
+    var $firstWindowOnAmericaImage = $('.window-on-america__first-picture'),
+        $secondWindowOnAmericaImage = $('.window-on-america__second-picture'),
         firstImageSources = [
-            'img/window-on-america-img/woa-img-1.jpg', 
-            'img/window-on-america-img/woa-img-5.jpg', 
+            'img/window-on-america-img/woa-img-1.jpg',
+            'img/window-on-america-img/woa-img-5.jpg',
             'img/window-on-america-img/woa-img-8.jpg',
             'img/window-on-america-img/woa-img-4.jpg',
             'img/window-on-america-img/woa-img-15.jpg',
@@ -290,43 +298,60 @@
             'img/window-on-america-img/woa-img-6.jpg',
             'img/window-on-america-img/woa-img-9.jpg',
             'img/window-on-america-img/woa-img-16.jpg',
+        ],
+        secondImageSources = [
+            'img/window-on-america-img/woa-img-7.jpg',
+            'img/window-on-america-img/woa-img-11.jpg',
+            'img/window-on-america-img/woa-img-17.jpg',
+            'img/window-on-america-img/woa-img-12.jpg',
+            'img/window-on-america-img/woa-img-18.jpg',
+            'img/window-on-america-img/woa-img-10.jpg',
+            'img/window-on-america-img/woa-img-13.jpg',
+            'img/window-on-america-img/woa-img-14.jpg',
         ];
-        // secondImageSources = [ 
-        //     'img/window-on-america-img/woa-img-7.jpg', 
-        //     'img/window-on-america-img/woa-img-11.jpg',
-        //     'img/window-on-america-img/woa-img-17.jpg',
-        //     'img/window-on-america-img/woa-img-12.jpg',
-        //     'img/window-on-america-img/woa-img-18.jpg',
-        //     'img/window-on-america-img/woa-img-10.jpg',
-        //     'img/window-on-america-img/woa-img-13.jpg',
-        //     'img/window-on-america-img/woa-img-14.jpg',
-        // ];
+
+
+    var itrat = 0;
 
     // Implement the pictures animation
-    function windowOnAmericaImageAniation(animateImage, imagesSources) {
-        var animateImageSource = $(animateImage).attr('src'),
-            currentSourcePosition = imagesSources.indexOf(animateImageSource),
-            sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : (currentSourcePosition + 1);
+    function windowOnAmericaImageAnimation(animateImages) {
+        // var animateImageSource = $(animateImage).attr('src'),
+        //     currentSourcePosition = imagesSources.indexOf(animateImageSource),
+        //     sourcePosition = (currentSourcePosition === imagesSources.length - 1) ? 0 : (currentSourcePosition + 1);
 
-        $(animateImage).fadeOut(2500, function() {
-            $(animateImage).attr('src', imagesSources[sourcePosition]);
-            animateImage.get(0).onload = function() {
-                animateImage.fadeIn(2500);
-            }
-        });
+        // });
+        // $(animateImage).fadeOut(2500, function () {
+        //     $(animateImage).attr('src', imagesSources[sourcePosition]);
+        // $(animateImage).on('load', function () {
+        //     animateImage.fadeIn(2500);
+        // });
+        // });
+        //         debugger
+                var firsP = animateImages[itrat];
+        itrat = (itrat === animateImages.length - 1) ? -1 : itrat;
+                var nextP = animateImages[itrat + 1];
+        $(firsP).addClass('woa-invis', {
+            duration: 2500,
+            complete: function () {
+        // debugger
+                $(firsP).addClass('woa-block');
+                $(nextP).removeClass('woa-block');
+                $(nextP).removeClass('woa-invis', 2500);
+                itrat++;
+        }
+    });
 
-        // $('.woa').attr('src', imagesSources[sourcePosition + 1]);
-    }
+}
 
-    setInterval(function() {
-        windowOnAmericaImageAniation($firstWindowOnAmericaImage, firstImageSources);
-    }, 7000);
+    setInterval(function () {
+        windowOnAmericaImageAnimation($firstWindowOnAmericaImage);
+    }, 5000);
 
     // Apply the woa pictures animation when user go to woa section
-    function switchOnWoaAnimation(animationImage, otherImageSources, animationdDuretion) {
-        return setInterval(function() {
-            windowOnAmericaImageAniation(animationImage, otherImageSources);        
-        }, animationdDuretion);
+    function switchOnWoaAnimation(animationImage, otherImageSources, animationDuration) {
+        return setInterval(function () {
+            windowOnAmericaImageAnimation(animationImage, otherImageSources);
+        }, animationDuration);
     }
 
     // Stop the certain animation
@@ -337,20 +362,20 @@
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     // Save all new book pictures for sliding to one variable 
     var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray(),
         // Save sliding pictures wrapper to variable 
-        slidingPicturesWrapper = $('.new-books-slider__picteres-slide-section'), 
+        slidingPicturesWrapper = $('.new-books-slider__picteres-slide-section'),
         // Variable for checking the slider pause
         isPaused = false,
         // Save slider control buttons to one variable
         controlButtons = $('.new-books-slider__control-button');
 
     // Start slide each of books picture
-    var sliderInterval = setInterval(function() {
+    var sliderInterval = setInterval(function () {
         if (isPaused === false) {
-            slidThePictures(slidingPictures, slidingPicturesWrapper, 1);  
+            slidThePictures(slidingPictures, slidingPicturesWrapper, 1);
         }
     }, 25);
 
@@ -361,37 +386,37 @@
     mousePictureSliding(slidingPicturesWrapper);
 
     // Stop the slider when user hovers it
-    $(slidingPicturesWrapper).hover(function() {
+    $(slidingPicturesWrapper).hover(function () {
         isPaused = true;
-    }, function() {
+    }, function () {
         isPaused = false;
     });
 
     // TODO
-    controlButtons.on('click', function() {
+    controlButtons.on('click', function () {
         changePictureSlidingScrollPosition(this.dataset.scrollDirection);
     });
 
     // function descriptions ////////////////////////////////////////////////////////////////////////////
 
     // Implement the slider. Change scroll position of picture wrapper and when the scroll position of sliding elements wrapper becomes equals the first element height change the DOM position of first slider picture
-    function  slidThePictures(itemsForSliding, slidingElementsWrapper, scrollStap) {
+    function slidThePictures(itemsForSliding, slidingElementsWrapper, scrollStap) {
         // Get firs slide picture element height and picture wrapper scroll position
         var firstSlidingElement = itemsForSliding[0],
-            firstElementHeight = parseInt( $(firstSlidingElement).css('height') ),
-            parentElementScroll = parseInt( $(slidingElementsWrapper).scrollTop() );
-        
+            firstElementHeight = parseInt($(firstSlidingElement).css('height')),
+            parentElementScroll = parseInt($(slidingElementsWrapper).scrollTop());
+
 
         // Set first element at the end of picture list when picture wrapper scroll position becomes equal first element height or scroll picture wrapper one more 
         if (parentElementScroll >= firstElementHeight) {
-            var bodyScrollPosition = parseInt( document.body.scrollTop );
+            var bodyScrollPosition = parseInt(document.body.scrollTop);
             $(slidingElementsWrapper).append(firstSlidingElement);
 
             // Subtract height of first element from slider wrapper scroll top (for firefox)
-            parentElementScroll -= parseInt( $(firstSlidingElement).outerHeight() );
+            parentElementScroll -= parseInt($(firstSlidingElement).outerHeight());
             document.body.scrollTop = bodyScrollPosition;
             itemsForSliding.shift();
-            itemsForSliding. push(firstSlidingElement);
+            itemsForSliding.push(firstSlidingElement);
 
             // Set sliding elements wrapper scroll top like the nubmer which we got from subtracting height of first element from slider wrapper scroll top and add scrollStap for avionding the slider to stop
             $(slidingElementsWrapper).scrollTop(parentElementScroll + scrollStap);
@@ -404,7 +429,7 @@
 
     // Stop the body scrolling when user hover on the slider and allow scroling after that 
     function disableBodyScroling() {
-        $('body').on('mousewheel', function(e) {
+        $('body').on('mousewheel', function (e) {
             // Refuse or allow body scroll depending on slider paused
             if (isPaused === true) {
                 e.preventDefault();
@@ -419,22 +444,22 @@
     function mousePictureSliding() {
 
         // Add mousewheel event for slide wrpper
-        $(slidingPicturesWrapper).on('mousewheel', function(e) {
-            
+        $(slidingPicturesWrapper).on('mousewheel', function (e) {
+
             // Identify mousewheel direction
             var mousewheelDirection = parseInt(e.deltaY) === 1 ? 'up' : 'down';
             changePictureSlidingScrollPosition(mousewheelDirection);
-        }); 
+        });
     }
 
     // Change slider wrapper scroll position depending on user's choosed direction
     function changePictureSlidingScrollPosition(direction) {
 
         // Save previous wrapper scroll position
-        var parentElementScroll = parseInt( $(slidingPicturesWrapper).scrollTop() );
-        
+        var parentElementScroll = parseInt($(slidingPicturesWrapper).scrollTop());
+
         // Chage sliding elements wrapper scroll position
-        if(direction === 'up') {
+        if (direction === 'up') {
             parentElementScroll -= 50;
             $(slidingPicturesWrapper).scrollTop(parentElementScroll);
         } else {
@@ -455,13 +480,13 @@
     var contactsShowingElements = [$mailText, $skypeText];
 
     // Show the mail text when user click the mail icon
-    $mailIcon.click(function() {
+    $mailIcon.click(function () {
         emphasizeOneOfTheSetElement($mailText, contactsShowingElements, 'contacts__skype-mail-text_visible');
         emphasizeOneOfTheSetElement($skypeText, contactsShowingElements, 'contacts__skype-mail-text_invisible');
     });
 
     // Show the mail text when user click the mail icon
-    $skypeIcon.click(function() {
+    $skypeIcon.click(function () {
         emphasizeOneOfTheSetElement($skypeText, contactsShowingElements, 'contacts__skype-mail-text_visible');
         emphasizeOneOfTheSetElement($mailText, contactsShowingElements, 'contacts__skype-mail-text_invisible');
     });
@@ -474,7 +499,7 @@
         var map, markersArray = [];
 
         function bindInfoWindow(marker, map, location) {
-            google.maps.event.addListener(marker, 'click', function() {
+            google.maps.event.addListener(marker, 'click', function () {
                 function close(location) {
                     location.ib.close();
                     location.infoWindowVisible = false;
@@ -484,7 +509,7 @@
                 if (location.infoWindowVisible === true) {
                     close(location);
                 } else {
-                    markersArray.forEach(function(loc, index){
+                    markersArray.forEach(function (loc, index) {
                         if (loc.ib && loc.ib !== null) {
                             close(loc);
                         }
@@ -498,11 +523,11 @@
                         if (location[part] === '') {
                             return '';
                         } else if (location.iw[part]) {
-                            switch(el){
+                            switch (el) {
                                 case 'photo':
-                                    if (location.photo){
+                                    if (location.photo) {
                                         return '<div class="iw-photo" style="background-image: url(' + location.photo + ');"></div>';
-                                     } else {
+                                    } else {
                                         return '';
                                     }
                                     break;
@@ -510,7 +535,7 @@
                                     return '<div class="iw-toolbar"><h3 class="md-subhead">' + location.title + '</h3></div>';
                                     break;
                                 case 'div':
-                                    switch(part){
+                                    switch (part) {
                                         case 'email':
                                             return '<div class="iw-details"><i class="material-icons" style="color:#4285f4;"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><span><a href="mailto:' + location.email + '" target="_blank">' + location.email + '</a></span></div>';
                                             break;
@@ -522,30 +547,30 @@
                                             break;
                                         default:
                                             return '<div class="iw-details"><i class="material-icons"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><span>' + location[part] + '</span></div>';
-                                        break;
+                                            break;
                                     }
                                     break;
                                 case 'open_hours':
                                     var items = '';
-                                    if (location.open_hours.length > 0){
+                                    if (location.open_hours.length > 0) {
                                         for (var i = 0; i < location.open_hours.length; ++i) {
-                                            if (i !== 0){
-                                                items += '<li><strong>' + location.open_hours[i].day + '</strong><strong>' + location.open_hours[i].hours +'</strong></li>';
+                                            if (i !== 0) {
+                                                items += '<li><strong>' + location.open_hours[i].day + '</strong><strong>' + location.open_hours[i].hours + '</strong></li>';
                                             }
-                                            var first = '<li><label for="cb_hours"><input type="checkbox" id="cb_hours"/><strong>' + location.open_hours[0].day + '</strong><strong>' + location.open_hours[0].hours +'</strong><i class="material-icons toggle-open-hours"><img src="//cdn.mapkit.io/v1/icons/keyboard_arrow_down.svg"/></i><ul>' + items + '</ul></label></li>';
+                                            var first = '<li><label for="cb_hours"><input type="checkbox" id="cb_hours"/><strong>' + location.open_hours[0].day + '</strong><strong>' + location.open_hours[0].hours + '</strong><i class="material-icons toggle-open-hours"><img src="//cdn.mapkit.io/v1/icons/keyboard_arrow_down.svg"/></i><ul>' + items + '</ul></label></li>';
                                         }
                                         return '<div class="iw-list"><i class="material-icons first-material-icons" style="color:#4285f4;"><img src="//cdn.mapkit.io/v1/icons/' + icon + '.svg"/></i><ul>' + first + '</ul></div>';
-                                     } else {
+                                    } else {
                                         return '';
                                     }
                                     break;
-                             }
+                            }
                         } else {
                             return '';
                         }
                     }
 
-                    boxText.innerHTML = 
+                    boxText.innerHTML =
                         buildPieces(location, 'photo', 'photo', '') +
                         buildPieces(location, 'iw-toolbar', 'title', '') +
                         buildPieces(location, 'div', 'address', 'location_on') +
@@ -583,7 +608,7 @@
 
         function init() {
             var mapOptions = {
-                center: new google.maps.LatLng(49.84187833736642,24.03229847171019),
+                center: new google.maps.LatLng(49.84187833736642, 24.03229847171019),
                 zoom: 17,
                 gestureHandling: 'auto',
                 fullscreenControl: false,
@@ -596,14 +621,48 @@
                 scaleControl: true,
                 scrollwheel: false,
                 streetViewControl: true,
-                draggable : true,
+                draggable: true,
                 clickableIcons: false,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
             }
             var mapElement = document.getElementById('google-map-frame');
             var map = new google.maps.Map(mapElement, mapOptions);
             var locations = [
-                {"title":"площа Ринок, 9","address":"площа Ринок, 9, Львів, Львівська область, Украина","desc":"","tel":"","int_tel":"","email":"","web":"","web_formatted":"","open":"","time":"","lat":49.841895,"lng":24.033230000000003,"vicinity":"Галицький район","open_hours":"","marker":{"url":"https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi_hdpi.png","scaledSize":{"width":25,"height":42,"j":"px","f":"px"},"origin":{"x":0,"y":0},"anchor":{"x":12,"y":42}},"iw":{"address":true,"desc":true,"email":true,"enable":true,"int_tel":true,"open":true,"open_hours":true,"photo":true,"tel":true,"title":true,"web":true}}
+                {
+                    "title": "площа Ринок, 9",
+                    "address": "площа Ринок, 9, Львів, Львівська область, Украина",
+                    "desc": "",
+                    "tel": "",
+                    "int_tel": "",
+                    "email": "",
+                    "web": "",
+                    "web_formatted": "",
+                    "open": "",
+                    "time": "",
+                    "lat": 49.841895,
+                    "lng": 24.033230000000003,
+                    "vicinity": "Галицький район",
+                    "open_hours": "",
+                    "marker": {
+                        "url": "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi_hdpi.png",
+                        "scaledSize": {"width": 25, "height": 42, "j": "px", "f": "px"},
+                        "origin": {"x": 0, "y": 0},
+                        "anchor": {"x": 12, "y": 42}
+                    },
+                    "iw": {
+                        "address": true,
+                        "desc": true,
+                        "email": true,
+                        "enable": true,
+                        "int_tel": true,
+                        "open": true,
+                        "open_hours": true,
+                        "photo": true,
+                        "tel": true,
+                        "title": true,
+                        "web": true
+                    }
+                }
             ];
             for (i = 0; i < locations.length; i++) {
                 marker = new google.maps.Marker({
@@ -626,7 +685,7 @@
                 });
                 markersArray.push(marker);
 
-                if (locations[i].iw.enable === true){
+                if (locations[i].iw.enable === true) {
                     bindInfoWindow(marker, map, locations[i]);
                 }
             }
@@ -636,8 +695,8 @@
     // Provides initializing and completely settings for owl-carousel slider
     var owlSlider = (function () {
         // Initialize owl-carousel slider on the page 
-        $(document).ready(function(){
-          $(".owl-carousel").owlCarousel();
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel();
         });
 
         // Make slider responsive and set basic settings 
@@ -647,7 +706,7 @@
             dotsEach: true,
             autoplay: true,
             autoplayTimeout: 2000,
-            autoplayHoverPause:true,
+            autoplayHoverPause: true,
             responsiveClass: true,
             responsive: {
                 0: {
@@ -679,7 +738,7 @@
                     loop: true
                 }
             }
-        });    
+        });
 
         // Stop the slider when user hover it and star one againg after user's mouseleave 
         $('.partners-panel').hover(
@@ -694,7 +753,7 @@
 
     // Add certain emphasize class for the one of the set elemet and remove that class from the other set elements
     function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
-        $(setOfElements).each(function() {
+        $(setOfElements).each(function () {
             $(this).removeClass(emphasizeClass);
         })
         $(element).addClass(emphasizeClass);

@@ -324,6 +324,19 @@ body {
     margin-top: 10px;
 }
 
+.window-on-america__picture-wrapper {
+    /*position: relative;*/
+}
+
+.woa-invis {
+    opacity: 0;
+}
+
+.woa-block {
+    display: none;
+}
+
+
 /*slider styles start*/
 
 .new-books-slider {
