@@ -122,7 +122,7 @@ body {
     width: 50%;
 }
 
-.navigation_style_defult {
+.navigation_style_default {
     width: 100%;
     box-shadow: 0 1px 20px #fff, 0 -1px 20px #fff;
 }
@@ -149,7 +149,7 @@ body {
 
 .header__navigation_fixed.navigation_style_night,
 .main-content-article_style_night,
-.news-board__more-articles-button_stlye_night {
+.news-board__more-articles-button_style_night {
     background: rgba(121, 118, 140, 1); 
 }
 
@@ -248,7 +248,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url('../img/main-bg-modified1.png');
+    background-image: url("../img/main-bg-modified1.png");
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.6;
@@ -288,7 +288,7 @@ body {
 }
 
 .main-content-article__picture__style_default {
-    box-shadow: 0px 0px 10px 2px #fff;
+    box-shadow: 0 0 10px 2px #fff;
     border-radius: 6px;
 }
 
@@ -345,7 +345,7 @@ body {
    width: 300px;
    min-width: 300px;
     height: 800px;
-    background-image: url(../img/bookcase.png);
+    background-image: url("../img/bookcase.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -405,7 +405,7 @@ body {
 /*footer styles start*/
 
 .footer_style_default {
-    background-image: url(../img/footer-bg.jpg);
+    background-image: url("../img/footer-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     box-shadow: 0 -1px 20px #fff;
@@ -472,7 +472,7 @@ body {
     position: relative;
 }
 
-.taglines-key__picture-label_style_dafault {
+.taglines-key__picture-label_style_default {
     font-size: 21px;
     font-family: scriptBase;
     color: #c9a440;
@@ -563,7 +563,7 @@ body {
 
     .window-on-america__picture-wrapper {
         max-height: 25%;
-        max-width: 28%
+        max-width: 28%;
     }
 
     .footer-information {
@@ -595,7 +595,7 @@ body {
     
     body,
     .navigation__link_style_default,
-    .taglines-key__picture-label_style_dafault {
+    .taglines-key__picture-label_style_default {
         font-size: 2vw;
     }
 
