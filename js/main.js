@@ -70,11 +70,11 @@
             applicationSpillingTextTruncating();
 
             if(this.dataset.target === '.window-on-america') {
-                firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 10000);
-                secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 10000);
+                firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 20000);
+                secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 25000);
             } else {
                 switchOfWoaAnimation(firstWoaAnimation);
-                // switchOfWoaAnimation(secondWoaAnimation);
+                switchOfWoaAnimation(secondWoaAnimation);
             }
 
             // Set the window scroll top at the beginning of the main content section
@@ -291,11 +291,7 @@
     // Apply the woa pictures animation when user go to woa section
     function switchOnWoaAnimation(animateImages, animationDuration) {
         var windowOnAmericaAnimationIterator = 0;
-        animateImages.each(function (animateImageIndex, animateImage) {
-            if ( $(animateImage).hasClass('window-on-america__animate-picture_visible') ) {
-                windowOnAmericaAnimationIterator = animateImageIndex;
-            }
-        });
+        setWindowOnAmericaAnimationIterator(animateImages);
 
         return setInterval(function () {
             windowOnAmericaImageAnimation(animateImages);
@@ -303,7 +299,6 @@
 
         // Implement the pictures animation
         function windowOnAmericaImageAnimation(animateImages) {
-            // debugger
             var currentAnimatePicture = animateImages[windowOnAmericaAnimationIterator];
             windowOnAmericaAnimationIterator = (windowOnAmericaAnimationIterator === animateImages.length - 1) ? -1 : windowOnAmericaAnimationIterator;
             var nextAnimatePicture = animateImages[windowOnAmericaAnimationIterator + 1];
@@ -317,9 +312,18 @@
                 }
             });
         }
+
+        // Set the actual animation iterator for woa images animation
+        function setWindowOnAmericaAnimationIterator(animateImages) {
+            animateImages.each(function (animateImageIndex, animateImage) {
+                if ( $(animateImage).hasClass('window-on-america__animate-picture_visible') ) {
+                    windowOnAmericaAnimationIterator = animateImageIndex;
+                }
+            });
+        }
     }
 
-    // Stop the certain animation
+    // Stop the certain woa animation
     function switchOfWoaAnimation(animation) {
         if (animation) {
             clearInterval(animation);
