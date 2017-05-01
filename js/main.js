@@ -53,6 +53,10 @@
         }
     });
 
+    // Switch on window on america animation when user goes to the woa section
+    var firstWoaAnimation,
+        secondWoaAnimation;
+
     // Add click event hendler for each nav-item
     $navItems.each(function () {
         $(this).on('click', function () {
@@ -65,12 +69,9 @@
             emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
             applicationSpillingTextTruncating();
 
-            // Switch on window on america animation when user go to the woa section
-            var firstWoaAnimation,
-                secondWoaAnimation;
             if(this.dataset.target === '.window-on-america') {
                 firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 10000);
-                // secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 10000);
+                secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 10000);
             } else {
                 switchOfWoaAnimation(firstWoaAnimation);
                 // switchOfWoaAnimation(secondWoaAnimation);
@@ -287,12 +288,11 @@
     var $firstWindowOnAmericaImage = $('.window-on-america__first-animate-picture'),
         $secondWindowOnAmericaImage = $('.window-on-america__second-animate-picture');
 
-
     // Apply the woa pictures animation when user go to woa section
     function switchOnWoaAnimation(animateImages, animationDuration) {
         var windowOnAmericaAnimationIterator = 0;
         animateImages.each(function (animateImageIndex, animateImage) {
-            if ( $(animateImage).hasClass('window-on-america__animate-picture_active')  ) {
+            if ( $(animateImage).hasClass('window-on-america__animate-picture_visible') ) {
                 windowOnAmericaAnimationIterator = animateImageIndex;
             }
         });
@@ -307,12 +307,12 @@
             var currentAnimatePicture = animateImages[windowOnAmericaAnimationIterator];
             windowOnAmericaAnimationIterator = (windowOnAmericaAnimationIterator === animateImages.length - 1) ? -1 : windowOnAmericaAnimationIterator;
             var nextAnimatePicture = animateImages[windowOnAmericaAnimationIterator + 1];
-            $(currentAnimatePicture).removeClass('window-on-america__animate-picture_active', {
+            $(currentAnimatePicture).removeClass('window-on-america__animate-picture_visible', {
                 duration: 2500,
                 complete: function () {
-                    // $(this).addClass('window-on-america__animate-picture_display_none');
-                    $(nextAnimatePicture).addClass('window-on-america__animate-picture_active', 2500);
-                    // $(nextAnimatePicture).removeClass('window-on-america__animate-picture_invisible', 2500);
+                    $(this).removeClass('window-on-america__animate-picture_inline');
+                    $(nextAnimatePicture).addClass('window-on-america__animate-picture_inline');
+                    $(nextAnimatePicture).addClass('window-on-america__animate-picture_visible', 2500);
                     windowOnAmericaAnimationIterator++;
                 }
             });

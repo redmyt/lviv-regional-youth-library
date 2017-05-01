@@ -329,11 +329,11 @@ body {
     opacity: 0;
 }
 
-.window-on-america__animate-picture_visible{
+.window-on-america__animate-picture_visible {
     opacity: 1;
 }
 
-.window-on-america__animate-picture_block {
+.window-on-america__animate-picture_inline {
     display: inline;
 }
 
@@ -562,7 +562,7 @@ body {
     }
 
     .window-on-america__picture-wrapper {
-        max-height: 26%;
+        max-height: 25%;
         max-width: 28%
     }
 
