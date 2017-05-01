@@ -27,17 +27,17 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // Save navigation block, navigation items, header section and collapser button to a variables.
+    // Save navigation block, navigation items, header section and collapsed button to a variables.
     var $header = $('.header'),
         $navigation = $('.navigation'),
         $navItems = $('.navigation__item'),
         $navItemsList = $('.navigation__items-list'),
         $collapsedButton = $('.navigation__collapsed-button');
 
-    // Save all main content items for shanging its visibility    
+    // Save all main content items for changing its visibility
     var $mainContentItems = $('.main-content__item');
 
-    // Add scroll event hendler for window and make navigation fixed when user scroll window over the navigation block
+    // Add scroll event handler for window and make navigation fixed when user scroll window over the navigation block
     $(window).on('scroll', function () {
         var navigationHeight = getHeaderItemsParameters().navigationHeight,
             windowTopScroll = getHeaderItemsParameters().windowTopScroll,
@@ -57,7 +57,7 @@
     var firstWoaAnimation,
         secondWoaAnimation;
 
-    // Add click event hendler for each nav-item
+    // Add click event handler for each nav-item
     $navItems.each(function () {
         $(this).on('click', function () {
             // Make clicked item style active
@@ -96,7 +96,7 @@
     $collapsedButton.on('click', function () {
         $navItemsList.toggleClass('navigation__items-list_style_collapsed');
 
-        // Remove large paddin which been added when menu was open
+        // Remove large padding which been added when menu was open
         $($header).css("padding-bottom", 0);
         $(window).scroll();
     });
@@ -118,32 +118,32 @@
 
     var $showMoreButton = $('.news-board__more-articles-button');
 
-    // Determine trunkated lines amount which depend on user screen size
+    // Determine truncated lines amount which depend on user screen size
     var truncatedLinesAmount = $(window).width() > 556 ? 7 : 4;
 
     // Allow user read full article and show it if it wants
     $(document).on('click', '.read-more', function () {
         // Save needed article paragraphs
-        var $currentTrankatedParagrapg = $(this).parent(),
-            $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
+        var $currentTruncatedParagraph = $(this).parent(),
+            $allArticleParagraphs = $(this).parents('.main-content-article__body').children('p'),
             $lastArticleParagraph = $(this).parents('.main-content-article__body').children('p:last-of-type');
 
         // Make all article paragraphs visible and create read-less button
-        $allArtuicleParagraphs.addClass('main-content-article__paragraph_style_visible');
-        var $readLessButton = $('<a class="read-less trankated-button page-link">&nbsp;&laquo;&nbsp;</a>');
+        $allArticleParagraphs.addClass('main-content-article__paragraph_style_visible');
+        var $readLessButton = $('<a class="read-less truncated-button page-link">&nbsp;&laquo;&nbsp;</a>');
 
-        // Show the trunkated paragraph and add read-less button to the last one 
-        $currentTrankatedParagrapg.trunk8('revert');
+        // Show the truncated paragraph and add read-less button to the last one
+        $currentTruncatedParagraph.trunk8('revert');
         $lastArticleParagraph.append($readLessButton);
         return false;
     });
 
     // Add click event handler for the read-less button
     $(document).on('click', '.read-less', function () {
-        var currentArticlePosition = parseInt($(this).parents('.main-content-article').offset().top);
-        $allArtuicleParagraphs = $(this).parents('.main-content-article__body').children('p'),
+        var currentArticlePosition = parseInt($(this).parents('.main-content-article').offset().top),
+            $allArticleParagraphs = $(this).parents('.main-content-article__body').children('p'),
             $firstArticleParagraph = $(this).parents('.main-content-article__body').children('p:first-of-type');
-        $allArtuicleParagraphs.removeClass('main-content-article__paragraph_style_visible');
+        $allArticleParagraphs.removeClass('main-content-article__paragraph_style_visible');
         $firstArticleParagraph.trunk8({
             lines: truncatedLinesAmount
         });
@@ -228,31 +228,31 @@
             $articlePictureWrapper = createPageElement('<figure>', 'main-content-article__picture-wrapper picture-wrapper'),
             $articlePicture = createPageElement('<img>', 'main-content-article__picture main-content-article__picture__style_default page-picture');
 
-        // Array for one or more articles paragraphes
-        var articleParagraphes = [];
+        // Array for one or more articles paragraphs
+        var articleParagraphs = [];
 
-        // Create neede amount of articles paragraphes
-        $(xmlArticle).find('paragraph').each(function (index, currentXmlArticlePragraph) {
-            $currentParagraph = createPageElement('<p>', 'main-content-article__paragraph main-content-article__paragraph_style_default');
-            $currentParagraph.text($(currentXmlArticlePragraph).text());
-            articleParagraphes.push($currentParagraph);
+        // Create needed amount of articles paragraphs
+        $(xmlArticle).find('paragraph').each(function (index, currentXmlArticleParagraph) {
+            var $currentParagraph = createPageElement('<p>', 'main-content-article__paragraph main-content-article__paragraph_style_default');
+            $currentParagraph.text( $(currentXmlArticleParagraph).text() );
+            articleParagraphs.push($currentParagraph);
         });
 
-        // Get needed value for certain xml tags and set elemnt's attachment
-        $articleHeading.text($(xmlArticle).find('name').text());
-        $articlePicture.attr('src', $(xmlArticle).find('image').text());
+        // Get needed value for certain xml tags and set element's attachment
+        $articleHeading.text( $(xmlArticle).find('name').text() );
+        $articlePicture.attr( 'src', $(xmlArticle).find('image').text() );
         if (articleType === 'book') {
-            $articlePicture.attr('src', './img/bookshelf-img/' + $(xmlArticle).find('image').text());
+            $articlePicture.attr( 'src', './img/bookshelf-img/' + $(xmlArticle).find('image').text() );
         }
         $articlePictureWrapper.append($articlePicture);
-        $articleBody.append($articlePictureWrapper, articleParagraphes);
+        $articleBody.append($articlePictureWrapper, articleParagraphs);
 
         $article.append($articleHeading);
         $article.append($articleBody);
 
         if (articleType === 'news') {
-            $articleLink = createPageElement('<a>', 'main-content-article__link page-link');
-            $articleLink.text($(xmlArticle).find('link').text());
+            var $articleLink = createPageElement('<a>', 'main-content-article__link page-link');
+            $articleLink.text( $(xmlArticle).find('link').text() );
             $article.append($articleLink);
         }
 
@@ -270,17 +270,17 @@
     function truncateSpillingText() {
 
         // Show the first paragraph of each visible article and trankate one 
-        var $trunkatedParagraphs = $('.main-content-article__body').find('p:first-of-type');
-        $trunkatedParagraphs.addClass('main-content-article__paragraph_style_trunkated');
-        $trunkatedParagraphs.trunk8({
+        var $truncatedParagraphs = $('.main-content-article__body').find('p:first-of-type');
+        $truncatedParagraphs.addClass('main-content-article__paragraph_style_trunkated');
+        $truncatedParagraphs.trunk8({
             lines: truncatedLinesAmount,
-            fill: '<a class="read-more trankated-button page-link">&nbsp;&raquo;&nbsp;</a>'
+            fill: '<a class="read-more truncated-button page-link">&nbsp;&raquo;&nbsp;</a>'
         });
     }
 
     // Apply the spilling text truncate when user screen width more than 880px
     function applicationSpillingTextTruncating() {
-        if (parseInt($(window).width()) < 880) {
+        if (parseInt( $(window).width() ) < 880) {
             truncateSpillingText();
         }
     }
@@ -349,7 +349,7 @@
     }, 25);
 
     // Set mousewheel event listener to body for control one scrolling
-    disableBodyScroling()
+    disableBodyScroling();
 
     // Allow user's control for slider by mousewheel
     mousePictureSliding(slidingPicturesWrapper);
@@ -665,7 +665,7 @@
     var owlSlider = (function () {
         // Initialize owl-carousel slider on the page 
         $(document).ready(function () {
-            $(".owl-carousel").owlCarousel();
+            $('.owl-carousel').owlCarousel();
         });
 
         // Make slider responsive and set basic settings 
