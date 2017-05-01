@@ -47,8 +47,7 @@ html(lang='uk')
                         button.navigation__collapsed-button.navigation__collapsed-button_style_default.navigation__collapsed-button_style_day.page-button.rounded-element
                             svg(version="1.1" 
                                 id="Capa_1"
-                                xmlns="http://www.w3.org/2000/svg" 
-                                xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                xmlns="http://www.w3.org/2000/svg"
                                 x="0px" 
                                 y="0px"
                                 width="25px" 
@@ -63,12 +62,11 @@ html(lang='uk')
                     ul.navigation__items-list.navigation__items-list_style_collapsed.flex.column
                         - var mainContentTargets = ['.news-board', '.projects', '.window-on-america', '.bookshelf', '.about-us'];
                         each item, i in ['Новини', 'Проекти', 'Вікно в Америку', 'Книжкова шафа', 'Про нас']
-                            if i === 0
+                            if (i === 0)
                                 li.navigation__item.navigation__item_style_default.navigation__item_style_day.navigation__item_active.flex.flex-center.rounded-element(data-target=mainContentTargets[i])
                                     svg.navigation__keyhole-picture(height="35"
                                         width="35"
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                        xmlns="http://www.w3.org/2000/svg"
                                         version="1.1" 
                                         x="0px" 
                                         y="0px" 
@@ -81,8 +79,7 @@ html(lang='uk')
                                                     d="M71.094,94.372c2.2,0,3.497-1.729,2.883-3.841L60.629,44.643c-0.614-2.112,0.097-5.17,1.58-6.794    c0,0,4.749-5.199,4.749-11.02c0-9.297-7.536-16.833-16.833-16.833s-16.833,7.537-16.833,16.833c0,5.82,4.749,11.02,4.749,11.02    c1.483,1.625,2.194,4.682,1.58,6.794L26.273,90.531c-0.614,2.112,0.683,3.841,2.883,3.841H71.094z")
                                     svg.navigation__open-book-picture(height="35"
                                         width="35"
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                        xmlns="http://www.w3.org/2000/svg"
                                         version="1.1" 
                                         x="0px" 
                                         y="0px" 
@@ -96,8 +93,7 @@ html(lang='uk')
                                 li.navigation__item.navigation__item_style_default.navigation__item_style_day.flex.flex-center.rounded-element(data-target=mainContentTargets[i])
                                     svg.navigation__keyhole-picture(height="35"
                                         width="35"
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                        xmlns="http://www.w3.org/2000/svg"
                                         version="1.1" 
                                         x="0px" 
                                         y="0px" 
@@ -110,8 +106,7 @@ html(lang='uk')
                                                     d="M71.094,94.372c2.2,0,3.497-1.729,2.883-3.841L60.629,44.643c-0.614-2.112,0.097-5.17,1.58-6.794    c0,0,4.749-5.199,4.749-11.02c0-9.297-7.536-16.833-16.833-16.833s-16.833,7.537-16.833,16.833c0,5.82,4.749,11.02,4.749,11.02    c1.483,1.625,2.194,4.682,1.58,6.794L26.273,90.531c-0.614,2.112,0.683,3.841,2.883,3.841H71.094z")
                                     svg.navigation__open-book-picture(height="35"
                                         width="35"
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                        xmlns="http://www.w3.org/2000/svg"
                                         version="1.1" 
                                         x="0px" 
                                         y="0px" 
@@ -166,10 +161,10 @@ html(lang='uk')
                     div.new-books-slider__picteres-slide-section.new-books-slider__picteres-slide-section_style_default
                         button.new-books-slider__control-button.new-books-slider__control-button_up(data-scroll-direction="up") Up
                         button.new-books-slider__control-button.new-books-slider__control-button_down(data-scroll-direction="down") Down
-                        - var newBooksSliderPicturesSourses = ['img/slider-img/black-pen.jpg', 'img/slider-img/book-stolen.jpg', 'img/slider-img/bye-the-elephant.jpg', 'img/slider-img/child.jpg', 'img/slider-img/city.jpg'];
-                        each item, i in newBooksSliderPicturesSourses
+                        - var newBooksSliderPicturesSources = ['img/slider-img/black-pen.jpg', 'img/slider-img/book-stolen.jpg', 'img/slider-img/bye-the-elephant.jpg', 'img/slider-img/child.jpg', 'img/slider-img/city.jpg'];
+                        each item in newBooksSliderPicturesSources
                             div.new-books-slider__sliding-picture-wrapper
-                                    img.page-picture(src=newBooksSliderPicturesSourses[i] 
+                                    img.page-picture(src=item
                                         alt="one of new books picture")
             // main-content end
             section.partners-panel
@@ -181,7 +176,7 @@ html(lang='uk')
                     for item, i in images
                         div.partners-panel__partner-item
                             a.partners-panel__link(href=paths[i] target="_blank")
-                                img.partners-panel__link-image.page-picture(src=images[i] alt="Partner picture")
+                                img.partners-panel__link-image.page-picture(src=item alt="Partner picture")
             // footer start
             footer.footer.footer_style_default
                 section.footer-information.flex
