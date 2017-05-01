@@ -265,7 +265,7 @@ body {
 
 .main-content__item,
 .main-content-article__paragraph,
-.window-on-america__first-animate-picture_display_none {
+.window-on-america__animate-picture {
     display: none;
 }
 
@@ -325,12 +325,16 @@ body {
     margin-top: 10px;
 }
 
-.window-on-america__animate-picture_invisible {
+.window-on-america__animate-picture {
     opacity: 0;
 }
 
-.window-on-america__animate-picture_display_none {
-    display: none;
+.window-on-america__animate-picture_visible{
+    opacity: 1;
+}
+
+.window-on-america__animate-picture_block {
+    display: inline;
 }
 
 /*slider styles start*/
@@ -558,7 +562,7 @@ body {
     }
 
     .window-on-america__picture-wrapper {
-        max-height: 25%;
+        max-height: 26%;
         max-width: 28%
     }
 
