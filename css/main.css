@@ -264,7 +264,8 @@ body {
 }
 
 .main-content__item,
-.main-content-article__paragraph {
+.main-content-article__paragraph,
+.window-on-america__first-animate-picture_display_none {
     display: none;
 }
 
@@ -324,18 +325,13 @@ body {
     margin-top: 10px;
 }
 
-.window-on-america__picture-wrapper {
-    /*position: relative;*/
-}
-
-.woa-invis {
+.window-on-america__animate-picture_invisible {
     opacity: 0;
 }
 
-.woa-block {
+.window-on-america__animate-picture_display_none {
     display: none;
 }
-
 
 /*slider styles start*/
 
