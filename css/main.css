@@ -166,12 +166,11 @@ body {
 }
 
 .navigation__collapsed-button {
-    display: inline-block;
-    margin: 2% 3%;
-}
-
-.navigation__collapsed-button_style_default {
-    padding-top: 4px;
+    display: inline-flex;
+    align-items: center;
+    margin: 2% 4%;
+    padding: 6px;
+    cursor: pointer;
 }
 
 .navigation__collapsed-button_style_day {
