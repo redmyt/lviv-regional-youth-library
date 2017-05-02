@@ -512,8 +512,7 @@ body {
         margin-right: 4%;
     }
 
-    .window-on-america__picture-wrapper {
-        max-height: 21%;
+    .window-on-america__picture-wrapper {;
         max-width: initial;
     }
 
@@ -569,8 +568,12 @@ body {
     }
 
     .window-on-america__picture-wrapper {
-        max-height: 25%;
-        max-width: 28%;
+        height: 18vw;
+        max-width: 33%;
+    }
+
+    .window-on-america__animate-picture {
+        max-height: 100%;
     }
 
     .footer-information {
