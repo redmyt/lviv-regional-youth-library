@@ -300,15 +300,14 @@
         // Implement the pictures animation
         function windowOnAmericaImageAnimation(animateImages) {
             var currentAnimatePicture = animateImages[windowOnAmericaAnimationIterator];
-            windowOnAmericaAnimationIterator = (windowOnAmericaAnimationIterator === animateImages.length - 1) ? -1 : windowOnAmericaAnimationIterator;
-            var nextAnimatePicture = animateImages[windowOnAmericaAnimationIterator + 1];
+            windowOnAmericaAnimationIterator = (windowOnAmericaAnimationIterator === animateImages.length - 1) ? 0 : windowOnAmericaAnimationIterator + 1;
+            var nextAnimatePicture = animateImages[windowOnAmericaAnimationIterator];
             $(currentAnimatePicture).removeClass('window-on-america__animate-picture_visible', {
                 duration: 2500,
                 complete: function () {
-                    $(this).removeClass('window-on-america__animate-picture_inline');
+                    $(currentAnimatePicture).removeClass('window-on-america__animate-picture_inline');
                     $(nextAnimatePicture).addClass('window-on-america__animate-picture_inline');
                     $(nextAnimatePicture).addClass('window-on-america__animate-picture_visible', 2500);
-                    windowOnAmericaAnimationIterator++;
                 }
             });
         }
