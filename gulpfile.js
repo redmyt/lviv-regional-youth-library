@@ -1,9 +1,17 @@
 var gulp = require('gulp'),
-    sass = require('gulp-sass'),
     pug = require('gulp-pug'),
+    sass = require('gulp-sass'),
     autopref = require('gulp-autoprefixer'),
-    imagemin = require('gulp-imagemin'),
-    cleanCSS = require('gulp-clean-css');
+    cleanCSS = require('gulp-clean-css'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    imagemin = require('gulp-imagemin');
+
+gulp.task('pug', function() {
+    gulp.src('./src/views/index.pug')
+        .pipe( pug() )
+        .pipe( gulp.dest('build/') );
+});
 
 gulp.task('sass', function() {
     gulp.src('./src/sass/main.scss')
@@ -13,14 +21,15 @@ gulp.task('sass', function() {
         }) )
         .pipe( sass() )
         .pipe( autopref() )
-        // .pipe( cleanCSS() )
+        .pipe( cleanCSS() )
         .pipe( gulp.dest('build/css') );
 });
 
-gulp.task('pug', function() {
-    gulp.src('./src/views/index.pug')
-        .pipe( pug() )
-        .pipe( gulp.dest('build/') );
+gulp.task('js', function() {
+    gulp.src( require('./dependencies.json').js )
+        .pipe( uglify() )
+        .pipe( concat('main.js') )
+        .pipe( gulp.dest('build/js/') );
 });
 
 gulp.task('fonts', function() {
@@ -28,18 +37,24 @@ gulp.task('fonts', function() {
         .pipe( gulp.dest('build/fonts/') );
 });
 
-gulp.task('img', function () {
+gulp.task('images', function () {
     gulp.src('./src/images/**/*')
-        // .pipe( imagemin({
-            // progressive: true,
-            // optimizationLevel: 8
-        // }) )
+        .pipe( imagemin({
+            progressive: true,
+            optimizationLevel: 8
+        }) )
         .pipe( gulp.dest('build/images') );
 });
 
-gulp.task('watch', function() {
-    gulp.watch('src/sass/**/*.scss', ['sass']);
-    gulp.watch('src/views/**/*.pug', ['pug']);
+gulp.task('info', function() {
+    gulp.src('./src/*.xml')
+        .pipe( gulp.dest('build/') );
 });
 
-gulp.task('build', ['sass', 'pug', 'fonts', 'img']);
+gulp.task('watch', function() {
+    gulp.watch('src/views/**/*.pug', ['pug']);
+    gulp.watch('src/sass/**/*.scss', ['sass']);
+    gulp.watch('src/js/**/*.js', ['js']);
+});
+
+gulp.task('build', ['pug', 'sass', 'js', 'fonts', 'images', 'info']);

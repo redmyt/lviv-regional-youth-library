@@ -105,18 +105,18 @@
     width: 90%;
 }
 
+.news-board__more-articles-button_style_default {
+    font-size: 1.5em;
+    color: $gold;
+    cursor: pointer;
+}
+
 .news-board__more-articles-button_style_day {
     @extend .header__navigation_fixed.navigation_style_day;
 }
 
 .news-board__more-articles-button_style_night {
     @extend .header__navigation_fixed.navigation_style_night;
-}
-
-.news-board__more-articles-button_style_default {
-    font-size: 1.5em;
-    color: $gold;
-    cursor: pointer;
 }
 
 .truncated-button {

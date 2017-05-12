@@ -1,0 +1,17 @@
+{
+    "js": [
+        "./src/js/jquery-3.1.1.min.js",
+        "./src/js/jquery-ui.min.js",
+        "./src/js/jquery.mousewheel.min.js",
+        "./src/js/owl.carousel.min.js",
+        "./src/js/trunk8.js",
+        "./src/js/switch-night-styles.js",
+        "./src/js/header.js",
+        "./src/js/main-content.js",
+        "./src/js/bookshelf-slider.js",
+        "./src/js/owl-slider.js",
+        "./src/js/footer.js",
+        "./src/js/google-maps.js",
+        "./src/js/base.js"
+    ]
+}
