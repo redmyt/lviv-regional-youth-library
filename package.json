@@ -20,13 +20,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dmytro-revak/youth-library.git"
+    "url": "git+https://github.com/dmytrorevak/lviv-regional-youth-library.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dmytro-revak/youth-library/issues"
+    "url": "https://github.com/dmytrorevak/lviv-regional-youth-library/issues"
   },
-  "homepage": "https://github.com/dmytro-revak/youth-library#readme"
+  "homepage": "https://github.com/dmytrorevak/lviv-regional-youth-library#readme"
 }
