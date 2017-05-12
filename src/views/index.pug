@@ -1,0 +1,33 @@
+doctype
+html(lang='uk')
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(name="keywords" content="бібліотека, юнацтво, львів, книга, читання, проекти")
+        meta(name="description" content="Львівська обласна бібліотека для юнацтва")
+        title Львівська обласна бібліотека для юнацтва
+        link(href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet") 
+        link(href="https://cdn.mapkit.io/v1/infobox.css" rel="stylesheet") 
+        link(rel="stylesheet" type="text/css" href="css/main.css")
+    body.body.body_style_day
+        div.wrapper
+            // header start
+            include components/header
+            // header end
+            // main-content start
+            include components/main-content
+            // main-content end
+            // partners panel start
+            include components/partners-panel
+            // partners panel end
+            // footer start
+            include components/footer
+            // footer end
+        script(src="js/jquery-3.1.1.min.js")
+        script(src="js/jquery-ui.min.js")
+        script(src="js/jquery.mousewheel.min.js")
+        script(src="js/owl.carousel.min.js")
+        script(src="js/trunk8.js")
+        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeOCxGWlidjZbCULcJYed2ANDLiomKm4&extension=.js") 
+        script(src="https://cdn.mapkit.io/v1/infobox.js")
+        script(src="js/main.js")

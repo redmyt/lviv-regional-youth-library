@@ -1,0 +1,216 @@
+.main-content {
+    justify-content: space-between;
+    position: relative;
+
+    &::after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("../images/main-bg.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0.6;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+}
+
+.main-content_style_default {
+    padding: 25px 0;
+
+    @media #{$media556pixels} {
+        padding: 1.5% 0 1.5%  1.5%;
+    }
+}
+
+.main-content__item {
+    width: 75%;
+    margin: 0 auto;
+    line-height: 1.4em;
+    display: none;
+
+    @media #{$media880pixels} {
+        margin: initial;
+    }
+}
+
+.main-content__item_active {
+    display: block;
+}
+
+.main-content__item_style_default {
+    text-align: center;
+}
+
+.main-content-article {
+    padding: 0 20px 10px;
+    margin-bottom: 10px;
+
+    @media #{$media556pixels} {
+        padding: 0 2% 2%;
+        margin-bottom: 2%;
+    }
+}
+
+.main-content-article_style_default {
+    text-align: right;
+    border: 1px solid transparent;
+}
+
+.main-content-article__picture-wrapper {
+    @media #{$media556pixels} {
+        float: left;
+        max-width: 28%;
+        margin-right: 4%;
+    }
+}
+
+.main-content-article__picture__style_default {
+    box-shadow: 0 0 10px 2px #fff;
+    border-radius: 6px;
+}
+
+.main-content-article__paragraph {
+    text-align: left;
+    display: none;
+    @media #{$media880pixels} {
+        display: block;
+    }
+}
+
+.main-content-article__link {
+    @media #{$media880pixels} {
+        display: block;
+    }
+}
+
+.main-content-article__paragraph_style_trunkated,
+.main-content-article__paragraph_style_visible {
+    display: block;
+}
+
+.main-content-article_style_day {
+    @extend .header__navigation_fixed.navigation_style_day;
+}
+
+.main-content-article_style_night {
+    @extend .header__navigation_fixed.navigation_style_night;
+}
+
+.news-board__more-articles-button {
+    padding: 1%;
+    width: 90%;
+}
+
+.news-board__more-articles-button_style_day {
+    @extend .header__navigation_fixed.navigation_style_day;
+}
+
+.news-board__more-articles-button_style_night {
+    @extend .header__navigation_fixed.navigation_style_night;
+}
+
+.news-board__more-articles-button_style_default {
+    font-size: 1.5em;
+    color: $gold;
+    cursor: pointer;
+}
+
+.truncated-button {
+    color: #fff;
+}
+
+.window-on-america_style_default {
+    color: $darkBrown;
+}
+
+.window-on-america__picture-wrapper {
+    @media #{$media556pixels} {
+        float: left;
+        max-width: 28%;
+        margin-right: 4%;
+        max-width: initial;
+    }
+
+    @media #{$media880pixels} {
+        height: 18vw;
+        max-width: 33%;
+    }
+}
+
+.window-on-america__picture-wrapper,
+.window-on-america__paragraph {
+    margin-top: 10px;
+    @media #{$media556pixels} {
+        margin-top: 1%;
+    }
+}
+
+.window-on-america__picture-wrapper_floated_right {
+    @media #{$media556pixels} {
+        float: right;
+        margin-right: 0;
+        margin-left: 4%;
+    }
+}
+
+.window-on-america__animate-picture {
+    opacity: 0;
+    display: none;
+    @media #{$media880pixels} {
+        max-height: 100%;
+    }
+}
+
+.window-on-america__animate-picture_visible {
+    opacity: 1;
+}
+
+.window-on-america__animate-picture_inline {
+    display: inline;
+}
+
+/*slider styles start*/
+
+.new-books-slider {
+    display: none;
+    position: relative;
+    width: 300px;
+    min-width: 300px;
+    height: 800px;
+    background-image: url("../images/bookcase.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    @media #{$media880pixels} {
+        display: block;
+    }
+}
+
+.new-books-slider__picteres-slide-section {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+    position: absolute;
+    width: 175px;
+    height: 415px;
+    top: 258px;
+    left: 45px;
+}
+
+.new-books-slider__control-button_up {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+}
+
+.new-books-slider__control-button_down {
+    position: absolute;
+    top: 200px;
+    right: 0;
+    left: 0;
+}

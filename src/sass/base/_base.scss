@@ -1,0 +1,78 @@
+body {
+    font-family: $lugatypeFontStack;
+    font-size: 23px;
+    @media #{$media1360pixels} {
+        font-size: 2vw;
+    }
+}
+
+.body_style_day {
+    background: $dayBodyBackground;
+    color: $darkBrown;
+    fill: $lightBrown;
+}
+
+.body_style_night {
+    background: $nightBodyBackground;
+    color: $creamWhite;
+    fill: $creamWhite;
+}
+
+.page-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.picture-wrapper {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+}
+
+.page-picture {
+    width: 100%;
+}
+
+.page-header {
+    text-align: center;
+}
+
+.page-button {
+    box-shadow: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.centered {
+    margin: 0 auto;
+}
+
+.pale-text {
+    color: $creamWhite;
+}
+
+.rounded-element {
+    border-radius: 6px;
+}
