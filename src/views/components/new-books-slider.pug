@@ -1,0 +1,9 @@
+aside.new-books-slider
+    div.new-books-slider__picteres-slide-section.new-books-slider__picteres-slide-section_style_default
+        button.new-books-slider__control-button.new-books-slider__control-button_up(data-scroll-direction="up") Up
+        button.new-books-slider__control-button.new-books-slider__control-button_down(data-scroll-direction="down") Down
+        - var newBooksSliderPicturesSources = ['images/slider-img/black-pen.jpg', 'images/slider-img/book-stolen.jpg', 'images/slider-img/bye-the-elephant.jpg', 'images/slider-img/child.jpg', 'images/slider-img/city.jpg'];
+        each item in newBooksSliderPicturesSources
+            div.new-books-slider__sliding-picture-wrapper
+                    img.page-picture(src=item
+                        alt="one of new books picture")
