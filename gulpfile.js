@@ -57,5 +57,5 @@ gulp.task('watch', function() {
     gulp.watch('src/js/**/*.js', ['js']);
 });
 
-// gulp.task('build', ['pug', 'sass', 'js', 'fonts', 'images', 'info']);
-gulp.task('build', ['pug', 'sass', 'js']);
+gulp.task('build', ['pug', 'sass', 'js', 'fonts', 'images', 'info']);
+// gulp.task('build', ['pug', 'sass', 'js']);
