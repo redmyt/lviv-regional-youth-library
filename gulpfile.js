@@ -41,7 +41,7 @@ gulp.task('images', function () {
     gulp.src('./src/images/**/*')
         .pipe( imagemin({
             progressive: true,
-            optimizationLevel: 8
+            optimizationLevel: 10
         }) )
         .pipe( gulp.dest('build/images') );
 });
@@ -58,4 +58,3 @@ gulp.task('watch', function() {
 });
 
 gulp.task('build', ['pug', 'sass', 'js', 'fonts', 'images', 'info']);
-// gulp.task('build', ['pug', 'sass', 'js']);

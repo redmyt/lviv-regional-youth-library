@@ -50,12 +50,15 @@ body {
         margin-left: 4%;
     }
     
-    &:first-child {
-        margin-top: 1rem;
-    }
+    &__content-picture {
 
-    @media #{$media880pixels} {
-        max-width: 35%;
+        &:first-child {
+            margin-top: 1rem;
+        }
+
+        @media #{$media880pixels} {
+            max-width: 35%;
+        }
     }
 }
 
