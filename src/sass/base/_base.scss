@@ -45,16 +45,22 @@ body {
     font-size: 0;
 
     &__left-floated {
-        float: left;
-        margin-right: 4%;
+        @media #{$media880pixels} {
+            float: left;
+            margin-right: 4%;
+        }
     }
-    
+
     &__right-floated {
-        float: right;
-        margin-left: 4%;
+        @media #{$media880pixels} {
+            float: right;
+            margin-left: 4%;
+        }
     }
-    
+
     &__content-picture {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
 
         &:first-child {
             margin-top: 1rem;
@@ -62,6 +68,8 @@ body {
 
         @media #{$media880pixels} {
             max-width: 35%;
+            margin-top: 0;
+            margin-bottom: 0;
         }
     }
 }

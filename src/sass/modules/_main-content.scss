@@ -123,46 +123,22 @@
     color: #fff;
 }
 
-.window-on-america_style_default {
-    color: $darkBrown;
+.window-on-america__opportunities-list {
+    @extend .page-paragraph__content-paragraph;
 }
 
 .window-on-america__picture-wrapper {
-    @media #{$media556pixels} {
-        float: left;
-        max-width: 28%;
-        margin-right: 4%;
-        max-width: initial;
-    }
+    height: 50vw;
 
     @media #{$media880pixels} {
         height: 18vw;
-        max-width: 33%;
-    }
-}
-
-.window-on-america__picture-wrapper,
-.window-on-america__paragraph {
-    margin-top: 10px;
-    @media #{$media556pixels} {
-        margin-top: 1%;
-    }
-}
-
-.window-on-america__picture-wrapper_floated_right {
-    @media #{$media556pixels} {
-        float: right;
-        margin-right: 0;
-        margin-left: 4%;
     }
 }
 
 .window-on-america__animate-picture {
     opacity: 0;
     display: none;
-    @media #{$media880pixels} {
-        max-height: 100%;
-    }
+    max-height: 100%;
 }
 
 .window-on-america__animate-picture_visible {
