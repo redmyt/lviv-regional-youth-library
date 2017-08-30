@@ -104,11 +104,11 @@ function showNewsArticles() {
 function parseXmlArticleItemToHtml(xmlArticle, articleType) {
 
     // Create elements for the html markup
-    var $article = createPageElement('<article>', 'main-content-article main-content-article_style_default main-content-article_style_day rounded-element'),
+    var $article = createPageElement('<article>', 'main-content-article main-content-article_style_default main-content-article_style_day rounded'),
         $articleHeading = createPageElement('<h3>', 'main-content-article__heading page-header'),
         $articleBody = createPageElement('<section>', 'main-content-article__body clearfix'),
         $articlePictureWrapper = createPageElement('<figure>', 'main-content-article__picture-wrapper picture-wrapper'),
-        $articlePicture = createPageElement('<img>', 'main-content-article__picture main-content-article__picture__style_default page-picture');
+        $articlePicture = createPageElement('<img>', 'page-picture page-picture__style_default rounded');
 
     // Array for one or more articles paragraphs
     var articleParagraphs = [];

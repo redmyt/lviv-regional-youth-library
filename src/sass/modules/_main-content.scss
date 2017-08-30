@@ -16,33 +16,33 @@
         height: 100%;
         z-index: -1;
     }
-}
 
-.main-content_style_default {
-    padding: 25px 0;
+    &_style_default {
+        padding: 25px 0;
 
-    @media #{$media556pixels} {
-        padding: 1.5% 0 1.5%  1.5%;
+        @media #{$media556pixels} {
+            padding: 1.5% 0 1.5%  1.5%;
+        }
     }
-}
 
-.main-content__item {
-    width: 75%;
-    margin: 0 auto;
-    line-height: 1.4em;
-    display: none;
+    &__item {
+        width: 75%;
+        margin: 0 auto;
+        line-height: 1.4em;
+        display: none;
 
-    @media #{$media880pixels} {
-        margin: initial;
+        @media #{$media880pixels} {
+            margin: initial;
+        }
+
+        &_active {
+            display: block;
+        }
+
+        &_style_default {
+            text-align: center;
+        }
     }
-}
-
-.main-content__item_active {
-    display: block;
-}
-
-.main-content__item_style_default {
-    text-align: center;
 }
 
 .main-content-article {
@@ -53,100 +53,92 @@
         padding: 0 2% 2%;
         margin-bottom: 2%;
     }
-}
 
-.main-content-article_style_default {
-    text-align: right;
-    border: 1px solid transparent;
-}
-
-.main-content-article__picture-wrapper {
-    @media #{$media556pixels} {
-        float: left;
-        max-width: 28%;
-        margin-right: 4%;
+    &_style_default {
+        text-align: right;
+        border: 1px solid transparent;
     }
-}
 
-.main-content-article__picture__style_default {
-    box-shadow: 0 0 10px 2px #fff;
-    border-radius: 6px;
-}
+    &__picture-wrapper {
+        @media #{$media556pixels} {
+            float: left;
+            max-width: 28%;
+            margin-right: 4%;
+        }
+    }
 
-.main-content-article__paragraph {
-    text-align: left;
-    display: none;
-    @media #{$media880pixels} {
+    &__paragraph {
+        text-align: left;
+        display: none;
+        @media #{$media880pixels} {
+            display: block;
+        }
+    }
+
+    &__paragraph_style_trunkated,
+    &__paragraph_style_visible {
         display: block;
     }
-}
 
-.main-content-article__link {
-    @media #{$media880pixels} {
-        display: block;
+    &_style_day {
+        @extend .header__navigation_fixed.navigation_style_day;
     }
-}
 
-.main-content-article__paragraph_style_trunkated,
-.main-content-article__paragraph_style_visible {
-    display: block;
-}
-
-.main-content-article_style_day {
-    @extend .header__navigation_fixed.navigation_style_day;
-}
-
-.main-content-article_style_night {
-    @extend .header__navigation_fixed.navigation_style_night;
+    &_style_night {
+        @extend .header__navigation_fixed.navigation_style_night;
+    }
 }
 
 .news-board__more-articles-button {
     padding: 1%;
     width: 90%;
-}
 
-.news-board__more-articles-button_style_default {
-    font-size: 1.5em;
-    color: $gold;
-    cursor: pointer;
-}
+    &_style_default {
+        font-size: 1.5em;
+        color: $gold;
+        cursor: pointer;
+    }
 
-.news-board__more-articles-button_style_day {
-    @extend .header__navigation_fixed.navigation_style_day;
-}
+    &_style_day {
+        @extend .header__navigation_fixed.navigation_style_day;
+    }
 
-.news-board__more-articles-button_style_night {
-    @extend .header__navigation_fixed.navigation_style_night;
+    &_style_night {
+        @extend .header__navigation_fixed.navigation_style_night;
+    }
 }
 
 .truncated-button {
     color: #fff;
 }
 
-.window-on-america__opportunities-list {
-    @extend .page-paragraph__content-paragraph;
-}
+.window-on-america {
 
-.window-on-america__picture-wrapper {
-    height: 50vw;
-
-    @media #{$media880pixels} {
-        height: 18vw;
+    &__opportunities-list {
+        @extend .page-paragraph__content-paragraph;
     }
-}
 
-.window-on-america__animate-picture {
-    opacity: 0;
-    display: none;
-    max-height: 100%;
-}
+    &__picture-wrapper {
+        height: 50vw;
 
-.window-on-america__animate-picture_visible {
-    opacity: 1;
-}
+        @media #{$media880pixels} {
+            height: 18vw;
+        }
+    }
 
-.window-on-america__animate-picture_inline {
-    display: inline;
+    &__animate-picture {
+        opacity: 0;
+        display: none;
+        max-height: 100%;
+    }
+
+    &__animate-picture_visible {
+        opacity: 1;
+    }
+
+    &__animate-picture_inline {
+        display: inline;
+    }
 }
 
 /*slider styles start*/
