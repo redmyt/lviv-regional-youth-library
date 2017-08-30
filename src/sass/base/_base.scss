@@ -33,6 +33,10 @@ body {
 .page-paragraph {
     margin: 1rem 0;
     text-indent: 2.5rem;
+
+    &__content-paragraph {
+        color: #281501;
+    }
 }
 
 .picture-wrapper {
