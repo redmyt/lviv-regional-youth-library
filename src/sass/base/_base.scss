@@ -7,7 +7,7 @@ body {
     font-family: $lugatypeFontStack;
     font-size: 23px;
     @media #{$media1360pixels} {
-        font-size: 2vw;
+        font-size: 1.75vw;
     }
 }
 
@@ -67,7 +67,7 @@ body {
         }
 
         @media #{$media880pixels} {
-            max-width: 35%;
+            max-width: 30%;
             margin-top: 0;
             margin-bottom: 0;
         }

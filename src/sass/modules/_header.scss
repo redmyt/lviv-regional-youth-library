@@ -15,7 +15,7 @@
     margin: 0;
     padding-top: 1.5rem;
     font: {
-        size: 7vw;
+        size: 6vw;
         weight: bold;
     }
     user-select: none;
@@ -159,6 +159,6 @@
     font-size: 26px;
 
     @media #{$media1360pixels} {
-        font-size: 2vw;
+        font-size: 1.8vw;
     }
 }
