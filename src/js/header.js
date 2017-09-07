@@ -22,6 +22,11 @@ $(window).on('scroll', function () {
         $($navigation).removeClass('header__navigation_fixed');
         $($header).css("padding-bottom", 0);
     }
+
+    // Collapse menu when user fire scroll event
+    if (!$navItemsList.hasClass('navigation__items-list_style_collapsed')) {
+        $navItemsList.addClass('navigation__items-list_style_collapsed');
+    }
 });
 
 // Switch on window on america animation when user goes to the woa section
@@ -66,10 +71,6 @@ $navItems.each(function () {
 // Show or hide collapsed menu when user click the collapsed button
 $collapsedButton.on('click', function () {
     $navItemsList.toggleClass('navigation__items-list_style_collapsed');
-
-    // Remove large padding which been added when menu was open
-    $($header).css("padding-bottom", 0);
-    $(window).scroll();
 });
 
 // Get header-block-element and navigation-block-element heights an save them. Also get current window scroll position.
