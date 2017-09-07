@@ -58,7 +58,8 @@ $navItems.each(function () {
             windowTopScroll = getHeaderItemsParameters().windowTopScroll,
             headerHeight = getHeaderItemsParameters().headerHeight;
         if (windowTopScroll > headerHeight) {
-            $('body').stop().animate({
+            var scrollElement = isWebkit() ? $('body') : $('html');
+            scrollElement.stop().animate({
                 scrollTop: parseInt($visibleMainContentItem.offset().top - navigationHeight)
             }, {
                 easing: 'easeInOutCubic',
@@ -84,4 +85,12 @@ function getHeaderItemsParameters() {
         windowTopScroll: windowTopScroll,
         headerHeight: headerHeight
     };
+}
+
+function isWebkit() {
+    if (navigator.userAgent.indexOf('Webkit') === -1) {
+        return false;
+    }
+
+    return true;
 }
