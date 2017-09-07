@@ -89,7 +89,7 @@ function getHeaderItemsParameters() {
 
 // Verify does user has Webkit browser
 function isWebkit() {
-    if (navigator.userAgent.indexOf('Webkit') === -1) {
+    if (navigator.userAgent.indexOf('WebKit') === -1) {
         return false;
     }
 
