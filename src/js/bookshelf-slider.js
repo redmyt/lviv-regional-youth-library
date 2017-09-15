@@ -3,9 +3,7 @@ var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray(),
     // Save sliding pictures wrapper to variable 
     slidingPicturesWrapper = $('.new-books-slider__picteres-slide-section'),
     // Variable for checking the slider pause
-    isPaused = false,
-    // Save slider control buttons to one variable
-    controlButtons = $('.new-books-slider__control-button');
+    isPaused = false;
 
 // Start slide each of books picture
 var sliderInterval = setInterval(function () {
@@ -27,12 +25,7 @@ $(slidingPicturesWrapper).hover(function () {
     isPaused = false;
 });
 
-// TODO
-controlButtons.on('click', function () {
-    changePictureSlidingScrollPosition(this.dataset.scrollDirection);
-});
-
-// function descriptions ////////////////////////////////////////////////////////////////////////////
+// function descriptions/////////////////////////////////////////////////////////////////
 
 // Implement the slider. Change scroll position of picture wrapper and when the scroll position of sliding elements wrapper becomes equals the first element height change the DOM position of first slider picture
 function slidThePictures(itemsForSliding, slidingElementsWrapper, scrollStap) {
@@ -79,11 +72,13 @@ function disableBodyScroling() {
 function mousePictureSliding() {
 
     // Add mousewheel event for slide wrpper
+    var lastWheel = +new Date();
     $(slidingPicturesWrapper).on('mousewheel', function (e) {
-
-        // Identify mousewheel direction
-        var mousewheelDirection = parseInt(e.deltaY) === 1 ? 'up' : 'down';
-        changePictureSlidingScrollPosition(mousewheelDirection);
+        if (+new Date() - lastWheel > 75) {
+            var mousewheelDirection = parseInt(e.deltaY) > 0 ? 'up' : 'down';
+            changePictureSlidingScrollPosition(mousewheelDirection);
+            lastWheel = +new Date();
+        }
     });
 }
 
