@@ -36,6 +36,9 @@ var firstWoaAnimation,
 // Add click event handler for each nav-item
 $navItems.each(function () {
     $(this).on('click', function () {
+
+        window.location.hash = this.dataset.target;
+
         // Make clicked item style active
         emphasizeOneOfTheSetElement(this, $navItems, 'navigation__item_active');
 
