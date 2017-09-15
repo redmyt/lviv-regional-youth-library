@@ -39,15 +39,14 @@ $navItems.each(function () {
         window.location.hash = this.dataset.target;
 
         // Make clicked item style active
-        emphasizeOneOfTheSetElement(this, $navItems, 'navigation__item_active');
 
         // Get visible main content item
-        var $visibleMainContentItem = $(this.dataset.target);
-        // Make other main content items invisible
-        emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
-        applicationSpillingTextTruncating();
+        // var $visibleMainContentItem = $(this.dataset.target);
+        // // Make other main content items invisible
+        // emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
+        // applicationSpillingTextTruncating();
 
-        if(this.dataset.target === '.window-on-america') {
+        if(window.location.hash === '#window-on-america') {
             firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 20000);
             secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 25000);
         } else {
