@@ -2,8 +2,8 @@ aside.new-books-slider
     div.new-books-slider__picteres-slide-section.new-books-slider__picteres-slide-section_style_default
         button.new-books-slider__control-button.new-books-slider__control-button_up(data-scroll-direction="up") Up
         button.new-books-slider__control-button.new-books-slider__control-button_down(data-scroll-direction="down") Down
-        - var newBooksSliderPicturesSources = ['images/slider-img/black-pen.jpg', 'images/slider-img/book-stolen.jpg', 'images/slider-img/bye-the-elephant.jpg', 'images/slider-img/child.jpg', 'images/slider-img/city.jpg'];
+        - var newBooksSliderPicturesSources = ['images/bookshelf-img/zhila-bula-ia.jpg', 'images/bookshelf-img/vylichnui-kit-na-imia-bob.jpg', 'images/bookshelf-img/vidlunnia.jpg', 'images/bookshelf-img/choloviku-shcho-nenavudiat-shinok.jpg', 'images/bookshelf-img/divchata-z-13-vuylutci.jpg'];
         each item in newBooksSliderPicturesSources
             div.new-books-slider__sliding-picture-wrapper
-                    img.page-picture(src=item
+                    img.page-picture.rounded(src=item
                         alt="one of new books picture")

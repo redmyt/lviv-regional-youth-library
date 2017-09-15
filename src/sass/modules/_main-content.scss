@@ -146,11 +146,11 @@
 .new-books-slider {
     display: none;
     position: relative;
-    min-width: 22vw;
-    height: 45vw;
+    min-width: 24vw;
+    height: 51vw;
     background-image: url("../images/bookcase.png");
-    background-size: 40vw 60vw;
-    background-position: 40% -5vw;
+    background-size: 50vw 70vw;
+    background-position: 40% -7vw;
     background-repeat: no-repeat;
 
     @media #{$media880pixels} {
@@ -163,11 +163,11 @@
     flex-direction: column;
     overflow: hidden;
     position: absolute;
-    width: 10.5vw;
-    height: 25vw;
-    top: 10.6%;
-    left: 23%;
-    border-radius: 5%;
+    width: 12.8vw;
+    height: 28vw;
+    top: 8.6%;
+    left: 20.7%;
+    border-radius: 7%;
 }
 
 .new-books-slider__control-button_up {
