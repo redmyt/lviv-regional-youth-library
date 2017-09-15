@@ -41,7 +41,7 @@ $navItems.each(function () {
         // Make clicked item style active
 
         // Get visible main content item
-        // var $visibleMainContentItem = $(this.dataset.target);
+        var $visibleMainContentItem = $('.' + this.dataset.target);
         // // Make other main content items invisible
         // emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
         // applicationSpillingTextTruncating();
@@ -90,7 +90,8 @@ function getHeaderItemsParameters() {
 
 // Verify does user has Webkit browser
 function isWebkit() {
-    if (navigator.userAgent.indexOf('WebKit') === -1) {
+    if (navigator.userAgent.indexOf('WebKit') !== -1) {
+        var a = navigator.userAgent;
         return false;
     }
 
