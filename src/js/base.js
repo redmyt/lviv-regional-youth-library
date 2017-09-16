@@ -1,20 +1,32 @@
-var availableHashes = getAvailableHashes();
+var availableHashes = getAvailableHashes(),
+    $scrollElement = isOpera() ? $('body') : $('html');
 
 window.onhashchange = function() {
     var currentHash = window.location.hash.slice(1),
-        activeElementClass = '',
-        activeNavLinkSelector = '',
-        isHashCorrect = verifyHash(currentHash, availableHashes);
+        isHashCorrect = verifyHash(currentHash, availableHashes),
+        activeViewClass = isHashCorrect ? '.' + currentHash : '.news-board',
+        activeNavLinkSelector = isHashCorrect ? '[data-target="' + currentHash + '"]' : '[data-target="news-board"]',
+        $activeView = $(activeViewClass),
+        $activeNavLink = $(activeNavLinkSelector);
 
-    activeElementClass = isHashCorrect ? '.' + currentHash : 'news-board';
-    activeNavLinkSelector = isHashCorrect ? '[data-target="' + currentHash + '"]' : '[data-target="news-board"]';
-    } else {
-        ac
-    }
-
-    emphasizeOneOfTheSetElement($(activeNavLinkSelector), $navItems, 'navigation__item_active');
-    emphasizeOneOfTheSetElement($(activeElementClass), $mainContentItems, 'main-content__item_active');
+    // Get visible main content item and active navigation link
+    emphasizeOneOfTheSetElement($activeView, $mainContentItems, 'main-content__item_active');
+    emphasizeOneOfTheSetElement($activeNavLink, $navItems, 'navigation__item_active');
     applicationSpillingTextTruncating();
+
+    // Set the window scroll top at the beginning of the main content section
+    var navigationHeight = getHeaderItemsParameters().navigationHeight,
+        windowTopScroll = getHeaderItemsParameters().windowTopScroll,
+        headerHeight = getHeaderItemsParameters().headerHeight;
+
+    if (windowTopScroll > headerHeight) {
+        $scrollElement.stop().animate({
+            scrollTop: parseInt($activeView.offset().top - navigationHeight)
+        }, {
+            easing: 'easeInOutCubic',
+            duration: 1250
+        });
+    }
 };
 
 window.onhashchange();
@@ -22,9 +34,8 @@ window.onhashchange();
 function verifyHash(currentHash, availableHashes) {
     var isHashCorrect = false;
  
-    for (var index = 0; index < array.length; index++) {
-        var element = array[index];
-        if (currentHash === element) {
+    for (var i = 0; i < availableHashes.length; i++) {
+        if (currentHash === availableHashes[i]) {
             isHashCorrect = true;
             break;
         }
@@ -36,7 +47,7 @@ function verifyHash(currentHash, availableHashes) {
 function getAvailableHashes() {
     var availableHashes = [];
     $navItems.each(function(index, element) {
-        var navItemHash = elem.dataset.target;
+        var navItemHash = element.dataset.target;
         availableHashes.push(navItemHash);
     });
 
@@ -48,4 +59,13 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
         $(this).removeClass(emphasizeClass);
     });
     $(element).addClass(emphasizeClass);
+}
+
+// Verify does user has Webkit browser
+function isOpera() {
+    if (navigator.userAgent.indexOf('OPR') === -1) {
+        return false;
+    }
+
+    return true;
 }

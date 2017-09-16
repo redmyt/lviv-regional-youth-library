@@ -38,14 +38,6 @@ $navItems.each(function () {
     $(this).on('click', function () {
         window.location.hash = this.dataset.target;
 
-        // Make clicked item style active
-
-        // Get visible main content item
-        var $visibleMainContentItem = $('.' + this.dataset.target);
-        // // Make other main content items invisible
-        // emphasizeOneOfTheSetElement($visibleMainContentItem, $mainContentItems, 'main-content__item_active');
-        // applicationSpillingTextTruncating();
-
         if(window.location.hash === '#window-on-america') {
             firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 20000);
             secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 25000);
@@ -54,19 +46,7 @@ $navItems.each(function () {
             switchOfWoaAnimation(secondWoaAnimation);
         }
 
-        // Set the window scroll top at the beginning of the main content section
-        var navigationHeight = getHeaderItemsParameters().navigationHeight,
-            windowTopScroll = getHeaderItemsParameters().windowTopScroll,
-            headerHeight = getHeaderItemsParameters().headerHeight;
-        if (windowTopScroll > headerHeight) {
-            var scrollElement = isWebkit() ? $('body') : $('html');
-            scrollElement.stop().animate({
-                scrollTop: parseInt($visibleMainContentItem.offset().top - navigationHeight)
-            }, {
-                easing: 'easeInOutCubic',
-                duration: 1250
-            });
-        }
+
     });
 });
 
@@ -86,14 +66,4 @@ function getHeaderItemsParameters() {
         windowTopScroll: windowTopScroll,
         headerHeight: headerHeight
     };
-}
-
-// Verify does user has Webkit browser
-function isWebkit() {
-    if (navigator.userAgent.indexOf('WebKit') !== -1) {
-        var a = navigator.userAgent;
-        return false;
-    }
-
-    return true;
 }
