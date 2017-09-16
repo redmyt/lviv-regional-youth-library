@@ -29,24 +29,10 @@ $(window).on('scroll', function () {
     }
 });
 
-// Switch on window on america animation when user goes to the woa section
-var firstWoaAnimation,
-    secondWoaAnimation;
-
 // Add click event handler for each nav-item
 $navItems.each(function () {
     $(this).on('click', function () {
         window.location.hash = this.dataset.target;
-
-        if(window.location.hash === '#window-on-america') {
-            firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 20000);
-            secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 25000);
-        } else {
-            switchOfWoaAnimation(firstWoaAnimation);
-            switchOfWoaAnimation(secondWoaAnimation);
-        }
-
-
     });
 });
 
