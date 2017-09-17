@@ -5,9 +5,6 @@ var firstWoaAnimation,
 secondWoaAnimation;
 
 
-function() {
-
-}
 if(window.location.hash === '#window-on-america') {
     firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 20000);
     secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 25000);
