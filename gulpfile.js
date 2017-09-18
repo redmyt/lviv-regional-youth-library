@@ -39,10 +39,10 @@ gulp.task('fonts', function() {
 
 gulp.task('images', function () {
     gulp.src('./src/images/**/*')
-        .pipe( imagemin({
-            progressive: true,
-            optimizationLevel: 10
-        }) )
+        // .pipe( imagemin({
+        //     progressive: true,
+        //     optimizationLevel: 10
+        // }) )
         .pipe( gulp.dest('build/images') );
 });
 
