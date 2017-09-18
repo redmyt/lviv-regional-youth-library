@@ -147,10 +147,10 @@
     display: none;
     position: relative;
     min-width: 24vw;
-    height: 51vw;
+    height: 60vw;
     background-image: url("../images/bookcase.png");
-    background-size: 50vw 70vw;
-    background-position: 40% -7vw;
+    background-size: 20vw 60vw;
+    background-position: 40% 0;
     background-repeat: no-repeat;
 
     @media #{$media880pixels} {
@@ -163,10 +163,10 @@
     flex-direction: column;
     overflow: hidden;
     position: absolute;
-    width: 12.8vw;
-    height: 28vw;
-    top: 8.6%;
-    left: 20.7%;
+    width: 13.8vw;
+    height: 35vw;
+    top: 8.8%;
+    left: 18.9%;
     border-radius: 7%;
 
     &:hover {
