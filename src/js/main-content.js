@@ -163,8 +163,10 @@ function applicationSpillingTextTruncating() {
         truncateSpillingText();
     } else {
         var $truncatedParagraphs = $('.main-content-article__body').find('p:first-of-type');
-        $truncatedParagraphs.trunk8('revert');
-        $('.read-more, read-less').remove();
+        if ($truncatedParagraphs.hasClass('main-content-article__paragraph_style_trunkated')) {
+            $truncatedParagraphs.trunk8('revert');
+            $('.read-more, read-less').remove();
+        }
     }
 }
 
