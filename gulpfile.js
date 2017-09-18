@@ -27,7 +27,7 @@ gulp.task('sass', function() {
 
 gulp.task('js', function() {
     gulp.src( require('./dependencies.json').js )
-        // .pipe( uglify() )
+        .pipe( uglify() )
         .pipe( concat('main.js') )
         .pipe( gulp.dest('build/js/') );
 });
@@ -39,10 +39,10 @@ gulp.task('fonts', function() {
 
 gulp.task('images', function () {
     gulp.src('./src/images/**/*')
-        // .pipe( imagemin({
-        //     progressive: true,
-        //     optimizationLevel: 10
-        // }) )
+        .pipe( imagemin({
+            progressive: true,
+            optimizationLevel: 10
+        }) )
         .pipe( gulp.dest('build/images') );
 });
 
