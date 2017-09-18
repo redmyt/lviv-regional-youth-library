@@ -1,4 +1,5 @@
 // Google maps module
+try {
 (function () {
     google.maps.event.addDomListener(window, 'load', init);
     var map, markersArray = [];
@@ -196,3 +197,6 @@
         }
     }
 })();
+} catch (e) {
+    console.log(e);
+}
