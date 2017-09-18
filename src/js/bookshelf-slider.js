@@ -25,6 +25,10 @@ $(slidingPicturesWrapper).hover(function () {
     isPaused = false;
 });
 
+slidingPicturesWrapper.on('click', function() {
+    window.location.hash = 'bookshelf';
+});
+
 // function descriptions/////////////////////////////////////////////////////////////////
 
 // Implement the slider. Change scroll position of picture wrapper and when the scroll position of sliding elements wrapper becomes equals the first element height change the DOM position of first slider picture
