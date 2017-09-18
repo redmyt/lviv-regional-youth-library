@@ -1,8 +1,5 @@
 var $showMoreButton = $('.news-board__more-articles-button');
 
-// Determine truncated lines amount which depend on user screen size
-var truncatedLinesAmount = $(window).width() > 556 ? 7 : 4;
-
 // Allow user read full article and show it if it wants
 $(document).on('click', '.read-more', function () {
     // Save needed article paragraphs
@@ -27,7 +24,7 @@ $(document).on('click', '.read-less', function () {
         $firstArticleParagraph = $(this).parents('.main-content-article__body').children('p:first-of-type');
     $allArticleParagraphs.removeClass('main-content-article__paragraph_style_visible');
     $firstArticleParagraph.trunk8({
-        lines: truncatedLinesAmount
+        lines: getTruncatedLinesAmount()
     });
     var navigationHeight = getHeaderItemsParameters().navigationHeight;
     $(window).scrollTop(currentArticlePosition - navigationHeight);
@@ -155,7 +152,7 @@ function truncateSpillingText() {
     var $truncatedParagraphs = $('.main-content-article__body').find('p:first-of-type');
     $truncatedParagraphs.addClass('main-content-article__paragraph_style_trunkated');
     $truncatedParagraphs.trunk8({
-        lines: truncatedLinesAmount,
+        lines: getTruncatedLinesAmount(),
         fill: '<a class="read-more truncated-button page-link">&nbsp;&raquo;&nbsp;</a>'
     });
 }
@@ -164,6 +161,10 @@ function truncateSpillingText() {
 function applicationSpillingTextTruncating() {
     if (parseInt( $(window).width() ) < 880) {
         truncateSpillingText();
+    } else {
+        var $truncatedParagraphs = $('.main-content-article__body').find('p:first-of-type');
+        $truncatedParagraphs.trunk8('revert');
+        $('.read-more, read-less').remove();
     }
 }
 
@@ -209,4 +210,9 @@ function switchOfWoaAnimation(animation) {
     if (animation) {
         clearInterval(animation);
     }
+}
+
+// Determine truncated lines amount which depend on user screen size
+function getTruncatedLinesAmount() {
+    return $(window).width() > 556 ? 7 : 4;
 }

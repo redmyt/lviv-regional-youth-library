@@ -39,8 +39,11 @@ window.onhashchange = function() {
         });
     }
 };
-
 window.onhashchange();
+
+window.onresize = function() {
+    applicationSpillingTextTruncating();
+}
 
 function verifyHash(currentHash, availableHashes) {
     var isHashCorrect = false;
