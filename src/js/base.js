@@ -1,5 +1,5 @@
 var availableHashes = getAvailableHashes(),
-    $scrollElement = isOpera() ? $('body') : $('html'),
+    $scrollElement = isWebKit() ? $('body') : $('html'),
     firstWoaAnimation,
     secondWoaAnimation;
 
@@ -7,13 +7,13 @@ window.onhashchange = function() {
     var currentHash = window.location.hash.slice(1),
         isHashCorrect = verifyHash(currentHash, availableHashes),
         activeViewClass = isHashCorrect ? '.' + currentHash : '.news-board',
-        activeNavLinkSelector = isHashCorrect ? '[data-target="' + currentHash + '"]' : '[data-target="news-board"]',
+        activeNavItemSelector = isHashCorrect ? '[data-target="' + currentHash + '"]' : '[data-target="news-board"]',
         $activeView = $(activeViewClass),
-        $activeNavLink = $(activeNavLinkSelector);
+        $activeNavItem = $(activeNavItemSelector);
 
     // Get visible main content item and active navigation link
     emphasizeOneOfTheSetElement($activeView, $mainContentItems, 'main-content__item_active');
-    emphasizeOneOfTheSetElement($activeNavLink, $navItems, 'navigation__item_active');
+    emphasizeOneOfTheSetElement($activeNavItem, $navItems, 'navigation__item_active');
     applicationSpillingTextTruncating();
 
     // Switch on or switch off woa animation
@@ -77,8 +77,8 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
 }
 
 // Verify does user has Webkit browser
-function isOpera() {
-    if (navigator.userAgent.indexOf('OPR') === -1) {
+function isWebKit() {
+    if (navigator.userAgent.indexOf('WebKit') === -1) {
         return false;
     }
 
