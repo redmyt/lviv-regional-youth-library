@@ -29,13 +29,6 @@ $(window).on('scroll', function () {
     }
 });
 
-// Add click event handler for each nav-item
-$navItems.each(function () {
-    $(this).on('click', function () {
-        window.location.hash = this.dataset.target;
-    });
-});
-
 // Show or hide collapsed menu when user click the collapsed button
 $collapsedButton.on('click', function () {
     $navItemsList.toggleClass('navigation__items-list_style_collapsed');

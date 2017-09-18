@@ -56,10 +56,14 @@ function verifyHash(currentHash, availableHashes) {
 }
 
 function getAvailableHashes() {
-    var availableHashes = [];
-    $navItems.each(function(index, element) {
-        var navItemHash = element.dataset.target;
-        availableHashes.push(navItemHash);
+    var availableHashes = [],
+        $navLinks = $('.navigation__link');
+
+    $navLinks.each(function(index, element) {
+        var navLinkHref = element.href,
+            navLinkHash = navLinkHref.slice(navLinkHref.indexOf('#') + 1);
+
+        availableHashes.push(navLinkHash);
     });
 
     return availableHashes;
