@@ -1,5 +1,7 @@
 var availableHashes = getAvailableHashes(),
-    $scrollElement = isOpera() ? $('body') : $('html');
+    $scrollElement = isOpera() ? $('body') : $('html'),
+    firstWoaAnimation,
+    secondWoaAnimation;
 
 window.onhashchange = function() {
     var currentHash = window.location.hash.slice(1),
@@ -13,6 +15,15 @@ window.onhashchange = function() {
     emphasizeOneOfTheSetElement($activeView, $mainContentItems, 'main-content__item_active');
     emphasizeOneOfTheSetElement($activeNavLink, $navItems, 'navigation__item_active');
     applicationSpillingTextTruncating();
+
+    // Switch on or switch off woa animation
+    if(currentHash === 'window-on-america') {
+        firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 20000);
+        secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 25000);
+    } else {
+        switchOfWoaAnimation(firstWoaAnimation);
+        switchOfWoaAnimation(secondWoaAnimation);
+    }
 
     // Set the window scroll top at the beginning of the main content section
     var navigationHeight = getHeaderItemsParameters().navigationHeight,
