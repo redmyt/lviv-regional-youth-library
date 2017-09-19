@@ -41,8 +41,12 @@ window.onhashchange = function() {
 };
 window.onhashchange();
 
+var lastWindowWidth = $(window).width();
 window.onresize = function() {
-    applicationSpillingTextTruncating();
+    if ($(window).width() !== lastWindowWidth) {
+        applicationSpillingTextTruncating();
+        lastWindowWidth = $(window).width();
+    }
 }
 
 function verifyHash(currentHash, availableHashes) {
