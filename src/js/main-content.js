@@ -175,35 +175,38 @@ var $firstWindowOnAmericaImage = $('.window-on-america__first-animate-picture'),
 
 // Apply the woa pictures animation when user go to woa section
 function switchOnWoaAnimation(animateImages, animationDuration) {
-    var windowOnAmericaAnimationIterator = 0;
-    setWindowOnAmericaAnimationIterator(animateImages);
+    var windowOnAmericaAnimationIterator = setWindowOnAmericaAnimationIterator(animateImages);
 
     return setInterval(function () {
         windowOnAmericaImageAnimation(animateImages);
     }, animationDuration);
-
+    
     // Implement the pictures animation
     function windowOnAmericaImageAnimation(animateImages) {
         var currentAnimatePicture = animateImages[windowOnAmericaAnimationIterator];
         windowOnAmericaAnimationIterator = (windowOnAmericaAnimationIterator === animateImages.length - 1) ? 0 : windowOnAmericaAnimationIterator + 1;
         var nextAnimatePicture = animateImages[windowOnAmericaAnimationIterator];
         $(currentAnimatePicture).removeClass('window-on-america__animate-picture_visible', {
-            duration: 2500,
-            complete: function () {
-                $(currentAnimatePicture).removeClass('window-on-america__animate-picture_inline');
-                $(nextAnimatePicture).addClass('window-on-america__animate-picture_inline');
-                $(nextAnimatePicture).addClass('window-on-america__animate-picture_visible', 2500);
+            duration: 3000,
+            complete: function() {
+                $(nextAnimatePicture).addClass('window-on-america__animate-picture_visible', 3000);
             }
         });
     }
 
     // Set the actual animation iterator for woa images animation
     function setWindowOnAmericaAnimationIterator(animateImages) {
-        animateImages.each(function (animateImageIndex, animateImage) {
-            if ( $(animateImage).hasClass('window-on-america__animate-picture_visible') ) {
-                windowOnAmericaAnimationIterator = animateImageIndex;
+
+        var windowOnAmericaAnimationIterator;
+
+        for (var i = 0; i < animateImages.length; i++) {
+            if ($(animateImages[i]).hasClass('window-on-america__animate-picture_visible')) {
+                windowOnAmericaAnimationIterator = i;
+                break;
             }
-        });
+        }
+
+        return windowOnAmericaAnimationIterator;
     }
 }
 

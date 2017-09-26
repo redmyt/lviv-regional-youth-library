@@ -119,7 +119,9 @@
     }
 
     &__picture-wrapper {
+        position: relative;
         height: 50vw;
+        width: 100%;
 
         @media #{$media880pixels} {
             height: 18vw;
@@ -127,17 +129,13 @@
     }
 
     &__animate-picture {
+        position: absolute;
         opacity: 0;
-        display: none;
         max-height: 100%;
     }
 
     &__animate-picture_visible {
         opacity: 1;
-    }
-
-    &__animate-picture_inline {
-        display: inline;
     }
 }
 

@@ -17,9 +17,9 @@ window.onhashchange = function() {
     applicationSpillingTextTruncating();
 
     // Switch on or switch off woa animation
-    if(currentHash === 'window-on-america') {
-        firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 20000);
-        secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 25000);
+    if (currentHash === 'window-on-america') {
+        firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 10000);
+        secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 15000);
     } else {
         switchOfWoaAnimation(firstWoaAnimation);
         switchOfWoaAnimation(secondWoaAnimation);
@@ -47,7 +47,7 @@ window.onresize = function() {
         applicationSpillingTextTruncating();
         lastWindowWidth = $(window).width();
     }
-}
+};
 
 function verifyHash(currentHash, availableHashes) {
     var isHashCorrect = false;
