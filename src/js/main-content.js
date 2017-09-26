@@ -37,21 +37,16 @@ var htmlNewsArticles = [];
 
 // Save index of the next element that must be showed on the page
 var nextShowingNewsItemIndex = 0;
-
 // Get AJAX request for the "news" document and put all separate html news articles to array 
-$.ajax({
-    type: 'GET',
-    url: './news.xml',
-    dataType: 'xml',
-    success: function (data) {
-        // Parse each xml news article to html and save them
-        $(data).find('article').each(function (index, xmlNewsArticle) {
-            var $currentArticle = parseXmlArticleItemToHtml(xmlNewsArticle, 'news');
-            htmlNewsArticles.push($currentArticle);
-        });
-        showNewsArticles();
-        applicationSpillingTextTruncating();
-    }
+$.getJSON('./news.json', function(articles) {
+
+    // Parse each xml news article to html and save them
+    articles.forEach(function (article, index) {
+        var $currentArticle = parseArticleItemToHtml(article, 'news');
+        htmlNewsArticles.push($currentArticle);
+    });
+    showNewsArticles();
+    applicationSpillingTextTruncating();
 });
 
 // Show next five invisible articles
@@ -62,31 +57,31 @@ $showMoreButton.click(function () {
 });
 
 // Array for saving all html book articles after its parsing
-var bookshelfItems = [];
+// var bookshelfItems = [];
 
 // Get AJAX request for the "books" document and put all separate html book items to array 
-$.ajax({
-    type: 'GET',
-    url: './books.xml',
-    dataType: 'xml',
-    success: function (data) {
-        // Parse each xml book item to html and save them
-        $(data).find('book').each(function (index, xmlBook) {
-            var $currentBook = parseXmlArticleItemToHtml(xmlBook, 'book');
-            bookshelfItems.push($currentBook);
-        });
+// $.ajax({
+//     type: 'GET',
+//     url: './books.xml',
+//     dataType: 'xml',
+//     success: function (data) {
+//         // Parse each xml book item to html and save them
+//         $(data).find('book').each(function (index, xmlBook) {
+//             var $currentBook = parseXmlArticleItemToHtml(xmlBook, 'book');
+//             bookshelfItems.push($currentBook);
+//         });
 
-        bookshelfItems.forEach(function (htmlBookItem) {
-            $('.bookshelf').append(htmlBookItem);
-        });
+//         bookshelfItems.forEach(function (htmlBookItem) {
+//             $('.bookshelf').append(htmlBookItem);
+//         });
 
-        switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+//         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
 
-        if (parseInt($(window).width()) < 880) {
-            truncateSpillingText();
-        }
-    }
-});
+//         if (parseInt($(window).width()) < 880) {
+//             truncateSpillingText();
+//         }
+//     }
+// });
 
 // Show five next invisible news articles 
 function showNewsArticles() {
@@ -98,7 +93,7 @@ function showNewsArticles() {
 }
 
 // Parse certain xml news article to a html news article
-function parseXmlArticleItemToHtml(xmlArticle, articleType) {
+function parseArticleItemToHtml(article, articleType) {
 
     // Create elements for the html markup
     var $article = createPageElement('<article>', 'main-content-article main-content-article_style_default main-content-article_style_day rounded'),
@@ -110,19 +105,17 @@ function parseXmlArticleItemToHtml(xmlArticle, articleType) {
     // Array for one or more articles paragraphs
     var articleParagraphs = [];
 
+    console.log(article);
     // Create needed amount of articles paragraphs
-    $(xmlArticle).find('paragraph').each(function (index, currentXmlArticleParagraph) {
+    article.paragraphs.forEach(function (currentParagraph, index) {
         var $currentParagraph = createPageElement('<p>', 'main-content-article__paragraph main-content-article__paragraph_style_default');
-        $currentParagraph.text( $(currentXmlArticleParagraph).text() );
+        $currentParagraph.text(currentParagraph);
         articleParagraphs.push($currentParagraph);
     });
 
     // Get needed value for certain xml tags and set element's attachment
-    $articleHeading.text( $(xmlArticle).find('name').text() );
-    $articlePicture.attr( 'src', $(xmlArticle).find('image').text() );
-    if (articleType === 'book') {
-        $articlePicture.attr( 'src', './images/bookshelf-img/' + $(xmlArticle).find('image').text() );
-    }
+    $articleHeading.text(article.name);
+    $articlePicture.attr( 'src', article.image);
     $articlePictureWrapper.append($articlePicture);
     $articleBody.append($articlePictureWrapper, articleParagraphs);
 
@@ -131,7 +124,8 @@ function parseXmlArticleItemToHtml(xmlArticle, articleType) {
 
     if (articleType === 'news') {
         var $articleLink = createPageElement('<a>', 'main-content-article__link page-link');
-        $articleLink.text( $(xmlArticle).find('link').text() );
+        $articleLink.text('Дізнатись більше...');
+        $articleLink.attr('href', article.link);
         $article.append($articleLink);
     }
 
