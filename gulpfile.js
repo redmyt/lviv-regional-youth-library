@@ -27,7 +27,7 @@ gulp.task('sass', function() {
 
 gulp.task('js', function() {
     gulp.src( require('./dependencies.json').js )
-        // .pipe( uglify() )
+        .pipe( uglify() )
         .pipe( concat('main.js') )
         .pipe( gulp.dest('build/js/') );
 });
