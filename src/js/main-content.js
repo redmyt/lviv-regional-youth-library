@@ -93,7 +93,7 @@ function parseArticleItemToHtml(article, articleType) {
 
     // Create elements for the html markup
     var $article = createPageElement('<article>', 'main-content-article main-content-article_style_default main-content-article_style_day rounded'),
-        $articleHeading = createPageElement('<h3>', 'main-content-article__heading page-header'),
+        $articleHeading = (article.name) ? createPageElement('<h3>', 'main-content-article__heading page-header') : null,
         $articleBody = createPageElement('<section>', 'main-content-article__body clearfix'),
         $articlePictureWrapper = createPageElement('<figure>', 'main-content-article__picture-wrapper picture-wrapper'),
         $articlePicture = createPageElement('<img>', 'page-picture page-picture__style_default rounded');
@@ -109,18 +109,20 @@ function parseArticleItemToHtml(article, articleType) {
     });
 
     // Get needed value for certain xml tags and set element's attachment
-    $articleHeading.text(article.name);
     $articlePicture.attr( 'src', article.image);
     $articlePictureWrapper.append($articlePicture);
     $articleBody.append($articlePictureWrapper, articleParagraphs);
-
-    $article.append($articleHeading);
+    if ($articleHeading) {
+        $articleHeading.text(article.name);
+        $article.append($articleHeading);
+    }
     $article.append($articleBody);
 
     if (articleType === 'news') {
         var $articleLink = createPageElement('<a>', 'main-content-article__link page-link');
         $articleLink.text('Дізнатись більше...');
         $articleLink.attr('href', article.link);
+        $articleLink.attr('target', '_blank');
         $article.append($articleLink);
     }
 
