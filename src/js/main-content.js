@@ -57,31 +57,27 @@ $showMoreButton.click(function () {
 });
 
 // Array for saving all html book articles after its parsing
-// var bookshelfItems = [];
+var bookshelfItems = [];
 
 // Get AJAX request for the "books" document and put all separate html book items to array 
-// $.ajax({
-//     type: 'GET',
-//     url: './books.xml',
-//     dataType: 'xml',
-//     success: function (data) {
-//         // Parse each xml book item to html and save them
-//         $(data).find('book').each(function (index, xmlBook) {
-//             var $currentBook = parseXmlArticleItemToHtml(xmlBook, 'book');
-//             bookshelfItems.push($currentBook);
-//         });
+$.getJSON('./books.json', function (books) {
 
-//         bookshelfItems.forEach(function (htmlBookItem) {
-//             $('.bookshelf').append(htmlBookItem);
-//         });
+    // Parse each xml book item to html and save them
+    books.forEach(function (book, index) {
+        var $currentBook = parseArticleItemToHtml(book);
+        bookshelfItems.push($currentBook);
+    });
 
-//         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+    bookshelfItems.forEach(function (htmlBookItem) {
+        $('.bookshelf').append(htmlBookItem);
+    });
 
-//         if (parseInt($(window).width()) < 880) {
-//             truncateSpillingText();
-//         }
-//     }
-// });
+    switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+
+    if (parseInt($(window).width()) < 880) {
+        truncateSpillingText();
+    }
+});
 
 // Show five next invisible news articles 
 function showNewsArticles() {
@@ -105,7 +101,6 @@ function parseArticleItemToHtml(article, articleType) {
     // Array for one or more articles paragraphs
     var articleParagraphs = [];
 
-    console.log(article);
     // Create needed amount of articles paragraphs
     article.paragraphs.forEach(function (currentParagraph, index) {
         var $currentParagraph = createPageElement('<p>', 'main-content-article__paragraph main-content-article__paragraph_style_default');
