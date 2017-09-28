@@ -60,9 +60,12 @@
     }
 
     &__picture-wrapper {
+        margin-top: 20px;
+
         @media #{$media556pixels} {
             float: left;
             max-width: 25%;
+            margin-top: 0;
             margin-right: 4%;
         }
     }
