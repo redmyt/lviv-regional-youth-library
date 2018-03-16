@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-import mongoengine
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework_mongoengine'
 ]
 
 MIDDLEWARE = [
@@ -85,15 +83,6 @@ DATABASES = {
     }
 }
 
-#  The schema of credentials for MongoDB database.
-
-MONGODB_DATABASE = {
-    'name': 'some_db',
-    'user': 'user',
-    'pwd': '123',
-    'host': 'localhost'
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -138,8 +127,3 @@ try:
     from .local_settings import *
 except ImportError:
     pass
-
-# Create MongoDB database host url and connection to that host.
-
-MONGODB_DATABASE_HOST = 'mongodb://{user}:{pwd}@{host}/{name}'.format(**MONGODB_DATABASE)
-mongoengine.connect(MONGODB_DATABASE['name'], host=MONGODB_DATABASE_HOST)
