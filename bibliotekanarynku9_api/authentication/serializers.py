@@ -1,5 +1,5 @@
 """
-Module that describes the serializer for the User model
+Module that describes the serializer for the User model.
 """
 
 from rest_framework import serializers
