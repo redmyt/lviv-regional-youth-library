@@ -123,6 +123,35 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+# Settings for logging supports.
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'formatter': 'default',
+            'filename': os.path.join(BASE_DIR, '../bibliotekanarynku9.log'),
+        },
+    },
+    'loggers': {
+        'bibliotekanarynku9': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+    'formatters': {
+        'default': {
+            'format': '%(levelname)s %(asctime)s %(pathname)s line: %(lineno)d '
+                      'message: %(message)s',
+            'datefmt': '%d/%m/%Y %I:%M:%S'
+        },
+    },
+}
+
 # Import local settings with private credentials
 
 try:
