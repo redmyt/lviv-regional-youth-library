@@ -1,6 +1,6 @@
 """
-Module that describes the serializer for the NewsPostSerializer and
-NewsPostTranslationSerializer models
+Module that describes the serializers for the NewsPost and
+NewsPostTranslation models
 """
 
 from rest_framework import serializers
