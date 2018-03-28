@@ -3,6 +3,8 @@ Module that describes the serializers for the NewsPost and
 NewsPostTranslation models
 """
 
+# pylint: disable=duplicate-code
+
 from rest_framework import serializers
 from newspost.models import NewsPost, NewsPostTranslation
 
