@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication',
     'newspost',
-    'link'
+    'link',
+    'announcement'
 ]
 
 MIDDLEWARE = [
