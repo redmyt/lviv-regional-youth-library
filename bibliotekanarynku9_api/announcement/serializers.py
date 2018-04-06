@@ -26,7 +26,9 @@ class AnnouncementTranslationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         announcement_data = validated_data.pop('announcement')
+        links_data = announcement_data.pop('links')
         announcement = Announcement.objects.create(**announcement_data)
+        announcement.links.add(*links_data)
         announcement_translation = AnnouncementTranslation.objects.create(
             announcement=announcement,
             **validated_data)
@@ -47,6 +49,9 @@ class AnnouncementTranslationSerializer(serializers.ModelSerializer):
         instance.save()
 
         if isinstance(announcement_data, dict):
+            announcement.links = announcement_data.get(
+                'links',
+                announcement.links)
             announcement.avatar = announcement_data.get(
                 'avatar',
                 announcement.avatar)
