@@ -35,7 +35,8 @@ class AuthorTranslationSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.language = validated_data.get('language', instance.language)
         instance.first_name = validated_data.get(
-            'first_name', instance.first_name)
+            'first_name',
+            instance.first_name)
         instance.second_name = validated_data.get(
             'second_name',
             instance.second_name)

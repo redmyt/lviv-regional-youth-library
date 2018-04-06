@@ -6,6 +6,7 @@ for the multilanguage support.
 """
 
 from django.db import models
+from link.models import Link
 from utils.language import LANGUAGE_CHOICES
 
 
@@ -13,6 +14,7 @@ class Announcement(models.Model):
     """Announcement entity description"""
 
     avatar = models.CharField(max_length=150)
+    links = models.ManyToManyField(Link)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     start_at = models.DateTimeField(null=True)
 
