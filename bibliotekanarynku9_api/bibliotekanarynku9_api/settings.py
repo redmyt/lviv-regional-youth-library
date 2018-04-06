@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'authentication',
     'newspost',
     'link',
+    'author',
     'announcement',
-    'author'
+    'book',
 ]
 
 MIDDLEWARE = [
