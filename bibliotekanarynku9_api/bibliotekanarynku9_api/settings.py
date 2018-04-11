@@ -60,7 +60,7 @@ ROOT_URLCONF = 'bibliotekanarynku9_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -156,6 +156,20 @@ LOGGING = {
         },
     },
 }
+
+# Email sender settings
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = 'test@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'test'
+
+EMAIL_PORT = 123
+
+DEFAULT_FROM_EMAIL = 'test@gmail.com'
 
 # Import local settings with private credentials
 
