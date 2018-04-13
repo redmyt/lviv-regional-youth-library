@@ -157,6 +157,7 @@ LOGGING = {
     },
 }
 
+
 # Email sender settings
 
 EMAIL_USE_TLS = True
@@ -170,6 +171,14 @@ EMAIL_HOST_PASSWORD = 'test'
 EMAIL_PORT = 123
 
 DEFAULT_FROM_EMAIL = 'test@gmail.com'
+
+
+# JWT Token settings
+
+JWT_TOKEN_KEY = 'test'
+
+JWT_ALGORITHM = 'test'
+
 
 # Import local settings with private credentials
 
