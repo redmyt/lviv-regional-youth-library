@@ -181,6 +181,15 @@ JWT_TOKEN_KEY = 'test'
 JWT_ALGORITHM = 'test'
 
 
+# Settings for restframework
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser'
+    ]
+}
+
+
 # Import local settings with private credentials
 
 try:
