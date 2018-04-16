@@ -1,5 +1,5 @@
 """
-Module that describes the User entity which using for describing all
+Module that describes the CustomUser entity which using for describing all
 persons that are using the library website.
 """
 
@@ -7,8 +7,8 @@ from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 
 
-class User(AbstractBaseUser):
-    """User entity description"""
+class CustomUser(AbstractBaseUser):
+    """CustomUser entity description"""
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -21,11 +21,11 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
 
     def get_full_name(self):
-        """Method for getting full User name"""
+        """Method for getting full CustomUser name"""
 
         return f'{self.first_name} {self.last_name}'
 
     def get_short_name(self):
-        """Method for getting short User name"""
+        """Method for getting short CustomUser name"""
 
         return self.get_full_name()
