@@ -5,6 +5,7 @@ persons that are using the library website.
 
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
+from utils.logger import LOGGER
 
 
 class CustomUser(AbstractBaseUser):
@@ -29,3 +30,13 @@ class CustomUser(AbstractBaseUser):
         """Method for getting short CustomUser name"""
 
         return self.get_full_name()
+
+    @staticmethod
+    def get_by_email(email):
+        """Retrieving user by the email field"""
+
+        try:
+            user = CustomUser.objects.get(email=email)
+            return user
+        except CustomUser.DoesNotExist:
+            LOGGER.error(f'User with email:{email} does not exist')
