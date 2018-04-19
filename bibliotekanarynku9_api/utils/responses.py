@@ -11,6 +11,11 @@ RESPONSE_201_REGISTERED = Response(
     status=status.HTTP_201_CREATED
 )
 
+RESPONSE_200_ACTIVATED = Response(
+    'Email successfully confirm.',
+    status=status.HTTP_200_OK
+)
+
 # status code 4xx
 
 RESPONSE_400_EMPTY_REQUEST = Response(
@@ -24,3 +29,13 @@ RESPONSE_400_INVALID_DATA = Response(
 RESPONSE_400_FAILED_CREATION = Response(
     'Failed object creation',
     status=status.HTTP_400_BAD_REQUEST)
+
+RESPONSE_400_INVALID_TOKEN = Response(
+    'Empty or invalid token received',
+    status=status.HTTP_400_BAD_REQUEST
+)
+
+RESPONSE_400_INVALID_EMAIL = Response(
+    'Invalid email received',
+    status=status.HTTP_404_NOT_FOUND
+)
