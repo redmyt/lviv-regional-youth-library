@@ -16,6 +16,11 @@ RESPONSE_200_ACTIVATED = Response(
     status=status.HTTP_200_OK
 )
 
+RESPONSE_200_LOGGED = Response(
+    'User successfully signed in',
+    status=status.HTTP_200_OK
+)
+
 # status code 4xx
 
 RESPONSE_400_EMPTY_REQUEST = Response(
@@ -38,4 +43,9 @@ RESPONSE_400_INVALID_TOKEN = Response(
 RESPONSE_400_INVALID_EMAIL = Response(
     'Invalid email received',
     status=status.HTTP_404_NOT_FOUND
+)
+
+RESPONSE_400_INVALID_EMAIL_OR_PASSWORD = Response(
+    'Invalid email or password received',
+    status=status.HTTP_400_BAD_REQUEST
 )

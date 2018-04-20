@@ -12,3 +12,11 @@ def password_validator(password):
         return True
     except ValidationError:
         return False
+
+
+def required_keys_validator(data, required_keys):
+    """Function that validates the required field in accepted dict."""
+
+    keys = set(data.keys())
+    required_keys = set(required_keys)
+    return not required_keys.difference(keys)
