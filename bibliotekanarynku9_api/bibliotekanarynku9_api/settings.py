@@ -47,6 +47,12 @@ INSTALLED_APPS = [
     'customuser'
 ]
 
+
+# Settings for override the default user model
+
+AUTH_USER_MODEL = 'customuser.CustomUser'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

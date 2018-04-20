@@ -3,6 +3,7 @@ Module that describes the CustomUser entity which using for describing all
 persons that are using the library website.
 """
 
+from django.contrib.auth.models import UserManager
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from utils.logger import LOGGER
@@ -20,6 +21,7 @@ class CustomUser(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
 
     USERNAME_FIELD = 'email'
+    objects = UserManager()
 
     def get_full_name(self):
         """Method for getting full CustomUser name"""
