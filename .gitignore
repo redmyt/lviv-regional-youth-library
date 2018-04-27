@@ -109,3 +109,6 @@ node_modules/
 
 # PyCharm
 .idea/
+
+# VSCode
+.vscode/

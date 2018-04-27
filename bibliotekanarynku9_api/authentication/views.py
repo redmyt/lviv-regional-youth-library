@@ -14,7 +14,8 @@ from utils.responses import (RESPONSE_200_ACTIVATED,
                              RESPONSE_400_FAILED_CREATION,
                              RESPONSE_400_INVALID_TOKEN,
                              RESPONSE_400_INVALID_EMAIL,
-                             RESPONSE_400_INVALID_EMAIL_OR_PASSWORD)
+                             RESPONSE_400_INVALID_EMAIL_OR_PASSWORD,
+                             RESPONSE_400_UNEXPECTED_PARAMETERS)
 from utils.send_email import send_email
 from utils.validators import required_keys_validator
 
@@ -52,11 +53,14 @@ class AuthenticationViewSet(viewsets.ViewSet):
         return RESPONSE_201_REGISTERED
 
     @staticmethod
-    @action(detail=False)
-    def activate(request):
+    @action(detail=False, url_path='activate/(?P<token>.+)')
+    def activate(request, token):
         """User activation handles."""
 
-        data = handle_token(request.query_params.get('token'))
+        if request.query_params:
+            return RESPONSE_400_UNEXPECTED_PARAMETERS
+
+        data = handle_token(token)
         if not data:
             return RESPONSE_400_INVALID_TOKEN
 
