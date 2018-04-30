@@ -3,13 +3,13 @@ Module that describes the CustomUser entity which using for describing all
 persons that are using the library website.
 """
 
-from django.contrib.auth.models import UserManager
+from django.contrib.auth.models import UserManager, PermissionsMixin
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from utils.logger import LOGGER
 
 
-class CustomUser(AbstractBaseUser):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
     """CustomUser entity description"""
 
     first_name = models.CharField(max_length=30)
