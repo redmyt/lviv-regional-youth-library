@@ -49,3 +49,8 @@ RESPONSE_400_INVALID_EMAIL_OR_PASSWORD = Response(
     'Invalid email or password received',
     status=status.HTTP_400_BAD_REQUEST
 )
+
+RESPONSE_400_UNEXPECTED_PARAMETERS = Response(
+    'Unexpected parameters received',
+    status=status.HTTP_400_BAD_REQUEST
+)
