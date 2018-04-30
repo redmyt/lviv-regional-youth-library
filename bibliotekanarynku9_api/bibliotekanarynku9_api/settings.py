@@ -188,6 +188,11 @@ JWT_TOKEN_KEY = 'test'
 JWT_ALGORITHM = 'test'
 
 
+# Superuser email for admin group verification
+
+SUPERUSER_EMAIL = 'test@gmail.com'
+
+
 # Settings for restframework
 
 REST_FRAMEWORK = {

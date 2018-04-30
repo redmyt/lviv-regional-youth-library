@@ -21,6 +21,16 @@ RESPONSE_200_LOGGED = Response(
     status=status.HTTP_200_OK
 )
 
+RESPONSE_200_ADMINS_REQUESTED = Response(
+    'User request for join Admins group successfully sended',
+    status=status.HTTP_200_OK
+)
+
+RESPONSE_200_ADMINS_JOINED = Response(
+    'User successfully join to Admins group',
+    status=status.HTTP_200_OK
+)
+
 # status code 4xx
 
 RESPONSE_400_EMPTY_REQUEST = Response(
@@ -53,4 +63,14 @@ RESPONSE_400_INVALID_EMAIL_OR_PASSWORD = Response(
 RESPONSE_400_UNEXPECTED_PARAMETERS = Response(
     'Unexpected parameters received',
     status=status.HTTP_400_BAD_REQUEST
+)
+
+RESPONSE_400_ADMINS_GROUP_INACCESSIBLE = Response(
+    'Cannot get access to Admins group',
+    status=status.HTTP_404_NOT_FOUND
+)
+
+RESPONSE_400_USER_ALREADY_ADMIN = Response(
+    'User already is in Admins group',
+    status=status.HTTP_403_FORBIDDEN
 )
