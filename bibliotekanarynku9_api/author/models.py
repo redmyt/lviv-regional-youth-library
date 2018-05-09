@@ -19,7 +19,7 @@ class AuthorTranslation(models.Model):
     """AuthorTranslation entity description"""
 
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    language = models.IntegerField(default=0, choices=LANGUAGE_CHOICES)
+    language = models.IntegerField(default=1, choices=LANGUAGE_CHOICES)
     first_name = models.CharField(max_length=30)
     second_name = models.CharField(max_length=30)
     updated_at = models.DateTimeField(auto_now=True)

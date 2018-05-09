@@ -23,7 +23,7 @@ class PressPostTranslation(models.Model):
 
     post = models.ForeignKey(PressPost, on_delete=models.CASCADE)
     title = models.CharField(max_length=120)
-    language = models.IntegerField(default=0, choices=LANGUAGE_CHOICES)
+    language = models.IntegerField(default=1, choices=LANGUAGE_CHOICES)
     description = models.CharField(max_length=512)
     updated_at = models.DateTimeField(auto_now=True)
 
