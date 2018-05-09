@@ -47,7 +47,7 @@ class NewsPostViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data, status=201)
 
-    def update(self, request, *args, **kwargs):
+    def update(self, request, **kwargs):
         """PUT request logic."""
 
         user = request.user
@@ -72,7 +72,7 @@ class NewsPostViewSet(viewsets.ModelViewSet):
 
         return RESPONSE_204_UPDATED
 
-    def destroy(self, request, *args, **kwargs):
+    def destroy(self, request, **kwargs):
         """DELETE request logic."""
 
         user = request.user
@@ -125,7 +125,7 @@ class NewsPostTranslationViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data, 201)
 
-    def update(self, request, *args, **kwargs):
+    def update(self, request, **kwargs):
         """PUT request logic."""
 
         user = request.user
@@ -153,7 +153,7 @@ class NewsPostTranslationViewSet(viewsets.ModelViewSet):
 
         return RESPONSE_204_UPDATED
 
-    def destroy(self, request, *args, **kwargs):
+    def destroy(self, request, **kwargs):
         """DELETE request logic."""
 
         user = request.user
