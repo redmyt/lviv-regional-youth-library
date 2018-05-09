@@ -12,8 +12,8 @@ from utils.jwt_token import create_token, handle_token
 from utils.responses import (RESPONSE_200_ADMINS_JOINED,
                              RESPONSE_200_ADMINS_REQUESTED,
                              RESPONSE_400_INVALID_TOKEN,
-                             RESPONSE_400_ADMINS_GROUP_INACCESSIBLE,
-                             RESPONSE_400_USER_ALREADY_ADMIN,
+                             RESPONSE_404_ADMINS_GROUP_INACCESSIBLE,
+                             RESPONSE_403_USER_ALREADY_ADMIN,
                              RESPONSE_400_UNEXPECTED_PARAMETERS)
 from utils.send_email import send_email
 
@@ -56,11 +56,11 @@ class AdminViewSet(viewsets.ViewSet):
         user = CustomUser.get_by_email(email=data.get('email'))
         admins_group = get_object_or_none(Group, query_args={'name': 'admins'})
         if not admins_group:
-            return RESPONSE_400_ADMINS_GROUP_INACCESSIBLE
+            return RESPONSE_404_ADMINS_GROUP_INACCESSIBLE
 
         is_user_admin = bool(admins_group.user_set.filter(pk=user.id))
         if is_user_admin:
-            return RESPONSE_400_USER_ALREADY_ADMIN
+            return RESPONSE_403_USER_ALREADY_ADMIN
 
         admins_group.user_set.add(user)
         ctx = {'first_name': user.first_name}
