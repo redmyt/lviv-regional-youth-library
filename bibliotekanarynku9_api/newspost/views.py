@@ -1,6 +1,9 @@
 """Module that describes the NewsPost logic."""
 
 from rest_framework import viewsets
+from utils.parsers import ImageParser
+from django.conf import settings
+import os
 from rest_framework.response import Response
 from newspost.models import NewsPost, NewsPostTranslation
 from newspost.serializers import NewsPostSerializer, NewsPostTranslationSerializer
@@ -36,6 +39,9 @@ class NewsPostViewSet(viewsets.ModelViewSet):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
         data = request.data
+        # import pdb; pdb.set_trace()
+        ip = ImageParser(dist=settings.MEDIA_ROOT, decoded_data=data['avatar'])
+        data['avatar'] = ip.parse()
         serializer = NewsPostSerializer(data=data)
 
         if not serializer.is_valid():
