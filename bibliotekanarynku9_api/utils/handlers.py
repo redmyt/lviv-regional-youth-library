@@ -1,4 +1,4 @@
-"""Module that contains various data parsers for the project."""
+"""Module that contains various data Handlerss for the project."""
 
 import base64
 import binascii
@@ -8,15 +8,15 @@ from django.conf import settings
 from utils.logger import LOGGER
 
 
-IMG_PARSER_ALGORITHM = 'shake_128'
-IMG_PARSER_NAME_LENGTH = 8
-IMG_PARSER_DIST = settings.MEDIA_ROOT
+IMG_HANDLER_ALGORITHM = 'shake_128'
+IMG_HANDLER_NAME_LENGTH = 8
+IMG_HANDLER_DIST = settings.MEDIA_ROOT
 
 
-class ImageParser:
-    """Parser for saving the decoded images to filesystem."""
+class ImageHandler:
+    """Handler for saving and removing the decoded images to filesystem."""
 
-    def __init__(self, dist=IMG_PARSER_DIST, algorithm=IMG_PARSER_ALGORITHM):
+    def __init__(self, dist=IMG_HANDLER_DIST, algorithm=IMG_HANDLER_ALGORITHM):
         self.hashlib = hashlib.new(algorithm)
         self.dist = dist
 
@@ -32,7 +32,7 @@ class ImageParser:
         """Create hash unique name for image."""
 
         self.hashlib.update(encoded_data)
-        return self.hashlib.hexdigest(IMG_PARSER_NAME_LENGTH)
+        return self.hashlib.hexdigest(IMG_HANDLER_NAME_LENGTH)
 
     def save_image(self, encoded_data, img_name):
         """Save image in the server filesystem."""
@@ -46,7 +46,7 @@ class ImageParser:
             LOGGER.error(f'I/O {self.__class__.__name__} error: {err}')
 
     def parse(self, decoded_data):
-        """Collective parser method."""
+        """Collective handler method."""
 
         encoded_data = self.encode_input(decoded_data)
         if not encoded_data:
@@ -54,3 +54,16 @@ class ImageParser:
 
         img_name = self.compose_name(encoded_data)
         return self.save_image(encoded_data, img_name)
+
+    @staticmethod
+    def remove_image(path):
+        """Remove file from server filesystem"""
+
+        if not os.path.isfile(path):
+            LOGGER.error(f'File with path: {path} not found for delete.')
+
+        os.remove(path)
+        return True
+
+
+IMAGE_HANDLER = ImageHandler()

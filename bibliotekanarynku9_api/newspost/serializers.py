@@ -4,25 +4,30 @@ NewsPostTranslation models
 """
 
 from rest_framework import serializers
-from newspost.models import NewsPost, NewsPostTranslation
+from newspost.models import NewsPost, NewsPostTranslation, NewsPostTranslationLink
+from utils.language import get_request_language
+
+
+class NewsPostTranslationLinkSerializer(serializers.ModelSerializer):
+    """NewsPostTranslationLinkSerializer model serializer."""
+
+    class Meta:
+        """Meta settings for serializer."""
+
+        model = NewsPostTranslationLink
+        fields = '__all__'
 
 
 class NewsPostTranslationSerializer(serializers.ModelSerializer):
     """NewsPostTranslationSerializer model serializer."""
+
+    links = NewsPostTranslationLinkSerializer(many=True, read_only=True)
 
     class Meta:
         """Meta settings for serializer."""
 
         model = NewsPostTranslation
         fields = '__all__'
-
-    def update(self, instance, validated_data):
-        """Update the newsposttranslation instance."""
-
-        if validated_data.get('post'):
-            del validated_data['post']
-
-        return super().update(instance, validated_data)
 
 
 class NewsPostSerializer(serializers.ModelSerializer):
@@ -35,3 +40,20 @@ class NewsPostSerializer(serializers.ModelSerializer):
 
         model = NewsPost
         fields = '__all__'
+
+    def to_representation(self, instance):
+        """
+        Overwrite method for filtering the output translation entities for the
+        certain post according to the Accept-Language header from request."""
+
+        retrn = super().to_representation(instance)
+        request = self.context.get('request')
+        if request:
+            lang_code = get_request_language(request)
+
+            if lang_code:
+                translations = [transl for transl in retrn['translations']
+                                if transl['language'] == lang_code]
+                retrn.update({'translations': translations})
+
+        return retrn

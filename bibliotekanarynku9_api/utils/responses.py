@@ -6,11 +6,6 @@ from rest_framework import status
 
 # status code 2xx
 
-RESPONSE_201_REGISTERED = Response(
-    'User successfully registered. Email confirmation required.',
-    status=status.HTTP_201_CREATED
-)
-
 RESPONSE_200_ACTIVATED = Response(
     'Email successfully confirm.',
     status=status.HTTP_200_OK
@@ -31,14 +26,19 @@ RESPONSE_200_ADMINS_JOINED = Response(
     status=status.HTTP_200_OK
 )
 
-RESPONSE_204_UPDATED = Response(
-    'Object successfully updated.',
-    status=status.HTTP_204_NO_CONTENT
-)
-
 RESPONSE_200_DELETED = Response(
     'Object successfully deleted.',
     status=status.HTTP_200_OK
+)
+
+RESPONSE_201_REGISTERED = Response(
+    'User successfully registered. Email confirmation required.',
+    status=status.HTTP_201_CREATED
+)
+
+RESPONSE_204_UPDATED = Response(
+    'Object successfully updated.',
+    status=status.HTTP_204_NO_CONTENT
 )
 
 # status code 4xx
@@ -75,9 +75,9 @@ RESPONSE_400_UNEXPECTED_PARAMETERS = Response(
     status=status.HTTP_400_BAD_REQUEST
 )
 
-RESPONSE_404_ADMINS_GROUP_INACCESSIBLE = Response(
-    'Cannot get access to Admins group.',
-    status=status.HTTP_404_NOT_FOUND
+RESPONSE_400_DB_INTEGRATION_FAILURE = Response(
+    'Received data does\'nt satisfy database data persistent.',
+    status=status.HTTP_400_BAD_REQUEST
 )
 
 RESPONSE_403_USER_ALREADY_ADMIN = Response(
@@ -90,12 +90,17 @@ RESPONSE_403_PERMISSIONS_REQUIRED = Response(
     status=status.HTTP_403_FORBIDDEN
 )
 
-RESPONSE_400_DB_INTEGRATION_FAILURE = Response(
-    'Received data does\'nt satisfy database data persistent.',
-    status=status.HTTP_400_BAD_REQUEST
-)
-
 RESPONSE_404_NOT_FOUND = Response(
     'Object not found.',
+    status=status.HTTP_404_NOT_FOUND
+)
+
+RESPONSE_404_NOT_FOUND_RELATED_OBJECT = Response(
+    'Relation object not found.',
+    status=status.HTTP_404_NOT_FOUND
+)
+
+RESPONSE_404_ADMINS_GROUP_INACCESSIBLE = Response(
+    'Cannot get access to Admins group.',
     status=status.HTTP_404_NOT_FOUND
 )
