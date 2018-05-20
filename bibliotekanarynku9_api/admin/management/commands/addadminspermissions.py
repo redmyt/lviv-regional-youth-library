@@ -3,26 +3,27 @@
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.management import BaseCommand
-from announcement.models import Announcement, AnnouncementTranslation
-from author.models import Author, AuthorTranslation
-from book.models import Book, BookTranslation
-from link.models import Link
-from newspost.models import NewsPost, NewsPostTranslation
-from presspost.models import PressPost, PressPostTranslation
+# from announcement.models import Announcement, AnnouncementTranslation
+# from author.models import Author, AuthorTranslation
+# from book.models import Book, BookTranslation
+# from link.models import Link
+from newspost.models import NewsPost, NewsPostTranslation, NewsPostTranslationLink
+# from presspost.models import PressPost, PressPostTranslation
 
 
 ADMINS_PERMISSIONS_MODELS = (
-    Announcement,
-    AnnouncementTranslation,
-    Author,
-    AuthorTranslation,
-    Book,
-    BookTranslation,
-    Link,
+    # Announcement,
+    # AnnouncementTranslation,
+    # Author,
+    # AuthorTranslation,
+    # Book,
+    # BookTranslation,
+    # Link,
     NewsPost,
     NewsPostTranslation,
-    PressPost,
-    PressPostTranslation
+    NewsPostTranslationLink,
+    # PressPost,
+    # PressPostTranslation
 )
 
 

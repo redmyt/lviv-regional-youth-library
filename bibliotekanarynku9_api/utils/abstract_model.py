@@ -47,7 +47,8 @@ class AbstractModel(models.Model):
         """Update the class model instance according to the accepted data."""
 
         for field, value in data.items():
-            setattr(self, field, value)
+            if hasattr(self, field):
+                setattr(self, field, value)
 
         try:
             self.save()
