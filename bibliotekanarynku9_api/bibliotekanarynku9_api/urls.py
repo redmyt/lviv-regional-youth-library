@@ -11,6 +11,9 @@ from authentication.views import AuthenticationViewSet
 from newspost.views import (NewsPostViewSet,
                             NewsPostTranslationViewSet,
                             NewsPostTranslationLinkViewSet)
+from presspost.views import (PressPostViewSet,
+                             PressPostTranslationLinkViewSet,
+                             PressPostTranslationViewSet)
 
 
 router = routers.SimpleRouter()
@@ -20,8 +23,10 @@ router = routers.SimpleRouter()
 router.register(r'auth', AuthenticationViewSet, 'authentication')
 router.register(r'admin', AdminViewSet, 'admin')
 router.register(r'news_post', NewsPostViewSet, 'newspost')
+router.register(r'press_post', PressPostViewSet, 'presspost')
 
 urlpatterns = router.urls
+
 
 # NewsPost app nested routers
 
@@ -44,3 +49,26 @@ newspost_translation_router.register(
 
 urlpatterns += newspost_router.urls
 urlpatterns += newspost_translation_router.urls
+
+
+# PressPost app nested routers
+
+presspost_router = routers.NestedSimpleRouter(
+    router,
+    r'press_post',
+    lookup='press_post')
+presspost_router.register(
+    r'translation',
+    PressPostTranslationViewSet,
+    'pressposttranslation')
+presspost_translation_router = routers.NestedSimpleRouter(
+    presspost_router,
+    r'translation',
+    lookup='translation')
+presspost_translation_router.register(
+    r'link',
+    PressPostTranslationLinkViewSet,
+    'pressposttranslationlink')
+
+urlpatterns += presspost_router.urls
+urlpatterns += presspost_translation_router.urls
