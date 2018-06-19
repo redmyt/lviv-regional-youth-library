@@ -40,10 +40,10 @@ INSTALLED_APPS = [
     'authentication',
     'newspost',
     'link',
-    # 'author',
     'book',
     'announcement',
     'presspost',
+    'author',
     'customuser',
     'admin'
 ]

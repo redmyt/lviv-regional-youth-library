@@ -3,10 +3,10 @@
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.management import BaseCommand
+from author.models import Author, AuthorTranslation
 from announcement.models import (Announcement,
                                  AnnouncementTranslation,
                                  AnnouncementTranslationLink)
-# from author.models import Author, AuthorTranslation
 from book.models import Book, BookTranslation
 # from link.models import Link
 from newspost.models import (NewsPost,
@@ -18,11 +18,11 @@ from presspost.models import (PressPost,
 
 
 ADMINS_PERMISSIONS_MODELS = (
+    Author,
+    AuthorTranslation,
     Announcement,
     AnnouncementTranslation,
     AnnouncementTranslationLink,
-    # Author,
-    # AuthorTranslation,
     Book,
     BookTranslation,
     # Link,
