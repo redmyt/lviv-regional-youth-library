@@ -8,6 +8,9 @@ The entrypoint to url tree of project.
 from rest_framework_nested import routers
 from admin.views import AdminViewSet
 from authentication.views import AuthenticationViewSet
+from announcement.views import (AnnouncementViewSet,
+                                AnnouncementTranslationViewSet,
+                                AnnouncementTranslationLinkViewSet)
 from newspost.views import (NewsPostViewSet,
                             NewsPostTranslationViewSet,
                             NewsPostTranslationLinkViewSet)
@@ -24,6 +27,7 @@ router.register(r'auth', AuthenticationViewSet, 'authentication')
 router.register(r'admin', AdminViewSet, 'admin')
 router.register(r'news_post', NewsPostViewSet, 'newspost')
 router.register(r'press_post', PressPostViewSet, 'presspost')
+router.register(r'announcement', AnnouncementViewSet, 'announcement')
 
 urlpatterns = router.urls
 
@@ -49,6 +53,29 @@ newspost_translation_router.register(
 
 urlpatterns += newspost_router.urls
 urlpatterns += newspost_translation_router.urls
+
+
+# Announcement app nested routers
+
+announcement_router = routers.NestedSimpleRouter(
+    router,
+    r'announcement',
+    lookup='announcement')
+announcement_router.register(
+    r'translation',
+    AnnouncementTranslationViewSet,
+    'announcementtranslation')
+announcement_translation_router = routers.NestedSimpleRouter(
+    announcement_router,
+    r'translation',
+    lookup='translation')
+announcement_translation_router.register(
+    r'link',
+    AnnouncementTranslationLinkViewSet,
+    'announcementtranslationlink')
+
+urlpatterns += announcement_router.urls
+urlpatterns += announcement_translation_router.urls
 
 
 # PressPost app nested routers
