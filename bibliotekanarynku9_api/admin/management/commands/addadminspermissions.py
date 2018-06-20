@@ -7,8 +7,12 @@ from django.core.management import BaseCommand
 # from author.models import Author, AuthorTranslation
 # from book.models import Book, BookTranslation
 # from link.models import Link
-from newspost.models import NewsPost, NewsPostTranslation, NewsPostTranslationLink
-# from presspost.models import PressPost, PressPostTranslation
+from newspost.models import (NewsPost,
+                             NewsPostTranslation,
+                             NewsPostTranslationLink)
+from presspost.models import (PressPost,
+                              PressPostTranslation,
+                              PressPostTranslationLink)
 
 
 ADMINS_PERMISSIONS_MODELS = (
@@ -22,8 +26,9 @@ ADMINS_PERMISSIONS_MODELS = (
     NewsPost,
     NewsPostTranslation,
     NewsPostTranslationLink,
-    # PressPost,
-    # PressPostTranslation
+    PressPost,
+    PressPostTranslation,
+    PressPostTranslationLink
 )
 
 
