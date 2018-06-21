@@ -11,6 +11,7 @@ from authentication.views import AuthenticationViewSet
 from announcement.views import (AnnouncementViewSet,
                                 AnnouncementTranslationViewSet,
                                 AnnouncementTranslationLinkViewSet)
+from book.views import BookViewSet, BookTranslationViewSet
 from newspost.views import (NewsPostViewSet,
                             NewsPostTranslationViewSet,
                             NewsPostTranslationLinkViewSet)
@@ -28,6 +29,7 @@ router.register(r'admin', AdminViewSet, 'admin')
 router.register(r'news_post', NewsPostViewSet, 'newspost')
 router.register(r'press_post', PressPostViewSet, 'presspost')
 router.register(r'announcement', AnnouncementViewSet, 'announcement')
+router.register(r'book', BookViewSet, 'book')
 
 urlpatterns = router.urls
 
@@ -51,8 +53,24 @@ newspost_translation_router.register(
     NewsPostTranslationLinkViewSet,
     'newsposttranslationlink')
 
-urlpatterns += newspost_router.urls
-urlpatterns += newspost_translation_router.urls
+
+# Book app nested routers
+
+book_router = routers.NestedSimpleRouter(
+    router,
+    r'book',
+    lookup='book')
+book_router.register(
+    r'translation',
+    BookTranslationViewSet,
+    'booktranslation')
+book_translation_router = routers.NestedSimpleRouter(
+    book_router,
+    r'translation',
+    lookup='translation')
+
+urlpatterns += book_router.urls
+urlpatterns += book_translation_router.urls
 
 
 # Announcement app nested routers
