@@ -15,6 +15,9 @@ from newspost.models import (NewsPost,
 from presspost.models import (PressPost,
                               PressPostTranslation,
                               PressPostTranslationLink)
+from project.models import (Project,
+                            ProjectTranslation,
+                            ProjectTranslationLink)
 
 
 ADMINS_PERMISSIONS_MODELS = (
@@ -31,7 +34,10 @@ ADMINS_PERMISSIONS_MODELS = (
     NewsPostTranslationLink,
     PressPost,
     PressPostTranslation,
-    PressPostTranslationLink
+    PressPostTranslationLink,
+    Project,
+    ProjectTranslation,
+    ProjectTranslationLink
 )
 
 

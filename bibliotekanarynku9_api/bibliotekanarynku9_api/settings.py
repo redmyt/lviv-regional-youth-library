@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'presspost',
     'author',
     'customuser',
-    'admin'
+    'admin',
+    'project'
 ]
 
 
