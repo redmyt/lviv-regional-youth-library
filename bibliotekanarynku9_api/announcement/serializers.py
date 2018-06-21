@@ -4,60 +4,53 @@ AnnouncementTranslation models
 """
 
 from rest_framework import serializers
-from announcement.models import Announcement, AnnouncementTranslation
+from announcement.models import (Announcement,
+                                 AnnouncementTranslation,
+                                 AnnouncementTranslationLink)
+from utils.language import filter_serialized_translations
 
 
-class AnnouncementSerializer(serializers.ModelSerializer):
-    """Announcement model serializer"""
+class AnnouncementTranslationLinkSerializer(serializers.ModelSerializer):
+    """AnnouncementTranslationLinkSerializer model serializer."""
 
     class Meta:
-        model = Announcement
+        """Meta settings for serializer."""
+
+        model = AnnouncementTranslationLink
         fields = '__all__'
 
 
 class AnnouncementTranslationSerializer(serializers.ModelSerializer):
     """AnnouncementTranslationSerializer model serializer"""
 
-    announcement = AnnouncementSerializer()
+    links = AnnouncementTranslationLinkSerializer(many=True, read_only=True)
 
     class Meta:
+        """Meta settings for serializer."""
+
         model = AnnouncementTranslation
         fields = '__all__'
 
-    def create(self, validated_data):
-        announcement_data = validated_data.pop('announcement')
-        links_data = announcement_data.pop('links')
-        announcement = Announcement.objects.create(**announcement_data)
-        announcement.links.add(*links_data)
-        announcement_translation = AnnouncementTranslation.objects.create(
-            announcement=announcement,
-            **validated_data)
-        return announcement_translation
 
-    def update(self, instance, validated_data):
-        announcement_data = validated_data.pop('announcement')
-        announcement = instance.announcement
+class AnnouncementSerializer(serializers.ModelSerializer):
+    """Announcement model serializer"""
 
-        instance.language = validated_data.get('language', instance.language)
-        instance.title = validated_data.get('title', instance.title)
-        instance.description = validated_data.get(
-            'description',
-            instance.description)
-        instance.organizer = validated_data.get(
-            'organizer',
-            instance.organizer)
-        instance.save()
+    translations = AnnouncementTranslationSerializer(many=True, read_only=True)
 
-        if isinstance(announcement_data, dict):
-            announcement.links = announcement_data.get(
-                'links',
-                announcement.links)
-            announcement.avatar = announcement_data.get(
-                'avatar',
-                announcement.avatar)
-            announcement.start_at = announcement_data.get(
-                'start_at',
-                announcement.start_at)
-            announcement.save()
+    class Meta:
+        """Meta settings for serializer."""
 
-        return instance
+        model = Announcement
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        """
+        Overwrite method for filtering the output translation entities for the
+        certain announcement according to the Accept-Language header
+        from request.
+        """
+
+        ann_data = super().to_representation(instance)
+        request = self.context.get('request')
+        result = filter_serialized_translations(ann_data, request)
+        return result
