@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'newspost',
     'link',
     # 'author',
+    'book',
     'announcement',
-    # 'book',
     'presspost',
     'customuser',
     'admin'

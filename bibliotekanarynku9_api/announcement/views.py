@@ -96,7 +96,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
         avatar = ann.avatar
         is_delete = Announcement.delete_by_id(ann_pk)
         if not is_delete:
-            return RESPONSE_404_NOT_FOUND
+            return RESPONSE_400_DB_INTEGRATION_FAILURE
 
         IMAGE_HANDLER.remove_image(avatar)
         return RESPONSE_200_DELETED
