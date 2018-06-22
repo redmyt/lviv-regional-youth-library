@@ -8,7 +8,7 @@ from announcement.models import (Announcement,
                                  AnnouncementTranslation,
                                  AnnouncementTranslationLink)
 from book.models import Book, BookTranslation
-# from link.models import Link
+from link.models import Link
 from newspost.models import (NewsPost,
                              NewsPostTranslation,
                              NewsPostTranslationLink)
@@ -25,7 +25,7 @@ ADMINS_PERMISSIONS_MODELS = (
     AnnouncementTranslationLink,
     Book,
     BookTranslation,
-    # Link,
+    Link,
     NewsPost,
     NewsPostTranslation,
     NewsPostTranslationLink,
