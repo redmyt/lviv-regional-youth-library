@@ -19,6 +19,9 @@ from newspost.views import (NewsPostViewSet,
 from presspost.views import (PressPostViewSet,
                              PressPostTranslationLinkViewSet,
                              PressPostTranslationViewSet)
+from project.views import (ProjectViewSet,
+                           ProjectTranslationViewSet,
+                           ProjectTranslationLinkViewSet)
 
 
 router = routers.SimpleRouter()
@@ -32,6 +35,7 @@ router.register(r'author', AuthorViewSet, 'author')
 router.register(r'press_post', PressPostViewSet, 'presspost')
 router.register(r'announcement', AnnouncementViewSet, 'announcement')
 router.register(r'book', BookViewSet, 'book')
+router.register(r'project', ProjectViewSet, 'project')
 
 urlpatterns = router.urls
 
@@ -138,3 +142,26 @@ author_translation_router = routers.NestedSimpleRouter(
 
 urlpatterns += author_router.urls
 urlpatterns += author_translation_router.urls
+
+
+# Project app nested routers
+
+project_router = routers.NestedSimpleRouter(
+    router,
+    r'project',
+    lookup='project')
+project_router.register(
+    r'translation',
+    ProjectTranslationViewSet,
+    'projecttranslation')
+project_translation_router = routers.NestedSimpleRouter(
+    project_router,
+    r'translation',
+    lookup='translation')
+project_translation_router.register(
+    r'link',
+    ProjectTranslationLinkViewSet,
+    'projecttranslationlink')
+
+urlpatterns += project_router.urls
+urlpatterns += project_translation_router.urls
