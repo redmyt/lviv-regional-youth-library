@@ -11,49 +11,38 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('author', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PressPost',
+            name='Book',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('avatar', models.CharField(max_length=150)),
+                ('published_at', models.DateTimeField(null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
+                ('authors', models.ManyToManyField(to='author.Author')),
             ],
             options={
                 'abstract': False,
             },
         ),
         migrations.CreateModel(
-            name='PressPostTranslation',
+            name='BookTranslation',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=120)),
                 ('language', models.IntegerField(choices=[(1, 'uk'), (2, 'en')], default=1)),
-                ('description', models.CharField(max_length=512)),
+                ('description', models.CharField(max_length=4096)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='translations', to='presspost.PressPost')),
+                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='translations', to='book.Book')),
             ],
-        ),
-        migrations.CreateModel(
-            name='PressPostTranslationLink',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('label', models.CharField(max_length=150)),
-                ('href', models.URLField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('translation', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='links', to='presspost.PressPostTranslation')),
-            ],
-            options={
-                'abstract': False,
-            },
         ),
         migrations.AlterUniqueTogether(
-            name='pressposttranslation',
-            unique_together=set([('post', 'language')]),
+            name='booktranslation',
+            unique_together=set([('book', 'language')]),
         ),
     ]
