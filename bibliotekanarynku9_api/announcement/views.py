@@ -69,11 +69,15 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
             return RESPONSE_404_NOT_FOUND
 
         ann_data = request.data
+        ann_avatar = IMAGE_HANDLER.parse(ann_data.get('avatar'))
+        if ann_avatar:
+            ann_data['avatar'] = ann_avatar
         serializer = AnnouncementSerializer(ann, data=ann_data, partial=True)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
+        IMAGE_HANDLER.remove_image(ann.avatar)
         ann = serializer.save()
         if not ann:
             return RESPONSE_400_DB_INTEGRATION_FAILURE

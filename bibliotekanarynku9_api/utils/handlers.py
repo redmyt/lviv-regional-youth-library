@@ -48,9 +48,12 @@ class ImageHandler:
     def parse(self, decoded_data):
         """Collective handler method."""
 
+        if not decoded_data:
+            return False
+
         encoded_data = self.encode_input(decoded_data)
         if not encoded_data:
-            return None
+            return False
 
         img_name = self.compose_name(encoded_data)
         return self.save_image(encoded_data, img_name)
@@ -61,6 +64,7 @@ class ImageHandler:
 
         if not os.path.isfile(path):
             LOGGER.error(f'File with path: {path} not found for delete.')
+            return False
 
         os.remove(path)
         return True

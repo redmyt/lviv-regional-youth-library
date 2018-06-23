@@ -64,11 +64,15 @@ class BookViewSet(viewsets.ModelViewSet):
             return RESPONSE_404_NOT_FOUND
 
         book_data = request.data
+        book_avatar = IMAGE_HANDLER.parse(book_data.get('avatar'))
+        if book_avatar:
+            book_data['avatar'] = book_avatar
         serializer = BookSerializer(book, data=book_data, partial=True)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
+        IMAGE_HANDLER.remove_image(book.avatar)
         book = serializer.save()
         if not book:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
