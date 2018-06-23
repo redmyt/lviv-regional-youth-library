@@ -43,6 +43,7 @@ class ImageHandler:
                 img.write(base64.b64decode(encoded_data, validate=True))
                 return path
         except (IOError, binascii.Error) as err:
+            os.remove(path)
             LOGGER.error(f'I/O {self.__class__.__name__} error: {err}')
 
     def parse(self, decoded_data):

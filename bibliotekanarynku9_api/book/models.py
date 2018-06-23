@@ -14,7 +14,7 @@ from utils.language import LANGUAGE_CHOICES
 class Book(AbstractModel):
     """Book entity description"""
 
-    authors = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author, blank=True)
     avatar = models.CharField(max_length=150)
     published_at = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)

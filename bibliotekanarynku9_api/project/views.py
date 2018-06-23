@@ -233,7 +233,7 @@ class ProjectTranslationLinkViewSet(viewsets.ModelViewSet):
 
         proj_transl = ProjectTranslation.get_by_id(proj_transl_pk)
         if not proj_transl:
-            return RESPONSE_404_NOT_FOUND
+            return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
         if not proj_transl.post.id == proj_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT

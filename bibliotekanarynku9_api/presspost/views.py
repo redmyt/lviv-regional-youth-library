@@ -231,7 +231,7 @@ class PressPostTranslationLinkViewSet(viewsets.ModelViewSet):
         ppost_transl = PressPostTranslation.get_by_id(ppost_transl_pk)
 
         if not ppost_transl:
-            return RESPONSE_404_NOT_FOUND
+            return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
         if not ppost_transl.post.id == ppost_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
