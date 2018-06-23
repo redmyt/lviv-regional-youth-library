@@ -233,7 +233,7 @@ class AnnouncementTranslationLinkViewSet(viewsets.ModelViewSet):
 
         ann_transl = AnnouncementTranslation.get_by_id(ann_transl_pk)
         if not ann_transl:
-            return RESPONSE_404_NOT_FOUND
+            return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
         if not ann_transl.announcement.id == ann_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT

@@ -230,7 +230,7 @@ class NewsPostTranslationLinkViewSet(viewsets.ModelViewSet):
 
         npost_transl = NewsPostTranslation.get_by_id(npost_transl_pk)
         if not npost_transl:
-            return RESPONSE_404_NOT_FOUND
+            return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
         if not npost_transl.post.id == npost_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
