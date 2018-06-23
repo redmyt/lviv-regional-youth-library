@@ -69,11 +69,15 @@ class ProjectViewSet(viewsets.ModelViewSet):
             return RESPONSE_404_NOT_FOUND
 
         proj_data = request.data
+        proj_avatar = IMAGE_HANDLER.parse(proj_data.get('avatar'))
+        if proj_avatar:
+            proj_data['avatar'] = proj_avatar
         serializer = ProjectSerializer(proj, data=proj_data, partial=True)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
+        IMAGE_HANDLER.remove_image(proj.avatar)
         proj = serializer.save()
         if not proj:
             return RESPONSE_400_DB_INTEGRATION_FAILURE

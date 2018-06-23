@@ -69,11 +69,15 @@ class NewsPostViewSet(viewsets.ModelViewSet):
             return RESPONSE_404_NOT_FOUND
 
         npost_data = request.data
+        npost_avatar = IMAGE_HANDLER.parse(npost_data.get('avatar'))
+        if npost_avatar:
+            npost_data['avatar'] = npost_avatar
         serializer = NewsPostSerializer(npost, data=npost_data, partial=True)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
+        IMAGE_HANDLER.remove_image(npost.avatar)
         npost = serializer.save()
         if not npost:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
