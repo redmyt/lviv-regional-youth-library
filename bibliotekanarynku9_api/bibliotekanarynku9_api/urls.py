@@ -59,6 +59,9 @@ newspost_translation_router.register(
     NewsPostTranslationLinkViewSet,
     'newsposttranslationlink')
 
+urlpatterns += newspost_router.urls
+urlpatterns += newspost_translation_router.urls
+
 
 # Book app nested routers
 

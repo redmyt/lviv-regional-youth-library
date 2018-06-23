@@ -42,15 +42,15 @@ class NewsPostViewSet(viewsets.ModelViewSet):
         if not user.has_perm(POST_CREATE_PERM):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
-        data = request.data
-        data['avatar'] = IMAGE_HANDLER.parse(data.get('avatar'))
-        serializer = NewsPostSerializer(data=data)
+        npost_data = request.data
+        npost_data['avatar'] = IMAGE_HANDLER.parse(npost_data.get('avatar'))
+        serializer = NewsPostSerializer(data=npost_data)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        post = serializer.save()
-        if not post:
+        npost = serializer.save()
+        if not npost:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
         return Response(serializer.data, status=201)
@@ -59,23 +59,23 @@ class NewsPostViewSet(viewsets.ModelViewSet):
         """PUT request logic."""
 
         user = request.user
-        post_pk = int(kwargs['pk'])
+        npost_pk = int(kwargs['pk'])
 
         if not user.has_perm(POST_UPDATE_PERM):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
-        post = NewsPost.get_by_id(post_pk)
-        if not post:
+        npost = NewsPost.get_by_id(npost_pk)
+        if not npost:
             return RESPONSE_404_NOT_FOUND
 
-        data = request.data
-        serializer = NewsPostSerializer(post, data=data, partial=True)
+        npost_data = request.data
+        serializer = NewsPostSerializer(npost, data=npost_data, partial=True)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        post = serializer.save()
-        if not post:
+        npost = serializer.save()
+        if not npost:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
         return RESPONSE_204_UPDATED
@@ -84,15 +84,19 @@ class NewsPostViewSet(viewsets.ModelViewSet):
         """DELETE request logic."""
 
         user = request.user
-        post_pk = int(kwargs['pk'])
+        npost_pk = int(kwargs['pk'])
 
         if not user.has_perm(POST_DELETE_PERM):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
-        avatar = NewsPost.get_by_id(post_pk).avatar
-        is_delete = NewsPost.delete_by_id(post_pk)
-        if not is_delete:
+        npost = NewsPost.get_by_id(npost_pk)
+        if not npost:
             return RESPONSE_404_NOT_FOUND
+
+        avatar = npost.avatar
+        is_delete = NewsPost.delete_by_id(npost_pk)
+        if not is_delete:
+            return RESPONSE_400_DB_INTEGRATION_FAILURE
 
         IMAGE_HANDLER.remove_image(avatar)
         return RESPONSE_200_DELETED
@@ -109,25 +113,25 @@ class NewsPostTranslationViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Add language filter to the base newsposttranslation queryset."""
 
-        post_pk = int(self.kwargs['news_post_pk'])
-        return NewsPostTranslation.objects.filter(post=post_pk)
+        npost_pk = int(self.kwargs['news_post_pk'])
+        return NewsPostTranslation.objects.filter(post=npost_pk)
 
     def create(self, request, *args, **kwargs):
         """POST request logic."""
 
         user = request.user
-        post_pk = int(kwargs['news_post_pk'])
+        npost_pk = int(kwargs['news_post_pk'])
         if not user.has_perm(TRANSLATION_CREATE_PERM):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
-        data = {'post': post_pk, **request.data}
-        serializer = NewsPostTranslationSerializer(data=data)
+        npost_data = {'post': npost_pk, **request.data}
+        serializer = NewsPostTranslationSerializer(data=npost_data)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        translation = serializer.save()
-        if not translation:
+        npost_transl = serializer.save()
+        if not npost_transl:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
         return Response(serializer.data, 201)
@@ -136,30 +140,30 @@ class NewsPostTranslationViewSet(viewsets.ModelViewSet):
         """PUT request logic."""
 
         user = request.user
-        post_pk = int(kwargs['news_post_pk'])
-        translation_pk = int(kwargs['pk'])
+        npost_pk = int(kwargs['news_post_pk'])
+        npost_transl_pk = int(kwargs['pk'])
 
         if not user.has_perm(TRANSLATION_UPDATE_PERM):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
-        translation = NewsPostTranslation.get_by_id(translation_pk)
-        if not translation:
+        npost_transl = NewsPostTranslation.get_by_id(npost_transl_pk)
+        if not npost_transl:
             return RESPONSE_404_NOT_FOUND
 
-        if not translation.post.id == post_pk:
+        if not npost_transl.post.id == npost_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
-        data = request.data
+        npost_transl_data = request.data
         serializer = NewsPostTranslationSerializer(
-            translation,
-            data=data,
+            npost_transl,
+            data=npost_transl_data,
             partial=True)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        translation = serializer.save()
-        if not translation:
+        npost_transl = serializer.save()
+        if not npost_transl:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
         return RESPONSE_204_UPDATED
@@ -168,20 +172,20 @@ class NewsPostTranslationViewSet(viewsets.ModelViewSet):
         """DELETE request logic."""
 
         user = request.user
-        post_pk = int(kwargs['news_post_pk'])
-        translation_pk = int(kwargs['pk'])
+        npost_pk = int(kwargs['news_post_pk'])
+        npost_transl_pk = int(kwargs['pk'])
 
         if not user.has_perm(TRANSLATION_DELETE_PERM):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
-        translation = NewsPostTranslation.get_by_id(translation_pk)
-        if not translation:
+        npost_transl = NewsPostTranslation.get_by_id(npost_transl_pk)
+        if not npost_transl:
             return RESPONSE_404_NOT_FOUND
 
-        if not translation.post.id == post_pk:
+        if not npost_transl.post.id == npost_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
-        is_delete = NewsPostTranslation.delete_by_id(translation_pk)
+        is_delete = NewsPostTranslation.delete_by_id(npost_transl_pk)
         if not is_delete:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
@@ -202,39 +206,39 @@ class NewsPostTranslationLinkViewSet(viewsets.ModelViewSet):
         newsposttranslationlink queryset.
         """
 
-        post_pk = int(self.kwargs['news_post_pk'])
-        translation_pk = int(self.kwargs['translation_pk'])
+        npost_pk = int(self.kwargs['news_post_pk'])
+        npost_transl_pk = int(self.kwargs['translation_pk'])
 
         queryset = NewsPostTranslationLink.objects.filter(
-            translation=translation_pk,
-            translation__post=post_pk)
+            translation=npost_transl_pk,
+            translation__post=npost_pk)
         return queryset
 
     def create(self, request, *args, **kwargs):
         """POST request logic."""
 
         user = request.user
-        post_pk = int(kwargs['news_post_pk'])
-        translation_pk = int(kwargs['translation_pk'])
+        npost_pk = int(kwargs['news_post_pk'])
+        npost_transl_pk = int(kwargs['translation_pk'])
 
         if not user.has_perm(LINK_CREATE_PERM):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
-        translation = NewsPostTranslation.get_by_id(translation_pk)
-        if not translation:
+        npost_transl = NewsPostTranslation.get_by_id(npost_transl_pk)
+        if not npost_transl:
             return RESPONSE_404_NOT_FOUND
 
-        if not translation.post.id == post_pk:
+        if not npost_transl.post.id == npost_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
-        data = {'translation': translation_pk, **request.data}
-        serializer = NewsPostTranslationLinkSerializer(data=data)
+        npost_link_data = {'npost_transl': npost_transl_pk, **request.data}
+        serializer = NewsPostTranslationLinkSerializer(data=npost_link_data)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        link = serializer.save()
-        if not link:
+        npost_link = serializer.save()
+        if not npost_link:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
         return Response(serializer.data, 201)
@@ -243,33 +247,33 @@ class NewsPostTranslationLinkViewSet(viewsets.ModelViewSet):
         """PUT request logic."""
 
         user = request.user
-        post_pk = int(kwargs['news_post_pk'])
-        translation_pk = int(kwargs['translation_pk'])
-        link_pk = int(kwargs['pk'])
+        npost_pk = int(kwargs['news_post_pk'])
+        npost_transl_pk = int(kwargs['translation_pk'])
+        npost_link_pk = int(kwargs['pk'])
 
         if not user.has_perm(LINK_UPDATE_PERM):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
-        link = NewsPostTranslationLink.get_by_id(link_pk)
-        if not link:
+        npost_link = NewsPostTranslationLink.get_by_id(npost_link_pk)
+        if not npost_link:
             return RESPONSE_404_NOT_FOUND
 
-        is_translation = link.translation.id == translation_pk
-        is_post = link.translation.post.id == post_pk
+        is_translation = npost_link.translation.id == npost_transl_pk
+        is_post = npost_link.translation.post.id == npost_pk
         if not is_translation or not is_post:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
-        data = request.data
+        npost_link_data = request.data
         serializer = NewsPostTranslationLinkSerializer(
-            link,
-            data=data,
+            npost_link,
+            data=npost_link_data,
             partial=True)
 
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        link = serializer.save()
-        if not link:
+        npost_link = serializer.save()
+        if not npost_link:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
         return RESPONSE_204_UPDATED
@@ -278,23 +282,23 @@ class NewsPostTranslationLinkViewSet(viewsets.ModelViewSet):
         """DELETE request logic."""
 
         user = request.user
-        post_pk = int(kwargs['news_post_pk'])
-        translation_pk = int(kwargs['translation_pk'])
-        link_pk = int(kwargs['pk'])
+        npost_pk = int(kwargs['news_post_pk'])
+        npost_transl_pk = int(kwargs['translation_pk'])
+        npost_link_pk = int(kwargs['pk'])
 
         if not user.has_perm(LINK_DELETE_PERM):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
-        link = NewsPostTranslationLink.get_by_id(link_pk)
-        if not link:
+        npost_link = NewsPostTranslationLink.get_by_id(npost_link_pk)
+        if not npost_link:
             return RESPONSE_404_NOT_FOUND
 
-        is_translation = link.translation.id == translation_pk
-        is_post = link.translation.post.id == post_pk
+        is_translation = npost_link.translation.id == npost_transl_pk
+        is_post = npost_link.translation.post.id == npost_pk
         if not is_translation or not is_post:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
-        is_delete = NewsPostTranslationLink.delete_by_id(link_pk)
+        is_delete = NewsPostTranslationLink.delete_by_id(npost_link_pk)
         if not is_delete:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
