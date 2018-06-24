@@ -1,6 +1,6 @@
 """Module that describe authentication views."""
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from customuser.models import CustomUser
@@ -8,6 +8,7 @@ from customuser.serializers import CustomUserSerializer
 from utils.jwt_token import create_token, handle_token
 from utils.responses import (RESPONSE_200_ACTIVATED,
                              RESPONSE_200_LOGGED,
+                             RESPONSE_200_LOGOUTED,
                              RESPONSE_201_REGISTERED,
                              RESPONSE_400_EMPTY_REQUEST,
                              RESPONSE_400_INVALID_DATA,
@@ -89,3 +90,11 @@ class AuthenticationViewSet(viewsets.ViewSet):
 
         login(request, user)
         return RESPONSE_200_LOGGED
+
+    @staticmethod
+    @action(methods=['get'], detail=False)
+    def logout(request):
+        """Logout user handler."""
+
+        logout(request)
+        return RESPONSE_200_LOGOUTED
