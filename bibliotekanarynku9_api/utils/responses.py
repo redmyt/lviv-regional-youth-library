@@ -41,6 +41,12 @@ RESPONSE_204_UPDATED = Response(
     status=status.HTTP_204_NO_CONTENT
 )
 
+RESPONSE_200_LOGOUTED = Response(
+    'User successfully signed out.',
+    status=status.HTTP_200_OK
+)
+
+
 # status code 4xx
 
 RESPONSE_400_EMPTY_REQUEST = Response(
