@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
+import MainRouter from './mainRouter';
 
 const scss = require('./main.scss');
 
 ReactDOM.render(
-    <h1>Hello, world!</h1>,
-    document.getElementById('root')
+    <Router>
+        <MainRouter />
+    </Router>,
+    document.getElementById('app')
 );

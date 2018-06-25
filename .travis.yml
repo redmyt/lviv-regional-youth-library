@@ -2,6 +2,14 @@ language: python
 python:
   - 3.6.4
 
+addons:
+  apt:
+    update: true
+    packages:
+      - autoconf
+      - libtool
+      - nasm
+
 install:
   - pip install -r requirements.txt
   - nvm install stable
