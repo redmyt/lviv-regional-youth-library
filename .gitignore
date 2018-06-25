@@ -112,3 +112,6 @@ node_modules/
 
 # VSCode
 .vscode/
+
+# UI public directory
+public/

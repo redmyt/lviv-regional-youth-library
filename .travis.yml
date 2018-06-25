@@ -4,8 +4,13 @@ python:
 
 install:
   - pip install -r requirements.txt
+  - nvm install stable
+  - npm install -g eslint-cli
+  - npm install
 
 script:
+  - eslint --config .eslintrc.js bibliotekanarynku9_ui/src/
+  - npm run build
   - pylint --rcfile=.pylintrc bibliotekanarynku9_api/*
 
 after_success:
