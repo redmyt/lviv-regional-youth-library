@@ -211,6 +211,11 @@ REST_FRAMEWORK = {
 }
 
 
+# Actual version of the product API
+
+API_VERSION = 1
+
+
 # Import local settings with private credentials
 
 try:
