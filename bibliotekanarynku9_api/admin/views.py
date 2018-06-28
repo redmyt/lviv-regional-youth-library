@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import Group
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from customuser.models import CustomUser
 from customuser.serializers import CustomUserSerializer
@@ -12,9 +13,9 @@ from utils.jwt_token import create_token, handle_token
 from utils.responses import (RESPONSE_200_ADMINS_JOINED,
                              RESPONSE_200_ADMINS_REQUESTED,
                              RESPONSE_400_INVALID_TOKEN,
-                             RESPONSE_404_ADMINS_GROUP_INACCESSIBLE,
+                             RESPONSE_400_UNEXPECTED_PARAMETERS,
                              RESPONSE_403_USER_ALREADY_ADMIN,
-                             RESPONSE_400_UNEXPECTED_PARAMETERS)
+                             RESPONSE_404_ADMINS_GROUP_INACCESSIBLE)
 from utils.send_email import send_email
 
 
@@ -23,26 +24,37 @@ ADMIN_CONFIRM_TEMPLATE = 'admin-confirm.html'
 ADMIN_VERIFICATION_KEYS = ('first_name', 'last_name', 'email')
 REQUIRED_ADMINS_KEYS = ('email', 'password')
 SUPERUSER_EMAIL = settings.SUPERUSER_EMAIL
+ADMIN_MANAGEMENT_APPS = (
+    'Announcement',
+    'Author',
+    'Book',
+    'NewsPost',
+    'PresPost',
+    'Project'
+)
 
 
 class AdminViewSet(viewsets.ViewSet):
     """Describes all admin views."""
 
     @staticmethod
-    @action(detail=False, permission_classes=[IsAuthenticated])
+    @action(methods=['get'],
+            detail=False,
+            permission_classes=[IsAuthenticated])
     def request(request):
         """User request to join Admins group."""
 
         serializer = CustomUserSerializer(request.user)
         data = {
-            key: serializer.data.get(key) for key in ADMIN_VERIFICATION_KEYS}
+            key: serializer.data.get(key) for key in ADMIN_VERIFICATION_KEYS
+        }
         activation_token = create_token(data)
         ctx = {'token': activation_token, **data}
         send_email([SUPERUSER_EMAIL], ADMIN_REQUEST_TEMPLATE, ctx)
         return RESPONSE_200_ADMINS_REQUESTED
 
     @staticmethod
-    @action(detail=False, url_path='confirm/(?P<token>.+)')
+    @action(methods=['get'], detail=False, url_path='confirm/(?P<token>.+)')
     def confirm(request, token):
         """Confirm User to be joined the Admins group."""
 
@@ -66,3 +78,15 @@ class AdminViewSet(viewsets.ViewSet):
         ctx = {'first_name': user.first_name}
         send_email((user.email,), ADMIN_CONFIRM_TEMPLATE, ctx)
         return RESPONSE_200_ADMINS_JOINED
+
+    @staticmethod
+    @action(methods=['get'],
+            detail=False,
+            permission_classes=[IsAuthenticated])
+    def manage_apps(request):
+        """Get list of the apps that site admins can manage."""
+
+        if request.query_params:
+            return RESPONSE_400_UNEXPECTED_PARAMETERS
+
+        return Response(ADMIN_MANAGEMENT_APPS, status=200)
