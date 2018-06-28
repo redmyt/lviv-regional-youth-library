@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack -d --watch --config webpack.config.js",
+    "server": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js --mode production"
   },
   "repository": {
@@ -19,7 +20,9 @@
   "homepage": "https://github.com/dmytrorevak/lviv-regional-youth-library#readme",
   "dependencies": {
     "react": "16.4.1",
-    "react-dom": "16.4.1"
+    "react-dom": "16.4.1",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
@@ -40,6 +43,7 @@
     "pug-loader": "2.4.0",
     "sass-loader": "7.0.3",
     "webpack": "4.12.1",
-    "webpack-cli": "3.0.8"
+    "webpack-cli": "3.0.8",
+    "webpack-dev-server": "3.1.4"
   }
 }
