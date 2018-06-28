@@ -5,6 +5,7 @@ The root url configuration for bibliotekanarynku9_api project.
 The entrypoint to url tree of project.
 """
 
+from django.conf import settings
 from rest_framework_nested import routers
 from admin.views import AdminViewSet
 from authentication.views import AuthenticationViewSet
@@ -24,18 +25,19 @@ from project.views import (ProjectViewSet,
                            ProjectTranslationLinkViewSet)
 
 
+API_PREF = f'api/v{settings.API_VERSION}/'
 router = routers.SimpleRouter()
 
 # Start points router
 
-router.register(r'auth', AuthenticationViewSet, 'authentication')
-router.register(r'admin', AdminViewSet, 'admin')
-router.register(r'news_post', NewsPostViewSet, 'newspost')
-router.register(r'author', AuthorViewSet, 'author')
-router.register(r'press_post', PressPostViewSet, 'presspost')
-router.register(r'announcement', AnnouncementViewSet, 'announcement')
-router.register(r'book', BookViewSet, 'book')
-router.register(r'project', ProjectViewSet, 'project')
+router.register(API_PREF + 'auth', AuthenticationViewSet, 'authentication')
+router.register(API_PREF + 'admin', AdminViewSet, 'admin')
+router.register(API_PREF + 'news_post', NewsPostViewSet, 'newspost')
+router.register(API_PREF + 'author', AuthorViewSet, 'author')
+router.register(API_PREF + 'press_post', PressPostViewSet, 'presspost')
+router.register(API_PREF + 'announcement', AnnouncementViewSet, 'announcement')
+router.register(API_PREF + 'book', BookViewSet, 'book')
+router.register(API_PREF + 'project', ProjectViewSet, 'project')
 
 urlpatterns = router.urls
 
@@ -44,7 +46,7 @@ urlpatterns = router.urls
 
 newspost_router = routers.NestedSimpleRouter(
     router,
-    r'news_post',
+    API_PREF + 'news_post',
     lookup='news_post')
 newspost_router.register(
     r'translation',
@@ -67,7 +69,7 @@ urlpatterns += newspost_translation_router.urls
 
 book_router = routers.NestedSimpleRouter(
     router,
-    r'book',
+    API_PREF + 'book',
     lookup='book')
 book_router.register(
     r'translation',
@@ -86,7 +88,7 @@ urlpatterns += book_translation_router.urls
 
 announcement_router = routers.NestedSimpleRouter(
     router,
-    r'announcement',
+    API_PREF + 'announcement',
     lookup='announcement')
 announcement_router.register(
     r'translation',
@@ -109,7 +111,7 @@ urlpatterns += announcement_translation_router.urls
 
 presspost_router = routers.NestedSimpleRouter(
     router,
-    r'press_post',
+    API_PREF + 'press_post',
     lookup='press_post')
 presspost_router.register(
     r'translation',
@@ -132,7 +134,7 @@ urlpatterns += presspost_translation_router.urls
 
 author_router = routers.NestedSimpleRouter(
     router,
-    r'author',
+    API_PREF + 'author',
     lookup='author')
 author_router.register(
     r'translation',
@@ -151,7 +153,7 @@ urlpatterns += author_translation_router.urls
 
 project_router = routers.NestedSimpleRouter(
     router,
-    r'project',
+    API_PREF + 'project',
     lookup='project')
 project_router.register(
     r'translation',
