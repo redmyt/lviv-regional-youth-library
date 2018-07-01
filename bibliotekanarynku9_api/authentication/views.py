@@ -18,12 +18,14 @@ from utils.responses import (RESPONSE_200_ACTIVATED,
                              RESPONSE_400_INVALID_EMAIL_OR_PASSWORD,
                              RESPONSE_400_UNEXPECTED_PARAMETERS)
 from utils.send_email import send_email
+from utils.handlers import USER_SESSION_HANDLER
 from utils.validators import required_keys_validator
 
 
 TTL_ACTIVATION_TOKEN = 60 * 60
 REGISTRATION_TEMPLATE = 'registration.html'
 REQUIRED_LOGIN_KEYS = ('email', 'password')
+USER_SESSION_COOKIE = 'user_id'
 
 
 class AuthenticationViewSet(viewsets.ViewSet):
@@ -89,6 +91,8 @@ class AuthenticationViewSet(viewsets.ViewSet):
             return RESPONSE_400_INVALID_EMAIL_OR_PASSWORD
 
         login(request, user)
+        hash_user_id = USER_SESSION_HANDLER.hash_user_id(user.id)
+        RESPONSE_200_LOGGED.set_cookie(USER_SESSION_COOKIE, hash_user_id)
         return RESPONSE_200_LOGGED
 
     @staticmethod
@@ -97,4 +101,5 @@ class AuthenticationViewSet(viewsets.ViewSet):
         """Logout user handler."""
 
         logout(request)
+        RESPONSE_200_LOGOUTED.delete_cookie(USER_SESSION_COOKIE)
         return RESPONSE_200_LOGOUTED
