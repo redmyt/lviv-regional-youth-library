@@ -1,5 +1,7 @@
 import React from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
+import Admin from './containers/Admin/Admin';
+import Login from './containers/Login';
 import HelloMessage from './containers/button/btn';
 
 export default class MainRouter extends React.Component {
@@ -8,6 +10,8 @@ export default class MainRouter extends React.Component {
             <main>
                 <Switch>
                     <Route path='/home' component={HelloMessage} />
+                    <Route path='/admin' component={Admin} />
+                    <Route path='/login' component={Login} />
                     <Redirect path='*' to='/home' />
                 </Switch>
             </main>
