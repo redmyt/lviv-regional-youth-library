@@ -4,7 +4,7 @@
   "description": "The official website of Lviv regional youth library",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -d --watch --config webpack.config.js",
+    "start": "webpack -d --config webpack.config.js --watch",
     "server": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js --mode production"
   },
@@ -32,6 +32,7 @@
     "babel-loader": "7.1.4",
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
     "clean-webpack-plugin": "0.1.19",
     "css-loader": "0.28.11",
     "eslint": "5.0.0",
