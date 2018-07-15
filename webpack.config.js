@@ -12,14 +12,24 @@ module.exports = {
         path: dist,
         filename: 'bundle.js'
     },
+    devtool: 'inline-source-map',
     devServer: {
-        contentBase: dist
+        contentBase: dist,
+        publicPath: '/',
+        historyApiFallback: true,
+        proxy: {
+            '/api/**': {
+                target: 'http://127.0.0.1:8000/',
+                changeOrigin: true
+            }
+        }
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
-                loader: "babel-loader"
+                exclude: /(node_modules|bower_compontents)/,
+                loader: 'babel-loader'
             },
             {
                 test: /\.scss$/,
@@ -79,7 +89,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "main.css",
+            filename: 'main.css',
         }),
         new HtmlWebpackPlugin({
             template: src + 'index.pug'
