@@ -5,14 +5,12 @@ import LoginMessage from './LoginMessage';
 import {postLoginService} from './loginService';
 import {getUpdatedState, isLogged} from '../../helpers';
 
-
 const style = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     height: '100vh'
 };
-
 
 class Login extends React.Component {
 
