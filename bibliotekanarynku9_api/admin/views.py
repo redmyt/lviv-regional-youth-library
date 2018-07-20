@@ -17,6 +17,7 @@ from utils.responses import (RESPONSE_200_ADMINS_JOINED,
                              RESPONSE_403_USER_ALREADY_ADMIN,
                              RESPONSE_404_ADMINS_GROUP_INACCESSIBLE)
 from utils.send_email import send_email
+from .manage_apps import ADMIN_MANAGEMENT_APPS
 
 
 ADMIN_REQUEST_TEMPLATE = 'admin-request.html'
@@ -24,14 +25,6 @@ ADMIN_CONFIRM_TEMPLATE = 'admin-confirm.html'
 ADMIN_VERIFICATION_KEYS = ('first_name', 'last_name', 'email')
 REQUIRED_ADMINS_KEYS = ('email', 'password')
 SUPERUSER_EMAIL = settings.SUPERUSER_EMAIL
-ADMIN_MANAGEMENT_APPS = (
-    'Announcement',
-    'Author',
-    'Book',
-    'NewsPost',
-    'PresPost',
-    'Project'
-)
 
 
 class AdminViewSet(viewsets.ViewSet):
