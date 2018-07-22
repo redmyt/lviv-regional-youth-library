@@ -14,14 +14,14 @@ const btnStyle = {
     margin: '5%'
 };
 
-export default class LoginForm extends React.Component {
+export default class RegisterForm extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
     handleButtonClick = () => {
-        this.props.onLogin();
+        this.props.onRegister();
     }
 
     handleInputChange = event => {
@@ -31,6 +31,30 @@ export default class LoginForm extends React.Component {
     render() {
         return (
             <div style={style}>
+                <FormControl margin='normal'>
+                    <InputLabel>
+                        First Name
+                    </InputLabel>
+                    <Input
+                        value={this.props.firstName}
+                        name='firstName'
+                        type='text'
+                        error={!this.props.isValid}
+                        onChange={this.handleInputChange}
+                    />
+                </FormControl>
+                <FormControl margin='normal'>
+                    <InputLabel>
+                        Last Name
+                    </InputLabel>
+                    <Input
+                        value={this.props.lastName}
+                        name='lastName'
+                        type='text'
+                        error={!this.props.isValid}
+                        onChange={this.handleInputChange}
+                    />
+                </FormControl>
                 <FormControl margin='normal'>
                     <InputLabel>
                         Email
@@ -52,6 +76,18 @@ export default class LoginForm extends React.Component {
                         name='password'
                         type='password'
                         error={!this.props.isValid}
+                        onChange={this.handleInputChange}
+                    />
+                </FormControl>
+                <FormControl margin='normal'>
+                    <InputLabel>
+                        Confirm Password
+                    </InputLabel>
+                    <Input
+                        value={this.props.confirmPassword}
+                        name='confirmPassword'
+                        type='password'
+                        error={!this.props.isValid || !this.props.doPasswordsMatch}
                         onChange={this.handleInputChange}
                     />
                 </FormControl>
