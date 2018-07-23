@@ -5,6 +5,7 @@ import AdminMessage from  '../../components/adminMessage';
 const messageBodyStyle = {
     width: '50%'
 };
+
 const adminAccessMessageTxt = 'You are not authenticated. Please navigate to Login view.';
 
 class AdminAccessMessage extends React.Component {

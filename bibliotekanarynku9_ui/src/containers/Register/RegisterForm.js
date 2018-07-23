@@ -2,7 +2,7 @@ import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import AdminSubmitButton from '../../components/adminSubmitButton';
+import AdminButton from '../../components/AdminButton';
 
 const style = {
     display: 'flex',
@@ -91,8 +91,11 @@ export default class RegisterForm extends React.Component {
                         onChange={this.handleInputChange}
                     />
                 </FormControl>
-                <AdminSubmitButton
+                <AdminButton
                     style={btnStyle}
+                    variant="contained"
+                    color="primary"
+                    text="Submit"
                     onClick={this.handleButtonClick}
                 />
             </div>

@@ -7,13 +7,17 @@ const baseStyle = {
     alignItems: 'center'
 };
 
-export default class AdminSubmitButton extends React.Component {
+export default class AdminButton extends React.Component {
     render() {
         const style = this.props.style ? Object.assign(this.props.style, baseStyle) : baseStyle;
         return (
             <div style={style}>
-                <Button variant="contained" color="primary" onClick={this.props.onClick}>
-                    Submit
+                <Button
+                    variant={this.props.variant}
+                    color={this.props.color}
+                    onClick={this.props.onClick}
+                >
+                    {this.props.text}
                 </Button>
             </div>
         );
