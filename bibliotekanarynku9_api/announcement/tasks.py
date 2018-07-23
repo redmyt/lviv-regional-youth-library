@@ -1,22 +1,18 @@
 """Module that describes the Announcement app tasks."""
 
-from __future__ import absolute_import
 import datetime
-from celery.task.schedules import crontab
-from celery.decorators import periodic_task
-from celery.utils.log import get_task_logger
-from utils.logger import LOGGER
+from celery import crontab
 from announcement.models import Announcement
-
+from utils.logger import LOGGER
+from celery import task
 
 CURRENT_DATE = datetime.datetime.today()
 
+# @app.on_after_configure.connect
+# def sersfd(sender, **kwargs):
+#     sender.add_periodic_task(10.0, remove_outdate_announcements.s(), name='test task')
 
-@periodic_task(
-    run_every=(crontab(hour='0', minute='0')),
-    name='remove_outdated_announcements',
-    ignore_result=True
-)
+@task(name='bibliotekanarynku9_api.tasks.add')
 def remove_outdate_announcements():
     """Task that gets the old announcements and deletes they from db."""
 
