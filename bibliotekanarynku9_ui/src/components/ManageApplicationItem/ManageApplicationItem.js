@@ -2,35 +2,31 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import AdminButton from '../AdminButton';
 
-export default class AdminManageItem extends React.Component {
-
-    handleClick = () => {
-        this.props.onClick(this.props.itemName);
-    }
+export default class ManageApplicationItem extends React.Component {
 
     render() {
+        // const style = this.props.style ? Object.assign(this.props.style, baseStyle) : baseStyle;
         return (
-            <div style={this.props.style}>
-                <Card style={this.props.messageBodyStyle}>
+            <div>
+                <Card>
                     <CardContent>
                         <h2>
-                            {this.props.itemName}
+                            {this.props.name}
                         </h2>
                         <p>
-                            {this.props.itemDescription}
+                            {this.props.description}
                         </p>
                     </CardContent>
                     <CardActions>
-                        <Button
+                        <AdminButton
                             size="small"
                             color="primary"
                             variant="contained"
                             onClick={this.handleClick}
-                        >
-                            Go to {this.props.itemName}
-                        </Button>
+                            text={'Go to item'}
+                        />
                     </CardActions>
                 </Card>
             </div>

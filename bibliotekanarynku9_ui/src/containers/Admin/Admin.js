@@ -1,38 +1,26 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import AdminManageItem from './AdminManageItem';
+import AdminList from './AdminList';
 import AdminAccessMessage from './AdminAccessMessage';
 import AdminAppBar from './AdminAppBar';
-import {getManageItems, getLogout} from './adminService';
+import {getManageApps, getLogout} from './adminService';
 import {getUpdatedState, isLogged} from '../../helpers';
-
-const layoutStyle = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'baseline'
-};
-
-const itemStyle = {
-    width: '33%',
-    padding: 25,
-    boxSizing: 'border-box'
-};
 
 class Admin extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            manageItems: [],
+            manageApps: [],
             language: 'uk'
         };
     }
 
     componentWillMount() {
-        getManageItems().then(response => {
+        getManageApps().then(response => {
             if (response.status === 200) {
                 const changesObj = {
-                    manageItems: response.data.apps
+                    manageApps: response.data.apps
                 };
                 this.setState(getUpdatedState(changesObj, this.state));
             }
@@ -59,7 +47,7 @@ class Admin extends React.Component {
         this.setState(getUpdatedState({language: language}, this.state));
     }
 
-    renderManageItems = () => {
+    renderManageApps = () => {
         return (
             <div>
                 <AdminAppBar
@@ -67,19 +55,10 @@ class Admin extends React.Component {
                     onLogoutClick={this.handleLogoutClick}
                     onLanguageChange={this.handleLanguageChange}
                 />
-                <div style={layoutStyle}>
-                    {
-                        this.state.manageItems.map((item, index) => (
-                            <AdminManageItem
-                                key={index}
-                                style={itemStyle}
-                                itemName={item.name}
-                                itemDescription={item.description}
-                                onClick={this.navigateToItem}
-                            />
-                        ))
-                    }
-                </div>
+                <AdminList
+                    items={this.state.manageApps}
+                    onItemClick={this.navigateToItem}
+                />
             </div>
         );
     }
@@ -91,7 +70,7 @@ class Admin extends React.Component {
     }
 
     render() {
-        const element = isLogged() ? this.renderManageItems() : this.renderAdminMessage();
+        const element = isLogged() ? this.renderManageApps() : this.renderAdminMessage();
         return(element);
     }
 }
