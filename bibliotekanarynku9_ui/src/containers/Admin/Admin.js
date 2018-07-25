@@ -2,10 +2,11 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import AdminManageItem from './AdminManageItem';
 import AdminAccessMessage from './AdminAccessMessage';
-import {getManageItems} from './adminService';
+import AdminAppBar from './AdminAppBar';
+import {getManageItems, getLogout} from './adminService';
 import {getUpdatedState, isLogged} from '../../helpers';
 
-const style = {
+const layoutStyle = {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'baseline'
@@ -41,20 +42,35 @@ class Admin extends React.Component {
         this.props.history.push(`/admin/${itemName.toLowerCase()}`);
     }
 
+    navigateToLogin = () => {
+        this.props.history.push('/login/');
+    }
+
+    handleLogoutClick = () => {
+        getLogout().then(response => {
+            if (response.status === 200) {
+                this.navigateToLogin();
+            }
+        });
+    }
+
     renderManageItems = () => {
         return (
-            <div style={style}>
-                {
-                    this.state.manageItems.map((item, index) => (
-                        <AdminManageItem
-                            key={index}
-                            style={itemStyle}
-                            itemName={item.name}
-                            itemDescription={item.description}
-                            onClick={this.navigateToItem}
-                        />
-                    ))
-                }
+            <div>
+                <AdminAppBar onLogoutClick={this.handleLogoutClick} />
+                <div style={layoutStyle}>
+                    {
+                        this.state.manageItems.map((item, index) => (
+                            <AdminManageItem
+                                key={index}
+                                style={itemStyle}
+                                itemName={item.name}
+                                itemDescription={item.description}
+                                onClick={this.navigateToItem}
+                            />
+                        ))
+                    }
+                </div>
             </div>
         );
     }
