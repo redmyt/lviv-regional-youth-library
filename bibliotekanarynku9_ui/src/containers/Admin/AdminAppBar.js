@@ -1,7 +1,8 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import AdminButton from '../../components/AdminButton';
 import Toolbar from '@material-ui/core/Toolbar';
+import AdminButton from '../../components/AdminButton';
+import AdminLanguageSelect from './AdminLanguageSelect';
 
 const toolBarStyle = {
     display: 'flex'
@@ -21,11 +22,19 @@ export default class AdminAppBar extends React.Component {
         this.props.onLogoutClick();
     }
 
+    handelLanguageChange = language => {
+        this.props.onLanguageChange(language);
+    }
+
     render() {
         return (
             <div style={this.props.style}>
                 <AppBar position="static">
                     <Toolbar style={toolBarStyle}>
+                        <AdminLanguageSelect
+                            language={this.props.language}
+                            onLanguageChange={this.handelLanguageChange}
+                        />
                         <AdminButton
                             style={btnStyle}
                             variant="contained"

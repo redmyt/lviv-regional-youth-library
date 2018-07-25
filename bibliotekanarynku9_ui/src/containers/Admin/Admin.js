@@ -23,7 +23,8 @@ class Admin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            manageItems: []
+            manageItems: [],
+            language: 'uk'
         };
     }
 
@@ -54,10 +55,18 @@ class Admin extends React.Component {
         });
     }
 
+    handleLanguageChange = language => {
+        this.setState(getUpdatedState({language: language}, this.state));
+    }
+
     renderManageItems = () => {
         return (
             <div>
-                <AdminAppBar onLogoutClick={this.handleLogoutClick} />
+                <AdminAppBar
+                    language={this.state.language}
+                    onLogoutClick={this.handleLogoutClick}
+                    onLanguageChange={this.handleLanguageChange}
+                />
                 <div style={layoutStyle}>
                     {
                         this.state.manageItems.map((item, index) => (
