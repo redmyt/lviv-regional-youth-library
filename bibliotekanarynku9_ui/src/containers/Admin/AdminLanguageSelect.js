@@ -14,7 +14,7 @@ const baseStyle = {
 };
 
 const btnStyle = {
-    marginRight: 10
+    margin: '0px 15px'
 };
 
 const selectStyle = {
@@ -30,7 +30,8 @@ export default class AdminLanguageSelect extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openDialog: false
+            openDialog: false,
+            language: this.props.language
         };
     }
 
@@ -43,7 +44,12 @@ export default class AdminLanguageSelect extends React.Component {
     };
 
     handleSelectChange = event => {
-        this.props.onLanguageChange(event.target.value);
+        this.setState(getUpdatedState({language: event.target.value}, this.state));
+    }
+
+    handleButtonClick = () => {
+        this.props.onLanguageChange(this.state.language);
+        this.setState(getUpdatedState({openDialog: false}, this.state));
     }
 
     render() {
@@ -66,7 +72,7 @@ export default class AdminLanguageSelect extends React.Component {
                     <DialogContent>
                         <FormControl style={selectStyle}>
                             <Select
-                                value={this.props.language}
+                                value={this.state.language}
                                 onChange={this.handleSelectChange}
                             >
                                 <MenuItem value="uk">Ukrainian</MenuItem>
@@ -78,7 +84,7 @@ export default class AdminLanguageSelect extends React.Component {
                         <AdminButton
                             variant="outlined"
                             color="primary"
-                            onClick={this.handleDialogClose}
+                            onClick={this.handleButtonClick}
                             text="Select"
                         />
                     </DialogActions>

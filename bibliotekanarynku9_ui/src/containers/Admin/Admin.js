@@ -1,8 +1,9 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import AdminList from './AdminList';
+import AdminNavigationList from './AdminNavigationList';
 import AdminAccessMessage from './AdminAccessMessage';
 import AdminAppBar from './AdminAppBar';
+import AdminRouter from './AdminRouter';
 import {getManageApps, getLogout} from './adminService';
 import {getUpdatedState, isLogged} from '../../helpers';
 
@@ -12,7 +13,8 @@ class Admin extends React.Component {
         super(props);
         this.state = {
             manageApps: [],
-            language: 'uk'
+            language: 'uk',
+            isNavListOpen: true
         };
     }
 
@@ -28,11 +30,20 @@ class Admin extends React.Component {
     }
 
     navigateToItem = itemName => {
-        this.props.history.push(`/admin/${itemName.toLowerCase()}`);
+        this.props.history.push(`${this.props.match.url}/${itemName.toLowerCase()}`);
+        this.setState(getUpdatedState({isNavListOpen: false}, this.state));
     }
 
     navigateToLogin = () => {
         this.props.history.push('/login/');
+    }
+
+    handleNavIconClick = () => {
+        this.setState(getUpdatedState({isNavListOpen: true}, this.state));
+    }
+
+    handleNavListClose = () => {
+        this.setState(getUpdatedState({isNavListOpen: false}, this.state));
     }
 
     handleLogoutClick = () => {
@@ -54,17 +65,22 @@ class Admin extends React.Component {
                     language={this.state.language}
                     onLogoutClick={this.handleLogoutClick}
                     onLanguageChange={this.handleLanguageChange}
+                    onNavIconClick={this.handleNavIconClick}
                 />
-                <AdminList
+                <AdminNavigationList
                     items={this.state.manageApps}
                     onItemClick={this.navigateToItem}
+                    isOpen={this.state.isNavListOpen}
+                    onNavItemClick={this.navigateToItem}
+                    onBackdropClick={this.handleNavListClose}
                 />
+                <AdminRouter language={this.state.language} />
             </div>
         );
     }
 
     renderAdminMessage = () => {
-        return(
+        return (
             <AdminAccessMessage />
         );
     }
