@@ -1,2 +1,2 @@
 export {apiPath, isLogged} from './session';
-export {getUpdatedState} from './utils';
+export {getUpdatedState, formatDate} from './utils';

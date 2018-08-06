@@ -1,6 +1,8 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import AdminButton from '../../components/AdminButton';
 import AdminLanguageSelect from './AdminLanguageSelect';
 
@@ -22,6 +24,10 @@ export default class AdminAppBar extends React.Component {
         this.props.onLogoutClick();
     }
 
+    handleNavIconClick = () => {
+        this.props.onNavIconClick();
+    }
+
     handelLanguageChange = language => {
         this.props.onLanguageChange(language);
     }
@@ -31,6 +37,13 @@ export default class AdminAppBar extends React.Component {
             <div style={this.props.style}>
                 <AppBar position="static">
                     <Toolbar style={toolBarStyle}>
+                        <IconButton
+                            color="inherit"
+                            aria-label="Menu"
+                            onClick={this.handleNavIconClick}
+                        >
+                            <MenuIcon />
+                        </IconButton>
                         <AdminLanguageSelect
                             language={this.props.language}
                             onLanguageChange={this.handelLanguageChange}
