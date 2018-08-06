@@ -1,10 +1,11 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import {Route} from 'react-router-dom';
-import AdminAnnouncementList from './AdminAnnouncementList';
 import AdminLoadMoreButton from '../../../components/AdminLoadMoreButton';
+import AdminAnnouncementList from './AdminAnnouncementList';
+import AdminAnnouncementItem from './AdminAnnouncementItem';
 import {getAnnouncementService} from './adminAnnouncementService';
-import {getUpdatedState} from '../../../helpers';
+import {getUpdatedState, getItemById} from '../../../helpers';
 
 class AdminAnnouncement extends React.Component {
 
@@ -12,7 +13,8 @@ class AdminAnnouncement extends React.Component {
         super(props);
         this.state = {
             announcements: [],
-            loadMoreUrl: ''
+            loadMoreUrl: '',
+            selectedAnnouncement: null
         };
     }
 
@@ -56,7 +58,9 @@ class AdminAnnouncement extends React.Component {
             <div>
                 <Route exact path={`${this.props.match.url}`} render={() => (
                     <div>
-                        <AdminAnnouncementList announcements={this.state.announcements} />
+                        <AdminAnnouncementList
+                            announcements={this.state.announcements}
+                        />
                         <AdminLoadMoreButton
                             variant="contained"
                             isDisabled={!this.state.loadMoreUrl}
@@ -65,7 +69,7 @@ class AdminAnnouncement extends React.Component {
                     </div>
                 )} />
                 <Route path={`${this.props.match.url}/:announcementId`} render={() => (
-                    <div>hi</div>
+                    <AdminAnnouncementItem language={this.props.language} />
                 )} />
             </div>
         );
