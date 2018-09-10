@@ -1,10 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import {formatDateToView, formatDateToPicker} from '../../helpers';
 import TextField from '@material-ui/core/TextField';
+import {formatDateToView, formatDateToPicker} from '../../helpers';
 
 const style = {
     margin: '10px 0'
@@ -25,12 +22,12 @@ export default class AdminDateField extends React.Component {
             <div>
                 <TextField
                     label={this.props.label}
-                    type="datetime-local"
                     value={formatDateToPicker(this.props.date)}
+                    onChange={this.handleChange}
+                    type='datetime-local'
                     InputLabelProps={{
                         shrink: true
                     }}
-                    onChange={this.handleChange}
                 />
             </div>
         )
@@ -39,7 +36,7 @@ export default class AdminDateField extends React.Component {
     renderLookUpField = () => {
         return (
             <div>
-                <Typography component="p">
+                <Typography component='p'>
                     <span style={labelStyle}> {this.props.label}: </span>
                     {formatDateToView(this.props.date)}
                 </Typography>

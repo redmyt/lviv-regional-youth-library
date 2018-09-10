@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import {getUpdatedState, splitTextToParagraphs} from '../../helpers';
+import {splitTextToParagraphs} from '../../helpers';
 
 const style = {
     margin: '10px 0'
@@ -17,12 +17,12 @@ export default class AdminDescriptionField extends React.Component {
         return (
             <div>
                 <TextField
-                    label='Description'
+                    label={this.props.label}
+                    value={this.props.description}
+                    onChange={this.handleChange}
                     error={this.props.isError}
                     multiline={true}
                     fullWidth={true}
-                    value={this.props.description}
-                    onChange={this.handleChange}
                 />
             </div>
         )
@@ -34,7 +34,7 @@ export default class AdminDescriptionField extends React.Component {
                 {
                     splitTextToParagraphs(this.props.description).map(paragraph => {
                         return (
-                            <Typography component="p">
+                            <Typography component='p'>
                                 {paragraph}
                             </Typography>
                         )

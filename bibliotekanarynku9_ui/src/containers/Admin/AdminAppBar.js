@@ -35,11 +35,11 @@ export default class AdminAppBar extends React.Component {
     render() {
         return (
             <div style={this.props.style}>
-                <AppBar position="static">
+                <AppBar position='static'>
                     <Toolbar style={toolBarStyle}>
                         <IconButton
-                            color="inherit"
-                            aria-label="Menu"
+                            color='inherit'
+                            aria-label='Menu'
                             onClick={this.handleNavIconClick}
                         >
                             <MenuIcon />
@@ -50,9 +50,9 @@ export default class AdminAppBar extends React.Component {
                         />
                         <AdminButton
                             style={btnStyle}
-                            variant="contained"
-                            color="secondary"
-                            text="Logout"
+                            variant='contained'
+                            color='secondary'
+                            text='Logout'
                             onClick={this.handelLogoutClick}
                         />
                     </Toolbar>

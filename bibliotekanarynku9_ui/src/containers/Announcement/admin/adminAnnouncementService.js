@@ -3,7 +3,7 @@ import {apiPath, getCSRFToken} from '../../../helpers';
 
 const announcementPath = 'announcement/';
 
-export const getAnnouncementService = (language, inputUrl) => {
+export const getAnnouncementsListService = (language, inputUrl) => {
     const url = inputUrl || apiPath + announcementPath;
     return axios.get(url, {
         headers: {

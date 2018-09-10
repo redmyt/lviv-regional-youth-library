@@ -4,13 +4,17 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import AdminButton from '../../../components/AdminButton';
 import Switch from '@material-ui/core/Switch';
+import AdminButton from '../../../components/AdminButton';
 import {getUpdatedState} from '../../../helpers';
-import {getAnnouncementById, putAnnouncementTranslationService, putAnnouncementService} from './adminAnnouncementService';
 import AdminTitleField from '../../../components/AdminTitleField';
 import AdminDescriptionField from '../../../components/AdminDescriptionField';
 import AdminDateField from '../../../components/AdminDateField';
+import {
+    getAnnouncementById,
+    putAnnouncementTranslationService,
+    putAnnouncementService
+} from './adminAnnouncementService';
 
 const baseStyle = {
     margin: '15px 15px',
@@ -62,20 +66,18 @@ class AdminAnnouncementItem extends React.Component {
                 this.state.announcementTranslation.id,
                 this.state.announcementTranslation.title,
                 this.state.announcementTranslation.description
-            ).then(response => {
-                if (response.status === 204) {
-                    getAnnouncementById(this.state.announcementId, this.props.language)
-                        .then(response => {
-                            const data = response.data;
-                            if (response.status === 200) {
-                                this.setState(getUpdatedState({
-                                    announcement: data,
-                                    announcementTranslation: data.translations[0],
-                                    isEdit: false
-                                }, this.state));
-                            }
-                        });
-                }
+            ).then(() => {
+                getAnnouncementById(this.state.announcementId, this.props.language)
+                    .then(response => {
+                        const data = response.data;
+                        if (response.status === 200) {
+                            this.setState(getUpdatedState({
+                                announcement: data,
+                                announcementTranslation: data.translations[0],
+                                isEdit: false
+                            }, this.state));
+                        }
+                    });
             });
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
@@ -122,16 +124,18 @@ class AdminAnnouncementItem extends React.Component {
                         <CardMedia style={mediaStyle} image={this.state.announcement.avatar} />
                         <CardContent>
                             <AdminTitleField
+                                title={this.state.announcementTranslation.title}
+                                label='Title'
+                                onTitleChange={this.handleTitleChange}
                                 isEdit={this.state.isEdit}
                                 isError={this.state.isError}
-                                title={this.state.announcementTranslation.title}
-                                onTitleChange={this.handleTitleChange}
                             />
                             <AdminDescriptionField
+                                description={this.state.announcementTranslation.description}
+                                label='Description'
+                                onDescriptionChange={this.handleDescriptionChange}
                                 isEdit={this.state.isEdit}
                                 isError={this.state.isError}
-                                description={this.state.announcementTranslation.description}
-                                onDescriptionChange={this.handleDescriptionChange}
                             />
                             <AdminDateField
                                 date={this.state.announcement.start_at}
@@ -154,9 +158,9 @@ class AdminAnnouncementItem extends React.Component {
                             {
                                 this.state.isEdit && (
                                     <AdminButton
-                                        size="small"
-                                        color="primary"
-                                        variant="contained"
+                                        size='small'
+                                        color='primary'
+                                        variant='contained'
                                         onClick={this.handleSaveClick}
                                         text={'Save'}
                                     />
@@ -166,7 +170,7 @@ class AdminAnnouncementItem extends React.Component {
                     </Card>
                 </div>
             ) : (
-                <div>Hi</div>
+                <div>Waiting for data load</div>
             )
         );
     }

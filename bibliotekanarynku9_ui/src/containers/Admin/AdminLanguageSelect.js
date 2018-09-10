@@ -59,8 +59,8 @@ export default class AdminLanguageSelect extends React.Component {
             <div style={style}>
                 <AdminButton
                     style={btnStyle}
-                    variant="contained"
-                    text="Language"
+                    variant='contained'
+                    text='Language'
                     onClick={this.handleDialogOpen}
                 />
                 <Dialog
@@ -75,17 +75,17 @@ export default class AdminLanguageSelect extends React.Component {
                                 value={this.state.language}
                                 onChange={this.handleSelectChange}
                             >
-                                <MenuItem value="uk">Ukrainian</MenuItem>
-                                <MenuItem value="en">English</MenuItem>
+                                <MenuItem value='uk'>Ukrainian</MenuItem>
+                                <MenuItem value='en'>English</MenuItem>
                             </Select>
                         </FormControl>
                     </DialogContent>
                     <DialogActions style={dialogActionsStyle}>
                         <AdminButton
-                            variant="outlined"
-                            color="primary"
+                            variant='outlined'
+                            color='primary'
                             onClick={this.handleButtonClick}
-                            text="Select"
+                            text='Select'
                         />
                     </DialogActions>
                 </Dialog>

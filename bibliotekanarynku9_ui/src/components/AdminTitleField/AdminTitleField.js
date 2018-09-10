@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import {getUpdatedState} from '../../helpers';
 
 const style = {
     margin: '10px 0'
@@ -19,7 +18,7 @@ export default class AdminTitleField extends React.Component {
         return (
             <div>
                 <FormControl>
-                    <InputLabel>Title</InputLabel>
+                    <InputLabel>{this.props.label}</InputLabel>
                     <Input
                         value={this.props.title}
                         onChange={this.handleChange}
@@ -33,7 +32,7 @@ export default class AdminTitleField extends React.Component {
     renderLookUpField = () => {
         return (
             <div>
-                <Typography variant="headline" component="h1">
+                <Typography variant='headline' component='h1'>
                     {this.props.title}
                 </Typography>
             </div>

@@ -1,4 +1,3 @@
-export {apiPath, isLogged, getCSRFToken} from './session';
 export {
     getUpdatedState,
     formatDateToView,
@@ -6,4 +5,4 @@ export {
     getItemById,
     splitTextToParagraphs
 } from './utils';
-export {parseManageItem} from './dataAccess';
+export {apiPath, isLogged, getCSRFToken} from './session';

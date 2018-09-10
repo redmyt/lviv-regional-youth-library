@@ -4,8 +4,8 @@ import {Route} from 'react-router-dom';
 import AdminLoadMoreButton from '../../../components/AdminLoadMoreButton';
 import AdminAnnouncementList from './AdminAnnouncementList';
 import AdminAnnouncementItem from './AdminAnnouncementItem';
-import {getAnnouncementService} from './adminAnnouncementService';
-import {getUpdatedState, getItemById} from '../../../helpers';
+import {getAnnouncementsListService} from './adminAnnouncementService';
+import {getUpdatedState} from '../../../helpers';
 
 class AdminAnnouncement extends React.Component {
 
@@ -19,7 +19,7 @@ class AdminAnnouncement extends React.Component {
     }
 
     componentWillMount() {
-        getAnnouncementService(this.props.language).then(response => {
+        getAnnouncementsListService(this.props.language).then(response => {
             const data = response.data;
             if (response.status === 200) {
                 this.setState(getUpdatedState({
@@ -32,7 +32,7 @@ class AdminAnnouncement extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.language !== this.props.language) {
-            getAnnouncementService(nextProps.language).then(response => {
+            getAnnouncementsListService(nextProps.language).then(response => {
                 const data = response.data.results;
                 if (response.status === 200) {
                     this.setState(getUpdatedState({announcements: data}, this.state));
@@ -42,7 +42,7 @@ class AdminAnnouncement extends React.Component {
     }
 
     handleLoadMoreClick = () => {
-        getAnnouncementService(this.props.language, this.state.loadMoreUrl).then(response => {
+        getAnnouncementsListService(this.props.language, this.state.loadMoreUrl).then(response => {
             const data = response.data;
             if (response.status === 200) {
                 this.setState(getUpdatedState({
