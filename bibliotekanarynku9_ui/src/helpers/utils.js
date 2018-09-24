@@ -23,8 +23,10 @@ export const getItemById = (itemId, collection) => {
             return item;
         }
     }
-}
+};
 
-export const splitTextToParagraphs = text => text.split('\n');
+export const splitTextToParagraphs = text => text ? text.split('\n') : [];
 
 export const removeBase64Prefix = dataUrlContent => dataUrlContent.split(',').pop();
+
+export const getTranslation = obj => obj.translations.length > 0 ? obj.translations[0] : {};

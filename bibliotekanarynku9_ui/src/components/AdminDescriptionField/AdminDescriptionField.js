@@ -25,7 +25,7 @@ export default class AdminDescriptionField extends React.Component {
                     fullWidth={true}
                 />
             </div>
-        )
+        );
     }
 
     renderLookUpField = () => {
@@ -37,7 +37,7 @@ export default class AdminDescriptionField extends React.Component {
                             <Typography component='p'>
                                 {paragraph}
                             </Typography>
-                        )
+                        );
                     })
                 }
             </div>

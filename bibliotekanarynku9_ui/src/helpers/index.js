@@ -3,6 +3,7 @@ export {
     formatDateToView,
     formatDateToPicker,
     getItemById,
+    getTranslation,
     splitTextToParagraphs,
     removeBase64Prefix
 } from './utils';

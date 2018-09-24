@@ -9,7 +9,7 @@ import AdminTitleField from '../../../components/AdminTitleField';
 import AdminDescriptionField from '../../../components/AdminDescriptionField';
 import AdminDateField from '../../../components/AdminDateField';
 import AdminAvatarField from '../../../components/AdminAvatarField';
-import {getUpdatedState} from '../../../helpers';
+import {getUpdatedState, getTranslation} from '../../../helpers';
 import {
     getAnnouncementById,
     putAnnouncementTranslationService,
@@ -44,7 +44,7 @@ class AdminAnnouncementItem extends React.Component {
             if (response.status === 200) {
                 this.setState(getUpdatedState({
                     announcement: data,
-                    announcementTranslation: data.translations[0]
+                    announcementTranslation: getTranslation(data)
                 }, this.state));
             }
         });
@@ -68,7 +68,7 @@ class AdminAnnouncementItem extends React.Component {
                         if (response.status === 200) {
                             this.setState(getUpdatedState({
                                 announcement: data,
-                                announcementTranslation: data.translations[0],
+                                announcementTranslation: getTranslation(data),
                                 isEdit: false
                             }, this.state));
                         }
