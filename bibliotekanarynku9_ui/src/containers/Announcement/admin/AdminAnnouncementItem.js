@@ -3,13 +3,13 @@ import {withRouter} from 'react-router';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Switch from '@material-ui/core/Switch';
 import AdminButton from '../../../components/AdminButton';
-import {getUpdatedState} from '../../../helpers';
 import AdminTitleField from '../../../components/AdminTitleField';
 import AdminDescriptionField from '../../../components/AdminDescriptionField';
 import AdminDateField from '../../../components/AdminDateField';
+import AdminAvatarField from '../../../components/AdminAvatarField';
+import {getUpdatedState} from '../../../helpers';
 import {
     getAnnouncementById,
     putAnnouncementTranslationService,
@@ -19,11 +19,6 @@ import {
 const baseStyle = {
     margin: '15px 15px',
     boxSizing: 'border-box'
-};
-
-const mediaStyle = {
-    height: 0,
-    paddingTop: '20%'
 };
 
 const switchStyle = {
@@ -109,6 +104,13 @@ class AdminAnnouncementItem extends React.Component {
         }}, this.state));
     }
 
+    handleAvatarChange = newAvatar => {
+        this.setState(getUpdatedState({announcement: {
+            ...this.state.announcement,
+            avatar: newAvatar
+        }}, this.state));
+    }
+
     render() {
         const style = this.props.style ? Object.assign(this.props.style, baseStyle) : baseStyle;
         return (
@@ -121,7 +123,11 @@ class AdminAnnouncementItem extends React.Component {
                                 onChange={this.handleSwitchToggle}
                             />
                         </div>
-                        <CardMedia style={mediaStyle} image={this.state.announcement.avatar} />
+                        <AdminAvatarField
+                            avatar={this.state.announcement.avatar}
+                            isEdit={this.state.isEdit}
+                            onAvatarChange={this.handleAvatarChange}
+                        />
                         <CardContent>
                             <AdminTitleField
                                 title={this.state.announcementTranslation.title}

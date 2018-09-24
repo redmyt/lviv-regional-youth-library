@@ -3,6 +3,7 @@ export {
     formatDateToView,
     formatDateToPicker,
     getItemById,
-    splitTextToParagraphs
+    splitTextToParagraphs,
+    removeBase64Prefix
 } from './utils';
 export {apiPath, isLogged, getCSRFToken} from './session';

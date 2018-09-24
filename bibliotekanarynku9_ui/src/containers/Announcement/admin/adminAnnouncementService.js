@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {apiPath, getCSRFToken} from '../../../helpers';
+import {apiPath, getCSRFToken, removeBase64Prefix} from '../../../helpers';
 
 const announcementPath = 'announcement/';
 
@@ -24,7 +24,7 @@ export const getAnnouncementById = (announcementId, language) => {
 export const putAnnouncementService = (announcementId, avatar, startAt) => {
     const url = `${apiPath}${announcementPath}${announcementId}/`;
     return axios.put(url, {
-        avatar: avatar,
+        avatar: removeBase64Prefix(avatar),
         start_at: startAt
     }, {
         headers: {

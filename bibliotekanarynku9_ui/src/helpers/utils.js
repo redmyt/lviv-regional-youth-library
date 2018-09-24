@@ -26,3 +26,5 @@ export const getItemById = (itemId, collection) => {
 }
 
 export const splitTextToParagraphs = text => text.split('\n');
+
+export const removeBase64Prefix = dataUrlContent => dataUrlContent.split(',').pop();
