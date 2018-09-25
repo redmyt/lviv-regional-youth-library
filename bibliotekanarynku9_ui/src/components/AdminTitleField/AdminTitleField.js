@@ -26,7 +26,7 @@ export default class AdminTitleField extends React.Component {
                     />
                 </FormControl>
             </div>
-        )
+        );
     }
 
     renderLookUpField = () => {
@@ -36,7 +36,7 @@ export default class AdminTitleField extends React.Component {
                     {this.props.title}
                 </Typography>
             </div>
-        )
+        );
     }
 
     render() {
@@ -44,6 +44,6 @@ export default class AdminTitleField extends React.Component {
             <div style={style}>
                 {this.props.isEdit ? this.renderEditField() : this.renderLookUpField()}
             </div>
-        )
+        );
     }
 }

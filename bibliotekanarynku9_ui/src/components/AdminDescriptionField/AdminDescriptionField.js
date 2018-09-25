@@ -41,7 +41,7 @@ export default class AdminDescriptionField extends React.Component {
                     })
                 }
             </div>
-        )
+        );
     }
 
     render() {
@@ -49,6 +49,6 @@ export default class AdminDescriptionField extends React.Component {
             <div style={style}>
                 {this.props.isEdit ? this.renderEditField() : this.renderLookUpField()}
             </div>
-        )
+        );
     }
 }

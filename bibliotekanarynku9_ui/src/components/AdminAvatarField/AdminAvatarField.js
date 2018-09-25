@@ -25,7 +25,7 @@ export default class AdminAvatarField extends React.Component {
             this.reader.readAsDataURL(file);
             this.reader.onloadend = () => {
                 this.props.onAvatarChange(this.reader.result);
-            }
+            };
         }
     }
 
@@ -39,7 +39,7 @@ export default class AdminAvatarField extends React.Component {
                     onChange={this.handleChange}
                 />
             </div>
-        )
+        );
     }
 
     renderLookUpField = () => {
@@ -47,7 +47,7 @@ export default class AdminAvatarField extends React.Component {
             <div>
                 <CardMedia style={lookupStyle} image={this.props.avatar} />
             </div>
-        )
+        );
     }
 
     render() {
@@ -55,6 +55,6 @@ export default class AdminAvatarField extends React.Component {
             <div>
                 {this.props.isEdit ? this.renderEditField() : this.renderLookUpField()}
             </div>
-        )
+        );
     }
 }

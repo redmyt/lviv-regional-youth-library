@@ -62,7 +62,7 @@ class AdminAnnouncement extends React.Component {
                             announcements={this.state.announcements}
                         />
                         <AdminLoadMoreButton
-                            variant="contained"
+                            variant='contained'
                             isDisabled={!this.state.loadMoreUrl}
                             onClick={this.handleLoadMoreClick}
                         />
