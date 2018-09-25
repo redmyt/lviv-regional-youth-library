@@ -44,3 +44,15 @@ export const putAnnouncementTranslationService = (announcementId, translationId,
         }
     });
 };
+
+export const putAnnouncementTranslationLinkService = (announcementId, translationId, linkId, label, href) => {
+    const url = `${apiPath}${announcementPath}${announcementId}/translation/${translationId}/link/${linkId}/`;
+    return axios.put(url, {
+        label: label,
+        href: href
+    }, {
+        headers: {
+            'X-CSRFToken': getCSRFToken()
+        }
+    });
+};

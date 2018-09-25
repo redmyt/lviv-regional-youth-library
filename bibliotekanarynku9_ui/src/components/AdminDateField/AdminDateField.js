@@ -28,20 +28,21 @@ export default class AdminDateField extends React.Component {
                     InputLabelProps={{
                         shrink: true
                     }}
+                    error={this.props.isError}
                 />
             </div>
-        )
+        );
     }
 
     renderLookUpField = () => {
         return (
             <div>
-                <Typography component='p'>
+                <Typography component='p' variant='subheading'>
                     <span style={labelStyle}> {this.props.label}: </span>
                     {formatDateToView(this.props.date)}
                 </Typography>
             </div>
-        )
+        );
     }
 
     render() {
@@ -49,6 +50,6 @@ export default class AdminDateField extends React.Component {
             <div style={style}>
                 {this.props.isEdit ? this.renderEditField() : this.renderLookUpField()}
             </div>
-        )
+        );
     }
 }

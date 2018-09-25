@@ -9,11 +9,13 @@ import AdminTitleField from '../../../components/AdminTitleField';
 import AdminDescriptionField from '../../../components/AdminDescriptionField';
 import AdminDateField from '../../../components/AdminDateField';
 import AdminAvatarField from '../../../components/AdminAvatarField';
-import {getUpdatedState, getTranslation} from '../../../helpers';
+import AdminLinksField from '../../../components/AdminLinksField';
+import {getDeepObjectCopy, getUpdatedState, getTranslation, getLinks} from '../../../helpers';
 import {
     getAnnouncementById,
     putAnnouncementTranslationService,
-    putAnnouncementService
+    putAnnouncementService,
+    putAnnouncementTranslationLinkService
 } from './adminAnnouncementService';
 
 const baseStyle = {
@@ -50,31 +52,50 @@ class AdminAnnouncementItem extends React.Component {
         });
     }
 
-    handleSaveClick = () => {
-        putAnnouncementService(
+    getAnnouncementPromises = () => {
+        const promises = [];
+        promises.push(putAnnouncementService(
             this.state.announcementId,
             this.state.announcement.avatar,
             this.state.announcement.start_at
-        ).then(() => {
-            putAnnouncementTranslationService(
+        ));
+        if (this.state.announcementTranslation.id) {
+            promises.push(putAnnouncementTranslationService(
                 this.state.announcementId,
                 this.state.announcementTranslation.id,
                 this.state.announcementTranslation.title,
                 this.state.announcementTranslation.description
-            ).then(() => {
-                getAnnouncementById(this.state.announcementId, this.props.language)
-                    .then(response => {
-                        const data = response.data;
-                        if (response.status === 200) {
-                            this.setState(getUpdatedState({
-                                announcement: data,
-                                announcementTranslation: getTranslation(data),
-                                isEdit: false
-                            }, this.state));
-                        }
-                    });
+            ));
+            this.state.announcementTranslation.links.forEach(link => {
+                promises.push(putAnnouncementTranslationLinkService(
+                    this.state.announcementId,
+                    this.state.announcementTranslation.id,
+                    link.id,
+                    link.label,
+                    link.href
+                ));
             });
-        }).catch(() => {
+        }
+        return promises;
+    }
+
+    handleSaveClick = () => {
+        const promises = this.getAnnouncementPromises();
+        Promise.all(promises)
+        .then(() => {
+            getAnnouncementById(this.state.announcementId, this.props.language)
+            .then(response => {
+                const data = response.data;
+                if (response.status === 200) {
+                    this.setState(getUpdatedState({
+                        announcement: data,
+                        announcementTranslation: getTranslation(data),
+                        isEdit: false
+                    }, this.state));
+                }
+            });
+        })
+        .catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });
     }
@@ -108,6 +129,17 @@ class AdminAnnouncementItem extends React.Component {
         this.setState(getUpdatedState({announcement: {
             ...this.state.announcement,
             avatar: newAvatar
+        }}, this.state));
+    }
+
+    handleLinkChange = (fieldValue, linkId, fieldName) => {
+        const links = getDeepObjectCopy(this.state.announcementTranslation.links),
+            link = links.find(link => link.id === linkId);
+        link[fieldName] = fieldValue;
+        links[links.indexOf(link)] = (link)
+        this.setState(getUpdatedState({announcementTranslation: {
+            ...this.state.announcementTranslation,
+            links: links
         }}, this.state));
     }
 
@@ -148,6 +180,7 @@ class AdminAnnouncementItem extends React.Component {
                                 label='Start At'
                                 onDateChange={this.handleDateChange}
                                 isEdit={this.state.isEdit}
+                                isError={this.state.isError}
                             />
                             <AdminDateField
                                 date={this.state.announcement.created_at}
@@ -158,6 +191,12 @@ class AdminAnnouncementItem extends React.Component {
                                 date={this.state.announcement.updated_at}
                                 label='Updated at'
                                 isEdit={false}
+                            />
+                            <AdminLinksField
+                                links={getLinks(this.state.announcementTranslation)}
+                                onLinkChange={this.handleLinkChange}
+                                isEdit={this.state.isEdit}
+                                isError={this.state.isError}
                             />
                         </CardContent>
                         <CardActions>
