@@ -14,7 +14,7 @@ class AdminAnnouncement extends React.Component {
         this.state = {
             announcements: [],
             loadMoreUrl: '',
-            selectedAnnouncement: null
+            selectedAnnouncementData: null
         };
     }
 
@@ -53,6 +53,13 @@ class AdminAnnouncement extends React.Component {
         });
     }
 
+    handleListItemClick = itemId => {
+        const itemData = this.state.announcements.find(announcement => announcement.id === itemId);
+        this.setState(getUpdatedState({
+            selectedAnnouncementData: itemData
+        }, this.state));
+    }
+
     render() {
         return (
             <div>
@@ -60,6 +67,7 @@ class AdminAnnouncement extends React.Component {
                     <div>
                         <AdminAnnouncementList
                             announcements={this.state.announcements}
+                            onListItemClick={this.handleListItemClick}
                         />
                         <AdminLoadMoreButton
                             variant='contained'
@@ -69,7 +77,10 @@ class AdminAnnouncement extends React.Component {
                     </div>
                 )} />
                 <Route path={`${this.props.match.url}/:announcementId`} render={() => (
-                    <AdminAnnouncementItem language={this.props.language} />
+                    <AdminAnnouncementItem
+                        language={this.props.language}
+                        data={this.state.selectedAnnouncementData}
+                    />
                 )} />
             </div>
         );
