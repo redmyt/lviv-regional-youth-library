@@ -19,14 +19,16 @@ class Admin extends React.Component {
     }
 
     componentWillMount() {
-        getManageApps().then(response => {
-            if (response.status === 200) {
-                const changesObj = {
-                    manageApps: response.data.apps
-                };
-                this.setState(getUpdatedState(changesObj, this.state));
-            }
-        });
+        if (isLogged()) {
+            getManageApps().then(response => {
+                if (response.status === 200) {
+                    const changesObj = {
+                        manageApps: response.data.apps
+                    };
+                    this.setState(getUpdatedState(changesObj, this.state));
+                }
+            });
+        }
     }
 
     navigateToItem = itemName => {

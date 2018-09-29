@@ -27,7 +27,7 @@ export default class AdminAnnouncementListItem extends React.Component {
         return (
             <div style={style}>
                 <Card>
-                    <CardMedia style={mediaStyle} image="https://robohash.org/8404" />
+                    <CardMedia style={mediaStyle} image={this.props.avatar} />
                     <CardContent>
                         <h2>{this.props.name}</h2>
                         <p>{this.props.description}</p>
@@ -37,9 +37,9 @@ export default class AdminAnnouncementListItem extends React.Component {
                     </CardContent>
                     <CardActions>
                         <AdminButton
-                            size="small"
-                            color="primary"
-                            variant="contained"
+                            size='small'
+                            color='primary'
+                            variant='contained'
                             onClick={this.handleClick}
                             text={'Go to item'}
                         />
