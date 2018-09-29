@@ -13,6 +13,7 @@ const baseStyle = {
 class AdminAnnouncementList extends React.Component {
 
     handelClick = itemId => {
+        this.props.onListItemClick(itemId);
         this.props.history.push(`${this.props.match.url}/${itemId}`);
     }
 

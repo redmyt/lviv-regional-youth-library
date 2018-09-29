@@ -41,15 +41,22 @@ class AdminAnnouncementItem extends React.Component {
     }
 
     componentWillMount() {
-        getAnnouncementById(this.state.announcementId, this.props.language).then(response => {
-            const data = response.data;
-            if (response.status === 200) {
-                this.setState(getUpdatedState({
-                    announcement: data,
-                    announcementTranslation: getTranslation(data)
-                }, this.state));
-            }
-        });
+        if (this.props.data) {
+            this.setState(getUpdatedState({
+                announcement: this.props.data,
+                announcementTranslation: getTranslation(this.props.data)
+            }, this.state));
+        } else {
+            getAnnouncementById(this.state.announcementId, this.props.language).then(response => {
+                const data = response.data;
+                if (response.status === 200) {
+                    this.setState(getUpdatedState({
+                        announcement: data,
+                        announcementTranslation: getTranslation(data)
+                    }, this.state));
+                }
+            });
+        }
     }
 
     getAnnouncementPromises = () => {
