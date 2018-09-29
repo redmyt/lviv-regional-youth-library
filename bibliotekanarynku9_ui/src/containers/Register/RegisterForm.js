@@ -93,9 +93,9 @@ export default class RegisterForm extends React.Component {
                 </FormControl>
                 <AdminButton
                     style={btnStyle}
-                    variant="contained"
-                    color="primary"
-                    text="Submit"
+                    variant='contained'
+                    color='primary'
+                    text='Submit'
                     onClick={this.handleButtonClick}
                 />
             </div>

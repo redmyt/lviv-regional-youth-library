@@ -15,7 +15,7 @@ export default class AdminLoadMoreButton extends React.Component {
                 <div style={style}>
                     <Button
                         variant={this.props.variant}
-                        color="secondary"
+                        color='secondary'
                         disabled
                     >
                         Load more
@@ -25,7 +25,7 @@ export default class AdminLoadMoreButton extends React.Component {
                 <div style={style}>
                     <Button
                         variant={this.props.variant}
-                        color="secondary"
+                        color='secondary'
                         onClick={this.props.onClick}
                     >
                         Load more

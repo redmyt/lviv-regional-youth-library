@@ -8,7 +8,7 @@ export const getManageApps = () => {
 };
 
 export const getLogout = () => {
-    const logoutPath = 'auth/logout',
+    const logoutPath = 'auth/logout/',
         url = apiPath + logoutPath;
     return axios.get(url);
 };

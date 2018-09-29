@@ -21,9 +21,9 @@ export default class ManageApplicationItem extends React.Component {
                     </CardContent>
                     <CardActions>
                         <AdminButton
-                            size="small"
-                            color="primary"
-                            variant="contained"
+                            size='small'
+                            color='primary'
+                            variant='contained'
                             onClick={this.handleClick}
                             text={'Go to item'}
                         />

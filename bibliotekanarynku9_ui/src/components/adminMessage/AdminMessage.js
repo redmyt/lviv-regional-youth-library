@@ -25,8 +25,8 @@ export default class AdminMessage extends React.Component {
                         {
                             this.props.links.map((link, index) => (
                                 <Button
-                                    size="small"
-                                    color="primary"
+                                    size='small'
+                                    color='primary'
                                     key={index}
                                     onClick={link.onClick}>
                                     {link.text}
