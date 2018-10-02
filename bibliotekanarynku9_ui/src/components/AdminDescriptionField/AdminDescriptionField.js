@@ -15,6 +15,7 @@ export default class AdminDescriptionField extends React.Component {
 
     renderEditField = () => {
         return (
+            this.props.description &&
             <div>
                 <TextField
                     label={this.props.label}
@@ -30,6 +31,7 @@ export default class AdminDescriptionField extends React.Component {
 
     renderLookUpField = () => {
         return (
+            this.props.description &&
             <div>
                 {
                     splitTextToParagraphs(this.props.description).map(paragraph => {
