@@ -16,6 +16,7 @@ export default class AdminTitleField extends React.Component {
 
     renderEditField = () => {
         return (
+            this.props.title &&
             <div>
                 <FormControl>
                     <InputLabel>{this.props.label}</InputLabel>
@@ -31,6 +32,7 @@ export default class AdminTitleField extends React.Component {
 
     renderLookUpField = () => {
         return (
+            this.props.title &&
             <div>
                 <Typography variant='headline' component='h1'>
                     {this.props.title}
