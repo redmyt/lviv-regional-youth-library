@@ -33,4 +33,4 @@ export const removeBase64Prefix = dataUrlContent => dataUrlContent.split(',').po
 
 export const getTranslation = obj => obj.translations.length > 0 ? obj.translations[0] : {};
 
-export const getLinks = obj => obj.links || [];
+export const getLinks = obj => obj.translations.length > 0 ? obj.translations[0].links : [];
