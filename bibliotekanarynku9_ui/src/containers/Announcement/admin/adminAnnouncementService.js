@@ -21,6 +21,18 @@ export const getAnnouncementById = (announcementId, language) => {
     });
 };
 
+export const postAnnouncementTranslationLinkService = (announcementId, translationId, label, href) => {
+    const url = `${apiPath}${announcementPath}${announcementId}/translation/${translationId}/link/`;
+    return axios.post(url, {
+        label: label,
+        href: href
+    }, {
+        headers: {
+            'X-CSRFToken': getCSRFToken()
+        }
+    });
+};
+
 export const putAnnouncementService = (announcementId, avatar, startAt) => {
     const url = `${apiPath}${announcementPath}${announcementId}/`;
     return axios.put(url, {

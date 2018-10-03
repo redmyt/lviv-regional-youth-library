@@ -13,6 +13,7 @@ import AdminLinksField from '../../../components/AdminLinksField';
 import {getDeepObjectCopy, getUpdatedState, getTranslation, getLinks} from '../../../helpers';
 import {
     getAnnouncementById,
+    postAnnouncementTranslationLinkService,
     putAnnouncementTranslationService,
     putAnnouncementService,
     putAnnouncementTranslationLinkService
@@ -149,6 +150,28 @@ class AdminAnnouncementItem extends React.Component {
         }, this.state));
     }
 
+    handleAddLinkClick = (label, href) => {
+        postAnnouncementTranslationLinkService(
+            this.state.announcement.id,
+            this.state.translation.id,
+            label,
+            href
+        ).then(() => {
+            getAnnouncementById(this.state.announcement.id, this.props.language)
+                .then(response => {
+                    const data = response.data;
+                    this.setState(getUpdatedState({
+                        announcement: data,
+                        translation: getTranslation(data),
+                        links: getLinks(data),
+                        isEdit: false
+                    }, this.state));
+                });
+        }).catch(() => {
+            this.setState(getUpdatedState({isError: true}, this.state));
+        });
+    }
+
     render() {
         const style = this.props.style ? Object.assign(this.props.style, baseStyle) : baseStyle;
         return (
@@ -201,6 +224,7 @@ class AdminAnnouncementItem extends React.Component {
                             <AdminLinksField
                                 links={this.state.links}
                                 onLinkChange={this.handleLinkChange}
+                                onAddLinkClick={this.handleAddLinkClick}
                                 isEdit={this.state.isEdit}
                                 isError={this.state.isError}
                             />

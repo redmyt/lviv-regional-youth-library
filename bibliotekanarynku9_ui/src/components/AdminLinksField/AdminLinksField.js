@@ -7,6 +7,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/Inbox';
 import Link from '@material-ui/icons/Link';
+import AdminButton from '../../components/AdminButton';
+import {getUpdatedState} from '../../helpers';
 
 const style = {
     margin: '10px 0'
@@ -22,6 +24,14 @@ const headLabelStyle = {
 
 export default class AdminLinksField extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            label: '',
+            href: ''
+        };
+    }
+
     handleChange = (event, linkId, fieldType) => {
         this.props.onLinkChange(event.target.value, linkId, fieldType);
     }
@@ -30,6 +40,20 @@ export default class AdminLinksField extends React.Component {
         const id = linkId,
             type = fieldType;
         return event => {this.handleChange(event, id, type);};
+    }
+
+    handleAddLinkClick = () => {
+        this.props.onAddLinkClick(this.state.label, this.state.href);
+        this.setState(getUpdatedState({
+            label: '',
+            href: ''
+        }, this.state));
+    }
+
+    handleAddLinkInputChange = event => {
+        const newState = {};
+        newState[event.target.name] = event.target.value;
+        this.setState(getUpdatedState(newState, this.state));
     }
 
     renderEditField = () => {
@@ -60,6 +84,31 @@ export default class AdminLinksField extends React.Component {
                         ))
                     }
                 </List>
+                <AdminButton
+                    size='small'
+                    color='primary'
+                    variant='outlined'
+                    onClick={this.handleAddLinkClick}
+                    text={'Add Link'}
+                />
+                <TextField
+                    style={linkInputStyle}
+                    name='label'
+                    label='label'
+                    value={this.state.label}
+                    onChange={this.handleAddLinkInputChange}
+                    error={this.props.isError}
+                    fullWidth={true}
+                />
+                <TextField
+                    style={linkInputStyle}
+                    name='href'
+                    label='href'
+                    value={this.state.href}
+                    onChange={this.handleAddLinkInputChange}
+                    error={this.props.isError}
+                    fullWidth={true}
+                />
             </div>
         );
     }
@@ -86,16 +135,14 @@ export default class AdminLinksField extends React.Component {
 
     render() {
         return (
-            <div style={style}>
-                {this.props.links.length ? (
+            this.props.links.length ? (
+                <div style={style}>
                     <Typography component='p' variant='subheading'>
                         <span style={headLabelStyle}>{'Links:'}</span>
                     </Typography>
-                ) : (
-                    null
-                )}
-                {this.props.isEdit ? this.renderEditField() : this.renderLookUpField()}
-            </div>
+                    {this.props.isEdit ? this.renderEditField() : this.renderLookUpField()}
+                </div>
+            ) : null
         );
     }
 }
