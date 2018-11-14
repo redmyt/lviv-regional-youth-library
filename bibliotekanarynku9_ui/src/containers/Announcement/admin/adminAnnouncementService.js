@@ -13,7 +13,7 @@ export const getAnnouncementsListService = (language, inputUrl) => {
 };
 
 export const getAnnouncementById = (announcementId, language) => {
-    const url = apiPath + announcementPath + announcementId;
+    const url = `${apiPath}${announcementPath}${announcementId}/`;
     return axios.get(url, {
         headers: {
             'Accept-Language': language
@@ -63,6 +63,15 @@ export const putAnnouncementTranslationLinkService = (announcementId, translatio
         label: label,
         href: href
     }, {
+        headers: {
+            'X-CSRFToken': getCSRFToken()
+        }
+    });
+};
+
+export const deleteAnnouncementTranslationLinkService = (announcementId, translationId, linkId) => {
+    const url = `${apiPath}${announcementPath}${announcementId}/translation/${translationId}/link/${linkId}/`;
+    return axios.delete(url, {
         headers: {
             'X-CSRFToken': getCSRFToken()
         }

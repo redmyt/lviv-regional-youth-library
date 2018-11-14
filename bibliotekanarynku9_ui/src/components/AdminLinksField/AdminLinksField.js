@@ -32,14 +32,13 @@ export default class AdminLinksField extends React.Component {
         };
     }
 
-    handleChange = (event, linkId, fieldType) => {
-        this.props.onLinkChange(event.target.value, linkId, fieldType);
+    handleChange = (linkId, event) => {
+        this.props.onLinkChange(event.target.value, linkId, event.target.name);
     }
 
-    handleChangeDecorator = (linkId, fieldType) => {
-        const id = linkId,
-            type = fieldType;
-        return event => {this.handleChange(event, id, type);};
+    linkIdDecorator = (func, linkId) => {
+        const id = linkId;
+        return event => func(id, event);
     }
 
     handleAddLinkClick = () => {
@@ -56,6 +55,10 @@ export default class AdminLinksField extends React.Component {
         this.setState(getUpdatedState(newState, this.state));
     }
 
+    handleRemoveLinkClick = linkId => {
+        this.props.onRemoveLinkClick(linkId);
+    }
+
     renderEditField = () => {
         return (
             <div>
@@ -69,16 +72,25 @@ export default class AdminLinksField extends React.Component {
                                 <TextField
                                     style={linkInputStyle}
                                     label={'label'}
+                                    name='label'
                                     value={link.label}
-                                    onChange={this.handleChangeDecorator(link.id, 'label')}
+                                    onChange={this.linkIdDecorator(this.handleChange, link.id)}
                                     error={this.props.isError}
                                 />
                                 <TextField
                                     style={linkInputStyle}
                                     label={'href'}
+                                    name='href'
                                     value={link.href}
-                                    onChange={this.handleChangeDecorator(link.id, 'href')}
+                                    onChange={this.linkIdDecorator(this.handleChange, link.id)}
                                     error={this.props.isError}
+                                />
+                                <AdminButton
+                                    size='small'
+                                    color='secondary'
+                                    variant='contained'
+                                    onClick={this.linkIdDecorator(this.handleRemoveLinkClick, link.id)}
+                                    text={'Remove'}
                                 />
                             </ListItem>
                         ))

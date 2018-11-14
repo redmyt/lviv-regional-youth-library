@@ -16,7 +16,8 @@ import {
     postAnnouncementTranslationLinkService,
     putAnnouncementTranslationService,
     putAnnouncementService,
-    putAnnouncementTranslationLinkService
+    putAnnouncementTranslationLinkService,
+    deleteAnnouncementTranslationLinkService
 } from './adminAnnouncementService';
 
 const baseStyle = {
@@ -172,6 +173,27 @@ class AdminAnnouncementItem extends React.Component {
         });
     }
 
+    handleRemoveLinkClick = (linkId) => {
+        deleteAnnouncementTranslationLinkService(
+            this.state.announcement.id,
+            this.state.translation.id,
+            linkId
+        ).then(() => {
+            getAnnouncementById(this.state.announcement.id, this.props.language)
+                .then(response => {
+                    const data = response.data;
+                    this.setState(getUpdatedState({
+                        announcement: data,
+                        translation: getTranslation(data),
+                        links: getLinks(data),
+                        isEdit: false
+                    }, this.state));
+                });
+        }).catch(() => {
+            this.setState(getUpdatedState({isError: true}, this.state));
+        });
+    }
+
     render() {
         const style = this.props.style ? Object.assign(this.props.style, baseStyle) : baseStyle;
         return (
@@ -225,6 +247,7 @@ class AdminAnnouncementItem extends React.Component {
                                 links={this.state.links}
                                 onLinkChange={this.handleLinkChange}
                                 onAddLinkClick={this.handleAddLinkClick}
+                                onRemoveLinkClick={this.handleRemoveLinkClick}
                                 isEdit={this.state.isEdit}
                                 isError={this.state.isError}
                             />
