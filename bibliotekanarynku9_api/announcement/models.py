@@ -19,6 +19,9 @@ class Announcement(AbstractModel):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ('start_at',)
+
 
 class AnnouncementTranslation(AbstractModel):
     """AnnouncementTranslation entity description"""
