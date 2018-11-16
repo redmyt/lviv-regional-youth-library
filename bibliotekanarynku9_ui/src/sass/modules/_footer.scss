@@ -1,0 +1,137 @@
+.footer_style_default {
+    background-image: url("../images/footer-bg.jpg");
+    @include coveredBackgroundImage();
+    box-shadow: $whiteBlurBoxShadowStack;
+    color: #fff;
+}
+
+.footer-information {
+    flex-direction: column;
+
+    @media #{$media880pixels} {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+}
+
+.footer-information__item {
+    @media #{$media880pixels} {
+        width: 33.33%;
+    }
+}
+
+.schedule__days-panel {
+    display: inline-flex;
+    align-items: center;
+
+    @media #{$media556pixels} {
+        align-items: flex-start;
+    }
+}
+
+.schedule__certain-day-schedule {
+    margin: 2px 0;
+}
+
+.contacts__links-wrapper {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 150px;
+    margin-top: 25px;
+
+    @media #{$media1360pixels} {
+        width: 30%;
+        margin-top: 5%;
+    }
+}
+
+.contacts__link {
+    display: inline-block;
+    width: 64px;
+    margin-bottom: 10px;
+
+    @media #{$media1360pixels} {
+        width: 45%;
+        margin-bottom: 3%;
+    }
+}
+
+.contacts__mail-text,
+.contacts__skype-text {
+    visibility: hidden;
+}
+
+.contacts__skype-mail-text_invisible {
+    display: none;
+}
+
+.contacts__skype-mail-text_visible {
+    visibility: visible;
+}
+
+.google-map {
+    text-shadow: none;
+    margin: 25px;
+    
+    @media #{$media1360pixels} {
+        text-shadow: none;
+        padding: 2% 2%;
+        box-sizing: border-box;
+    }
+}
+
+#google-map-frame {
+    height:300px;
+    width:100%;
+
+    @media #{$media1360pixels} {
+        height: 17vw;
+        width:100%;
+    }
+}
+
+.taglines {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    @media #{$media880pixels} {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+.taglines-key__wrapper {
+    width: 63%;
+    position: relative;
+}
+
+.taglines-key {
+    @media #{$media880pixels} {
+        width: 33.33%;
+    }
+}
+
+.taglines-key__picture-label_style_default {
+    font-size: 21px;
+    font-family: scriptBase;
+    color: $gold;
+    text-align: center;
+    text-shadow: none;
+    position: absolute;
+    top: 62%;
+    left: 18%;
+
+    @media #{$media1360pixels} {
+        font-size: 2vw;
+    }
+}
+
+.taglines-secrets,
+.taglines-hashtag {
+    @media #{$media880pixels} {
+        width: 33.33%;
+    }
+}

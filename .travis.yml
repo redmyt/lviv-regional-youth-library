@@ -17,7 +17,7 @@ install:
   - npm install
 
 script:
-  - eslint --config .eslintrc.js bibliotekanarynku9_ui/src/
+  - eslint --config .eslintrc.js bibliotekanarynku9_administration_panel/src/
   - npm run build
   - pylint --rcfile=.pylintrc bibliotekanarynku9_api/*
 
