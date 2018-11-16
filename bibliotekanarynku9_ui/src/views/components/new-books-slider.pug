@@ -1,0 +1,7 @@
+aside.new-books-slider
+    div.new-books-slider__picteres-slide-section.new-books-slider__picteres-slide-section_style_default
+        - var newBooksSliderPicturesSources = ['images/bookshelf-img/zhila-bula-ia.jpg', 'images/bookshelf-img/vylichnui-kit-na-imia-bob.jpg', 'images/bookshelf-img/vidlunnia.jpg', 'images/bookshelf-img/choloviku-shcho-nenavudiat-shinok.jpg', 'images/bookshelf-img/divchata-z-13-vuylutci.jpg', 'images/bookshelf-img/zhovti-ochi-krokoduliv.jpg', 'images/bookshelf-img/vse-shcho-ia-xotila-sogodni.jpg', 'images/bookshelf-img/chomy-natcii-zanepadaiyt.jpg', 'images/bookshelf-img/bot.jpg','images/bookshelf-img/nervu-lanchyga.jpg'];
+        each item in newBooksSliderPicturesSources
+            div.new-books-slider__sliding-picture-wrapper
+                img.page-picture.rounded(src=item
+                        alt="one of new books picture")

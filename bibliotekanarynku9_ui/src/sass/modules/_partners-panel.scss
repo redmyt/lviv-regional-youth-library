@@ -1,0 +1,27 @@
+.partners-panel__heading_style_default {
+    font-size: 2.2em;   
+    color: $darkBrown;
+}
+
+.partners-panel__slider {
+    width: 80%;
+    margin: 15px auto 50px;
+}
+
+.partners-panel__partner-item {
+    height: 200px;
+
+    @media #{$media1360pixels} {
+        height: 11vw;
+    }
+}
+
+.partners-panel__link-image {
+    width: 200px;
+    @extend .partners-panel__partner-item;
+
+    @media #{$media1360pixels} {
+        width: 100%;
+        height: 100%;
+    }
+}

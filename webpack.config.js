@@ -3,18 +3,18 @@ const path = require('path'),
       HtmlWebpackPlugin = require('html-webpack-plugin'),
       CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const src = path.join(__dirname, 'bibliotekanarynku9_ui/src/'),
-      dist = path.join(__dirname, 'bibliotekanarynku9_ui/public/');
+const src = path.join(__dirname, 'bibliotekanarynku9_administration_panel/src/'),
+      dest = path.join(__dirname, 'bibliotekanarynku9_administration_panel/public/');
 
 module.exports = {
     entry: src + 'app.js',
     output: {
-        path: dist,
+        path: dest,
         filename: 'bundle.js'
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: dist,
+        contentBase: dest,
         publicPath: '/',
         historyApiFallback: true,
         proxy: {
