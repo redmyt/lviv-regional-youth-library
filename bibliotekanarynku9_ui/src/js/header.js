@@ -17,10 +17,10 @@ $(window).on('scroll', function () {
     // When scroll position is over header height add fixed styles for navigation block
     if (windowTopScroll > headerHeight - navigationHeight) {
         $($navigation).addClass('header__navigation_fixed');
-        $($header).css("padding-bottom", navigationHeight);
+        $($header).css('padding-bottom', navigationHeight);
     } else {
         $($navigation).removeClass('header__navigation_fixed');
-        $($header).css("padding-bottom", 0);
+        $($header).css('padding-bottom', 0);
     }
 
     // Collapse menu when user fire scroll event

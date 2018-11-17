@@ -18,7 +18,7 @@ function getUkraineTime() {
 
 // Switch element styles at evening and morning
 function switchTimeStyles(element, classWithStyles) {
-    if (getUkraineTime() > 18 || getUkraineTime() < 9) {
+    if (getUkraineTime() > 17 || getUkraineTime() < 9) {
         $(element).addClass(classWithStyles);
     }
 }

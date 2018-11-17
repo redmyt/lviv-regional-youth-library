@@ -1,19 +1,19 @@
-// Save all new book pictures for sliding to one variable 
+// Save all new book pictures for sliding to one variable
 var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray(),
-    // Save sliding pictures wrapper to variable 
+    // Save sliding pictures wrapper to variable
     slidingPicturesWrapper = $('.new-books-slider__picteres-slide-section'),
     // Variable for checking the slider pause
     isPaused = false;
 
 // Start slide each of books picture
 var sliderInterval = setInterval(function () {
-    if (isPaused === false) {
+    if (!isPaused) {
         slidThePictures(slidingPictures, slidingPicturesWrapper, 1);
     }
-}, 25);
+}, 30);
 
 // Set mousewheel event listener to body for control one scrolling
-disableBodyScroling();
+disableBodyScrolling();
 
 // Allow user's control for slider by mousewheel
 mousePictureSliding(slidingPicturesWrapper);
@@ -29,17 +29,17 @@ slidingPicturesWrapper.on('click', function() {
     window.location.hash = 'bookshelf';
 });
 
-// function descriptions/////////////////////////////////////////////////////////////////
+// |--------------------| function descriptions |--------------------|
 
 // Implement the slider. Change scroll position of picture wrapper and when the scroll position of sliding elements wrapper becomes equals the first element height change the DOM position of first slider picture
-function slidThePictures(itemsForSliding, slidingElementsWrapper, scrollStap) {
+function slidThePictures(itemsForSliding, slidingElementsWrapper, scrollTop) {
     // Get firs slide picture element height and picture wrapper scroll position
     var firstSlidingElement = itemsForSliding[0],
         firstElementHeight = parseInt($(firstSlidingElement).css('height')),
         parentElementScroll = parseInt($(slidingElementsWrapper).scrollTop());
 
 
-    // Set first element at the end of picture list when picture wrapper scroll position becomes equal first element height or scroll picture wrapper one more 
+    // Set first element at the end of picture list when picture wrapper scroll position becomes equal first element height or scroll picture wrapper one more
     if (parentElementScroll >= firstElementHeight) {
         var bodyScrollPosition = parseInt(document.body.scrollTop);
         $(slidingElementsWrapper).append(firstSlidingElement);
@@ -50,17 +50,17 @@ function slidThePictures(itemsForSliding, slidingElementsWrapper, scrollStap) {
         itemsForSliding.shift();
         itemsForSliding.push(firstSlidingElement);
 
-        // Set sliding elements wrapper scroll top like the nubmer which we got from subtracting height of first element from slider wrapper scroll top and add scrollStap for avionding the slider to stop
-        $(slidingElementsWrapper).scrollTop(parentElementScroll + scrollStap);
+        // Set sliding elements wrapper scroll top like the number which we got from subtracting height of first element from slider wrapper scroll top and add scrollTop to avoid the slider to stop
+        $(slidingElementsWrapper).scrollTop(parentElementScroll + scrollTop);
     } else {
-        // Change scroll top of sliding elements wrapper on certain scrollStap
-        parentElementScroll = parentElementScroll + scrollStap;
+        // Change scroll top of sliding elements wrapper on certain scrollTop
+        parentElementScroll = parentElementScroll + scrollTop;
         $(slidingElementsWrapper).scrollTop(parentElementScroll);
     }
 }
 
-// Stop the body scrolling when user hover on the slider and allow scrolling after that 
-function disableBodyScroling() {
+// Stop the body scrolling when user hover on the slider and allow scrolling after that
+function disableBodyScrolling() {
     $('body').on('mousewheel', function (e) {
         // Refuse or allow body scroll depending on slider paused
         if (isPaused === true) {
@@ -72,10 +72,10 @@ function disableBodyScroling() {
     });
 }
 
-// When user rotate mouse cicle under the slide he can scroll it as one want
+// When user rotate mouse circle under the slide he can scroll it as one want
 function mousePictureSliding() {
 
-    // Add mousewheel event for slide wrpper
+    // Add mousewheel event for slide wrapper
     var lastWheel = +new Date();
     $(slidingPicturesWrapper).on('mousewheel', function (e) {
         if (+new Date() - lastWheel > 75) {
@@ -86,13 +86,13 @@ function mousePictureSliding() {
     });
 }
 
-// Change slider wrapper scroll position depending on user's choosed direction
+// Change slider wrapper scroll position depending on user's chosen direction
 function changePictureSlidingScrollPosition(direction) {
 
     // Save previous wrapper scroll position
     var parentElementScroll = parseInt($(slidingPicturesWrapper).scrollTop());
 
-    // Chage sliding elements wrapper scroll position
+    // Change sliding elements wrapper scroll position
     if (direction === 'up') {
         parentElementScroll -= 50;
         $(slidingPicturesWrapper).scrollTop(parentElementScroll);

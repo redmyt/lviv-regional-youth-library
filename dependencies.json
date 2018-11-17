@@ -1,17 +1,21 @@
 {
     "js": [
-        "./bibliotekanarynku9_ui/src/js/jquery-3.1.1.min.js",
-        "./bibliotekanarynku9_ui/src/js/jquery-ui.min.js",
-        "./bibliotekanarynku9_ui/src/js/jquery.mousewheel.min.js",
-        "./bibliotekanarynku9_ui/src/js/owl.carousel.min.js",
-        "./bibliotekanarynku9_ui/src/js/trunk8.js",
+        "./bibliotekanarynku9_ui/src/js/libs/jquery-3.1.1.min.js",
+        "./bibliotekanarynku9_ui/src/js/libs/jquery-ui.min.js",
+        "./bibliotekanarynku9_ui/src/js/libs/jquery.mousewheel.min.js",
+        "./bibliotekanarynku9_ui/src/js/libs/owl.carousel.min.js",
+        "./bibliotekanarynku9_ui/src/js/libs/trunk8.js",
+        "./bibliotekanarynku9_ui/src/js/libs/google-maps.js",
+        "./bibliotekanarynku9_ui/src/js/utils.js",
         "./bibliotekanarynku9_ui/src/js/switch-night-styles.js",
         "./bibliotekanarynku9_ui/src/js/header.js",
         "./bibliotekanarynku9_ui/src/js/main-content.js",
+        "./bibliotekanarynku9_ui/src/js/news.js",
+        "./bibliotekanarynku9_ui/src/js/woa.js",
+        "./bibliotekanarynku9_ui/src/js/books.js",
         "./bibliotekanarynku9_ui/src/js/bookshelf-slider.js",
         "./bibliotekanarynku9_ui/src/js/owl-slider.js",
         "./bibliotekanarynku9_ui/src/js/footer.js",
-        "./bibliotekanarynku9_ui/src/js/base.js",
-        "./bibliotekanarynku9_ui/src/js/google-maps.js"
+        "./bibliotekanarynku9_ui/src/js/base.js"
     ]
 }
