@@ -14,11 +14,15 @@ install:
   - pip install -r requirements.txt
   - nvm install stable
   - npm install -g eslint-cli
+  - npm install -g jshint
+  - npm install -g gulp-cli
   - npm install
 
 script:
   - eslint --config .eslintrc.js bibliotekanarynku9_administration_panel/src/
   - npm run build
+  - jshint bibliotekanarynku9_ui/src/ --exclude bibliotekanarynku9_ui/src/js/libs/
+  - gulp build
   - pylint --rcfile=.pylintrc bibliotekanarynku9_api/*
 
 after_success:

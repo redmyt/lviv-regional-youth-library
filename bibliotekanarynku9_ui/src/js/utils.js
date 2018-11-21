@@ -1,38 +1,10 @@
-function getAvailableHashes() {
+function getPageHash() {
     /*
-    Function which goes through the all navigation links
-    and returned the list of their href values.
+    Function which returns the current page hash without the
+    sharp symbol.
     */
 
-    var availableHashes = [],
-        $navLinks = $('.navigation__link');
-
-    $navLinks.each(function(_, element) {
-        var navLinkHref = element.href,
-            navLinkHash = navLinkHref.slice(navLinkHref.indexOf('#') + 1);
-
-        availableHashes.push(navLinkHash);
-    });
-
-    return availableHashes;
-}
-
-function verifyHash(currentHash, availableHashes) {
-    /*
-    Function that verifies if the user enters the
-    possible hash to route it.
-    */
-
-    var isHashCorrect = false;
-
-    for (var i = 0; i < availableHashes.length; i++) {
-        if (currentHash === availableHashes[i]) {
-            isHashCorrect = true;
-            break;
-        }
-    }
-
-    return isHashCorrect;
+    return window.location.hash.slice(1);
 }
 
 function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
@@ -56,5 +28,5 @@ function createPageElement(elementTag, elementClasses) {
 
 // Verify does user has Webkit browser
 function isWebKit() {
-    return !(navigator.userAgent.indexOf('WebKit') === -1);
+    return navigator.userAgent.indexOf('WebKit') !== -1;
 }
