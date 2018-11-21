@@ -1,25 +1,10 @@
-var availableHashes = getAvailableHashes(),
-    $scrollElement = isWebKit() ? $('body') : $('html'),
+var $scrollElement = isWebKit() ? $('body') : $('html'),
     firstWoaAnimation = null,
     secondWoaAnimation = null,
-    defaultActiveViewClass = '.news-board',
-    defaultActiveNavItemSelector = '[data-target="news-board"]',
-    mainContentActiveItemClass = 'main-content__item_active',
-    navigationActiveItemClass = 'navigation__item_active',
     woaHash = 'window-on-america';
 
-window.onhashchange = function() {
-    var currentHash = window.location.hash.slice(1),
-        isHashCorrect = verifyHash(currentHash, availableHashes),
-        activeViewClass = isHashCorrect ? '.' + currentHash : defaultActiveViewClass,
-        activeNavItemSelector = isHashCorrect ? '[data-target="' + currentHash + '"]' : defaultActiveNavItemSelector,
-        $activeView = $(activeViewClass),
-        $activeNavItem = $(activeNavItemSelector);
-
-    // Get visible main content item and active navigation link
-    emphasizeOneOfTheSetElement($activeView, $mainContentItems, mainContentActiveItemClass);
-    emphasizeOneOfTheSetElement($activeNavItem, $navItems, navigationActiveItemClass);
-    applicationSpillingTextTruncating();
+window.addEventListener('hashchange', function() {
+    var currentHash = getPageHash();
 
     // Switch on or switch off woa animation
     if (currentHash === woaHash) {
@@ -43,7 +28,7 @@ window.onhashchange = function() {
             duration: 1250
         });
     }
-};
+});
 window.onhashchange();
 
 var lastWindowWidth = $(window).width();

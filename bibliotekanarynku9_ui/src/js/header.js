@@ -1,13 +1,3 @@
-// Save navigation block, navigation items, header section and collapsed button to a variables.
-var $header = $('.header'),
-    $navigation = $('.navigation'),
-    $navItems = $('.navigation__item'),
-    $navItemsList = $('.navigation__items-list'),
-    $collapsedButton = $('.navigation__collapsed-button');
-
-// Save all main content items for changing its visibility
-var $mainContentItems = $('.main-content__item');
-
 // Add scroll event handler for window and make navigation fixed when user scroll window over the navigation block
 $(window).on('scroll', function () {
     var navigationHeight = getHeaderItemsParameters().navigationHeight,

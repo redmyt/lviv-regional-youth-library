@@ -1,4 +1,4 @@
-var $showMoreButton = $('.news-board__more-articles-button');
+var $showMoreButton = $('.news__more-articles-button');
 
 // Array for saving all html news articles after its parsing
 var htmlNewsArticles = [];
