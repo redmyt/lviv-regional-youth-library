@@ -32,14 +32,6 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
-                test: /\.scss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader',
-                ]
-            },
-            {
                 test: /\.css$/,
                 use: [
                     'style-loader',
@@ -52,45 +44,6 @@ module.exports = {
                 options: {
                     pretty: true
                 }
-            },
-            {
-                test: /\.(gif|png|jpe?g|svg)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            context: src + 'img',
-                            name: '[path][name].[ext]',
-                            outputPath: 'img'
-                        },
-                    },
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            mozjpeg: {
-                                progressive: true,
-                                quality: 75
-                            },
-                            pngquant: {
-                                quality: '75',
-                                speed: 4
-                            }
-                        }
-                    },
-                ],
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            context: src + 'fonts',
-                            name: '[path][name].[ext]',
-                            outputPath: 'fonts'
-                        },
-                    },
-                ]
             }
         ]
     },

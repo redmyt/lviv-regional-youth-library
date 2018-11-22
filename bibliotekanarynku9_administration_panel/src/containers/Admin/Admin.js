@@ -13,8 +13,7 @@ class Admin extends React.Component {
         super(props);
         this.state = {
             manageApps: [],
-            language: 'uk',
-            isNavListOpen: true
+            isNavListOpen: false
         };
     }
 
@@ -22,10 +21,9 @@ class Admin extends React.Component {
         if (isLogged()) {
             getManageApps().then(response => {
                 if (response.status === 200) {
-                    const changesObj = {
+                    this.setState(getUpdatedState({
                         manageApps: response.data.apps
-                    };
-                    this.setState(getUpdatedState(changesObj, this.state));
+                    }, this.state));
                 }
             });
         }
@@ -56,17 +54,11 @@ class Admin extends React.Component {
         });
     }
 
-    handleLanguageChange = language => {
-        this.setState(getUpdatedState({language: language}, this.state));
-    }
-
     renderManageApps = () => {
         return (
             <div>
                 <AdminAppBar
-                    language={this.state.language}
                     onLogoutClick={this.handleLogoutClick}
-                    onLanguageChange={this.handleLanguageChange}
                     onNavIconClick={this.handleNavIconClick}
                 />
                 <AdminNavigationList
@@ -76,7 +68,7 @@ class Admin extends React.Component {
                     onNavItemClick={this.navigateToItem}
                     onBackdropClick={this.handleNavListClose}
                 />
-                <AdminRouter language={this.state.language} />
+                <AdminRouter />
             </div>
         );
     }

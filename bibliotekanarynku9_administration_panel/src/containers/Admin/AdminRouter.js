@@ -8,9 +8,7 @@ class AdminRouter extends React.Component {
     render() {
         return (
             <div>
-                <Route path={`${this.props.match.url}/announcement`} render={() => (
-                    <AdminAnnouncement language={this.props.language}/>
-                )} />
+                <Route path={`${this.props.match.url}/announcement`} component={AdminAnnouncement} />
                 <Route path={`${this.props.match.url}/book`} component={AdminBook} />
             </div>
         );
