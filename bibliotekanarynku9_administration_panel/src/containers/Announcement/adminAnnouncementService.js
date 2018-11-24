@@ -1,22 +1,25 @@
 import axios from 'axios';
-import {apiPath, getCSRFToken, removeBase64Prefix} from '../../../helpers';
+import {apiPath, getCSRFToken, removeBase64Prefix} from '../../helpers';
 
 const announcementPath = 'announcement/';
 
-export const getAnnouncementsListService = (language, inputUrl) => {
+export const getAnnouncementsListService = (inputUrl) => {
     const url = inputUrl || apiPath + announcementPath;
-    return axios.get(url, {
-        headers: {
-            'Accept-Language': language
-        }
-    });
+    return axios.get(url);
 };
 
-export const getAnnouncementById = (announcementId, language) => {
+export const getAnnouncementById = (announcementId) => {
     const url = `${apiPath}${announcementPath}${announcementId}/`;
-    return axios.get(url, {
+    return axios.get(url);
+};
+
+export const postAnnouncementService = avatar => {
+    const url = `${apiPath}${announcementPath}`;
+    return axios.post(url, {
+        avatar: removeBase64Prefix(avatar)
+    }, {
         headers: {
-            'Accept-Language': language
+            'X-CSRFToken': getCSRFToken()
         }
     });
 };
