@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import AdminButton from '../../../components/AdminButton';
+import AdminButton from '../../components/AdminButton';
 
 const baseStyle = {
     width: '20%',
@@ -29,8 +29,7 @@ export default class AdminAnnouncementListItem extends React.Component {
                 <Card>
                     <CardMedia style={mediaStyle} image={this.props.avatar} />
                     <CardContent>
-                        <h2>{this.props.name}</h2>
-                        <p>{this.props.description}</p>
+                        <p>Translations: {this.props.translations.length}</p>
                         <p>Start at: {this.props.startAt}</p>
                         <p>Create at: {this.props.createdAt}</p>
                         <p>Update at: {this.props.updatedAt}</p>

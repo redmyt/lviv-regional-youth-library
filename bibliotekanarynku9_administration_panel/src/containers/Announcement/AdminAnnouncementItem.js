@@ -4,13 +4,13 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Switch from '@material-ui/core/Switch';
-import AdminButton from '../../../components/AdminButton';
-import AdminTitleField from '../../../components/AdminTitleField';
-import AdminDescriptionField from '../../../components/AdminDescriptionField';
-import AdminDateField from '../../../components/AdminDateField';
-import AdminAvatarField from '../../../components/AdminAvatarField';
-import AdminLinksField from '../../../components/AdminLinksField';
-import {getDeepObjectCopy, getUpdatedState, getTranslation, getLinks} from '../../../helpers';
+import AdminButton from '../../components/AdminButton';
+import AdminTitleField from '../../components/AdminTitleField';
+import AdminDescriptionField from '../../components/AdminDescriptionField';
+import AdminDateField from '../../components/AdminDateField';
+import AdminAvatarField from '../../components/AdminAvatarField';
+import AdminLinksField from '../../components/AdminLinksField';
+import {getDeepObjectCopy, getUpdatedState, getTranslation, getLinks} from '../../helpers';
 import {
     getAnnouncementById,
     postAnnouncementTranslationLinkService,

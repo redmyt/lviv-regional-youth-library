@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import AdminAnnouncementListItem from './AdminAnnouncementListItem';
-import {formatDateToView, getTranslation} from '../../../helpers';
+import {formatDateToView} from '../../helpers';
 
 const baseStyle = {
     display: 'flex',
@@ -14,7 +14,6 @@ class AdminAnnouncementList extends React.Component {
 
     handelClick = itemId => {
         this.props.onListItemClick(itemId);
-        this.props.history.push(`${this.props.match.url}/${itemId}`);
     }
 
     render() {
@@ -23,14 +22,12 @@ class AdminAnnouncementList extends React.Component {
             <div style={style}>
                 {
                     this.props.announcements.map(announcement => {
-                        const translation = getTranslation(announcement);
                         return (
                             <AdminAnnouncementListItem
                                 key={announcement.id}
                                 id={announcement.id}
-                                name={translation.title}
-                                description={translation.description}
                                 avatar={announcement.avatar}
+                                translations={announcement.translations}
                                 startAt={formatDateToView(announcement.start_at)}
                                 createdAt={formatDateToView(announcement.created_at)}
                                 updatedAt={formatDateToView(announcement.updated_at)}

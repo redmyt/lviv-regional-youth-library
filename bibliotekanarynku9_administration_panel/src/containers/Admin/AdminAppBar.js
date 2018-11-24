@@ -4,7 +4,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AdminButton from '../../components/AdminButton';
-import AdminLanguageSelect from './AdminLanguageSelect';
 
 const toolBarStyle = {
     display: 'flex'
@@ -16,20 +15,12 @@ const btnStyle = {
 
 export default class AdminAppBar extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     handelLogoutClick = () => {
         this.props.onLogoutClick();
     }
 
     handleNavIconClick = () => {
         this.props.onNavIconClick();
-    }
-
-    handelLanguageChange = language => {
-        this.props.onLanguageChange(language);
     }
 
     render() {
@@ -44,10 +35,6 @@ export default class AdminAppBar extends React.Component {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <AdminLanguageSelect
-                            language={this.props.language}
-                            onLanguageChange={this.handelLanguageChange}
-                        />
                         <AdminButton
                             style={btnStyle}
                             variant='contained'
