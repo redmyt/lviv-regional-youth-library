@@ -10,7 +10,7 @@ class AdminRouter extends React.Component {
         return (
             <div>
                 <Route exact path={`${this.props.match.url}/announcement`} component={AdminAnnouncement} />
-                <Route path={`${this.props.match.url}/announcement/:announcementId`} component={AdminAnnouncementItem} />
+                <Route exact path={`${this.props.match.url}/announcement/:announcementId`} component={AdminAnnouncementItem} />
                 <Route path={`${this.props.match.url}/book`} component={AdminBook} />
             </div>
         );

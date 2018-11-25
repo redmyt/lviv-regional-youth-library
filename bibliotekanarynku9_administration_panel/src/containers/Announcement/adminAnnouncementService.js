@@ -72,6 +72,15 @@ export const putAnnouncementTranslationLinkService = (announcementId, translatio
     });
 };
 
+export const deleteAnnouncementService = (announcementId) => {
+    const url = `${apiPath}${announcementPath}${announcementId}/`;
+    return axios.delete(url, {
+        headers: {
+            'X-CSRFToken': getCSRFToken()
+        }
+    });
+};
+
 export const deleteAnnouncementTranslationLinkService = (announcementId, translationId, linkId) => {
     const url = `${apiPath}${announcementPath}${announcementId}/translation/${translationId}/link/${linkId}/`;
     return axios.delete(url, {

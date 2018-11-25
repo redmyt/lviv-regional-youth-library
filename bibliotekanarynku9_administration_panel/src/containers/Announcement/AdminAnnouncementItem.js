@@ -5,8 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Switch from '@material-ui/core/Switch';
 import AdminButton from '../../components/AdminButton';
-import AdminTitleField from '../../components/AdminTitleField';
-import AdminDescriptionField from '../../components/AdminDescriptionField';
+import AdminAnnouncementItemTranslation from './AdminAnnouncementItemTranslation';
 import AdminDateField from '../../components/AdminDateField';
 import AdminAvatarField from '../../components/AdminAvatarField';
 import AdminLinksField from '../../components/AdminLinksField';
@@ -17,6 +16,7 @@ import {
     putAnnouncementTranslationService,
     putAnnouncementService,
     putAnnouncementTranslationLinkService,
+    deleteAnnouncementService,
     deleteAnnouncementTranslationLinkService
 } from './adminAnnouncementService';
 
@@ -62,47 +62,37 @@ class AdminAnnouncementItem extends React.Component {
         }
     }
 
-    getAnnouncementPromises = () => {
-        const promises = [];
-        promises.push(putAnnouncementService(
-            this.state.announcement.id,
-            this.state.announcement.avatar,
-            this.state.announcement.start_at
-        ));
-        if (this.state.translation.id) {
-            promises.push(putAnnouncementTranslationService(
-                this.state.announcement.id,
-                this.state.translation.id,
-                this.state.translation.title,
-                this.state.translation.description
-            ));
-            this.state.links.forEach(link => {
-                promises.push(putAnnouncementTranslationLinkService(
-                    this.state.announcement.id,
-                    this.state.translation.id,
-                    link.id,
-                    link.label,
-                    link.href
-                ));
-            });
-        }
-        return promises;
-    }
+    // getAnnouncementPromises = () => {
+    //     const promises = [];
+    //     promises.push(putAnnouncementService(
+    //         this.state.announcement.id,
+    //         this.state.announcement.avatar,
+    //         this.state.announcement.start_at
+    //     ));
+    //     if (this.state.translation.id) {
+    //         promises.push(putAnnouncementTranslationService(
+    //             this.state.announcement.id,
+    //             this.state.translation.id,
+    //             this.state.translation.title,
+    //             this.state.translation.description
+    //         ));
+    //         this.state.links.forEach(link => {
+    //             promises.push(putAnnouncementTranslationLinkService(
+    //                 this.state.announcement.id,
+    //                 this.state.translation.id,
+    //                 link.id,
+    //                 link.label,
+    //                 link.href
+    //             ));
+    //         });
+    //     }
+    //     return promises;
+    // }
 
-    handleSaveClick = () => {
-        const promises = this.getAnnouncementPromises();
-        Promise.all(promises)
+    handleRemoveClick = () => {
+        deleteAnnouncementService(this.state.announcement.id)
             .then(() => {
-                getAnnouncementById(this.state.announcement.id, this.props.language)
-                    .then(response => {
-                        const data = response.data;
-                        this.setState(getUpdatedState({
-                            announcement: data,
-                            translation: getTranslation(data),
-                            links: getLinks(data),
-                            isEdit: false
-                        }, this.state));
-                    });
+                this.props.history.goBack();
             })
             .catch(() => {
                 this.setState(getUpdatedState({isError: true}, this.state));
@@ -111,20 +101,6 @@ class AdminAnnouncementItem extends React.Component {
 
     handleSwitchToggle = () => {
         this.setState(getUpdatedState({isEdit: !this.state.isEdit}, this.state));
-    }
-
-    handleTitleChange = newTitle => {
-        this.setState(getUpdatedState({translation: {
-            ...this.state.translation,
-            title: newTitle
-        }}, this.state));
-    }
-
-    handleDescriptionChange = newDescription => {
-        this.setState(getUpdatedState({translation: {
-            ...this.state.translation,
-            description: newDescription
-        }}, this.state));
     }
 
     handleDateChange = newDate => {
@@ -212,20 +188,6 @@ class AdminAnnouncementItem extends React.Component {
                             onAvatarChange={this.handleAvatarChange}
                         />
                         <CardContent>
-                            <AdminTitleField
-                                title={this.state.translation.title}
-                                label='Title'
-                                onTitleChange={this.handleTitleChange}
-                                isEdit={this.state.isEdit}
-                                isError={this.state.isError}
-                            />
-                            <AdminDescriptionField
-                                description={this.state.translation.description}
-                                label='Description'
-                                onDescriptionChange={this.handleDescriptionChange}
-                                isEdit={this.state.isEdit}
-                                isError={this.state.isError}
-                            />
                             <AdminDateField
                                 date={this.state.announcement.start_at}
                                 label='Start At'
@@ -243,24 +205,37 @@ class AdminAnnouncementItem extends React.Component {
                                 label='Updated at'
                                 isEdit={false}
                             />
-                            <AdminLinksField
+                            {
+                                this.state.announcement.translations.map(translation => {
+                                    return (
+                                        <AdminAnnouncementItemTranslation
+                                            announcementId={this.state.announcement.id}
+                                            id={translation.id}
+                                            title={translation.title}
+                                            description={translation.description}
+                                            isEdit={this.state.isEdit}
+                                        />
+                                    );
+                                })
+                            }
+                            {/* <AdminLinksField
                                 links={this.state.links}
                                 onLinkChange={this.handleLinkChange}
                                 onAddLinkClick={this.handleAddLinkClick}
                                 onRemoveLinkClick={this.handleRemoveLinkClick}
                                 isEdit={this.state.isEdit}
                                 isError={this.state.isError}
-                            />
+                            /> */}
                         </CardContent>
                         <CardActions>
                             {
                                 this.state.isEdit && (
                                     <AdminButton
                                         size='small'
-                                        color='primary'
+                                        color='secondary'
                                         variant='contained'
-                                        onClick={this.handleSaveClick}
-                                        text={'Save'}
+                                        onClick={this.handleRemoveClick}
+                                        text={'Remove Announcement'}
                                     />
                                 )
                             }
