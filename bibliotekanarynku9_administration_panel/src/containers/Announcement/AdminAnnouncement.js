@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import AdminLoadMoreButton from '../../components/AdminLoadMoreButton';
 import AdminAnnouncementList from './AdminAnnouncementList';
-import {AdminAddAnnouncementForm} from './AdminAddAnnouncementForm';
+import AdminAddAnnouncementForm from './AdminAddAnnouncementForm';
 import {getAnnouncementsListService, postAnnouncementService} from './adminAnnouncementService';
 import {getUpdatedState} from '../../helpers';
 
