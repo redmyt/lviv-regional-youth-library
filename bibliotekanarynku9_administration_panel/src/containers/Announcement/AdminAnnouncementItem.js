@@ -19,6 +19,8 @@ import {
     deleteAnnouncementService,
     deleteAnnouncementTranslationLinkService
 } from './adminAnnouncementService';
+import AdminAddAnnouncementTranslationForm from './AdminAddAnnouncementTranslationForm';
+
 
 const baseStyle = {
     margin: '15px 15px',
@@ -51,15 +53,28 @@ class AdminAnnouncementItem extends React.Component {
                 links: getLinks(data)
             }, this.state));
         } else {
-            getAnnouncementById(this.props.match.params.announcementId, this.props.language).then(response => {
-                const data = response.data;
-                this.setState(getUpdatedState({
-                    announcement: data,
-                    translation: getTranslation(data),
-                    links: getLinks(data)
-                }, this.state));
-            });
+            // getAnnouncementById(this.props.match.params.announcementId, this.props.language).then(response => {
+            //     const data = response.data;
+            //     this.setState(getUpdatedState({
+            //         announcement: data,
+            //         translation: getTranslation(data),
+            //         links: getLinks(data)
+            //     }, this.state));
+            // });
+            this.getAnnouncement();
         }
+    }
+
+    getAnnouncement = () => {
+        getAnnouncementById(this.props.match.params.announcementId).then(response => {
+            const data = response.data;
+            this.setState(getUpdatedState({
+                announcement: data,
+                translation: getTranslation(data),
+                links: getLinks(data),
+                isEdit: false
+            }, this.state));
+        });
     }
 
     // getAnnouncementPromises = () => {
@@ -134,16 +149,17 @@ class AdminAnnouncementItem extends React.Component {
             label,
             href
         ).then(() => {
-            getAnnouncementById(this.state.announcement.id, this.props.language)
-                .then(response => {
-                    const data = response.data;
-                    this.setState(getUpdatedState({
-                        announcement: data,
-                        translation: getTranslation(data),
-                        links: getLinks(data),
-                        isEdit: false
-                    }, this.state));
-                });
+            // getAnnouncementById(this.state.announcement.id, this.props.language)
+            //     .then(response => {
+            //         const data = response.data;
+            //         this.setState(getUpdatedState({
+            //             announcement: data,
+            //             translation: getTranslation(data),
+            //             links: getLinks(data),
+            //             isEdit: false
+            //         }, this.state));
+            //     });
+            this.getAnnouncement();
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });
@@ -155,16 +171,17 @@ class AdminAnnouncementItem extends React.Component {
             this.state.translation.id,
             linkId
         ).then(() => {
-            getAnnouncementById(this.state.announcement.id, this.props.language)
-                .then(response => {
-                    const data = response.data;
-                    this.setState(getUpdatedState({
-                        announcement: data,
-                        translation: getTranslation(data),
-                        links: getLinks(data),
-                        isEdit: false
-                    }, this.state));
-                });
+            // getAnnouncementById(this.state.announcement.id, this.props.language)
+            //     .then(response => {
+            //         const data = response.data;
+            //         this.setState(getUpdatedState({
+            //             announcement: data,
+            //             translation: getTranslation(data),
+            //             links: getLinks(data),
+            //             isEdit: false
+            //         }, this.state));
+            //     });
+            this.getAnnouncement();
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });
@@ -213,11 +230,16 @@ class AdminAnnouncementItem extends React.Component {
                                             id={translation.id}
                                             title={translation.title}
                                             description={translation.description}
+                                            links={translation.links}
                                             isEdit={this.state.isEdit}
+                                            onRemoveTranslationSuccess={this.getAnnouncement}
                                         />
                                     );
                                 })
                             }
+                            <AdminAddAnnouncementTranslationForm
+                                isEdit={this.state.isEdit}
+                            />
                             {/* <AdminLinksField
                                 links={this.state.links}
                                 onLinkChange={this.handleLinkChange}

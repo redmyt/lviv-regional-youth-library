@@ -4,9 +4,15 @@ import AdminButton from '../../components/AdminButton';
 import AdminTitleField from '../../components/AdminTitleField';
 import AdminDescriptionField from '../../components/AdminDescriptionField';
 import {getUpdatedState} from '../../helpers';
-import {putAnnouncementTranslationService} from './adminAnnouncementService';
+import {putAnnouncementTranslationService, deleteAnnouncementTranslationService} from './adminAnnouncementService';
+import AdminLinksField from '../../components/AdminLinksField';
 
-const saveBtnStyle = {
+const buttonsWrapperSty = {
+    display: 'flex'
+};
+
+const buttonsStyle = {
+    width: '50%',
     margin: 10
 };
 
@@ -61,6 +67,15 @@ class AdminAnnouncementItemTranslation extends React.Component {
         });
     }
 
+    handleRemoveClick = () => {
+        deleteAnnouncementTranslationService(
+            this.props.announcementId,
+            this.props.id
+        ).then(() => {
+            this.props.onRemoveTranslationSuccess();
+        });
+    }
+
     render() {
         return (
             <div>
@@ -81,15 +96,25 @@ class AdminAnnouncementItemTranslation extends React.Component {
                 />
                 {
                     this.props.isEdit &&
-                    <AdminButton
-                        text='Save Translation'
-                        color='primary'
-                        variant='outlined'
-                        disabled={!this.haveFieldsChanged()}
-                        onClick={this.handleSaveClick}
-                        style={saveBtnStyle}
-                    />
+                    <div style={buttonsWrapperSty}>
+                        <AdminButton
+                            text='Save Translation'
+                            color='primary'
+                            variant='outlined'
+                            disabled={!this.haveFieldsChanged()}
+                            onClick={this.handleSaveClick}
+                            style={buttonsStyle}
+                        />
+                        <AdminButton
+                            text='Remove Translation'
+                            color='secondary'
+                            variant='outlined'
+                            onClick={this.handleRemoveClick}
+                            style={buttonsStyle}
+                        />
+                    </div>
                 }
+                <AdminLinksField links={this.props.links} isEdit={this.props.isEdit} />
             </div>
         );
     }
