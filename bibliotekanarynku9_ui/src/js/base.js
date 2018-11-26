@@ -1,4 +1,4 @@
-var $scrollElement = isWebKit() ? $('body') : $('html'),
+var $scrollContainer = $('html'),
     firstWoaAnimation = null,
     secondWoaAnimation = null,
     woaHash = 'window-on-america';
@@ -21,7 +21,7 @@ window.addEventListener('hashchange', function() {
         headerHeight = getHeaderItemsParameters().headerHeight;
 
     if (windowTopScroll > headerHeight) {
-        $scrollElement.stop().animate({
+        $scrollContainer.stop().animate({
             scrollTop: parseInt($activeView.offset().top - navigationHeight)
         }, {
             easing: 'easeInOutCubic',
@@ -31,12 +31,7 @@ window.addEventListener('hashchange', function() {
 });
 window.onhashchange();
 
-var lastWindowWidth = $(window).width();
 window.onresize = function() {
     // Truncate the articles text when user resize the window
-
-    if ($(window).width() !== lastWindowWidth) {
-        applicationSpillingTextTruncating();
-        lastWindowWidth = $(window).width();
-    }
+    truncateSpillingText();
 };

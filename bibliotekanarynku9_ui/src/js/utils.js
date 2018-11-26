@@ -19,14 +19,24 @@ function emphasizeOneOfTheSetElement(element, setOfElements, emphasizeClass) {
     $(element).addClass(emphasizeClass);
 }
 
-// Create needed html element with certain classes
 function createPageElement(elementTag, elementClasses) {
+    /* Create needed html element with certain classes */
+
     var $newPageElement = $(elementTag);
     $newPageElement.addClass(elementClasses);
     return $newPageElement;
 }
 
-// Verify does user has Webkit browser
-function isWebKit() {
-    return navigator.userAgent.indexOf('WebKit') !== -1;
+function splitTextToParagraphs(text) {
+    /* Divide the accepted text to the paragraphs base on new line special character. */
+
+    return text ? text.split('\n') : [];
+}
+
+function setLanguageHeader(language) {
+    /* Set the Accept-Language header for the each request to the api. */
+
+    return function(request) {
+        request.setRequestHeader('Accept-Language', language || defaultLanguage);
+    };
 }

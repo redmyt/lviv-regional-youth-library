@@ -1,7 +1,10 @@
 var schema = 'http://',
     host = 'localhost',
-    post = ':8000',
+    port = ':8000',
     apiPath = '/api/v1/';
+
+var defaultLanguage = 'uk',
+    defaultDataType = 'json';
 
 var mainContentActiveItemClass = 'main-content__item_active',
     navigationActiveItemClass = 'navigation__item_active',

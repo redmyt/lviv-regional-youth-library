@@ -2,7 +2,8 @@ var activeViewClass = '.news',
     activeNavItemSelector = '[data-target="news"]',
     $activeView = $(activeViewClass),
     $activeNavItem = $(activeNavItemSelector),
-    $showMoreButton = $('.news__more-articles-button');
+    $showMoreButton = $('.news__more-articles-button'),
+    nextArticlesUrl = '';
 
 function newsController(newsId) {
     emphasizeOneOfTheSetElement($activeNavItem, $navItems, navigationActiveItemClass);
@@ -11,21 +12,43 @@ function newsController(newsId) {
     if (newsId) {
         getDetailedNewsService(newsId)
         .done(function(data) {
-            console.log(data);
+            var $article = renderNewsArticle(data, true);
+            $activeView.html($article);
+            switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         })
         .fail(function() {
-            $activeView.html(renderNewsDetailError());
+            $activeView.html(renderNotFoundError());
         });
-
         return;
     }
 
     getListNewsService()
     .done(function(data) {
-        console.log(data);
+        var articlesList = renderNewsList(data.results);
+        $activeView.html(articlesList);
+        $activeView.append($showMoreButton);
+        switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+        truncateSpillingText();
+        nextArticlesUrl = data.next;
     })
     .fail(function() {
-        console.log('err');
+        $activeView.html(renderNotFoundError());
     });
-
 }
+
+$(document).on('click', '.news__more-articles-button', function () {
+    getListNewsService(nextArticlesUrl)
+    .done(function(data) {
+        var articlesList = renderNewsList(data.results);
+        $showMoreButton.before(articlesList);
+        switchTimeStyles('.main-content-article', 'main-content-article_style_night');
+        truncateSpillingText();
+        nextArticlesUrl = data.next;
+        if (!nextArticlesUrl) {
+            $showMoreButton.remove();
+        }
+    })
+    .fail(function() {
+        $activeView.html(renderNotFoundError());
+    });
+});

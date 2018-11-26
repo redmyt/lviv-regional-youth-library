@@ -15,7 +15,6 @@
         "./bibliotekanarynku9_ui/src/js/news/newsController.js",
         "./bibliotekanarynku9_ui/src/js/news/newsRenderer.js",
         "./bibliotekanarynku9_ui/src/js/news/newsService.js",
-        "./bibliotekanarynku9_ui/src/js/news/news.js",
         "./bibliotekanarynku9_ui/src/js/woa.js",
         "./bibliotekanarynku9_ui/src/js/books.js",
         "./bibliotekanarynku9_ui/src/js/bookshelf-slider.js",

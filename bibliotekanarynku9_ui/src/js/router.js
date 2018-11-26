@@ -9,13 +9,16 @@ window.onhashchange = function() {
     switch(rootPath) {
         case 'news':
             newsController(recourseId);
+            break;
+        default:
+            newsController();
     }
 };
 
 function getRecourseId(hashData) {
-    return hashData[2];
+    return hashData ? hashData[2] : 0;
 }
 
 function getRootPath(hashData) {
-    return hashData[1];
+    return hashData ? hashData[1] : '';
 }
