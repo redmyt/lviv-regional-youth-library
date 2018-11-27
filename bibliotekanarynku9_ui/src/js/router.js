@@ -10,6 +10,9 @@ window.onhashchange = function() {
         case 'news':
             newsController(recourseId);
             break;
+        case 'announcement':
+            announcementController(recourseId);
+            break;
         default:
             newsController();
     }

@@ -1,4 +1,5 @@
 var $scrollContainer = $('html'),
+    $activeView = $('.main-content'),
     firstWoaAnimation = null,
     secondWoaAnimation = null,
     woaHash = 'window-on-america';
