@@ -72,6 +72,17 @@
             &:hover {
                 color: $gold;
             }
+
+            &_secondary {
+                @extend .main-content-article__heading_style_default;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__date-heading {
+        &_style_default {
+            margin: 0;
         }
     }
 
@@ -116,7 +127,7 @@
     }
 }
 
-.news__more-articles-button {
+.more-articles-button {
     padding: 1%;
     width: 90%;
 
@@ -124,6 +135,10 @@
         font-size: 1.5em;
         color: $gold;
         cursor: pointer;
+    }
+
+    &_style_invisible {
+        display: none;
     }
 
     &_style_day {

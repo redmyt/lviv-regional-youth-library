@@ -1,3 +1,33 @@
+var dateMonthLocalizationMap = {
+    1: 'Січня',
+    2: 'Лютого',
+    3: 'Березня',
+    4: 'Квітня',
+    5: 'Травня',
+    6: 'Червня',
+    7: 'Липня',
+    8: 'Серпня',
+    9: 'Вересня',
+    10: 'Жовтня',
+    11: 'Листопада',
+    12: 'Грудня'
+};
+
+function dateParser(rawDate) {
+    /*
+    Function which change the accepted date string to the
+    beauty user format.
+    */
+
+    var date = new Date(rawDate),
+        day = date.getDate(),
+        month = date.getMonth() + 1,
+        year = date.getFullYear(),
+        hour = date.getHours(),
+        minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    return day + '-го' + ' ' + dateMonthLocalizationMap[month] + ' ' + year + ' ' + hour + ':' + minutes;
+}
+
 function getPageHash() {
     /*
     Function which returns the current page hash without the

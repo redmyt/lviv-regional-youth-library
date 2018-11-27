@@ -84,6 +84,10 @@ body {
 
 .page-header {
     text-align: center;
+
+    &_style_left {
+        text-align: left;
+    }
 }
 
 .page-button {

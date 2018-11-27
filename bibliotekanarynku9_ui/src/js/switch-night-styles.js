@@ -6,7 +6,7 @@ switchTimeStyles('.navigation__item', 'navigation__item_style_night');
 switchTimeStyles('.navigation__collapsed-button', 'navigation__collapsed-button_style_night');
 switchTimeStyles('.main-content', 'main-content_style_night');
 switchTimeStyles('.main-content-article', 'main-content-article_style_night');
-switchTimeStyles('.news__more-articles-button', 'news__more-articles-button_style_night');
+switchTimeStyles('.more-articles-button', 'more-articles-button_style_night');
 
 // Get Ukraine time from any point of word
 function getUkraineTime() {

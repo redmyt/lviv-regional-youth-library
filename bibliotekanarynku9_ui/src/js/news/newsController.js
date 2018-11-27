@@ -1,23 +1,23 @@
-var activeViewClass = '.news',
-    activeNavItemSelector = '[data-target="news"]',
-    $activeView = $(activeViewClass),
-    $activeNavItem = $(activeNavItemSelector),
-    $showMoreButton = $('.news__more-articles-button'),
-    nextArticlesUrl = '';
+var newsActiveViewClass = '.news',
+    newsActiveNavItemSelector = '[data-target="news"]',
+    $newsActiveView = $(newsActiveViewClass),
+    $newsActiveNavItem = $(newsActiveNavItemSelector),
+    $newsShowMoreButton = $('.more-articles-button__news'),
+    newsNextArticlesUrl = '';
 
 function newsController(newsId) {
-    emphasizeOneOfTheSetElement($activeNavItem, $navItems, navigationActiveItemClass);
-    emphasizeOneOfTheSetElement($activeView, $mainContentItems, mainContentActiveItemClass);
+    emphasizeOneOfTheSetElement($newsActiveNavItem, $navItems, navigationActiveItemClass);
+    emphasizeOneOfTheSetElement($newsActiveView, $mainContentItems, mainContentActiveItemClass);
 
     if (newsId) {
         getDetailedNewsService(newsId)
         .done(function(data) {
             var $article = renderNewsArticle(data, true);
-            $activeView.html($article);
+            $newsActiveView.html($article);
             switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         })
         .fail(function() {
-            $activeView.html(renderNotFoundError());
+            $newsActiveView.html(renderNotFoundError());
         });
         return;
     }
@@ -25,30 +25,31 @@ function newsController(newsId) {
     getListNewsService()
     .done(function(data) {
         var articlesList = renderNewsList(data.results);
-        $activeView.html(articlesList);
-        $activeView.append($showMoreButton);
+        $newsActiveView.html(articlesList);
+        $newsShowMoreButton.removeClass('more-articles-button_style_invisible');
+        $newsActiveView.append($newsShowMoreButton);
         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         truncateSpillingText();
-        nextArticlesUrl = data.next;
+        newsNextArticlesUrl = data.next;
     })
     .fail(function() {
-        $activeView.html(renderNotFoundError());
+        $newsActiveView.html(renderNotFoundError());
     });
 }
 
-$(document).on('click', '.news__more-articles-button', function () {
-    getListNewsService(nextArticlesUrl)
+$(document).on('click', '.more-articles-button__news', function () {
+    getListNewsService(newsNextArticlesUrl)
     .done(function(data) {
         var articlesList = renderNewsList(data.results);
-        $showMoreButton.before(articlesList);
+        $newsShowMoreButton.before(articlesList);
         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         truncateSpillingText();
-        nextArticlesUrl = data.next;
-        if (!nextArticlesUrl) {
-            $showMoreButton.remove();
+        newsNextArticlesUrl = data.next;
+        if (!newsNextArticlesUrl) {
+            $newsShowMoreButton.remove();
         }
     })
     .fail(function() {
-        $activeView.html(renderNotFoundError());
+        $newsActiveView.html(renderNotFoundError());
     });
 });
