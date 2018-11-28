@@ -23,8 +23,8 @@ header.header.header_style_default.header_style_day
                         path(d="M112,50H12C5.4,50,0,55.4,0,62c0,6.6,5.4,12,12,12h100c6.6,0,12-5.4,12-12C124,55.4,118.6,50,112,50z")
                         path(d="M112,94H12c-6.6,0-12,5.4-12,12s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,94,112,94z")
         ul.navigation__items-list.navigation__items-list_style_collapsed.flex.column
-            - var mainContentTargets = ['news', 'announcement', 'project', 'window-on-america', 'bookshelf', 'about-us'];
-            each item, i in ['Новини', 'Анонси', 'Проекти', 'Вікно в Америку', 'Книжкова шафа', 'Про нас']
+            - var mainContentTargets = ['news', 'announcement', 'project', 'press', 'window-on-america', 'bookshelf', 'about-us'];
+            each item, i in ['Новини', 'Анонси', 'Проекти', 'Преса', 'Вікно в Америку', 'Книжкова шафа', 'Про нас']
                 if (i === 0)
                     li.navigation__item.navigation__item_style_default.navigation__item_style_day.navigation__item_active.flex.flex-center.rounded(data-target=mainContentTargets[i])
                         svg.navigation__keyhole-picture(height="35"
