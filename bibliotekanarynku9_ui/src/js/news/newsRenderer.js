@@ -1,4 +1,4 @@
-function renderNotFoundError() {
+function renderNewsNotFoundError() {
     var elem = createPageElement('<div>', 'main-content__not-found-message');
     return elem.text('На жаль вказаної Вами статті не існує. Спробуйте обрати іншу. Дякуюємо за розуміння =)');
 }

@@ -17,7 +17,7 @@ function newsController(newsId) {
             switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         })
         .fail(function() {
-            $newsActiveView.html(renderNotFoundError());
+            $newsActiveView.html(renderNewsNotFoundError());
         });
         return;
     }
@@ -33,7 +33,7 @@ function newsController(newsId) {
         newsNextArticlesUrl = data.next;
     })
     .fail(function() {
-        $newsActiveView.html(renderNotFoundError());
+        $newsActiveView.html(renderNewsNotFoundError());
     });
 }
 
@@ -50,6 +50,6 @@ $(document).on('click', '.more-articles-button__news', function () {
         }
     })
     .fail(function() {
-        $newsActiveView.html(renderNotFoundError());
+        $newsActiveView.html(renderNewsNotFoundError());
     });
 });

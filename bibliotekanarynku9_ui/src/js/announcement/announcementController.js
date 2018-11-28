@@ -17,7 +17,7 @@ function announcementController(announcementId) {
             switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         })
         .fail(function() {
-            $announcementActiveView.html(renderNotFoundError());
+            $announcementActiveView.html(renderAnnouncementNotFoundError());
         });
         return;
     }
@@ -33,7 +33,7 @@ function announcementController(announcementId) {
         announcementNextArticlesUrl = data.next;
     })
     .fail(function() {
-        $announcementActiveView.html(renderNotFoundError());
+        $announcementActiveView.html(renderAnnouncementNotFoundError());
     });
 }
 
@@ -50,6 +50,6 @@ $(document).on('click', '.more-articles-button__announcement', function () {
         }
     })
     .fail(function() {
-        $announcementActiveView.html(renderNotFoundError());
+        $announcementActiveView.html(renderAnnouncementNotFoundError());
     });
 });
