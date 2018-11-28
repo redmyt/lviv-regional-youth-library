@@ -16,6 +16,9 @@ window.onhashchange = function() {
         case 'project':
             projectController(recourseId);
             break;
+        case 'press':
+            pressController(recourseId);
+            break;
         default:
             newsController();
     }
