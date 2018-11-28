@@ -13,6 +13,9 @@ window.onhashchange = function() {
         case 'announcement':
             announcementController(recourseId);
             break;
+        case 'project':
+            projectController(recourseId);
+            break;
         default:
             newsController();
     }
