@@ -24,16 +24,13 @@ function switchOnWoaAnimation(animateImages, animationDuration) {
 
     // Set the actual animation iterator for woa images animation
     function setWindowOnAmericaAnimationIterator(animateImages) {
-
         var windowOnAmericaAnimationIterator;
-
         for (var i = 0; i < animateImages.length; i++) {
             if ($(animateImages[i]).hasClass('window-on-america__animate-picture_visible')) {
                 windowOnAmericaAnimationIterator = i;
                 break;
             }
         }
-
         return windowOnAmericaAnimationIterator;
     }
 }
