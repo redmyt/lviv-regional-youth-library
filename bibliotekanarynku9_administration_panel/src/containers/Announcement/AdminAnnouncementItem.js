@@ -5,26 +5,20 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Switch from '@material-ui/core/Switch';
 import AdminButton from '../../components/AdminButton';
-import AdminAnnouncementItemTranslation from './AdminAnnouncementItemTranslation';
 import AdminDateField from '../../components/AdminDateField';
 import AdminAvatarField from '../../components/AdminAvatarField';
-import AdminLinksField from '../../components/AdminLinksField';
-import {getDeepObjectCopy, getUpdatedState, getTranslation, getLinks} from '../../helpers';
-import {
-    getAnnouncementById,
-    postAnnouncementTranslationLinkService,
-    putAnnouncementTranslationService,
-    putAnnouncementService,
-    putAnnouncementTranslationLinkService,
-    deleteAnnouncementService,
-    deleteAnnouncementTranslationLinkService
-} from './adminAnnouncementService';
+import AdminAnnouncementItemTranslation from './AdminAnnouncementItemTranslation';
 import AdminAddAnnouncementTranslationForm from './AdminAddAnnouncementTranslationForm';
-
+import {getAnnouncementById, putAnnouncementService, deleteAnnouncementService,} from './adminAnnouncementService';
+import {getUpdatedState, getTranslation, getLinks} from '../../helpers';
 
 const baseStyle = {
     margin: '15px 15px',
     boxSizing: 'border-box'
+};
+
+const saveAnnouncementBtnStyle = {
+    margin: 10
 };
 
 const switchStyle = {
@@ -45,24 +39,7 @@ class AdminAnnouncementItem extends React.Component {
     }
 
     componentWillMount() {
-        const data = this.props.data;
-        if (data) {
-            this.setState(getUpdatedState({
-                announcement: data,
-                translation: getTranslation(data),
-                links: getLinks(data)
-            }, this.state));
-        } else {
-            // getAnnouncementById(this.props.match.params.announcementId, this.props.language).then(response => {
-            //     const data = response.data;
-            //     this.setState(getUpdatedState({
-            //         announcement: data,
-            //         translation: getTranslation(data),
-            //         links: getLinks(data)
-            //     }, this.state));
-            // });
-            this.getAnnouncement();
-        }
+        this.getAnnouncement();
     }
 
     getAnnouncement = () => {
@@ -77,34 +54,7 @@ class AdminAnnouncementItem extends React.Component {
         });
     }
 
-    // getAnnouncementPromises = () => {
-    //     const promises = [];
-    //     promises.push(putAnnouncementService(
-    //         this.state.announcement.id,
-    //         this.state.announcement.avatar,
-    //         this.state.announcement.start_at
-    //     ));
-    //     if (this.state.translation.id) {
-    //         promises.push(putAnnouncementTranslationService(
-    //             this.state.announcement.id,
-    //             this.state.translation.id,
-    //             this.state.translation.title,
-    //             this.state.translation.description
-    //         ));
-    //         this.state.links.forEach(link => {
-    //             promises.push(putAnnouncementTranslationLinkService(
-    //                 this.state.announcement.id,
-    //                 this.state.translation.id,
-    //                 link.id,
-    //                 link.label,
-    //                 link.href
-    //             ));
-    //         });
-    //     }
-    //     return promises;
-    // }
-
-    handleRemoveClick = () => {
+    handleAnnouncementRemoveClick = () => {
         deleteAnnouncementService(this.state.announcement.id)
             .then(() => {
                 this.props.history.goBack();
@@ -118,10 +68,10 @@ class AdminAnnouncementItem extends React.Component {
         this.setState(getUpdatedState({isEdit: !this.state.isEdit}, this.state));
     }
 
-    handleDateChange = newDate => {
+    handleDateChange = newStartAt => {
         this.setState(getUpdatedState({announcement: {
             ...this.state.announcement,
-            start_at: newDate
+            start_at: newStartAt
         }}, this.state));
     }
 
@@ -132,56 +82,13 @@ class AdminAnnouncementItem extends React.Component {
         }}, this.state));
     }
 
-    handleLinkChange = (fieldValue, linkId, fieldName) => {
-        const links = getDeepObjectCopy(this.state.links),
-            link = links.find(link => link.id === linkId);
-        link[fieldName] = fieldValue;
-        links[links.indexOf(link)] = link;
-        this.setState(getUpdatedState({
-            links: links
-        }, this.state));
-    }
-
-    handleAddLinkClick = (label, href) => {
-        postAnnouncementTranslationLinkService(
+    handleAnnouncementSaveClick = () => {
+        putAnnouncementService(
             this.state.announcement.id,
-            this.state.translation.id,
-            label,
-            href
+            this.state.announcement.avatar,
+            this.state.announcement.start_at
         ).then(() => {
-            // getAnnouncementById(this.state.announcement.id, this.props.language)
-            //     .then(response => {
-            //         const data = response.data;
-            //         this.setState(getUpdatedState({
-            //             announcement: data,
-            //             translation: getTranslation(data),
-            //             links: getLinks(data),
-            //             isEdit: false
-            //         }, this.state));
-            //     });
-            this.getAnnouncement();
-        }).catch(() => {
-            this.setState(getUpdatedState({isError: true}, this.state));
-        });
-    }
-
-    handleRemoveLinkClick = (linkId) => {
-        deleteAnnouncementTranslationLinkService(
-            this.state.announcement.id,
-            this.state.translation.id,
-            linkId
-        ).then(() => {
-            // getAnnouncementById(this.state.announcement.id, this.props.language)
-            //     .then(response => {
-            //         const data = response.data;
-            //         this.setState(getUpdatedState({
-            //             announcement: data,
-            //             translation: getTranslation(data),
-            //             links: getLinks(data),
-            //             isEdit: false
-            //         }, this.state));
-            //     });
-            this.getAnnouncement();
+            this.setState(getUpdatedState({isError: false}, this.state));
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });
@@ -223,6 +130,17 @@ class AdminAnnouncementItem extends React.Component {
                                 isEdit={false}
                             />
                             {
+                                this.state.isEdit && (
+                                    <AdminButton
+                                        text='Save Announcement'
+                                        color='primary'
+                                        variant='outlined'
+                                        onClick={this.handleAnnouncementSaveClick}
+                                        style={saveAnnouncementBtnStyle}
+                                    />
+                                )
+                            }
+                            {
                                 this.state.announcement.translations.map(translation => {
                                     return (
                                         <AdminAnnouncementItemTranslation
@@ -238,16 +156,10 @@ class AdminAnnouncementItem extends React.Component {
                                 })
                             }
                             <AdminAddAnnouncementTranslationForm
+                                announcementId={this.state.announcement.id}
+                                onAddTranslationSuccess={this.getAnnouncement}
                                 isEdit={this.state.isEdit}
                             />
-                            {/* <AdminLinksField
-                                links={this.state.links}
-                                onLinkChange={this.handleLinkChange}
-                                onAddLinkClick={this.handleAddLinkClick}
-                                onRemoveLinkClick={this.handleRemoveLinkClick}
-                                isEdit={this.state.isEdit}
-                                isError={this.state.isError}
-                            /> */}
                         </CardContent>
                         <CardActions>
                             {
@@ -256,7 +168,7 @@ class AdminAnnouncementItem extends React.Component {
                                         size='small'
                                         color='secondary'
                                         variant='contained'
-                                        onClick={this.handleRemoveClick}
+                                        onClick={this.handleAnnouncementRemoveClick}
                                         text={'Remove Announcement'}
                                     />
                                 )

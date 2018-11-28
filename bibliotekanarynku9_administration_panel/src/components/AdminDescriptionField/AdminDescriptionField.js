@@ -15,7 +15,6 @@ export default class AdminDescriptionField extends React.Component {
 
     renderEditField = () => {
         return (
-            this.props.description &&
             <div>
                 <TextField
                     label={this.props.label}

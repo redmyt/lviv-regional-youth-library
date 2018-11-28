@@ -29,6 +29,15 @@ class AdminAnnouncementItemTranslation extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState(getUpdatedState({
+            title: nextProps.title,
+            updatedTitle: nextProps.title,
+            description: nextProps.description,
+            updatedDescription: nextProps.description,
+        }, this.state));
+    }
+
     haveFieldsChanged = () => {
         return !(
             this.state.title === this.state.updatedTitle &&
@@ -39,14 +48,12 @@ class AdminAnnouncementItemTranslation extends React.Component {
     handleTitleChange = newTitle => {
         this.setState(getUpdatedState({
             updatedTitle: newTitle,
-            isChanged: !(newTitle === this.state.title)
         }, this.state));
     }
 
     handleDescriptionChange = newDescription => {
         this.setState(getUpdatedState({
             updatedDescription: newDescription,
-            isChanged: !(newDescription === this.state.description)
         }, this.state));
     }
 

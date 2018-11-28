@@ -1,4 +1,8 @@
 const DATE_REGEXP = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/;
+export const LANGUAGE_CODES = {
+    'uk': 1,
+    'en': 2
+};
 
 export const getDeepObjectCopy = obj => JSON.parse(JSON.stringify(obj));
 

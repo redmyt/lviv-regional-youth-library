@@ -46,8 +46,8 @@ class AdminAnnouncement extends React.Component {
         this.props.history.push(`${this.props.match.url}/${itemId}`);
     }
 
-    handleAddSaveClick = (avatar) => {
-        postAnnouncementService(avatar)
+    handleAddSaveClick = (avatar, startAt) => {
+        postAnnouncementService(avatar, startAt)
             .then(() => {
                 getAnnouncementsListService()
                     .then(response => {
