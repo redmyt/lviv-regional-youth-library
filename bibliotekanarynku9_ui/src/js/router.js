@@ -6,6 +6,8 @@ window.onhashchange = function() {
         rootPath = getRootPath(hashProcessedData),
         recourseId = getRecourseId(hashProcessedData);
 
+    cleanUpHashChangeHook(rootPath);
+
     switch(rootPath) {
         case 'news':
             newsController(recourseId);
@@ -18,6 +20,9 @@ window.onhashchange = function() {
             break;
         case 'press':
             pressController(recourseId);
+            break;
+        case 'woa':
+            woaController();
             break;
         case 'about':
             aboutUsController();
@@ -33,4 +38,9 @@ function getRecourseId(hashData) {
 
 function getRootPath(hashData) {
     return hashData ? hashData[1] : '';
+}
+
+// Function for cleaning the other controllers timer objects.
+function cleanUpHashChangeHook(rootPath) {
+    woaCleanUpHook(rootPath);
 }

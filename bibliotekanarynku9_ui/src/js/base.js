@@ -1,20 +1,7 @@
 var $scrollContainer = $('html'),
-    $activeView = $('.main-content'),
-    firstWoaAnimation = null,
-    secondWoaAnimation = null,
-    woaHash = 'window-on-america';
+    $activeView = $('.main-content');
 
 window.addEventListener('hashchange', function() {
-    var currentHash = getPageHash();
-
-    // Switch on or switch off woa animation
-    if (currentHash === woaHash) {
-        firstWoaAnimation = switchOnWoaAnimation($firstWindowOnAmericaImage, 7000);
-        secondWoaAnimation = switchOnWoaAnimation($secondWindowOnAmericaImage, 15000);
-    } else {
-        switchOfWoaAnimation(firstWoaAnimation);
-        switchOfWoaAnimation(secondWoaAnimation);
-    }
 
     // Set the window scroll top at the beginning of the main content section
     var navigationHeight = getHeaderItemsParameters().navigationHeight,
