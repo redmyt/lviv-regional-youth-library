@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import {formatDateToView, formatDateToPicker} from '../../helpers';
 
-const style = {
+const baseStyle = {
     margin: '10px 0'
 };
 
@@ -46,6 +46,7 @@ export default class AdminDateField extends React.Component {
     }
 
     render() {
+        const style = this.props.style ? Object.assign(this.props.style, baseStyle) : baseStyle;
         return (
             <div style={style}>
                 {this.props.isEdit ? this.renderEditField() : this.renderLookUpField()}
