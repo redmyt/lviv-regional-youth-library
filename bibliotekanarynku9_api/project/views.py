@@ -157,7 +157,7 @@ class ProjectTranslationViewSet(viewsets.ModelViewSet):
         if not proj_transl:
             return RESPONSE_404_NOT_FOUND
 
-        if not proj_transl.proj.id == proj_pk:
+        if not proj_transl.project.id == proj_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
         proj_transl_data = request.data
@@ -189,7 +189,7 @@ class ProjectTranslationViewSet(viewsets.ModelViewSet):
         if not proj_transl:
             return RESPONSE_404_NOT_FOUND
 
-        if not proj_transl.proj.id == proj_pk:
+        if not proj_transl.project.id == proj_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
         is_delete = ProjectTranslation.delete_by_id(proj_transl_pk)
@@ -235,7 +235,7 @@ class ProjectTranslationLinkViewSet(viewsets.ModelViewSet):
         if not proj_transl:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
-        if not proj_transl.post.id == proj_pk:
+        if not proj_transl.project.id == proj_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
         proj_link_data = {'translation': proj_transl_pk, **request.data}
