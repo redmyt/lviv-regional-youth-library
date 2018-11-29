@@ -5,8 +5,6 @@ export {
     formatDateToView,
     formatDateToPicker,
     getItemById,
-    getTranslation,
-    getLinks,
     splitTextToParagraphs,
     removeBase64Prefix
 } from './utils';

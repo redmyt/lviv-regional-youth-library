@@ -9,8 +9,8 @@ import AdminDateField from '../../components/AdminDateField';
 import AdminAvatarField from '../../components/AdminAvatarField';
 import AdminProjectItemTranslation from './AdminProjectItemTranslation';
 import AdminAddProjectTranslationForm from './AdminAddProjectTranslationForm';
-import {getProjectById, putProjectService, deleteProjectService,} from './adminProjectService';
-import {getUpdatedState, getTranslation, getLinks} from '../../helpers';
+import {getProjectById, putProjectService, deleteProjectService} from './adminProjectService';
+import {getUpdatedState} from '../../helpers';
 
 const baseStyle = {
     margin: '15px 15px',
@@ -32,9 +32,7 @@ class AdminProjectItem extends React.Component {
         this.state = {
             isEdit: false,
             isError: false,
-            project: null,
-            translation: null,
-            links: null
+            project: null
         };
     }
 
@@ -47,8 +45,6 @@ class AdminProjectItem extends React.Component {
             const data = response.data;
             this.setState(getUpdatedState({
                 project: data,
-                translation: getTranslation(data),
-                links: getLinks(data),
                 isEdit: false
             }, this.state));
         });
