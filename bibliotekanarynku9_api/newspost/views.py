@@ -235,7 +235,7 @@ class NewsPostTranslationLinkViewSet(viewsets.ModelViewSet):
         if not npost_transl.post.id == npost_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
-        npost_link_data = {'npost_transl': npost_transl_pk, **request.data}
+        npost_link_data = {'translation': npost_transl_pk, **request.data}
         serializer = NewsPostTranslationLinkSerializer(data=npost_link_data)
 
         if not serializer.is_valid():
