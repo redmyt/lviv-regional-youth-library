@@ -27,7 +27,7 @@ ADMIN_MANAGEMENT_APPS = {
                             news that was occurred in the library.'
         },
         {
-            'name': 'PresPost',
+            'name': 'PressPost',
             'description': 'PressPost entity which using for describing all \
                             press mentions of library events.'
         },

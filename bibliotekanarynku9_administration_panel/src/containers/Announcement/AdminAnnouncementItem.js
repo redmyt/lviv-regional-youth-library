@@ -10,7 +10,7 @@ import AdminAvatarField from '../../components/AdminAvatarField';
 import AdminAnnouncementItemTranslation from './AdminAnnouncementItemTranslation';
 import AdminAddAnnouncementTranslationForm from './AdminAddAnnouncementTranslationForm';
 import {getAnnouncementById, putAnnouncementService, deleteAnnouncementService,} from './adminAnnouncementService';
-import {getUpdatedState, getTranslation, getLinks} from '../../helpers';
+import {getUpdatedState} from '../../helpers';
 
 const baseStyle = {
     margin: '15px 15px',
@@ -32,9 +32,7 @@ class AdminAnnouncementItem extends React.Component {
         this.state = {
             isEdit: false,
             isError: false,
-            announcement: null,
-            translation: null,
-            links: null
+            announcement: null
         };
     }
 
@@ -47,8 +45,6 @@ class AdminAnnouncementItem extends React.Component {
             const data = response.data;
             this.setState(getUpdatedState({
                 announcement: data,
-                translation: getTranslation(data),
-                links: getLinks(data),
                 isEdit: false
             }, this.state));
         });
