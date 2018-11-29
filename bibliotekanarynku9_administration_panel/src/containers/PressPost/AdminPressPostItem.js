@@ -7,9 +7,9 @@ import Switch from '@material-ui/core/Switch';
 import AdminButton from '../../components/AdminButton';
 import AdminDateField from '../../components/AdminDateField';
 import AdminAvatarField from '../../components/AdminAvatarField';
-import AdminNewsItemTranslation from './AdminNewsItemTranslation';
-import AdminAddNewsTranslationForm from './AdminAddNewsTranslationForm';
-import {getNewsById, putNewsService, deleteNewsService,} from './adminNewsService';
+import AdminPressPostItemTranslation from './AdminPressPostItemTranslation';
+import AdminAddPressPostTranslationForm from './AdminAddPressPostTranslationForm';
+import {getPressPostById, putPressPostService, deletePressPostService} from './adminPressPostService';
 import {getUpdatedState} from '../../helpers';
 
 const baseStyle = {
@@ -17,7 +17,7 @@ const baseStyle = {
     boxSizing: 'border-box'
 };
 
-const saveNewsBtnStyle = {
+const savePressPostBtnStyle = {
     margin: 10
 };
 
@@ -25,33 +25,33 @@ const switchStyle = {
     float: 'right'
 };
 
-class AdminNewsItem extends React.Component {
+class AdminPressPostItem extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             isEdit: false,
             isError: false,
-            news: null
+            pressPost: null
         };
     }
 
     componentWillMount() {
-        this.getNews();
+        this.getPressPost();
     }
 
-    getNews = () => {
-        getNewsById(this.props.match.params.newsId).then(response => {
+    getPressPost = () => {
+        getPressPostById(this.props.match.params.pressPostId).then(response => {
             const data = response.data;
             this.setState(getUpdatedState({
-                news: data,
+                pressPost: data,
                 isEdit: false
             }, this.state));
         });
     }
 
-    handleNewsRemoveClick = () => {
-        deleteNewsService(this.state.news.id)
+    handlePressPostRemoveClick = () => {
+        deletePressPostService(this.state.pressPost.id)
             .then(() => {
                 this.props.history.goBack();
             })
@@ -65,16 +65,16 @@ class AdminNewsItem extends React.Component {
     }
 
     handleAvatarChange = newAvatar => {
-        this.setState(getUpdatedState({news: {
-            ...this.state.news,
+        this.setState(getUpdatedState({pressPost: {
+            ...this.state.pressPost,
             avatar: newAvatar
         }}, this.state));
     }
 
-    handleNewsSaveClick = () => {
-        putNewsService(
-            this.state.news.id,
-            this.state.news.avatar
+    handlePressPostSaveClick = () => {
+        putPressPostService(
+            this.state.pressPost.id,
+            this.state.pressPost.avatar
         ).then(() => {
             this.setState(getUpdatedState({isError: false}, this.state));
         }).catch(() => {
@@ -85,7 +85,7 @@ class AdminNewsItem extends React.Component {
     render() {
         const style = this.props.style ? Object.assign(this.props.style, baseStyle) : baseStyle;
         return (
-            this.state.news ? (
+            this.state.pressPost ? (
                 <div style={style}>
                     <Card>
                         <div style={switchStyle}>
@@ -95,52 +95,52 @@ class AdminNewsItem extends React.Component {
                             />
                         </div>
                         <AdminAvatarField
-                            avatar={this.state.news.avatar}
+                            avatar={this.state.pressPost.avatar}
                             isEdit={this.state.isEdit}
                             onAvatarChange={this.handleAvatarChange}
                         />
                         <CardContent>
                             <AdminDateField
-                                date={this.state.news.created_at}
+                                date={this.state.pressPost.created_at}
                                 label='Created at'
                                 isEdit={false}
                             />
                             <AdminDateField
-                                date={this.state.news.updated_at}
+                                date={this.state.pressPost.updated_at}
                                 label='Updated at'
                                 isEdit={false}
                             />
                             {
                                 this.state.isEdit && (
                                     <AdminButton
-                                        text='Save News'
+                                        text='Save Press Post'
                                         color='primary'
                                         variant='outlined'
-                                        onClick={this.handleNewsSaveClick}
-                                        style={saveNewsBtnStyle}
+                                        onClick={this.handlePressPostSaveClick}
+                                        style={savePressPostBtnStyle}
                                     />
                                 )
                             }
                             {
-                                this.state.news.translations.map(translation => {
+                                this.state.pressPost.translations.map(translation => {
                                     return (
-                                        <AdminNewsItemTranslation
-                                            newsId={this.state.news.id}
+                                        <AdminPressPostItemTranslation
+                                            pressPostId={this.state.pressPost.id}
                                             id={translation.id}
                                             title={translation.title}
                                             description={translation.description}
                                             links={translation.links}
                                             isEdit={this.state.isEdit}
-                                            onRemoveTranslationSuccess={this.getNews}
-                                            onAddTranslationLinkSuccess={this.getNews}
-                                            onRemoveTranslationLinkSuccess={this.getNews}
+                                            onRemoveTranslationSuccess={this.getPressPost}
+                                            onAddTranslationLinkSuccess={this.getPressPost}
+                                            onRemoveTranslationLinkSuccess={this.getPressPost}
                                         />
                                     );
                                 })
                             }
-                            <AdminAddNewsTranslationForm
-                                newsId={this.state.news.id}
-                                onAddTranslationSuccess={this.getNews}
+                            <AdminAddPressPostTranslationForm
+                                pressPostId={this.state.pressPost.id}
+                                onAddTranslationSuccess={this.getPressPost}
                                 isEdit={this.state.isEdit}
                             />
                         </CardContent>
@@ -151,8 +151,8 @@ class AdminNewsItem extends React.Component {
                                         size='small'
                                         color='secondary'
                                         variant='contained'
-                                        onClick={this.handleNewsRemoveClick}
-                                        text={'Remove News'}
+                                        onClick={this.handlePressPostRemoveClick}
+                                        text={'Remove Press Post'}
                                     />
                                 )
                             }
@@ -166,4 +166,4 @@ class AdminNewsItem extends React.Component {
     }
 }
 
-export default withRouter(AdminNewsItem);
+export default withRouter(AdminPressPostItem);

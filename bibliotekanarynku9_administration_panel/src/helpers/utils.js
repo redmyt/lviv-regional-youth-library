@@ -34,7 +34,3 @@ export const getItemById = (itemId, collection) => {
 export const splitTextToParagraphs = text => text ? text.split('\n') : [];
 
 export const removeBase64Prefix = dataUrlContent => dataUrlContent ? dataUrlContent.split(',').pop() : '';
-
-export const getTranslation = obj => obj.translations.length > 0 ? obj.translations[0] : {};
-
-export const getLinks = obj => obj.translations.length > 0 ? obj.translations[0].links : [];
