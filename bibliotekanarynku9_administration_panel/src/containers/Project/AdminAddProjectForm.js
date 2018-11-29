@@ -26,7 +26,7 @@ const invisibleBlockStyle = {
     display: 'none'
 };
 
-export default class AdminAddNewsForm extends React.Component {
+export default class AdminAddProjectForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -59,7 +59,7 @@ export default class AdminAddNewsForm extends React.Component {
         return (
             <div style={this.props.isError ? errStyle : okStyle}>
                 <AdminButton
-                    text='Add News Post'
+                    text='Add Project'
                     color='primary'
                     variant='contained'
                     onClick={this.handleAddClick}
