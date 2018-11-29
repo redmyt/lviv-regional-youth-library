@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {apiPath, getCSRFToken, removeBase64Prefix} from '../../helpers';
+import {apiPath, getCSRFToken, removeBase64Prefix, LANGUAGE_CODES} from '../../helpers';
 
 const announcementPath = 'announcement/';
 
@@ -13,10 +13,23 @@ export const getAnnouncementById = (announcementId) => {
     return axios.get(url);
 };
 
-export const postAnnouncementService = avatar => {
+export const postAnnouncementService = (avatar, startAt) => {
     const url = `${apiPath}${announcementPath}`;
+    let data = {avatar: removeBase64Prefix(avatar)};
+    if (startAt) {data.start_at = startAt;}
+    return axios.post(url, data, {
+        headers: {
+            'X-CSRFToken': getCSRFToken()
+        }
+    });
+};
+
+export const postAnnouncementTranslationService = (announcementId, title, description, language) => {
+    const url = `${apiPath}${announcementPath}${announcementId}/translation/`;
     return axios.post(url, {
-        avatar: removeBase64Prefix(avatar)
+        title: title,
+        description: description,
+        language: LANGUAGE_CODES[language]
     }, {
         headers: {
             'X-CSRFToken': getCSRFToken()
@@ -38,10 +51,9 @@ export const postAnnouncementTranslationLinkService = (announcementId, translati
 
 export const putAnnouncementService = (announcementId, avatar, startAt) => {
     const url = `${apiPath}${announcementPath}${announcementId}/`;
-    return axios.put(url, {
-        avatar: removeBase64Prefix(avatar),
-        start_at: startAt
-    }, {
+    let data = {avatar: removeBase64Prefix(avatar)};
+    if (startAt) {data.start_at = startAt;}
+    return axios.put(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()
         }
@@ -66,6 +78,24 @@ export const putAnnouncementTranslationLinkService = (announcementId, translatio
         label: label,
         href: href
     }, {
+        headers: {
+            'X-CSRFToken': getCSRFToken()
+        }
+    });
+};
+
+export const deleteAnnouncementService = (announcementId) => {
+    const url = `${apiPath}${announcementPath}${announcementId}/`;
+    return axios.delete(url, {
+        headers: {
+            'X-CSRFToken': getCSRFToken()
+        }
+    });
+};
+
+export const deleteAnnouncementTranslationService = (announcementId, translationId) => {
+    const url = `${apiPath}${announcementPath}${announcementId}/translation/${translationId}/`;
+    return axios.delete(url, {
         headers: {
             'X-CSRFToken': getCSRFToken()
         }

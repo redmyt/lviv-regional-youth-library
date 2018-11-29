@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import AdminLoadMoreButton from '../../components/AdminLoadMoreButton';
 import AdminAnnouncementList from './AdminAnnouncementList';
-import {AdminAddAnnouncementForm} from './AdminAddAnnouncementForm';
+import AdminAddAnnouncementForm from './AdminAddAnnouncementForm';
 import {getAnnouncementsListService, postAnnouncementService} from './adminAnnouncementService';
 import {getUpdatedState} from '../../helpers';
 
@@ -46,8 +46,8 @@ class AdminAnnouncement extends React.Component {
         this.props.history.push(`${this.props.match.url}/${itemId}`);
     }
 
-    handleAddSaveClick = (avatar) => {
-        postAnnouncementService(avatar)
+    handleAddSaveClick = (avatar, startAt) => {
+        postAnnouncementService(avatar, startAt)
             .then(() => {
                 getAnnouncementsListService()
                     .then(response => {

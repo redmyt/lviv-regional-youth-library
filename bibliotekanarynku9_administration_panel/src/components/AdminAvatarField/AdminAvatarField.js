@@ -31,6 +31,10 @@ export default class AdminAvatarField extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState(getUpdatedState({avatar: nextProps.avatar}, this.state));
+    }
+
     handleChange = event => {
         const file = event.target.files && event.target.files[0];
         if (file) {
