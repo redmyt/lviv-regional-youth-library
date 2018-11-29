@@ -4,8 +4,9 @@ import AdminButton from '../../components/AdminButton';
 import AdminTitleField from '../../components/AdminTitleField';
 import AdminDescriptionField from '../../components/AdminDescriptionField';
 import {getUpdatedState} from '../../helpers';
-import {putAnnouncementTranslationService, deleteAnnouncementTranslationService} from './adminAnnouncementService';
-import AdminLinksField from '../../components/AdminLinksField';
+import {putAnnouncementTranslationService, deleteAnnouncementTranslationService, postAnnouncementTranslationLinkService, putAnnouncementTranslationLinkService, deleteAnnouncementTranslationLinkService} from './adminAnnouncementService';
+import AdminAnnouncementTranslationLinksList from './AdminAnnouncementTranslationLinksList';
+import AdminAddLinkForm from '../../components/AdminAddLinkForm/AdminAddLinkForm';
 
 const buttonsWrapperSty = {
     display: 'flex'
@@ -25,7 +26,9 @@ class AdminAnnouncementItemTranslation extends React.Component {
             updatedTitle: props.title,
             description: props.description,
             updatedDescription: props.description,
-            isError: false
+            isError: false,
+            isAddLinkFormError: false,
+            isUpdateLinkError: false
         };
     }
 
@@ -57,7 +60,7 @@ class AdminAnnouncementItemTranslation extends React.Component {
         }, this.state));
     }
 
-    handleSaveClick = () => {
+    handleSaveTranslationClick = () => {
         putAnnouncementTranslationService(
             this.props.announcementId,
             this.props.id,
@@ -74,12 +77,58 @@ class AdminAnnouncementItemTranslation extends React.Component {
         });
     }
 
-    handleRemoveClick = () => {
+    handleRemoveTranslationClick = () => {
         deleteAnnouncementTranslationService(
             this.props.announcementId,
             this.props.id
         ).then(() => {
             this.props.onRemoveTranslationSuccess();
+        });
+    }
+
+    handleAddLinkClick = (label, href) => {
+        postAnnouncementTranslationLinkService(
+            this.props.announcementId,
+            this.props.id,
+            label,
+            href
+        ).then(() => {
+            this.setState(getUpdatedState({
+                isAddLinkFormError: false
+            }, this.state));
+            this.props.onAddTranslationLinkSuccess();
+        }).catch(() => {
+            this.setState(getUpdatedState({
+                isAddLinkFormError: true
+            }, this.state));
+        });
+    }
+
+    handleLinkUpdateClick = (linkId, label, href) => {
+        putAnnouncementTranslationLinkService(
+            this.props.announcementId,
+            this.props.id,
+            linkId,
+            label,
+            href
+        ).then(() => {
+            this.setState(getUpdatedState({
+                isUpdateLinkError: false
+            }, this.state));
+        }).catch(() => {
+            this.setState(getUpdatedState({
+                isUpdateLinkError: true
+            }, this.state));
+        });
+    }
+
+    handleLinkRemoveClick = linkId => {
+        deleteAnnouncementTranslationLinkService(
+            this.props.announcementId,
+            this.props.id,
+            linkId
+        ).then(() => {
+            this.props.onRemoveTranslationLinkSuccess();
         });
     }
 
@@ -109,19 +158,32 @@ class AdminAnnouncementItemTranslation extends React.Component {
                             color='primary'
                             variant='outlined'
                             disabled={!this.haveFieldsChanged()}
-                            onClick={this.handleSaveClick}
+                            onClick={this.handleSaveTranslationClick}
                             style={buttonsStyle}
                         />
                         <AdminButton
                             text='Remove Translation'
                             color='secondary'
                             variant='outlined'
-                            onClick={this.handleRemoveClick}
+                            onClick={this.handleRemoveTranslationClick}
                             style={buttonsStyle}
                         />
                     </div>
                 }
-                <AdminLinksField links={this.props.links} isEdit={this.props.isEdit} />
+                <AdminAnnouncementTranslationLinksList
+                    links={this.props.links}
+                    isEdit={this.props.isEdit}
+                    isError={this.state.isUpdateLinkError}
+                    onLinkUpdateClick={this.handleLinkUpdateClick}
+                    onLinkRemoveClick={this.handleLinkRemoveClick}
+                />
+                {
+                    this.props.isEdit &&
+                    <AdminAddLinkForm
+                        onAddLinkClick={this.handleAddLinkClick}
+                        isError={this.state.isAddLinkFormError}
+                    />
+                }
             </div>
         );
     }

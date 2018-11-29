@@ -151,6 +151,8 @@ class AdminAnnouncementItem extends React.Component {
                                             links={translation.links}
                                             isEdit={this.state.isEdit}
                                             onRemoveTranslationSuccess={this.getAnnouncement}
+                                            onAddTranslationLinkSuccess={this.getAnnouncement}
+                                            onRemoveTranslationLinkSuccess={this.getAnnouncement}
                                         />
                                     );
                                 })
