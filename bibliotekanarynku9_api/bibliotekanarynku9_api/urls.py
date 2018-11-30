@@ -9,7 +9,6 @@ from django.conf import settings
 from rest_framework_nested import routers
 from admin.views import AdminViewSet
 from authentication.views import AuthenticationViewSet
-from author.views import AuthorViewSet, AuthorTranslationViewSet
 from announcement.views import (AnnouncementViewSet,
                                 AnnouncementTranslationViewSet,
                                 AnnouncementTranslationLinkViewSet)
@@ -33,7 +32,6 @@ router = routers.SimpleRouter()
 router.register(API_PREF + 'auth', AuthenticationViewSet, 'authentication')
 router.register(API_PREF + 'admin', AdminViewSet, 'admin')
 router.register(API_PREF + 'news_post', NewsPostViewSet, 'newspost')
-router.register(API_PREF + 'author', AuthorViewSet, 'author')
 router.register(API_PREF + 'press_post', PressPostViewSet, 'presspost')
 router.register(API_PREF + 'announcement', AnnouncementViewSet, 'announcement')
 router.register(API_PREF + 'book', BookViewSet, 'book')
@@ -128,25 +126,6 @@ presspost_translation_router.register(
 
 urlpatterns += presspost_router.urls
 urlpatterns += presspost_translation_router.urls
-
-
-# Author app nested routers
-
-author_router = routers.NestedSimpleRouter(
-    router,
-    API_PREF + 'author',
-    lookup='author')
-author_router.register(
-    r'translation',
-    AuthorTranslationViewSet,
-    'authortranslation')
-author_translation_router = routers.NestedSimpleRouter(
-    author_router,
-    r'translation',
-    lookup='translation')
-
-urlpatterns += author_router.urls
-urlpatterns += author_translation_router.urls
 
 
 # Project app nested routers
