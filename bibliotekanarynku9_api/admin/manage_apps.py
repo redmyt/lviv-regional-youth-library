@@ -12,11 +12,6 @@ ADMIN_MANAGEMENT_APPS = {
                             all future events that will occur in the library.'
         },
         {
-            'name': 'Author',
-            'description': 'Author entity which using for describing all \
-                            possible author of the library books.'
-        },
-        {
             'name': 'Book',
             'description': 'Book entity which using for describing all books \
                             that will use for the bookshelf site view.'

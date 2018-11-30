@@ -3,7 +3,6 @@
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.management import BaseCommand
-from author.models import Author, AuthorTranslation
 from announcement.models import (Announcement,
                                  AnnouncementTranslation,
                                  AnnouncementTranslationLink)
@@ -21,8 +20,6 @@ from project.models import (Project,
 
 
 ADMINS_PERMISSIONS_MODELS = (
-    Author,
-    AuthorTranslation,
     Announcement,
     AnnouncementTranslation,
     AnnouncementTranslationLink,

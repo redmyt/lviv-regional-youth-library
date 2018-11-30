@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'book',
     'announcement',
     'presspost',
-    'author',
     'customuser',
     'admin',
     'project'
