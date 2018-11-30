@@ -13,10 +13,10 @@ var dateMonthLocalizationMap = {
     12: 'Грудня'
 };
 
-function dateParser(rawDate) {
+function getDateData(rawDate) {
     /*
-    Function which change the accepted date string to the
-    beauty user format.
+    Function which parse the accepted date string to the
+    flexible dict format.
     */
 
     var date = new Date(rawDate),
@@ -25,7 +25,26 @@ function dateParser(rawDate) {
         year = date.getFullYear(),
         hour = date.getHours(),
         minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-    return day + '-го' + ' ' + dateMonthLocalizationMap[month] + ' ' + year + ' ' + hour + ':' + minutes;
+
+    return {
+        year: year,
+        month: month,
+        day: day,
+        hour: hour,
+        minutes: minutes
+    };
+}
+
+function dateParser(dateData) {
+    /* Parse the date object to beauty date format */
+
+    return dateData.day + '-го' + ' ' + dateMonthLocalizationMap[dateData.month] + ' ' + dateData.year;
+}
+
+function dateTimeParser(dateData) {
+    /* Parse the date object to beauty deteTime format */
+
+    return dateData.day + '-го' + ' ' + dateMonthLocalizationMap[dateData.month] + ' ' + dateData.year + ' ' + dateData.hour + ':' + dateData.minutes;
 }
 
 function getPageHash() {
