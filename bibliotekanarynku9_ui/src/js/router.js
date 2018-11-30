@@ -24,6 +24,9 @@ window.onhashchange = function() {
         case 'woa':
             woaController();
             break;
+        case 'book':
+            bookController(recourseId);
+            break;
         case 'about':
             aboutUsController();
             break;
