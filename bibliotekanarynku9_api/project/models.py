@@ -18,6 +18,9 @@ class Project(AbstractModel):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ('created_at',)
+
 
 class ProjectTranslation(AbstractModel):
     """ProjectTranslation entity description."""

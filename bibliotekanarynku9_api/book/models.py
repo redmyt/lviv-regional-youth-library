@@ -18,6 +18,9 @@ class Book(AbstractModel):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ('created_at',)
+
 
 class BookTranslation(AbstractModel):
     """BookTranslation entity description"""
