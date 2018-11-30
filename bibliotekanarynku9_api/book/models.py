@@ -14,7 +14,7 @@ class Book(AbstractModel):
     """Book entity description"""
 
     avatar = models.CharField(max_length=150)
-    published_at = models.DateTimeField(null=True)
+    published_at = models.DateField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 

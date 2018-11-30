@@ -62,7 +62,7 @@ function renderAnnouncementArticle(announcementArticle, isDetailed) {
         });
 
         $articleHeading.text(translation.title);
-        $articleDate.text(dateParser(announcementArticle.start_at));
+        $articleDate.text(dateTimeParser(getDateData(announcementArticle.start_at)));
         $articleHeading.click(function() {
             window.location.hash = 'announcement/' + announcementArticle.id;
         });
