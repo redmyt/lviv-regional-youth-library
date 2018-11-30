@@ -14,9 +14,12 @@ from utils.language import LANGUAGE_CHOICES
 class PressPost(AbstractModel):
     """PressPost entity description"""
 
-    avatar = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
+    avatar = models.CharField(max_length=150)
+
+    class Meta:
+        ordering = ('created_at',)
 
 
 class PressPostTranslation(AbstractModel):

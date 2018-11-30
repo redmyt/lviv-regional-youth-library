@@ -15,8 +15,11 @@ class NewsPost(AbstractModel):
     """NewsPost entity description."""
 
     avatar = models.CharField(max_length=150)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+
+    class Meta:
+        ordering = ('created_at',)
 
 
 class NewsPostTranslation(AbstractModel):
