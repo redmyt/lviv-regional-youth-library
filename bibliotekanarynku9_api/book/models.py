@@ -6,7 +6,6 @@ for the multilanguage support.
 """
 
 from django.db import models
-from author.models import Author
 from utils.abstract_model import AbstractModel
 from utils.language import LANGUAGE_CHOICES
 
@@ -14,7 +13,6 @@ from utils.language import LANGUAGE_CHOICES
 class Book(AbstractModel):
     """Book entity description"""
 
-    authors = models.ManyToManyField(Author, blank=True)
     avatar = models.CharField(max_length=150)
     published_at = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
@@ -31,6 +29,7 @@ class BookTranslation(AbstractModel):
     title = models.CharField(max_length=120)
     language = models.IntegerField(default=1, choices=LANGUAGE_CHOICES)
     description = models.CharField(max_length=4096)
+    author = models.CharField(max_length=120)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
