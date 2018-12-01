@@ -1,22 +1,21 @@
 """Module that describe authentication views."""
 
 from django.contrib.auth import authenticate, login, logout
+from django.template.loader import render_to_string
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.renderers import JSONRenderer, StaticHTMLRenderer
+from rest_framework.response import Response
 from customuser.models import CustomUser
 from customuser.serializers import CustomUserSerializer
 from utils.jwt_token import create_token, handle_token
-from utils.responses import (RESPONSE_200_ACTIVATED,
-                             RESPONSE_200_LOGGED,
+from utils.responses import (RESPONSE_200_LOGGED,
                              RESPONSE_200_LOGOUTED,
                              RESPONSE_201_REGISTERED,
                              RESPONSE_400_EMPTY_REQUEST,
                              RESPONSE_400_INVALID_DATA,
                              RESPONSE_400_FAILED_CREATION,
-                             RESPONSE_400_INVALID_TOKEN,
-                             RESPONSE_400_INVALID_EMAIL,
-                             RESPONSE_400_INVALID_EMAIL_OR_PASSWORD,
-                             RESPONSE_400_UNEXPECTED_PARAMETERS)
+                             RESPONSE_400_INVALID_EMAIL_OR_PASSWORD)
 from utils.send_email import send_email
 from utils.handlers import USER_SESSION_HANDLER
 from utils.validators import required_keys_validator
@@ -24,12 +23,18 @@ from utils.validators import required_keys_validator
 
 TTL_ACTIVATION_TOKEN = 60 * 60
 REGISTRATION_TEMPLATE = 'registration.html'
+ACTIVATION_INVALID_PARAMS_TEMPLATE = 'activation/invalid-params.html'
+ACTIVATION_INVALID_TOKEN_TEMPLATE = 'activation/invalid-token.html'
+ACTIVATION_INVALID_EMAIL_TEMPLATE = 'activation/invalid-email.html'
+ACTIVATION_SUCCESS_TEMPLATE = 'activation/activated.html'
 REQUIRED_LOGIN_KEYS = ('email', 'password')
 USER_SESSION_COOKIE = 'user_id'
 
 
 class AuthenticationViewSet(viewsets.ViewSet):
     """Describes all authentication views."""
+
+    renderer_classes = (JSONRenderer, StaticHTMLRenderer)
 
     @staticmethod
     @action(methods=['post'], detail=False)
@@ -51,7 +56,11 @@ class AuthenticationViewSet(viewsets.ViewSet):
         activation_token = create_token(
             data={'email': user.email},
             expiration_time=TTL_ACTIVATION_TOKEN)
-        ctx = {'token': activation_token}
+        ctx = {
+            'email': user.email,
+            'token': activation_token,
+            'time_left': TTL_ACTIVATION_TOKEN // 60
+        }
         send_email([user.email], REGISTRATION_TEMPLATE, ctx)
         return RESPONSE_201_REGISTERED
 
@@ -61,19 +70,22 @@ class AuthenticationViewSet(viewsets.ViewSet):
         """User activation handles."""
 
         if request.query_params:
-            return RESPONSE_400_UNEXPECTED_PARAMETERS
+            return Response(
+                render_to_string(ACTIVATION_INVALID_PARAMS_TEMPLATE))
 
         data = handle_token(token)
         if not data:
-            return RESPONSE_400_INVALID_TOKEN
+            return Response(
+                render_to_string(ACTIVATION_INVALID_TOKEN_TEMPLATE))
 
         user = CustomUser.get_by_email(email=data.get('email'))
         if not user:
-            return RESPONSE_400_INVALID_EMAIL
+            return Response(
+                render_to_string(ACTIVATION_INVALID_EMAIL_TEMPLATE))
 
         user.is_active = True
         user.save()
-        return RESPONSE_200_ACTIVATED
+        return Response(render_to_string(ACTIVATION_SUCCESS_TEMPLATE))
 
     @staticmethod
     @action(methods=['post'], detail=False)
