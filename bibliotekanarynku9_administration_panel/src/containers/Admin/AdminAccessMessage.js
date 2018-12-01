@@ -1,18 +1,16 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import AdminMessage from  '../../components/adminMessage';
+import {isLogged} from '../../helpers';
 
 const messageBodyStyle = {
     width: '50%'
 };
 
-const adminAccessMessageTxt = 'You are not authenticated. Please navigate to Login view.';
+const adminLoginAccessMessageTxt = 'You are not authenticated. Please navigate to Login view.',
+    adminPermissionsAccessMessageTxt = 'You are not Administrators group member. Please request admin permissions.';
 
 class AdminAccessMessage extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     navigateToLogin = () => {
         this.props.history.push('/login');
@@ -20,16 +18,32 @@ class AdminAccessMessage extends React.Component {
 
     links = [{text: 'Go to Login', onClick: this.navigateToLogin}];
 
-    render() {
-        return (
+    renderLoginMessage = () => {
+        return(
             <div>
                 <AdminMessage
                     messageBodyStyle={messageBodyStyle}
-                    message={adminAccessMessageTxt}
+                    message={adminLoginAccessMessageTxt}
                     links={this.links}
                 />
             </div>
         );
+    }
+
+    renderPermissionsMessage = () => {
+        return(
+            <div>
+                <AdminMessage
+                    messageBodyStyle={messageBodyStyle}
+                    message={adminPermissionsAccessMessageTxt}
+                />
+            </div>
+        );
+    }
+
+    render() {
+        const message = isLogged() ? this.renderPermissionsMessage() : this.renderLoginMessage();
+        return message;
     }
 }
 

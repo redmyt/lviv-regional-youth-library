@@ -4,8 +4,8 @@ import AdminNavigationList from './AdminNavigationList';
 import AdminAccessMessage from './AdminAccessMessage';
 import AdminAppBar from './AdminAppBar';
 import AdminRouter from './AdminRouter';
-import {getManageApps, getLogout} from './adminService';
-import {getUpdatedState, isLogged} from '../../helpers';
+import {getManageApps, getLogout, requestPermissions} from './adminService';
+import {getUpdatedState} from '../../helpers';
 
 class Admin extends React.Component {
 
@@ -18,15 +18,16 @@ class Admin extends React.Component {
     }
 
     componentWillMount() {
-        if (isLogged()) {
-            getManageApps().then(response => {
-                if (response.status === 200) {
-                    this.setState(getUpdatedState({
-                        manageApps: response.data.apps
-                    }, this.state));
-                }
+        requestPermissions().
+            then(() => {
+                getManageApps().then(response => {
+                    if (response.status === 200) {
+                        this.setState(getUpdatedState({
+                            manageApps: response.data.apps
+                        }, this.state));
+                    }
+                });
             });
-        }
     }
 
     navigateToItem = itemName => {
@@ -57,10 +58,6 @@ class Admin extends React.Component {
     renderManageApps = () => {
         return (
             <div>
-                <AdminAppBar
-                    onLogoutClick={this.handleLogoutClick}
-                    onNavIconClick={this.handleNavIconClick}
-                />
                 <AdminNavigationList
                     items={this.state.manageApps}
                     onItemClick={this.navigateToItem}
@@ -80,8 +77,16 @@ class Admin extends React.Component {
     }
 
     render() {
-        const element = isLogged() ? this.renderManageApps() : this.renderAdminMessage();
-        return(element);
+        const element = this.state.manageApps.length ? this.renderManageApps() : this.renderAdminMessage();
+        return (
+            <div>
+                <AdminAppBar
+                    onLogoutClick={this.handleLogoutClick}
+                    onNavIconClick={this.handleNavIconClick}
+                />
+                {element}
+            </div>
+        );
     }
 }
 
