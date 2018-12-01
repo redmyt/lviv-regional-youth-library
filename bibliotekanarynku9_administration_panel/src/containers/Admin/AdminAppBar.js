@@ -15,6 +15,10 @@ const btnStyle = {
 
 export default class AdminAppBar extends React.Component {
 
+    handleRequestPermissionsClick = () => {
+        this.props.onRequestPermissionsClick();
+    }
+
     handelLogoutClick = () => {
         this.props.onLogoutClick();
     }
@@ -35,6 +39,14 @@ export default class AdminAppBar extends React.Component {
                         >
                             <MenuIcon />
                         </IconButton>
+                        {!this.props.isAdmin && !!this.props.requestPermissionStatus &&
+                            <AdminButton
+                                variant='contained'
+                                color={this.props.requestPermissionStatus < 2 ? 'default' : 'secondary'}
+                                text='Request permissions'
+                                onClick={this.handleRequestPermissionsClick}
+                            />
+                        }
                         <AdminButton
                             style={btnStyle}
                             variant='contained'

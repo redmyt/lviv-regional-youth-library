@@ -4,7 +4,7 @@ import AdminNavigationList from './AdminNavigationList';
 import AdminAccessMessage from './AdminAccessMessage';
 import AdminAppBar from './AdminAppBar';
 import AdminRouter from './AdminRouter';
-import {getManageApps, getLogout, requestPermissions} from './adminService';
+import {getManageApps, getLogout, requestPermissions, requestToAdmin} from './adminService';
 import {getUpdatedState} from '../../helpers';
 
 class Admin extends React.Component {
@@ -13,7 +13,8 @@ class Admin extends React.Component {
         super(props);
         this.state = {
             manageApps: [],
-            isNavListOpen: false
+            isNavListOpen: false,
+            requestPermissionStatus: 1
         };
     }
 
@@ -45,6 +46,14 @@ class Admin extends React.Component {
 
     handleNavListClose = () => {
         this.setState(getUpdatedState({isNavListOpen: false}, this.state));
+    }
+
+    handleRequestPermissionsClick = () => {
+        requestToAdmin().then(() => {
+            this.setState(getUpdatedState({requestPermissionStatus: 0}, this.state));
+        }).catch(() => {
+            this.setState(getUpdatedState({requestPermissionStatus: 2}, this.state));
+        });
     }
 
     handleLogoutClick = () => {
@@ -83,6 +92,9 @@ class Admin extends React.Component {
                 <AdminAppBar
                     onLogoutClick={this.handleLogoutClick}
                     onNavIconClick={this.handleNavIconClick}
+                    isAdmin={!!this.state.manageApps.length}
+                    onRequestPermissionsClick={this.handleRequestPermissionsClick}
+                    requestPermissionStatus={this.state.requestPermissionStatus}
                 />
                 {element}
             </div>

@@ -18,3 +18,9 @@ export const requestPermissions = () => {
         url = apiPath + permissionsPath;
     return axios.get(url);
 };
+
+export const requestToAdmin = () => {
+    const permissionsPath = 'admin/request/',
+        url = apiPath + permissionsPath;
+    return axios.get(url);
+};
