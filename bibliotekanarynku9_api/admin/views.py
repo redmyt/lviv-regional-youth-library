@@ -12,9 +12,11 @@ from utils.data_access import get_object_or_none
 from utils.jwt_token import create_token, handle_token
 from utils.responses import (RESPONSE_200_ADMINS_JOINED,
                              RESPONSE_200_ADMINS_REQUESTED,
+                             RESPONSE_200_ADMINS_PERMISSIONS_COMFIRMED,
                              RESPONSE_400_INVALID_TOKEN,
                              RESPONSE_400_UNEXPECTED_PARAMETERS,
                              RESPONSE_403_USER_ALREADY_ADMIN,
+                             RESPONSE_403_ADMINS_PERMISSIONS_UNCONFIRMED,
                              RESPONSE_404_ADMINS_GROUP_INACCESSIBLE)
 from utils.send_email import send_email
 from .manage_apps import ADMIN_MANAGEMENT_APPS
@@ -83,3 +85,17 @@ class AdminViewSet(viewsets.ViewSet):
             return RESPONSE_400_UNEXPECTED_PARAMETERS
 
         return Response(ADMIN_MANAGEMENT_APPS, status=200)
+
+    @staticmethod
+    @action(methods=['get'],
+            detail=False,
+            permission_classes=[IsAuthenticated])
+    def permissions(request):
+        """Check does the requested user has administration premissions."""
+
+        admins_group = Group.objects.get(name='admins')
+        try:
+            admins_group.user_set.get(email=request.user.email)
+            return RESPONSE_200_ADMINS_PERMISSIONS_COMFIRMED
+        except CustomUser.DoesNotExist:
+            return RESPONSE_403_ADMINS_PERMISSIONS_UNCONFIRMED

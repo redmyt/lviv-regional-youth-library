@@ -12,3 +12,9 @@ export const getLogout = () => {
         url = apiPath + logoutPath;
     return axios.get(url);
 };
+
+export const requestPermissions = () => {
+    const permissionsPath = 'admin/permissions/',
+        url = apiPath + permissionsPath;
+    return axios.get(url);
+};

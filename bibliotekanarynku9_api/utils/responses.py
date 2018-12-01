@@ -26,6 +26,11 @@ RESPONSE_200_ADMINS_JOINED = Response(
     status=status.HTTP_200_OK
 )
 
+RESPONSE_200_ADMINS_PERMISSIONS_COMFIRMED = Response(
+    'User is a member of Admins group.',
+    status=status.HTTP_200_OK
+)
+
 RESPONSE_200_DELETED = Response(
     'Object successfully deleted.',
     status=status.HTTP_200_OK
@@ -88,6 +93,11 @@ RESPONSE_400_DB_INTEGRATION_FAILURE = Response(
 
 RESPONSE_403_USER_ALREADY_ADMIN = Response(
     'User already is in Admins group.',
+    status=status.HTTP_403_FORBIDDEN
+)
+
+RESPONSE_403_ADMINS_PERMISSIONS_UNCONFIRMED = Response(
+    'User is not a member of Admins group.',
     status=status.HTTP_403_FORBIDDEN
 )
 

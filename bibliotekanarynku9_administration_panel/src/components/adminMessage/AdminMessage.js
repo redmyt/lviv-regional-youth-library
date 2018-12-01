@@ -4,13 +4,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 
-
 const baseStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
 };
-
 
 export default class AdminMessage extends React.Component {
     render() {
@@ -23,7 +21,7 @@ export default class AdminMessage extends React.Component {
                     </CardContent>
                     <CardActions>
                         {
-                            this.props.links.map((link, index) => (
+                            this.props.links && this.props.links.map((link, index) => (
                                 <Button
                                     size='small'
                                     color='primary'
