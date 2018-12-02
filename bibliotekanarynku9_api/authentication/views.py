@@ -29,6 +29,7 @@ ACTIVATION_INVALID_EMAIL_TEMPLATE = 'activation/invalid-email.html'
 ACTIVATION_SUCCESS_TEMPLATE = 'activation/activated.html'
 REQUIRED_LOGIN_KEYS = ('email', 'password')
 USER_SESSION_COOKIE = 'user_id'
+USER_SESSION_COOKIE__TTL = 14 * 24 * 60 * 60
 
 
 class AuthenticationViewSet(viewsets.ViewSet):
@@ -104,7 +105,10 @@ class AuthenticationViewSet(viewsets.ViewSet):
 
         login(request, user)
         hash_user_id = USER_SESSION_HANDLER.hash_user_id(user.id)
-        RESPONSE_200_LOGGED.set_cookie(USER_SESSION_COOKIE, hash_user_id)
+        RESPONSE_200_LOGGED.set_cookie(
+            USER_SESSION_COOKIE,
+            hash_user_id,
+            max_age=USER_SESSION_COOKIE__TTL)
         return RESPONSE_200_LOGGED
 
     @staticmethod
