@@ -85,6 +85,7 @@ class AdminAnnouncementItem extends React.Component {
             this.state.announcement.start_at
         ).then(() => {
             this.setState(getUpdatedState({isError: false}, this.state));
+            this.getAnnouncement();
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });

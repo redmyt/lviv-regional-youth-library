@@ -72,6 +72,7 @@ class AdminProjectItemTranslation extends React.Component {
                 description: this.state.updatedDescription,
                 isError: false
             }, this.state));
+            this.props.onUpdateTranslationSuccess();
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });
@@ -115,6 +116,7 @@ class AdminProjectItemTranslation extends React.Component {
             this.setState(getUpdatedState({
                 isUpdateLinkError: false
             }, this.state));
+            this.props.onUpdateTranslationLinkSuccess();
         }).catch(() => {
             this.setState(getUpdatedState({
                 isUpdateLinkError: true
