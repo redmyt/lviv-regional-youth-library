@@ -77,6 +77,7 @@ class AdminNewsItem extends React.Component {
             this.state.news.avatar
         ).then(() => {
             this.setState(getUpdatedState({isError: false}, this.state));
+            this.getNews();
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });
@@ -131,8 +132,10 @@ class AdminNewsItem extends React.Component {
                                             description={translation.description}
                                             links={translation.links}
                                             isEdit={this.state.isEdit}
+                                            onUpdateTranslationSuccess={this.getNews}
                                             onRemoveTranslationSuccess={this.getNews}
                                             onAddTranslationLinkSuccess={this.getNews}
+                                            onUpdateTranslationLinkSuccess={this.getNews}
                                             onRemoveTranslationLinkSuccess={this.getNews}
                                         />
                                     );

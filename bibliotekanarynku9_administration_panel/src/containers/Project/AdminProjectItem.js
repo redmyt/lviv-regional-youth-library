@@ -77,6 +77,7 @@ class AdminProjectItem extends React.Component {
             this.state.project.avatar
         ).then(() => {
             this.setState(getUpdatedState({isError: false}, this.state));
+            this.getProject();
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });
@@ -131,8 +132,10 @@ class AdminProjectItem extends React.Component {
                                             description={translation.description}
                                             links={translation.links}
                                             isEdit={this.state.isEdit}
+                                            onUpdateTranslationSuccess={this.getProject}
                                             onRemoveTranslationSuccess={this.getProject}
                                             onAddTranslationLinkSuccess={this.getProject}
+                                            onUpdateTranslationLinkSuccess={this.getProject}
                                             onRemoveTranslationLinkSuccess={this.getProject}
                                         />
                                     );

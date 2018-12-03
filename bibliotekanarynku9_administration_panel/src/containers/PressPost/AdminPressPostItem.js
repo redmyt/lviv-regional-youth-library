@@ -77,6 +77,7 @@ class AdminPressPostItem extends React.Component {
             this.state.pressPost.avatar
         ).then(() => {
             this.setState(getUpdatedState({isError: false}, this.state));
+            this.getPressPost();
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });
@@ -131,8 +132,10 @@ class AdminPressPostItem extends React.Component {
                                             description={translation.description}
                                             links={translation.links}
                                             isEdit={this.state.isEdit}
+                                            onUpdateTranslationSuccess={this.getPressPost}
                                             onRemoveTranslationSuccess={this.getPressPost}
                                             onAddTranslationLinkSuccess={this.getPressPost}
+                                            onUpdateTranslationLinkSuccess={this.getPressPost}
                                             onRemoveTranslationLinkSuccess={this.getPressPost}
                                         />
                                     );
