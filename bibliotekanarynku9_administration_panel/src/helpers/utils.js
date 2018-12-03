@@ -1,4 +1,5 @@
-const DATE_REGEXP = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/;
+const DATE_TIME_REGEXP = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/,
+    DATE_REGEXP = /\d{4}-\d{2}-\d{2}/;
 export const LANGUAGE_CODES = {
     'uk': 1,
     'en': 2
@@ -18,7 +19,7 @@ export const formatDateToView = rawDate => {
 export const formatDateToPicker = rawDate => {
     let date = '-';
     if (rawDate) {
-        date = rawDate.match(DATE_REGEXP);
+        date = rawDate.match(DATE_TIME_REGEXP) || rawDate.match(DATE_REGEXP);
     }
     return date;
 };

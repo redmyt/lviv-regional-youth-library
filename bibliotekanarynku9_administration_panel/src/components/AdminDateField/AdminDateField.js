@@ -25,7 +25,7 @@ export default class AdminDateField extends React.Component {
                     value={formatDateToPicker(this.props.date)}
                     onChange={this.handleChange}
                     error={this.props.isError}
-                    type='datetime-local'
+                    type= {this.props.dateType ? 'date' : 'datetime-local'}
                     InputLabelProps={{
                         shrink: true
                     }}
