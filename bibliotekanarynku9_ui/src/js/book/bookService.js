@@ -1,4 +1,4 @@
-var bookPath = schema + host + apiPath + 'book/';
+var bookPath = apiPath + 'book/';
 
 function getListBookService(url) {
     var endpoint = url || bookPath;

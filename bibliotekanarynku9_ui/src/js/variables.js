@@ -1,7 +1,4 @@
-var schema = 'http://',
-    host = 'localhost',
-    port = ':8000',
-    apiPath = '/api/v1/';
+var apiPath = '/api/v1/';
 
 var defaultLanguage = 'uk',
     defaultDataType = 'json';

@@ -1,4 +1,4 @@
-var announcementPath = schema + host + apiPath + 'announcement/';
+var announcementPath = apiPath + 'announcement/';
 
 function getListAnnouncementService(url) {
     var endpoint = url || announcementPath;

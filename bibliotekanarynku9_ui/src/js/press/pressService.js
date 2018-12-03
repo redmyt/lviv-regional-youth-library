@@ -1,4 +1,4 @@
-var pressPath = schema + host + apiPath + 'press_post/';
+var pressPath = apiPath + 'press_post/';
 
 function getListPressService(url) {
     var endpoint = url || pressPath;

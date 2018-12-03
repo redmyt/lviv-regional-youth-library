@@ -1,4 +1,4 @@
-var newsPath = schema + host + apiPath + 'news_post/';
+var newsPath = apiPath + 'news_post/';
 
 function getListNewsService(url) {
     var endpoint = url || newsPath;
