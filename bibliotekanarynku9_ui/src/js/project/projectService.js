@@ -1,4 +1,4 @@
-var projectPath = schema + host + apiPath + 'project/';
+var projectPath = apiPath + 'project/';
 
 function getListProjectService(url) {
     var endpoint = url || projectPath;
