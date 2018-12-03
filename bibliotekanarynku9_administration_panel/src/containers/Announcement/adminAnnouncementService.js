@@ -24,13 +24,15 @@ export const postAnnouncementService = (avatar, startAt) => {
     });
 };
 
-export const postAnnouncementTranslationService = (announcementId, title, description, language) => {
+export const postAnnouncementTranslationService = (announcementId, title, description, organizer, language) => {
     const url = `${apiPath}${announcementPath}${announcementId}/translation/`;
-    return axios.post(url, {
+    const data = {
         title: title,
         description: description,
         language: LANGUAGE_CODES[language]
-    }, {
+    };
+    if (organizer) data.organizer = organizer;
+    return axios.post(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()
         }
@@ -60,11 +62,12 @@ export const putAnnouncementService = (announcementId, avatar, startAt) => {
     });
 };
 
-export const putAnnouncementTranslationService = (announcementId, translationId, title, description) => {
+export const putAnnouncementTranslationService = (announcementId, translationId, title, description, organizer) => {
     const url = `${apiPath}${announcementPath}${announcementId}/translation/${translationId}/`;
     return axios.put(url, {
         title: title,
-        description: description
+        description: description,
+        organizer: organizer
     }, {
         headers: {
             'X-CSRFToken': getCSRFToken()

@@ -3,10 +3,11 @@ import Divider from '@material-ui/core/Divider';
 import AdminButton from '../../components/AdminButton';
 import AdminTitleField from '../../components/AdminTitleField';
 import AdminDescriptionField from '../../components/AdminDescriptionField';
-import {getUpdatedState} from '../../helpers';
-import {putAnnouncementTranslationService, deleteAnnouncementTranslationService, postAnnouncementTranslationLinkService, putAnnouncementTranslationLinkService, deleteAnnouncementTranslationLinkService} from './adminAnnouncementService';
+import AdminOrganizerField from '../../components/AdminOrganizerField/AdminOrganizerField';
 import AdminAnnouncementTranslationLinksList from './AdminAnnouncementTranslationLinksList';
 import AdminAddLinkForm from '../../components/AdminAddLinkForm/AdminAddLinkForm';
+import {putAnnouncementTranslationService, deleteAnnouncementTranslationService, postAnnouncementTranslationLinkService, putAnnouncementTranslationLinkService, deleteAnnouncementTranslationLinkService} from './adminAnnouncementService';
+import {getUpdatedState} from '../../helpers';
 
 const buttonsWrapperSty = {
     display: 'flex'
@@ -26,6 +27,8 @@ class AdminAnnouncementItemTranslation extends React.Component {
             updatedTitle: props.title,
             description: props.description,
             updatedDescription: props.description,
+            organizer: props.organizer,
+            updatedOrganizer: props.organizer,
             isError: false,
             isAddLinkFormError: false,
             isUpdateLinkError: false
@@ -38,13 +41,16 @@ class AdminAnnouncementItemTranslation extends React.Component {
             updatedTitle: nextProps.title,
             description: nextProps.description,
             updatedDescription: nextProps.description,
+            organizer: nextProps.organizer,
+            updatedOrganizer: nextProps.organizer
         }, this.state));
     }
 
     haveFieldsChanged = () => {
         return !(
             this.state.title === this.state.updatedTitle &&
-            this.state.description === this.state.updatedDescription
+            this.state.description === this.state.updatedDescription &&
+            this.state.organizer === this.state.updatedOrganizer
         );
     }
 
@@ -60,18 +66,27 @@ class AdminAnnouncementItemTranslation extends React.Component {
         }, this.state));
     }
 
+    handleOrganizerChange = newOrganizer => {
+        this.setState(getUpdatedState({
+            updatedOrganizer: newOrganizer,
+        }, this.state));
+    }
+
     handleSaveTranslationClick = () => {
         putAnnouncementTranslationService(
             this.props.announcementId,
             this.props.id,
             this.state.updatedTitle,
-            this.state.updatedDescription
+            this.state.updatedDescription,
+            this.state.updatedOrganizer
         ).then(() => {
             this.setState(getUpdatedState({
                 title: this.state.updatedTitle,
                 description: this.state.updatedDescription,
+                organizer: this.state.updatedOrganizer,
                 isError: false
             }, this.state));
+            this.props.onUpdateTranslationSuccess();
         }).catch(() => {
             this.setState(getUpdatedState({isError: true}, this.state));
         });
@@ -115,6 +130,7 @@ class AdminAnnouncementItemTranslation extends React.Component {
             this.setState(getUpdatedState({
                 isUpdateLinkError: false
             }, this.state));
+            this.props.onUpdateTranslationLinkSuccess();
         }).catch(() => {
             this.setState(getUpdatedState({
                 isUpdateLinkError: true
@@ -147,6 +163,13 @@ class AdminAnnouncementItemTranslation extends React.Component {
                     description={this.state.updatedDescription}
                     label='Description'
                     onDescriptionChange={this.handleDescriptionChange}
+                    isEdit={this.props.isEdit}
+                    isError={this.state.isError}
+                />
+                <AdminOrganizerField
+                    organizer={this.state.updatedOrganizer}
+                    label='organizer'
+                    onOrganizerChange={this.handleOrganizerChange}
                     isEdit={this.props.isEdit}
                     isError={this.state.isError}
                 />

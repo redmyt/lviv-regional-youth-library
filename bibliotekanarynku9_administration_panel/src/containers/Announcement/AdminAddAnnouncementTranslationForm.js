@@ -5,6 +5,7 @@ import AdminButton from '../../components/AdminButton';
 import AdminLanguageSelect from '../../components/AdminLanguageSelect';
 import AdminTitleField from '../../components/AdminTitleField';
 import AdminDescriptionField from '../../components/AdminDescriptionField';
+import AdminOrganizerField from '../../components/AdminOrganizerField/AdminOrganizerField';
 import {getUpdatedState} from '../../helpers';
 import {postAnnouncementTranslationService } from './adminAnnouncementService';
 
@@ -23,6 +24,7 @@ class AdminAddAnnouncementTranslationForm extends React.Component {
         this.state = {
             title: '',
             description: '',
+            organizer: '',
             language: 'uk',
             isError: false
         };
@@ -40,6 +42,10 @@ class AdminAddAnnouncementTranslationForm extends React.Component {
         this.setState(getUpdatedState({description: newDescription}, this.state));
     }
 
+    handleOrganizerChange = newOrganizer => {
+        this.setState(getUpdatedState({organizer: newOrganizer}, this.state));
+    }
+
     handleLanguageChange = newLanguage => {
         this.setState(getUpdatedState({language: newLanguage}, this.state));
     }
@@ -49,11 +55,13 @@ class AdminAddAnnouncementTranslationForm extends React.Component {
             this.props.announcementId,
             this.state.title,
             this.state.description,
+            this.state.organizer,
             this.state.language
         ).then(() => {
             this.setState(getUpdatedState({
                 title: '',
                 description: '',
+                organizer: '',
                 language: 'uk',
                 isError: false
             }, this.state));
@@ -82,6 +90,13 @@ class AdminAddAnnouncementTranslationForm extends React.Component {
                         description={this.state.description}
                         label='description'
                         onDescriptionChange={this.handleDescriptionChange}
+                        isEdit={true}
+                        isError={this.state.isError}
+                    />
+                    <AdminOrganizerField
+                        organizer={this.state.organizer}
+                        label='organizer'
+                        onOrganizerChange={this.handleOrganizerChange}
                         isEdit={true}
                         isError={this.state.isError}
                     />

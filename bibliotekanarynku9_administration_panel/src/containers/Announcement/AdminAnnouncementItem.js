@@ -144,10 +144,13 @@ class AdminAnnouncementItem extends React.Component {
                                             id={translation.id}
                                             title={translation.title}
                                             description={translation.description}
+                                            organizer={translation.organizer}
                                             links={translation.links}
                                             isEdit={this.state.isEdit}
+                                            onUpdateTranslationSuccess={this.getAnnouncement}
                                             onRemoveTranslationSuccess={this.getAnnouncement}
                                             onAddTranslationLinkSuccess={this.getAnnouncement}
+                                            onUpdateTranslationLinkSuccess={this.getAnnouncement}
                                             onRemoveTranslationLinkSuccess={this.getAnnouncement}
                                         />
                                     );
