@@ -30,8 +30,8 @@ class ProjectTranslation(AbstractModel):
         on_delete=models.CASCADE,
         related_name='translations')
     language = models.IntegerField(default=1, choices=LANGUAGE_CHOICES)
-    title = models.CharField(max_length=120)
-    description = models.CharField(max_length=4096)
+    title = models.CharField(max_length=256)
+    description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 

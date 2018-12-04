@@ -30,10 +30,10 @@ class AnnouncementTranslation(AbstractModel):
         Announcement,
         on_delete=models.CASCADE,
         related_name='translations')
-    title = models.CharField(max_length=120)
-    description = models.CharField(max_length=512)
+    title = models.CharField(max_length=256)
+    description = models.TextField()
     language = models.IntegerField(default=1, choices=LANGUAGE_CHOICES)
-    organizer = models.CharField(max_length=120, blank=True)
+    organizer = models.CharField(max_length=256, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 

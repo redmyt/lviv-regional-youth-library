@@ -29,10 +29,10 @@ class BookTranslation(AbstractModel):
         Book,
         on_delete=models.CASCADE,
         related_name='translations')
-    title = models.CharField(max_length=120)
+    title = models.CharField(max_length=256)
     language = models.IntegerField(default=1, choices=LANGUAGE_CHOICES)
-    description = models.CharField(max_length=4096)
-    author = models.CharField(max_length=120)
+    description = models.TextField()
+    author = models.CharField(max_length=256)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
