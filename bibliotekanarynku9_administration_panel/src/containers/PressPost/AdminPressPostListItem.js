@@ -4,6 +4,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import AdminButton from '../../components/AdminButton';
+import {parseImagePath} from '../../helpers';
 
 const baseStyle = {
     width: '20%',
@@ -27,7 +28,7 @@ export default class AdminPressPostListItem extends React.Component {
         return (
             <div style={style}>
                 <Card>
-                    <CardMedia style={mediaStyle} image={this.props.avatar} />
+                    <CardMedia style={mediaStyle} image={parseImagePath(this.props.avatar)} />
                     <CardContent>
                         <p>Translations: {this.props.translations.length}</p>
                         <p>Create at: {this.props.createdAt}</p>

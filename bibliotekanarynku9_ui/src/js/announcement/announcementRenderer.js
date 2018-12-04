@@ -66,7 +66,7 @@ function renderAnnouncementArticle(announcementArticle, isDetailed) {
         $articleHeading.click(function() {
             window.location.hash = 'announcement/' + announcementArticle.id;
         });
-        $articlePicture.attr('src', announcementArticle.avatar);
+        $articlePicture.attr('src', parseImagePath(announcementArticle.avatar));
         $articlePictureWrapper.append($articlePicture);
         $articleBody.append($articlePictureWrapper, htmlParagraphs);
         $article.append($articleHeading);
