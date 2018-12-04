@@ -14,14 +14,23 @@ const btnStyle = {
     margin: '5%'
 };
 
+const buttonsWrapperStyle = {
+    display: 'flex',
+    justifyContent: 'center'
+};
+
 export default class LoginForm extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
-    handleButtonClick = () => {
+    handleLoginButtonClick = () => {
         this.props.onLogin();
+    }
+
+    handleRegisterButtonClick = () => {
+        this.props.onRegister();
     }
 
     handleInputChange = event => {
@@ -55,13 +64,22 @@ export default class LoginForm extends React.Component {
                         onChange={this.handleInputChange}
                     />
                 </FormControl>
-                <AdminButton
-                    style={btnStyle}
-                    variant='contained'
-                    color='primary'
-                    text='Submit'
-                    onClick={this.handleButtonClick}
-                />
+                <div style={buttonsWrapperStyle}>
+                    <AdminButton
+                        style={btnStyle}
+                        variant='contained'
+                        color='primary'
+                        text='Submit'
+                        onClick={this.handleLoginButtonClick}
+                    />
+                    <AdminButton
+                        style={btnStyle}
+                        variant='outlined'
+                        color='primary'
+                        text='Register'
+                        onClick={this.handleRegisterButtonClick}
+                    />
+                </div>
             </div>
         );
     }

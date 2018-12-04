@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AdminButton from '../../components/AdminButton';
+import {isLogged} from '../../helpers/session';
 
 const toolBarStyle = {
     display: 'flex'
@@ -47,13 +48,17 @@ export default class AdminAppBar extends React.Component {
                                 onClick={this.handleRequestPermissionsClick}
                             />
                         }
-                        <AdminButton
-                            style={btnStyle}
-                            variant='contained'
-                            color='secondary'
-                            text='Logout'
-                            onClick={this.handelLogoutClick}
-                        />
+                        {
+                            isLogged() && (
+                                <AdminButton
+                                    style={btnStyle}
+                                    variant='contained'
+                                    color='secondary'
+                                    text='Logout'
+                                    onClick={this.handelLogoutClick}
+                                />
+                            )
+                        }
                     </Toolbar>
                 </AppBar>
             </div>
