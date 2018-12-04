@@ -35,3 +35,12 @@ export const getItemById = (itemId, collection) => {
 export const splitTextToParagraphs = text => text ? text.split('\n') : [];
 
 export const removeBase64Prefix = dataUrlContent => dataUrlContent ? dataUrlContent.split(',').pop() : '';
+
+export const parseImagePath = path => {
+    let parsedPath = '';
+    if (path) {
+        const staticIndex = path.indexOf('/static/');
+        parsedPath = staticIndex !== -1 ? path.slice(staticIndex) : path;
+    }
+    return parsedPath;
+};

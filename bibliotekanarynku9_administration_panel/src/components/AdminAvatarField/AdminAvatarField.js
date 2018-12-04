@@ -1,7 +1,7 @@
 import React from 'react';
 import CardMedia from '@material-ui/core/CardMedia';
 import Input from '@material-ui/core/Input';
-import {getUpdatedState} from '../../helpers';
+import {getUpdatedState, parseImagePath} from '../../helpers';
 
 const lookupStyle = {
     paddingTop: '20%'
@@ -53,7 +53,7 @@ export default class AdminAvatarField extends React.Component {
             <div>
                 <CardMedia
                     style={this.state.avatar ? editStyle : emptyStyle}
-                    image={this.state.avatar}
+                    image={parseImagePath(this.state.avatar)}
                 />
                 <Input
                     type='file'
@@ -67,7 +67,7 @@ export default class AdminAvatarField extends React.Component {
     renderLookUpField = () => {
         return (
             <div>
-                <CardMedia style={lookupStyle} image={this.state.avatar} />
+                <CardMedia style={lookupStyle} image={parseImagePath(this.state.avatar)} />
             </div>
         );
     }

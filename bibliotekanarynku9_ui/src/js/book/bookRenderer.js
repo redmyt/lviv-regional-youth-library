@@ -56,7 +56,7 @@ function renderBookArticle(bookArticle, isDetailed) {
         $articleHeading.click(function() {
             window.location.hash = 'book/' + bookArticle.id;
         });
-        $articlePicture.attr('src', bookArticle.avatar);
+        $articlePicture.attr('src', parseImagePath(bookArticle.avatar));
         $articlePictureWrapper.append($articlePicture);
         $articleBody.append($articlePictureWrapper, htmlParagraphs);
         $article.append($articleHeading);

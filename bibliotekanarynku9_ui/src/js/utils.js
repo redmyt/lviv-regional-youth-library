@@ -89,3 +89,12 @@ function setLanguageHeader(language) {
         request.setRequestHeader('Accept-Language', language || defaultLanguage);
     };
 }
+
+function parseImagePath(path) {
+    var parsedPath = '';
+    if (path) {
+        var staticIndex = path.indexOf('/static/');
+        parsedPath = staticIndex !== -1 ? path.slice(staticIndex) : path;
+    }
+    return parsedPath;
+}

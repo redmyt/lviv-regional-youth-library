@@ -56,7 +56,7 @@ function renderNewsArticle(newsArticle, isDetailed) {
         $articleHeading.click(function() {
             window.location.hash = 'news/' + newsArticle.id;
         });
-        $articlePicture.attr('src', newsArticle.avatar);
+        $articlePicture.attr('src', parseImagePath(newsArticle.avatar));
         $articlePictureWrapper.append($articlePicture);
         $articleBody.append($articlePictureWrapper, htmlParagraphs);
         $article.append($articleHeading);

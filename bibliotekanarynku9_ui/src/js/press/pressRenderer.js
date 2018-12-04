@@ -56,7 +56,7 @@ function renderPressArticle(pressArticle, isDetailed) {
         $articleHeading.click(function() {
             window.location.hash = 'press/' + pressArticle.id;
         });
-        $articlePicture.attr('src', pressArticle.avatar);
+        $articlePicture.attr('src', parseImagePath(pressArticle.avatar));
         $articlePictureWrapper.append($articlePicture);
         $articleBody.append($articlePictureWrapper, htmlParagraphs);
         $article.append($articleHeading);

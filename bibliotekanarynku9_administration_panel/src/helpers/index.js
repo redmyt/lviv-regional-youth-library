@@ -6,6 +6,7 @@ export {
     formatDateToPicker,
     getItemById,
     splitTextToParagraphs,
-    removeBase64Prefix
+    removeBase64Prefix,
+    parseImagePath
 } from './utils';
 export {apiPath, isLogged, getCSRFToken} from './session';
