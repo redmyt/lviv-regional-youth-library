@@ -41,6 +41,10 @@ class Login extends React.Component {
         });
     }
 
+    handleRegister = () => {
+        this.props.history.push('/register');
+    }
+
     renderLoginForm = () => {
         return (
             <div style={style}>
@@ -50,6 +54,7 @@ class Login extends React.Component {
                     isValid={this.state.isDataValid}
                     onInputChange={this.handleCredentialFieldChange}
                     onLogin={this.handleLogin}
+                    onRegister={this.handleRegister}
                 />
             </div>
         );
