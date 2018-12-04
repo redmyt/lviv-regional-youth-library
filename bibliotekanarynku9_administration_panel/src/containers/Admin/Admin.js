@@ -32,7 +32,8 @@ class Admin extends React.Component {
     }
 
     navigateToItem = itemName => {
-        this.props.history.push(`${this.props.match.url}/${itemName.toLowerCase()}`);
+        const url = this.props.match.url.endsWith('/') ? this.props.match.url.slice(0, -1) : this.props.match.url;
+        this.props.history.push(`${url}/${itemName.toLowerCase()}`);
         this.setState(getUpdatedState({isNavListOpen: false}, this.state));
     }
 
