@@ -28,7 +28,7 @@ class AdminBookList extends React.Component {
                                 id={book.id}
                                 avatar={book.avatar}
                                 translations={book.translations}
-                                startAt={formatDateToView(book.start_at)}
+                                publishedAt={formatDateToView(book.published_at)}
                                 createdAt={formatDateToView(book.created_at)}
                                 updatedAt={formatDateToView(book.updated_at)}
                                 onClick={this.handelClick}

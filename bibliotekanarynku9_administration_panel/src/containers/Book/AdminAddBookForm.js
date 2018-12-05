@@ -2,7 +2,7 @@ import React from 'react';
 import AdminButton from '../../components/AdminButton';
 import AdminAvatarField from '../../components/AdminAvatarField';
 import AdminDateField from '../../components/AdminDateField';
-import {getUpdatedState} from '../../helpers';
+import {getUpdatedState, convertDateTimetoDateFormat} from '../../helpers';
 
 const greenColor = '#C8E6C9',
     redColor = '#FFCDD2';
@@ -38,7 +38,7 @@ export default class AdminAddBookForm extends React.Component {
         this.state = {
             isOpen: props.isOpen,
             avatar: null,
-            publishedAt: (new Date()).toISOString()
+            publishedAt: convertDateTimetoDateFormat((new Date()).toISOString())
         };
     }
 
@@ -62,7 +62,7 @@ export default class AdminAddBookForm extends React.Component {
         this.props.onAddSaveClick(this.state.avatar, this.state.publishedAt);
         this.setState(getUpdatedState({
             avatar: null,
-            publishedAt: (new Date()).toISOString()
+            publishedAt: convertDateTimetoDateFormat((new Date()).toISOString())
         }, this.state));
     }
 
