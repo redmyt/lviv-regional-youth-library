@@ -26,7 +26,7 @@ $(slidingPicturesWrapper).hover(function () {
 });
 
 slidingPicturesWrapper.on('click', function() {
-    window.location.hash = 'bookshelf';
+    window.location.hash = 'book';
 });
 
 // |--------------------| function descriptions |--------------------|

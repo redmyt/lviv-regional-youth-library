@@ -7,6 +7,7 @@ export {
     getItemById,
     splitTextToParagraphs,
     removeBase64Prefix,
-    parseImagePath
+    parseImagePath,
+    convertDateTimetoDateFormat
 } from './utils';
 export {apiPath, isLogged, getCSRFToken} from './session';

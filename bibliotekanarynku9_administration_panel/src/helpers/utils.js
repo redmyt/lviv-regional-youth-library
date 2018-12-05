@@ -44,3 +44,7 @@ export const parseImagePath = path => {
     }
     return parsedPath;
 };
+
+export const convertDateTimetoDateFormat = dateTime => {
+    return dateTime ? dateTime.split('T')[0] : '-';
+};
