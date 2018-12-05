@@ -19,7 +19,7 @@ class PressPost(AbstractModel):
     avatar = models.CharField(max_length=150)
 
     class Meta:
-        ordering = ('created_at',)
+        ordering = ('-created_at',)
 
 
 class PressPostTranslation(AbstractModel):
