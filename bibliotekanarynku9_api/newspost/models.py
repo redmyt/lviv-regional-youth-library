@@ -19,7 +19,7 @@ class NewsPost(AbstractModel):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
 
     class Meta:
-        ordering = ('created_at',)
+        ordering = ('-created_at',)
 
 
 class NewsPostTranslation(AbstractModel):
