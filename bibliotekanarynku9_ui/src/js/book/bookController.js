@@ -27,7 +27,9 @@ function bookController(bookId) {
         var articlesList = renderBookList(data.results);
         $bookActiveView.html(articlesList);
         $bookShowMoreButton.removeClass('more-articles-button_style_invisible');
-        $bookActiveView.append($bookShowMoreButton);
+        if (data.count > 5) {
+            $bookActiveView.append($bookShowMoreButton);
+        }
         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         truncateSpillingText();
         bookNextArticlesUrl = data.next;

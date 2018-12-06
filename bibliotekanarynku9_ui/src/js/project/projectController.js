@@ -27,7 +27,9 @@ function projectController(projectId) {
         var articlesList = renderProjectList(data.results);
         $projectActiveView.html(articlesList);
         $projectShowMoreButton.removeClass('more-articles-button_style_invisible');
-        $projectActiveView.append($projectShowMoreButton);
+        if (data.count > 5) {
+            $projectActiveView.append($projectShowMoreButton);
+        }
         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         truncateSpillingText();
         projectNextArticlesUrl = data.next;

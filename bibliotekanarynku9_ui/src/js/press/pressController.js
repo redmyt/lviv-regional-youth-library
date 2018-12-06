@@ -27,7 +27,9 @@ function pressController(pressId) {
         var articlesList = renderPressList(data.results);
         $pressActiveView.html(articlesList);
         $pressShowMoreButton.removeClass('more-articles-button_style_invisible');
-        $pressActiveView.append($pressShowMoreButton);
+        if (data.count > 5) {
+            $pressActiveView.append($pressShowMoreButton);
+        }
         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         truncateSpillingText();
         pressNextArticlesUrl = data.next;

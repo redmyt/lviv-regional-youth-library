@@ -19,7 +19,11 @@ window.addEventListener('hashchange', function() {
 });
 window.onhashchange();
 
+var lastWindowWidth = $(window).width();
 window.onresize = function() {
-    // Truncate the articles text when user resize the window
-    truncateSpillingText();
+    if ($(window).width() !== lastWindowWidth) {
+        // Truncate the articles text when user resize the window
+        truncateSpillingText();
+        lastWindowWidth = $(window).width();
+    }
 };

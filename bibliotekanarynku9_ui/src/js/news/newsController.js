@@ -27,7 +27,9 @@ function newsController(newsId) {
         var articlesList = renderNewsList(data.results);
         $newsActiveView.html(articlesList);
         $newsShowMoreButton.removeClass('more-articles-button_style_invisible');
-        $newsActiveView.append($newsShowMoreButton);
+        if (data.count > 5) {
+            $newsActiveView.append($newsShowMoreButton);
+        }
         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         truncateSpillingText();
         newsNextArticlesUrl = data.next;

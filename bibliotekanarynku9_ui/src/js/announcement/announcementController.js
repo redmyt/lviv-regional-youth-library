@@ -27,7 +27,9 @@ function announcementController(announcementId) {
         var articlesList = renderAnnouncementList(data.results);
         $announcementActiveView.html(articlesList);
         $announcementShowMoreButton.removeClass('more-articles-button_style_invisible');
-        $announcementActiveView.append($announcementShowMoreButton);
+        if (data.count > 5) {
+            $announcementActiveView.append($announcementShowMoreButton);
+        }
         switchTimeStyles('.main-content-article', 'main-content-article_style_night');
         truncateSpillingText();
         announcementNextArticlesUrl = data.next;
