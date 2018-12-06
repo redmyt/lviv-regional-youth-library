@@ -56,7 +56,7 @@ function renderProjectArticle(projectArticle, isDetailed) {
         $articleHeading.click(function() {
             window.location.hash = 'project/' + projectArticle.id;
         });
-        $articlePicture.attr('src', projectArticle.avatar);
+        $articlePicture.attr('src', parseImagePath(projectArticle.avatar));
         $articlePictureWrapper.append($articlePicture);
         $articleBody.append($articlePictureWrapper, htmlParagraphs);
         $article.append($articleHeading);
