@@ -1,9 +1,14 @@
-"""Module that contains various data Handlerss for the project."""
+"""
+Module that contains various data and functionality handlers
+for the project.
+"""
 
 import base64
 import binascii
 import hashlib
 import os
+import redis
+from redis.exceptions import DataError, ResponseError
 from django.conf import settings
 from utils.logger import LOGGER
 
@@ -14,6 +19,8 @@ IMG_HANDLER_DIST = settings.MEDIA_ROOT
 
 USER_SESSION_ALGORITHM = 'shake_128'
 USER_SESSION_ID_LENGTH = 4
+
+REDIS_HANDLER_PASSWORD = settings.REDIS_PASSWORD
 
 class ImageHandler:
     """Handler for saving and removing the decoded images to filesystem."""
@@ -93,5 +100,70 @@ class UserSessionHandler:
         return self.hashlib.hexdigest(USER_SESSION_ID_LENGTH)
 
 
+class RedisHandler:
+    """Handler that provides API for redis db interaction."""
+
+    instance = None
+    redis = redis.Redis(password=REDIS_HANDLER_PASSWORD)
+
+    def __new__(cls):
+        if cls.instance is None:
+            cls.instance = super(RedisHandler, cls).__new__(cls)
+        return cls.instance
+
+    def __init__(self):
+        self.types_setter_map = {
+            (int, float, complex, str, bytes): self.primitive_type_setter,
+            (set,): self.set_type_setter
+        }
+
+    def primitive_type_setter(self, key, value):
+        """Function for set the primitive value to redis."""
+
+        self.redis.set(key, value)
+
+    def set_type_setter(self, key, value):
+        """Function for set the set type value to redis."""
+
+        for item in value:
+            self.redis.sadd(key, item)
+
+    def get_setter(self, value):
+        """
+        Function gets the appropriate setter method according
+        to accepted value's type.
+        """
+
+        for types, setter in self.types_setter_map.items():
+            if isinstance(value) in types:
+                return setter
+        return self.primitive_type_setter
+
+    def set_value(self, key, value):
+        """Function that sets records to redis db."""
+
+        setter = self.get_setter(value)
+        try:
+            setter(key, value)
+            return True
+        except (DataError, ResponseError):
+            LOGGER.error(
+                f'Error during saving record to redis. Unexpected key '
+                f'or value type was accepted - (key: {key}; value: {value})'
+            )
+
+    def get_value(self, key):
+        """Function that gets records from redis db."""
+
+        try:
+            return self.redis.get(key)
+        except DataError:
+            LOGGER.error(
+                f'Error during getting record from redis. Unexpected key '
+                f'type was accepted - (key: {key})'
+            )
+
+
 IMAGE_HANDLER = ImageHandler()
 USER_SESSION_HANDLER = UserSessionHandler()
+REDIS_HANDLER = RedisHandler()

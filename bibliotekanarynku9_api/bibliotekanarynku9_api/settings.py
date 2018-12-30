@@ -210,6 +210,11 @@ REST_FRAMEWORK = {
 }
 
 
+# Redis database credentials
+
+REDIS_PASSWORD = 'test'
+
+
 # Actual version of the product API
 
 API_VERSION = 1
