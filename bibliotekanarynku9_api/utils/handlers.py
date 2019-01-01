@@ -154,14 +154,37 @@ class RedisHandler:
             )
 
     def get_value(self, key):
-        """Function that gets records from redis db."""
+        """Function that gets primitive record from redis db."""
 
         try:
             return self.redis.get(key)
+        except (DataError, ResponseError):
+            LOGGER.error(
+                f'Error during getting primitive record from redis.'
+                f'Unexpected key type was accepted - (key: {key})'
+            )
+
+    def get_set(self, key):
+        """Function that gets set records from redis db."""
+
+        try:
+            return self.redis.smembers(key)
+        except (DataError, ResponseError):
+            LOGGER.error(
+                f'Error during getting set record from redis.'
+                f'Unexpected key type was accepted - (key: {key})'
+            )
+
+    def remove_value(self, key):
+        """Function that removes record from redis db."""
+
+        try:
+            self.redis.delete(key)
+            return True
         except DataError:
             LOGGER.error(
-                f'Error during getting record from redis. Unexpected key '
-                f'type was accepted - (key: {key})'
+                f'Error during deleting record from redis.'
+                f'Unexpected key type was accepted - (key: {key})'
             )
 
 
