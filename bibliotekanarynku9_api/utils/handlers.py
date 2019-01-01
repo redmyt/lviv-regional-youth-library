@@ -135,7 +135,8 @@ class RedisHandler:
         """
 
         for types, setter in self.types_setter_map.items():
-            if isinstance(value) in types:
+            value_type = type(value)
+            if value_type in types:
                 return setter
         return self.primitive_type_setter
 
