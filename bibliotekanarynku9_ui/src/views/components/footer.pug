@@ -5,15 +5,14 @@ footer.footer.footer_style_default
                 h2.schedule__header.page-header Графік роботи:
                 div.schedule__days-panel.column
                     - var days = ['Понеділок ', 'Вівторок ', 'Середа ', 'Четвер ', 'П\'ятниця ', 'Субота ', 'Неділя '];
-                     - var hours = [ ['10', '18'], ['10', '18'], ['10', '20'], ['10', '20'], ['10', '20'], ['Зачинено'], ['10', '18'] ];
+                     - var hours = [ ['10', '18'], ['10', '20'], ['10', '20'], ['10', '20'], ['10', '20'], ['10', '18'], ['10', '18'] ];
                     for day, dayNumber in days
                         span.schedule__certain-day-schedule
                             span.schedule__day-name.pale-text=day
                             time.schedule__working-hours=hours[dayNumber][0]
-                                if day !== 'Субота '
-                                    sup 00
-                                    = - hours[dayNumber][1]
-                                    sup 00
+                                sup 00
+                                = - hours[dayNumber][1]
+                                sup 00
             article.address.flex.column.flex-center
                 h2.address__header.page-header Адреса:
                 span.address__street.
