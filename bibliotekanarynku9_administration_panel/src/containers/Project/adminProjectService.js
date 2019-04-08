@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {apiPath, getCSRFToken, removeBase64Prefix, LANGUAGE_CODES} from '../../helpers';
+import {apiPath, getCSRFToken, processUserImageData, LANGUAGE_CODES} from '../../helpers';
 
 const projectPath = 'project/';
 
@@ -15,7 +15,7 @@ export const getProjectById = (projectId) => {
 
 export const postProjectService = avatar => {
     const url = `${apiPath}${projectPath}`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+    let data = {avatar: processUserImageData(avatar)};
     return axios.post(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()
@@ -50,7 +50,7 @@ export const postProjectTranslationLinkService = (projectId, translationId, labe
 
 export const putProjectService = (projectId, avatar) => {
     const url = `${apiPath}${projectPath}${projectId}/`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+    let data = {avatar: processUserImageData(avatar)};
     return axios.put(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()

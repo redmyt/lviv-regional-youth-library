@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {apiPath, getCSRFToken, removeBase64Prefix, LANGUAGE_CODES} from '../../helpers';
+import {apiPath, getCSRFToken, processUserImageData, LANGUAGE_CODES} from '../../helpers';
 
 const pressPostPath = 'press_post/';
 
@@ -15,7 +15,7 @@ export const getPressPostById = (pressPostId) => {
 
 export const postPressPostService = avatar => {
     const url = `${apiPath}${pressPostPath}`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+    let data = {avatar: processUserImageData(avatar)};
     return axios.post(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()
@@ -50,7 +50,7 @@ export const postPressPostTranslationLinkService = (pressPostId, translationId, 
 
 export const putPressPostService = (pressPostId, avatar) => {
     const url = `${apiPath}${pressPostPath}${pressPostId}/`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+    let data = {avatar: processUserImageData(avatar)};
     return axios.put(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {apiPath, getCSRFToken, removeBase64Prefix, LANGUAGE_CODES} from '../../helpers';
+import {apiPath, getCSRFToken, processUserImageData, LANGUAGE_CODES} from '../../helpers';
 
 const newsPath = 'news_post/';
 
@@ -15,7 +15,7 @@ export const getNewsById = (newsId) => {
 
 export const postNewsService = avatar => {
     const url = `${apiPath}${newsPath}`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+    let data = {avatar: processUserImageData(avatar)};
     return axios.post(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()
@@ -50,7 +50,7 @@ export const postNewsTranslationLinkService = (newsId, translationId, label, hre
 
 export const putNewsService = (newsId, avatar) => {
     const url = `${apiPath}${newsPath}${newsId}/`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+    let data = {avatar: processUserImageData(avatar)};
     return axios.put(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()
