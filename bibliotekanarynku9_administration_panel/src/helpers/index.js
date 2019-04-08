@@ -6,7 +6,7 @@ export {
     formatDateToPicker,
     getItemById,
     splitTextToParagraphs,
-    removeBase64Prefix,
+    processUserImageData,
     parseImagePath,
     convertDateTimetoDateFormat
 } from './utils';

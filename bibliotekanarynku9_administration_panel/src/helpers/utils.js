@@ -1,5 +1,6 @@
 const DATE_TIME_REGEXP = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/,
-    DATE_REGEXP = /\d{4}-\d{2}-\d{2}/;
+    DATE_REGEXP = /\d{4}-\d{2}-\d{2}/,
+    BASE64 = 'base64';
 export const LANGUAGE_CODES = {
     'uk': 1,
     'en': 2
@@ -34,7 +35,13 @@ export const getItemById = (itemId, collection) => {
 
 export const splitTextToParagraphs = text => text ? text.split('\n') : [];
 
-export const removeBase64Prefix = dataUrlContent => dataUrlContent ? dataUrlContent.split(',').pop() : '';
+const removeBase64Prefix = dataUrlContent => dataUrlContent ? dataUrlContent.split(',').pop() : '';
+
+export const processUserImageData = userImageData => {
+    if (userImageData.indexOf(BASE64) !== -1) {
+        return removeBase64Prefix(userImageData);
+    }
+};
 
 export const parseImagePath = path => {
     let parsedPath = '';

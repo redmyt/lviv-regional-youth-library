@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {apiPath, getCSRFToken, removeBase64Prefix, LANGUAGE_CODES} from '../../helpers';
+import {apiPath, getCSRFToken, processUserImageData, LANGUAGE_CODES} from '../../helpers';
 
 const bookPath = 'book/';
 
@@ -15,7 +15,7 @@ export const getBookById = (bookId) => {
 
 export const postBookService = (avatar, publishedAt) => {
     const url = `${apiPath}${bookPath}`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+    let data = {avatar: processUserImageData(avatar)};
     if (publishedAt) {data.published_at = publishedAt;}
     return axios.post(url, data, {
         headers: {
@@ -39,9 +39,11 @@ export const postBookTranslationService = (bookId, title, description, author, l
     });
 };
 
-export const putBookService = (bookId, avatar, publishedAt) => {
-    const url = `${apiPath}${bookPath}${bookId}/`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+export const putBookService = (bookId, avatarData, publishedAt) => {
+    const url = `${apiPath}${bookPath}${bookId}/`,
+        data = {},
+        avatar = processUserImageData(avatarData);
+    if (avatar) {data.avatar = avatar;}
     if (publishedAt) {data.published_at = publishedAt;}
     return axios.put(url, data, {
         headers: {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {apiPath, getCSRFToken, removeBase64Prefix, LANGUAGE_CODES} from '../../helpers';
+import {apiPath, getCSRFToken, processUserImageData, LANGUAGE_CODES} from '../../helpers';
 
 const announcementPath = 'announcement/';
 
@@ -15,7 +15,7 @@ export const getAnnouncementById = (announcementId) => {
 
 export const postAnnouncementService = (avatar, startAt) => {
     const url = `${apiPath}${announcementPath}`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+    let data = {avatar: processUserImageData(avatar)};
     if (startAt) {data.start_at = startAt;}
     return axios.post(url, data, {
         headers: {
@@ -51,9 +51,11 @@ export const postAnnouncementTranslationLinkService = (announcementId, translati
     });
 };
 
-export const putAnnouncementService = (announcementId, avatar, startAt) => {
-    const url = `${apiPath}${announcementPath}${announcementId}/`;
-    let data = {avatar: removeBase64Prefix(avatar)};
+export const putAnnouncementService = (announcementId, avatarData, startAt) => {
+    const url = `${apiPath}${announcementPath}${announcementId}/`,
+        data = {},
+        avatar = processUserImageData(avatarData);
+    if (avatar) {data.avatar = avatar;}
     if (startAt) {data.start_at = startAt;}
     return axios.put(url, data, {
         headers: {
