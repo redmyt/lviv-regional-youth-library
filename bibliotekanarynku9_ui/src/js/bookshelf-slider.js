@@ -1,3 +1,13 @@
+// Workaround to handle the new feature of WebKit engine based on
+// active and passive scroll events.
+if (isWebKit()) {
+    jQuery.event.special.mousewheel = {
+        setup: function(_, ns, handle) {
+            this.addEventListener('mousewheel', handle, {passive: false});
+        }
+    };
+}
+
 // Save all new book pictures for sliding to one variable
 var slidingPictures = $('.new-books-slider__sliding-picture-wrapper').toArray(),
     // Save sliding pictures wrapper to variable

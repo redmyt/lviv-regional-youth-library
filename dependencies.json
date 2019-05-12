@@ -1,6 +1,6 @@
 {
     "js": [
-        "./bibliotekanarynku9_ui/src/js/libs/jquery-3.1.1.min.js",
+        "./bibliotekanarynku9_ui/src/js/libs/jquery-3.4.1.min.js",
         "./bibliotekanarynku9_ui/src/js/libs/jquery-ui.min.js",
         "./bibliotekanarynku9_ui/src/js/libs/jquery.mousewheel.min.js",
         "./bibliotekanarynku9_ui/src/js/libs/owl.carousel.min.js",

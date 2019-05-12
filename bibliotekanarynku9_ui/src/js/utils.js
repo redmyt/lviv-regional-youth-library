@@ -98,3 +98,7 @@ function parseImagePath(path) {
     }
     return parsedPath;
 }
+
+function isWebKit() {
+    return navigator.userAgent.includes('WebKit');
+}
