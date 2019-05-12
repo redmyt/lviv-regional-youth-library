@@ -12,7 +12,7 @@ addons:
 
 install:
   - pip install -r requirements.txt
-  - nvm install stable
+  - nvm install --lts
   - npm install -g eslint-cli
   - npm install -g jshint
   - npm install -g gulp-cli
