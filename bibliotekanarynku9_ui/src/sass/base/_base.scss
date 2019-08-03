@@ -88,6 +88,11 @@ body {
     &_style_left {
         text-align: left;
     }
+
+    &_style_brown {
+        @extend .page-header;
+        color: #281501;
+    }
 }
 
 .page-button {
