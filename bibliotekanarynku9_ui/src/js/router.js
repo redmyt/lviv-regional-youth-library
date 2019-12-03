@@ -1,4 +1,4 @@
-var routerRegexp = /^([A-z]+)\/?(\d+)?/;
+var routerRegexp = /^([A-z-]+)\/?(\d+)?/;
 
 window.onhashchange = function() {
     var hash = getPageHash(),
@@ -29,6 +29,9 @@ window.onhashchange = function() {
             break;
         case 'about':
             aboutUsController();
+            break;
+        case 'charity-details':
+            charityDetailsController();
             break;
         default:
             newsController();
