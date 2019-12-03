@@ -18,13 +18,14 @@ var src = './bibliotekanarynku9_ui/src/',
 
 // Tasks declaration
 
-gulp.task('pug', function() {
+gulp.task('pug', function(done) {
     gulp.src(src + 'views/index.pug')
         .pipe(pug())
         .pipe(gulp.dest(dest));
+    done()
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', function(done) {
     gulp.src(src + 'sass/main.scss')
         .pipe(sass({
             outputStyle: 'compressed',
@@ -34,27 +35,31 @@ gulp.task('sass', function() {
         .pipe(autopref())
         .pipe(cleanCSS())
         .pipe(gulp.dest(dest + 'css'));
+    done()
 });
 
-gulp.task('js', function() {
+gulp.task('js', function(done) {
     gulp.src(require('./dependencies.json').js)
         .pipe(uglify())
         .pipe(concat('main.js'))
         .pipe(gulp.dest(dest + 'js/'));
+    done()
 });
 
-gulp.task('fonts', function() {
+gulp.task('fonts', function(done) {
     gulp.src(src + 'fonts/*')
         .pipe(gulp.dest(dest + 'fonts/'));
+    done()
 });
 
-gulp.task('images', function () {
+gulp.task('images', function (done) {
     gulp.src(src + 'images/**/*')
         .pipe(imagemin({
             progressive: true,
             optimizationLevel: 10
         }))
         .pipe(gulp.dest(dest + 'images'));
+    done()
 });
 
 gulp.task('watch', function() {
@@ -63,4 +68,4 @@ gulp.task('watch', function() {
     gulp.watch(src + 'js/**/*.js', ['js']);
 });
 
-gulp.task('build', ['pug', 'sass', 'js', 'fonts', 'images']);
+gulp.task('build', gulp.parallel('pug', 'sass', 'js', 'fonts', 'images'));

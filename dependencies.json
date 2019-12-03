@@ -31,6 +31,7 @@
         "./bibliotekanarynku9_ui/src/js/book/bookService.js",
         "./bibliotekanarynku9_ui/src/js/bookshelf-slider.js",
         "./bibliotekanarynku9_ui/src/js/aboutUs/aboutUsController.js",
+        "./bibliotekanarynku9_ui/src/js/charityDetails/charityDetailsController.js",
         "./bibliotekanarynku9_ui/src/js/owl-slider.js",
         "./bibliotekanarynku9_ui/src/js/footer.js",
         "./bibliotekanarynku9_ui/src/js/base.js"
