@@ -5,7 +5,6 @@
         "./bibliotekanarynku9_ui/src/js/libs/jquery.mousewheel.min.js",
         "./bibliotekanarynku9_ui/src/js/libs/owl.carousel.min.js",
         "./bibliotekanarynku9_ui/src/js/libs/trunk8.js",
-        "./bibliotekanarynku9_ui/src/js/libs/google-maps.js",
         "./bibliotekanarynku9_ui/src/js/variables.js",
         "./bibliotekanarynku9_ui/src/js/utils.js",
         "./bibliotekanarynku9_ui/src/js/router.js",
