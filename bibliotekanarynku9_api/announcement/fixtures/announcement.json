@@ -1,0 +1,1678 @@
+[
+    {
+        "model": "announcement.Announcement",
+        "pk": 1,
+        "fields": {
+            "avatar": "https://robohash.org/1",
+            "start_at": "2019-11-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 1,
+        "fields": {
+            "announcement": 1,
+            "title": "Презентація книг Жадана",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "УБА",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 1,
+        "fields": {
+            "translation": 1,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 2,
+        "fields": {
+            "translation": 1,
+            "label": "Дізнатися більше",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 3,
+        "fields": {
+            "translation": 1,
+            "label": "Відео",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 2,
+        "fields": {
+            "announcement": 1,
+            "title": "Zhadan book presentation",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "UBA",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 4,
+        "fields": {
+            "translation": 2,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 5,
+        "fields": {
+            "translation": 2,
+            "label": "Video",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 21,
+        "fields": {
+            "avatar": "https://robohash.org/21",
+            "start_at": "2019-10-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 21,
+        "fields": {
+            "announcement": 21,
+            "title": "Розмовний клуб",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "ВОА",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 22,
+        "fields": {
+            "announcement": 21,
+            "title": "English speaking club",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "WOA",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 31,
+        "fields": {
+            "avatar": "https://robohash.org/31",
+            "start_at": "2019-12-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-12-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 31,
+        "fields": {
+            "announcement": 31,
+            "title": "Презентація книг Іваничука",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 31,
+        "fields": {
+            "translation": 31,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 32,
+        "fields": {
+            "announcement": 31,
+            "title": "Ivanychuk book presentation",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 32,
+        "fields": {
+            "translation": 32,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 41,
+        "fields": {
+            "avatar": "https://robohash.org/41",
+            "start_at": "2020-01-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 41,
+        "fields": {
+            "announcement": 41,
+            "title": "Holiday",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "UBA",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 41,
+        "fields": {
+            "translation": 41,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 41,
+        "fields": {
+            "translation": 41,
+            "label": "Video",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 43,
+        "fields": {
+            "translation": 41,
+            "label": "New tribute",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 51,
+        "fields": {
+            "avatar": "https://robohash.org/51",
+            "start_at": "2020-02-20T15:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 51,
+        "fields": {
+            "announcement": 51,
+            "title": "Computer courses",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "Library and WOA",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 61,
+        "fields": {
+            "avatar": "https://robohash.org/61",
+            "start_at": "2020-03-20T18:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 61,
+        "fields": {
+            "announcement": 61,
+            "title": "Presentations",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "WSL, Media",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 61,
+        "fields": {
+            "translation": 61,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 71,
+        "fields": {
+            "avatar": "https://robohash.org/71",
+            "start_at": "2019-09-20T13:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 71,
+        "fields": {
+            "announcement": 71,
+            "title": "Відкритий урок про бібліотекарів",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "Бібліотека для юнацтва імені Романа Іваничука",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 71,
+        "fields": {
+            "translation": 71,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 72,
+        "fields": {
+            "translation": 71,
+            "label": "Дізнатися більше",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 73,
+        "fields": {
+            "translation": 71,
+            "label": "Відео презентації творів Іваничука",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 81,
+        "fields": {
+            "avatar": "https://robohash.org/81",
+            "start_at": "2019-08-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 81,
+        "fields": {
+            "announcement": 81,
+            "title": "Майстер-клас витинанок у Камінному залі",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "ДА",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 91,
+        "fields": {
+            "avatar": "https://robohash.org/91",
+            "start_at": "2019-11-25T13:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 91,
+        "fields": {
+            "announcement": 91,
+            "title": "Концерт Фіолет",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "УБА",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 91,
+        "fields": {
+            "translation": 91,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 101,
+        "fields": {
+            "avatar": "https://robohash.org/101",
+            "start_at": "2019-07-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 201,
+        "fields": {
+            "avatar": "https://robohash.org/2001",
+            "start_at": "2021-11-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 201,
+        "fields": {
+            "announcement": 201,
+            "title": "Презентація книг Жадана",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "УБА",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 201,
+        "fields": {
+            "translation": 201,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 202,
+        "fields": {
+            "translation": 201,
+            "label": "Дізнатися більше",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 203,
+        "fields": {
+            "translation": 201,
+            "label": "Відео",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 202,
+        "fields": {
+            "announcement": 201,
+            "title": "Zhadan book presentation",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "UBA",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 204,
+        "fields": {
+            "translation": 202,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 205,
+        "fields": {
+            "translation": 202,
+            "label": "Video",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 221,
+        "fields": {
+            "avatar": "https://robohash.org/221",
+            "start_at": "2021-10-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 221,
+        "fields": {
+            "announcement": 221,
+            "title": "Розмовний клуб",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "ВОА",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 222,
+        "fields": {
+            "announcement": 221,
+            "title": "English speaking club",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "WOA",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 231,
+        "fields": {
+            "avatar": "https://robohash.org/231",
+            "start_at": "2021-12-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-12-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 231,
+        "fields": {
+            "announcement": 231,
+            "title": "Презентація книг Іваничука",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 231,
+        "fields": {
+            "translation": 231,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 232,
+        "fields": {
+            "announcement": 231,
+            "title": "Ivanychuk book presentation",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 232,
+        "fields": {
+            "translation": 232,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 241,
+        "fields": {
+            "avatar": "https://robohash.org/241",
+            "start_at": "2020-10-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 241,
+        "fields": {
+            "announcement": 241,
+            "title": "Holiday",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "UBA",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 241,
+        "fields": {
+            "translation": 241,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 242,
+        "fields": {
+            "translation": 241,
+            "label": "Video",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 243,
+        "fields": {
+            "translation": 241,
+            "label": "New tribute",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 251,
+        "fields": {
+            "avatar": "https://robohash.org/251",
+            "start_at": "2020-12-20T15:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 251,
+        "fields": {
+            "announcement": 251,
+            "title": "Computer courses",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "Library and WOA",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 261,
+        "fields": {
+            "avatar": "https://robohash.org/261",
+            "start_at": "2020-11-20T18:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 261,
+        "fields": {
+            "announcement": 261,
+            "title": "Presentations",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "WSL, Media",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 261,
+        "fields": {
+            "translation": 261,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 271,
+        "fields": {
+            "avatar": "https://robohash.org/271",
+            "start_at": "2021-09-20T13:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 271,
+        "fields": {
+            "announcement": 271,
+            "title": "Відкритий урок про бібліотекарів",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "Бібліотека для юнацтва імені Романа Іваничука",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 271,
+        "fields": {
+            "translation": 271,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 272,
+        "fields": {
+            "translation": 271,
+            "label": "Дізнатися більше",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 273,
+        "fields": {
+            "translation": 271,
+            "label": "Відео презентації творів Іваничука",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 281,
+        "fields": {
+            "avatar": "https://robohash.org/281",
+            "start_at": "2021-08-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 281,
+        "fields": {
+            "announcement": 281,
+            "title": "Майстер-клас витинанок у Камінному залі",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "ДА",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 291,
+        "fields": {
+            "avatar": "https://robohash.org/291",
+            "start_at": "2021-11-25T13:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 291,
+        "fields": {
+            "announcement": 291,
+            "title": "Концерт Фіолет",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "УБА",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 291,
+        "fields": {
+            "translation": 291,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 2101,
+        "fields": {
+            "avatar": "https://robohash.org/2101",
+            "start_at": "2021-07-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 5001,
+        "fields": {
+            "avatar": "https://robohash.org/5001",
+            "start_at": "2019-11-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 5001,
+        "fields": {
+            "announcement": 5001,
+            "title": "Презентація книг Жадана",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "УБА",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 5001,
+        "fields": {
+            "translation": 5001,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 5002,
+        "fields": {
+            "translation": 5001,
+            "label": "Дізнатися більше",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 5003,
+        "fields": {
+            "translation": 5001,
+            "label": "Відео",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 5002,
+        "fields": {
+            "announcement": 5001,
+            "title": "Zhadan book presentation",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "UBA",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 5004,
+        "fields": {
+            "translation": 5002,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 5005,
+        "fields": {
+            "translation": 5002,
+            "label": "Video",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 50021,
+        "fields": {
+            "avatar": "https://robohash.org/50021",
+            "start_at": "2019-10-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50021,
+        "fields": {
+            "announcement": 50021,
+            "title": "Розмовний клуб",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "ВОА",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50022,
+        "fields": {
+            "announcement": 50021,
+            "title": "English speaking club",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "WOA",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 50031,
+        "fields": {
+            "avatar": "https://robohash.org/50031",
+            "start_at": "2019-12-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-12-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50031,
+        "fields": {
+            "announcement": 50031,
+            "title": "Презентація книг Іваничука",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50031,
+        "fields": {
+            "translation": 50031,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50032,
+        "fields": {
+            "announcement": 50031,
+            "title": "Ivanychuk book presentation",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50032,
+        "fields": {
+            "translation": 50032,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 50041,
+        "fields": {
+            "avatar": "https://robohash.org/50041",
+            "start_at": "2020-01-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50041,
+        "fields": {
+            "announcement": 50041,
+            "title": "Holiday",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "UBA",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50041,
+        "fields": {
+            "translation": 50041,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50041,
+        "fields": {
+            "translation": 50041,
+            "label": "Video",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50043,
+        "fields": {
+            "translation": 50041,
+            "label": "New tribute",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 50051,
+        "fields": {
+            "avatar": "https://robohash.org/50051",
+            "start_at": "2020-02-20T15:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50051,
+        "fields": {
+            "announcement": 50051,
+            "title": "Computer courses",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "Library and WOA",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 50061,
+        "fields": {
+            "avatar": "https://robohash.org/50061",
+            "start_at": "2020-03-20T18:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50061,
+        "fields": {
+            "announcement": 50061,
+            "title": "Presentations",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "WSL, Media",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50061,
+        "fields": {
+            "translation": 50061,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 50071,
+        "fields": {
+            "avatar": "https://robohash.org/50071",
+            "start_at": "2019-09-20T13:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50071,
+        "fields": {
+            "announcement": 50071,
+            "title": "Відкритий урок про бібліотекарів",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "Бібліотека для юнацтва імені Романа Іваничука",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50071,
+        "fields": {
+            "translation": 50071,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50072,
+        "fields": {
+            "translation": 50071,
+            "label": "Дізнатися більше",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50073,
+        "fields": {
+            "translation": 50071,
+            "label": "Відео презентації творів Іваничука",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 50081,
+        "fields": {
+            "avatar": "https://robohash.org/50081",
+            "start_at": "2019-08-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50081,
+        "fields": {
+            "announcement": 50081,
+            "title": "Майстер-клас витинанок у Камінному залі",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "ДА",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 50091,
+        "fields": {
+            "avatar": "https://robohash.org/50091",
+            "start_at": "2019-11-25T13:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 50091,
+        "fields": {
+            "announcement": 50091,
+            "title": "Концерт Фіолет",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "УБА",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 50091,
+        "fields": {
+            "translation": 50091,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500101,
+        "fields": {
+            "avatar": "https://robohash.org/500101",
+            "start_at": "2019-07-20T08:45:00.371027Z",
+            "created_at": "2018-10-20T17:33:47.371027Z",
+            "updated_at": "2018-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500201,
+        "fields": {
+            "avatar": "https://robohash.org/5002001",
+            "start_at": "2021-11-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500201,
+        "fields": {
+            "announcement": 500201,
+            "title": "Презентація книг Жадана",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "УБА",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500201,
+        "fields": {
+            "translation": 500201,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500202,
+        "fields": {
+            "translation": 500201,
+            "label": "Дізнатися більше",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500203,
+        "fields": {
+            "translation": 500201,
+            "label": "Відео",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500202,
+        "fields": {
+            "announcement": 500201,
+            "title": "Zhadan book presentation",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "UBA",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500204,
+        "fields": {
+            "translation": 500202,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500205,
+        "fields": {
+            "translation": 500202,
+            "label": "Video",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500221,
+        "fields": {
+            "avatar": "https://robohash.org/500221",
+            "start_at": "2021-10-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500221,
+        "fields": {
+            "announcement": 500221,
+            "title": "Розмовний клуб",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "ВОА",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500222,
+        "fields": {
+            "announcement": 500221,
+            "title": "English speaking club",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "WOA",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500231,
+        "fields": {
+            "avatar": "https://robohash.org/500231",
+            "start_at": "2021-12-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-12-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500231,
+        "fields": {
+            "announcement": 500231,
+            "title": "Презентація книг Іваничука",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500231,
+        "fields": {
+            "translation": 500231,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500232,
+        "fields": {
+            "announcement": 500231,
+            "title": "Ivanychuk book presentation",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500232,
+        "fields": {
+            "translation": 500232,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500241,
+        "fields": {
+            "avatar": "https://robohash.org/500241",
+            "start_at": "2020-10-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500241,
+        "fields": {
+            "announcement": 500241,
+            "title": "Holiday",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "UBA",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500241,
+        "fields": {
+            "translation": 500241,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500242,
+        "fields": {
+            "translation": 500241,
+            "label": "Video",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500243,
+        "fields": {
+            "translation": 500241,
+            "label": "New tribute",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500251,
+        "fields": {
+            "avatar": "https://robohash.org/500251",
+            "start_at": "2020-12-20T15:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500251,
+        "fields": {
+            "announcement": 500251,
+            "title": "Computer courses",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "Library and WOA",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500261,
+        "fields": {
+            "avatar": "https://robohash.org/500261",
+            "start_at": "2020-11-20T18:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500261,
+        "fields": {
+            "announcement": 500261,
+            "title": "Presentations",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "language": 2,
+            "organizer": "WSL, Media",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500261,
+        "fields": {
+            "translation": 500261,
+            "label": "Link with details",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500271,
+        "fields": {
+            "avatar": "https://robohash.org/500271",
+            "start_at": "2021-09-20T13:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500271,
+        "fields": {
+            "announcement": 500271,
+            "title": "Відкритий урок про бібліотекарів",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "Бібліотека для юнацтва імені Романа Іваничука",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500271,
+        "fields": {
+            "translation": 500271,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500272,
+        "fields": {
+            "translation": 500271,
+            "label": "Дізнатися більше",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500273,
+        "fields": {
+            "translation": 500271,
+            "label": "Відео презентації творів Іваничука",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500281,
+        "fields": {
+            "avatar": "https://robohash.org/500281",
+            "start_at": "2021-08-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500281,
+        "fields": {
+            "announcement": 500281,
+            "title": "Майстер-клас витинанок у Камінному залі",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "ДА",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 500291,
+        "fields": {
+            "avatar": "https://robohash.org/500291",
+            "start_at": "2021-11-25T13:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslation",
+        "pk": 500291,
+        "fields": {
+            "announcement": 500291,
+            "title": "Концерт Фіолет",
+            "description": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.\nВ то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.",
+            "language": 1,
+            "organizer": "УБА",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.AnnouncementTranslationLink",
+        "pk": 500291,
+        "fields": {
+            "translation": 500291,
+            "label": "Посилання на подію",
+            "href": "https://www.google.com",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    },
+    {
+        "model": "announcement.Announcement",
+        "pk": 5002101,
+        "fields": {
+            "avatar": "https://robohash.org/5002101",
+            "start_at": "2021-07-20T08:45:00.371027Z",
+            "created_at": "2020-10-20T17:33:47.371027Z",
+            "updated_at": "2020-11-16T11:30:01.371027Z"
+        }
+    }
+]
