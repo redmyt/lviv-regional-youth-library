@@ -1,5 +1,6 @@
 """Module that describe authentication views."""
 
+from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.template.loader import render_to_string
 from rest_framework import viewsets
@@ -21,7 +22,7 @@ from utils.handlers import USER_SESSION_HANDLER
 from utils.validators import required_keys_validator
 
 
-TTL_ACTIVATION_TOKEN = 60 * 60
+USER_ACTIVATION_TOKEN_TTL = 60 * 60
 REGISTRATION_TEMPLATE = 'registration.html'
 ACTIVATION_INVALID_PARAMS_TEMPLATE = 'activation/invalid-params.html'
 ACTIVATION_INVALID_TOKEN_TEMPLATE = 'activation/invalid-token.html'
@@ -29,7 +30,6 @@ ACTIVATION_INVALID_EMAIL_TEMPLATE = 'activation/invalid-email.html'
 ACTIVATION_SUCCESS_TEMPLATE = 'activation/activated.html'
 REQUIRED_LOGIN_KEYS = ('email', 'password')
 USER_SESSION_COOKIE = 'user_id'
-USER_SESSION_COOKIE__TTL = 14 * 24 * 60 * 60
 
 
 class AuthenticationViewSet(viewsets.ViewSet):
@@ -56,11 +56,11 @@ class AuthenticationViewSet(viewsets.ViewSet):
 
         activation_token = create_token(
             data={'email': user.email},
-            expiration_time=TTL_ACTIVATION_TOKEN)
+            expiration_time=USER_ACTIVATION_TOKEN_TTL)
         ctx = {
             'email': user.email,
             'token': activation_token,
-            'time_left': TTL_ACTIVATION_TOKEN // 60
+            'time_left': USER_ACTIVATION_TOKEN_TTL // 60
         }
         send_email([user.email], REGISTRATION_TEMPLATE, ctx)
         return RESPONSE_201_REGISTERED
@@ -108,7 +108,8 @@ class AuthenticationViewSet(viewsets.ViewSet):
         RESPONSE_200_LOGGED.set_cookie(
             USER_SESSION_COOKIE,
             hash_user_id,
-            max_age=USER_SESSION_COOKIE__TTL)
+            max_age=settings.SESSION_COOKIE_AGE
+        )
         return RESPONSE_200_LOGGED
 
     @staticmethod
@@ -118,4 +119,5 @@ class AuthenticationViewSet(viewsets.ViewSet):
 
         logout(request)
         RESPONSE_200_LOGOUTED.delete_cookie(USER_SESSION_COOKIE)
+        RESPONSE_200_LOGOUTED.delete_cookie(settings.CSRF_COOKIE_NAME)
         return RESPONSE_200_LOGOUTED
