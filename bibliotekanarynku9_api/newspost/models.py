@@ -31,7 +31,7 @@ class NewsPostTranslation(AbstractModel):
         related_name='translations')
     title = models.CharField(max_length=120)
     language = models.IntegerField(default=1, choices=LANGUAGE_CHOICES)
-    description = models.CharField(max_length=2048)
+    description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
