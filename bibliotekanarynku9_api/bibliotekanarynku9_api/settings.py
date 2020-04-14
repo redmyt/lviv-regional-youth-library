@@ -172,6 +172,13 @@ LOGGING = {
 }
 
 
+# TTL settings for the user session id and CSRF token
+
+SESSION_COOKIE_AGE = 3 * 60 * 60 # 3 hours
+
+CSRF_COOKIE_AGE = SESSION_COOKIE_AGE
+
+
 # Email sender settings
 
 EMAIL_USE_TLS = True
