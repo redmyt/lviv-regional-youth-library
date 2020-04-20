@@ -32,8 +32,20 @@ RESPONSE_200_ADMINS_PERMISSIONS_COMFIRMED = Response(
 )
 
 RESPONSE_200_DELETED = Response(
-    'Object successfully deleted.',
-    status=status.HTTP_200_OK
+    "Object successfully deleted.", status=status.HTTP_200_OK
+)
+
+RESPONSE_200_LOGOUTED = Response(
+    "User successfully signed out.", status=status.HTTP_200_OK
+)
+
+RESPONSE_200_ACCESS_TOKEN_EXISTS = Response(
+    "Access token is already generated for the user.", status=status.HTTP_200_OK
+)
+
+RESPONSE_201_GENERATED_ACCESS_TOKEN = Response(
+    "Access token successfully generated for the user. Please go to the main site page.",
+    status=status.HTTP_201_CREATED,
 )
 
 RESPONSE_201_REGISTERED = Response(
@@ -82,13 +94,22 @@ RESPONSE_400_INVALID_EMAIL_OR_PASSWORD = Response(
 )
 
 RESPONSE_400_UNEXPECTED_PARAMETERS = Response(
-    'Unexpected parameters received.',
-    status=status.HTTP_400_BAD_REQUEST
+    "Unexpected parameters received.", status=status.HTTP_400_BAD_REQUEST
 )
 
 RESPONSE_400_DB_INTEGRATION_FAILURE = Response(
-    'Received data does\'nt satisfy database data persistent.',
-    status=status.HTTP_400_BAD_REQUEST
+    "Received data does'nt satisfy database data persistent.",
+    status=status.HTTP_400_BAD_REQUEST,
+)
+
+RESPONSE_400_NO_OAUTH_CODE_PROVIDED = Response(
+    "There is no auth code at the callback request parameters.",
+    status=status.HTTP_400_BAD_REQUEST,
+)
+
+RESPONSE_400_ACCESS_TOKEN_GENERATION_FAILURE = Response(
+    "Cannot generate access token for accepted auth code or token is already generated",
+    status=status.HTTP_400_BAD_REQUEST,
 )
 
 RESPONSE_403_USER_ALREADY_ADMIN = Response(
@@ -117,6 +138,9 @@ RESPONSE_404_NOT_FOUND_RELATED_OBJECT = Response(
 )
 
 RESPONSE_404_ADMINS_GROUP_INACCESSIBLE = Response(
-    'Cannot get access to Admins group.',
-    status=status.HTTP_404_NOT_FOUND
+    "Cannot get access to Admins group.", status=status.HTTP_404_NOT_FOUND
+)
+
+RESPONSE_404_ACCESS_TOKEN_NOT_FOUND = Response(
+    "Access token is not found for the user.", status=status.HTTP_404_NOT_FOUND
 )
