@@ -25,6 +25,13 @@ SECRET_KEY = ''
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# TODO Figure out some test/prod ENV flow
+HOST = 'localhost'
+
+SCHEMA = 'http'
+
+PORT = '8080'
+
 ALLOWED_HOSTS = []
 
 
@@ -45,7 +52,9 @@ INSTALLED_APPS = [
     'presspost',
     'customuser',
     'admin',
-    'project'
+    'project',
+    'googleoauth',
+    'googlemybusiness'
 ]
 
 
@@ -214,6 +223,15 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5
+}
+
+
+# Settings for the Google Console Application
+
+GOOGLE_APPLICATION_CREDENTIALS = {
+    'google-secrets': {
+        'data': 'secret'
+    }
 }
 
 

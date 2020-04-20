@@ -400,7 +400,7 @@ method-naming-style=snake_case
 
 # Regular expression matching correct method names. Overrides method-naming-
 # style
-#method-rgx=
+method-rgx=[a-z_][a-z0-9_]{2,35}$ # Use the default pyling regexp with name's length of 35 chars.
 
 # Naming style matching correct module names
 module-naming-style=snake_case
