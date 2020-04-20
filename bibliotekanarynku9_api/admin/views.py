@@ -12,7 +12,7 @@ from utils.data_access import get_object_or_none
 from utils.jwt_token import create_token, handle_token
 from utils.responses import (RESPONSE_200_ADMINS_JOINED,
                              RESPONSE_200_ADMINS_REQUESTED,
-                             RESPONSE_200_ADMINS_PERMISSIONS_COMFIRMED,
+                             RESPONSE_200_ADMINS_PERMISSIONS_CONFIRMED,
                              RESPONSE_400_INVALID_TOKEN,
                              RESPONSE_400_UNEXPECTED_PARAMETERS,
                              RESPONSE_403_USER_ALREADY_ADMIN,
@@ -91,11 +91,11 @@ class AdminViewSet(viewsets.ViewSet):
             detail=False,
             permission_classes=[IsAuthenticated])
     def permissions(request):
-        """Check does the requested user has administration premissions."""
+        """Check does the requested user has administration permissions."""
 
         admins_group = Group.objects.get(name='admins')
         try:
             admins_group.user_set.get(email=request.user.email)
-            return RESPONSE_200_ADMINS_PERMISSIONS_COMFIRMED
+            return RESPONSE_200_ADMINS_PERMISSIONS_CONFIRMED
         except CustomUser.DoesNotExist:
             return RESPONSE_403_ADMINS_PERMISSIONS_UNCONFIRMED
