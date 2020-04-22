@@ -23,7 +23,9 @@ class GoogleOAuthSession(AbstractModel):
     Each user's tokens should be associated with one Google service.
     """
 
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="user")
+    user = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="googleoauthsession"
+    )
     service = models.IntegerField(choices=SERVICE_CHOICES)
     access_token = models.CharField(max_length=171)
     refresh_token = models.CharField(max_length=103)
