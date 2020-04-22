@@ -75,7 +75,12 @@ RESPONSE_400_NO_OAUTH_CODE_PROVIDED = Response(
 )
 
 RESPONSE_400_ACCESS_TOKEN_GENERATION_FAILURE = Response(
-    "Cannot generate access token for accepted auth code or token is already generated",
+    "Cannot generate access token for accepted auth code or token is already generated.",
+    status=status.HTTP_400_BAD_REQUEST,
+)
+
+RESPONSE_400_GOOGLE_BUSINESS_ACCOUNT_SAVING_FAILURE = Response(
+    "Cannot create Google My Business Account representation at the app.",
     status=status.HTTP_400_BAD_REQUEST,
 )
 
@@ -103,4 +108,9 @@ RESPONSE_404_ADMINS_GROUP_INACCESSIBLE = Response(
 
 RESPONSE_404_ACCESS_TOKEN_NOT_FOUND = Response(
     "Access token is not found for the user.", status=status.HTTP_404_NOT_FOUND
+)
+
+RESPONSE_404_GOOGLE_BUSINESS_ACCOUNT_NOT_FOUND = Response(
+    "Cannot found Google My Business Account for the current serssion user.",
+    status=status.HTTP_404_NOT_FOUND,
 )
