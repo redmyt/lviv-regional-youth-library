@@ -16,16 +16,9 @@ class GoogleMyBusinessAccount(AbstractModel):
     Model that represents the Google My Business account data.
     """
 
-    user = models.ForeignKey(
-        CustomUser, on_delete=models.CASCADE, related_name="googlemybusinessaccount"
-    )
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     service_name = models.CharField(max_length=80)
     account_name = models.CharField(max_length=80)
-
-    class Meta:
-        """Meta settings for GoogleMyBusinessAccount."""
-
-        unique_together = (("user", "service_name"),)
 
     @classmethod
     def get_account_service_name(cls, user):

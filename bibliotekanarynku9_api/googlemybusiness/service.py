@@ -24,12 +24,12 @@ class GoogleMyBusinessAPIService:
     def __init__(self):
         self.oauth_provider = GOOGLE_MY_BUSINESS_OAUTH_PROVIDER
 
-    def create_post(self, user, post_payload):
+    def create_post(self, user, post_data):
         """
         Method that send creation POST request to the Google My Business
         localPost/ API endpoint.
         :param user: CustomUser that represents the current session user.
-        :param post_payload: dict that represents the payload to send to
+        :param post_data: dict that represents the payload to send to
         the Google service API.
         :return: dict with created post data or None.
         """
@@ -53,13 +53,13 @@ class GoogleMyBusinessAPIService:
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.post(
             url=f"{self.GOOGLE_MY_BUSINESS_PATH}{service_account_name}/{posts_endpoint}",
-            json=post_payload,
+            json=post_data,
             headers=headers,
         )
         if not response:
             LOGGER.error(
                 f"Failed to create Google My Business post. "
-                f"User: {user} Data: {post_payload} Failed API response: {response.text}"
+                f"User: {user} Data: {post_data} Failed API response: {response.text}"
             )
             return None
 
