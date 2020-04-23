@@ -28,16 +28,6 @@ class GoogleMyBusinessAccount(AbstractModel):
         unique_together = (("user", "service_name"),)
 
     @classmethod
-    def create(cls, data):
-        """
-        Method that redefines the default create method of the AbstractModel class.
-        Using to add the end slash for the Google My Business account service name.
-        This facilitates using of this service name at the rest of app.
-        """
-        data["service_name"] = f"{data['service_name']}/"
-        return super().create(data)
-
-    @classmethod
     def get_account_service_name(cls, user):
         """
         Method that retrieves the Google My Business account's service name
