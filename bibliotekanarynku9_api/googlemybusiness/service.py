@@ -2,7 +2,6 @@
 Module that contains the core logic for interaction with the Google My Business API.
 """
 
-import json
 import requests
 
 from googlemybusiness.provider import GOOGLE_MY_BUSINESS_OAUTH_PROVIDER
@@ -50,12 +49,11 @@ class GoogleMyBusinessAPIService:
             )
             return None
 
-        posts_path = f"{self.LIBRARY_LOCATION_PATH}{self.POSTS_PATH}"
+        posts_endpoint = f"{self.LIBRARY_LOCATION_PATH}{self.POSTS_PATH}"
         headers = {"Authorization": f"Bearer {access_token}"}
-        payload = json.dumps(post_payload)
         response = requests.post(
-            url=f"{self.GOOGLE_MY_BUSINESS_PATH}{service_account_name}{posts_path}",
-            data=payload,
+            url=f"{self.GOOGLE_MY_BUSINESS_PATH}{service_account_name}/{posts_endpoint}",
+            json=post_payload,
             headers=headers,
         )
         if not response:
