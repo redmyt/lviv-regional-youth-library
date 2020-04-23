@@ -15,7 +15,8 @@ class Announcement(AbstractModel):
     """Announcement entity description"""
 
     avatar = models.CharField(max_length=150)
-    start_at = models.DateTimeField(null=True)
+    start_at = models.DateTimeField()
+    end_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
