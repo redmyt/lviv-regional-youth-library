@@ -211,10 +211,10 @@ redefining-builtins-modules=six.moves,past.builtins,future.builtins
 
 [MISCELLANEOUS]
 
+# TODO: Clean code and back the todo note
 # List of note tags to take in consideration, separated by a comma.
 notes=FIXME,
       XXX,
-      TODO
 
 
 [TYPECHECK]
@@ -375,7 +375,7 @@ function-naming-style=snake_case
 
 # Regular expression matching correct function names. Overrides function-
 # naming-style
-#function-rgx=
+function-rgx=[a-z_][a-z0-9_]{2,50}$ # Use the default pyling regexp with name's length of 50 chars.
 
 # Good variable names which should always be accepted, separated by a comma
 good-names=i,
@@ -400,7 +400,7 @@ method-naming-style=snake_case
 
 # Regular expression matching correct method names. Overrides method-naming-
 # style
-method-rgx=[a-z_][a-z0-9_]{2,35}$ # Use the default pyling regexp with name's length of 35 chars.
+method-rgx=[a-z_][a-z0-9_]{2,50}$ # Use the default pyling regexp with name's length of 50 chars.
 
 # Naming style matching correct module names
 module-naming-style=snake_case
