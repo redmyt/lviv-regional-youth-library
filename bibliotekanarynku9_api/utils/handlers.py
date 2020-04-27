@@ -11,6 +11,8 @@ from utils.logger import LOGGER
 IMG_HANDLER_ALGORITHM = 'shake_256'
 IMG_HANDLER_NAME_LENGTH = 8
 IMG_HANDLER_DIST = settings.MEDIA_ROOT
+# TODO: Provide more general solution
+IMG_PUBLIC_HOST = 'http://bibliotekanarynku.com'
 
 USER_SESSION_ALGORITHM = 'shake_128'
 USER_SESSION_ID_LENGTH = 4
@@ -71,6 +73,13 @@ class ImageHandler:
 
         os.remove(path)
         return True
+
+    @staticmethod
+    def get_public_image_path(image_path):
+        """Cut the absolute image path and returns only public part."""
+
+        pure_path_start = image_path.index(settings.STATIC_URL)
+        return f"{IMG_PUBLIC_HOST}{image_path[pure_path_start:]}"
 
 
 class UserSessionHandler:

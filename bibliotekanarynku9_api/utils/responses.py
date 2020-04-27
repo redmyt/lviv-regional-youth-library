@@ -84,6 +84,11 @@ RESPONSE_400_GOOGLE_BUSINESS_ACCOUNT_SAVING_FAILURE = Response(
     status=status.HTTP_400_BAD_REQUEST,
 )
 
+RESPONSE_400_GOOGLE_BUSINESS_ANNOUNCEMENT_SYNCHRONIZATION_FAILURE = Response(
+    "Cannot create locationPost entity for Announcement at Google My Business service.",
+    status=status.HTTP_400_BAD_REQUEST,
+)
+
 RESPONSE_403_USER_ALREADY_ADMIN = Response(
     "User already is in Admins group.", status=status.HTTP_403_FORBIDDEN
 )

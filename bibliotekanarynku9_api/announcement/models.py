@@ -21,16 +21,15 @@ class Announcement(AbstractModel):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ('start_at',)
+        ordering = ("start_at",)
 
 
 class AnnouncementTranslation(AbstractModel):
     """AnnouncementTranslation entity description"""
 
     announcement = models.ForeignKey(
-        Announcement,
-        on_delete=models.CASCADE,
-        related_name='translations')
+        Announcement, on_delete=models.CASCADE, related_name="translations"
+    )
     title = models.CharField(max_length=256)
     description = models.TextField()
     language = models.IntegerField(default=1, choices=LANGUAGE_CHOICES)
@@ -39,13 +38,29 @@ class AnnouncementTranslation(AbstractModel):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = (('announcement', 'language'),)
+        unique_together = (("announcement", "language"),)
 
 
 class AnnouncementTranslationLink(Link):
     """AnnouncementTranslationLink entity description."""
 
     translation = models.ForeignKey(
-        AnnouncementTranslation,
-        on_delete=models.CASCADE,
-        related_name='links')
+        AnnouncementTranslation, on_delete=models.CASCADE, related_name="links"
+    )
+
+
+class AnnouncementGoogleMyBusinessLocationPost(AbstractModel):
+    """
+    Model that describes relation between the certain AnnouncementTranslation
+    instance to the locationPost entity at the Google My Business service.
+    Each locationPost at Google Business service is able to have only one language
+    code so we bind it with AnnouncementTranslation.
+    """
+
+    announcement_translation = models.OneToOneField(
+        AnnouncementTranslation, on_delete=models.CASCADE
+    )
+    service_post_name = models.CharField(max_length=100)
+    last_sync_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)

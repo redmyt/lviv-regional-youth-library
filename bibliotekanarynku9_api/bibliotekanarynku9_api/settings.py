@@ -25,12 +25,6 @@ SECRET_KEY = ''
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# TODO Figure out some test/prod ENV flow
-HOST = 'localhost'
-
-SCHEMA = 'http'
-
-PORT = '8080'
 
 ALLOWED_HOSTS = []
 
@@ -233,6 +227,11 @@ GOOGLE_APPLICATION_CREDENTIALS = {
         'data': 'secret'
     }
 }
+
+
+# Google My Business service settings
+
+GOOGLE_MY_BUSINESS_REDIRECT_URL = 'http://localhost/redirect_url'
 
 
 # Actual version of the product API
