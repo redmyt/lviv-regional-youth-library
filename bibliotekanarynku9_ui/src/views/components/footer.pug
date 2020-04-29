@@ -5,15 +5,14 @@ footer.footer.footer_style_default
                 h2.schedule__header.page-header Графік роботи:
                 div.schedule__days-panel.column
                     - var days = ['Понеділок ', 'Вівторок ', 'Середа ', 'Четвер ', 'П\'ятниця ', 'Субота ', 'Неділя '];
-                     - var hours = [ ['10', '18'], ['10', '18'], ['10', '20'], ['10', '20'], ['10', '20'], ['Зачинено'], ['10', '18'] ];
+                     - var hours = [ ['10', '18'], ['10', '20'], ['10', '20'], ['10', '20'], ['10', '20'], ['10', '18'], ['10', '18'] ];
                     for day, dayNumber in days
                         span.schedule__certain-day-schedule
                             span.schedule__day-name.pale-text=day
                             time.schedule__working-hours=hours[dayNumber][0]
-                                if day !== 'Субота '
-                                    sup 00
-                                    = - hours[dayNumber][1]
-                                    sup 00
+                                sup 00
+                                = - hours[dayNumber][1]
+                                sup 00
             article.address.flex.column.flex-center
                 h2.address__header.page-header Адреса:
                 span.address__street.
@@ -29,7 +28,7 @@ footer.footer.footer_style_default
                 span.pale-text 032 
                 | 235 60 18
             div.contacts__links-wrapper.flex
-                a.contacts__link.contacts__facebook-link.page-link(href="https://www.facebook.com/%D0%9B%D1%8C%D0%B2%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0-%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D0%BD%D0%B0-%D0%B1%D1%96%D0%B1%D0%BB%D1%96%D0%BE%D1%82%D0%B5%D0%BA%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%8E%D0%BD%D0%B0%D1%86%D1%82%D0%B2%D0%B0-581308348727966/" target="_blank")
+                a.contacts__link.contacts__facebook-link.page-link(href="https://www.facebook.com/bibliotekanarynku9/" target="_blank")
                     img.contacts__facebook-picture.page-picture(src="images/facebook-icon.png")
                 a.contacts__link.contact-information__instagram-link.page-link(href="https://www.instagram.com/biblioteka_/" target="_blank")
                     img.contacts__instagram-picture.page-picture(src="images/instagram-icon.png")
@@ -37,8 +36,11 @@ footer.footer.footer_style_default
                     img.contacts__instagram-picture.page-picture(src="images/mail-icon.png")
                 a.contacts__link.contact-information__skype-link.page-link
                     img.contacts__instagram-picture.page-picture(src="images/skype-icon.png")
-            span.contacts__mail-text bibliolviv@ukr.net
+            span.contacts__mail-text bibliolviv9@gmail.com
             span.contacts__skype-text.contacts__skype-mail-text_invisible bibliolviv
+            section.charity-details
+                h2.charity-details__header
+                    a.page-link(href="#charity-details") Допомогти бібліотеці
         div.google-map.footer-information__item.flex.flex-center
             div#google-map-frame
     section.taglines.flex

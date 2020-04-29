@@ -23,7 +23,7 @@ function getDateData(rawDate) {
         day = date.getDate(),
         month = date.getMonth() + 1,
         year = date.getFullYear(),
-        hour = date.getHours(),
+        hour = date.getHours() + date.getTimezoneOffset() / 60,
         minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
 
     return {
@@ -97,4 +97,8 @@ function parseImagePath(path) {
         parsedPath = staticIndex !== -1 ? path.slice(staticIndex) : path;
     }
     return parsedPath;
+}
+
+function isWebKit() {
+    return navigator.userAgent.includes('WebKit');
 }

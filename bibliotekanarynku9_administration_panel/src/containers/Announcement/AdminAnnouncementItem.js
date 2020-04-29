@@ -71,6 +71,13 @@ class AdminAnnouncementItem extends React.Component {
         }}, this.state));
     }
 
+    handleEndAtChange = newEndAt => {
+        this.setState(getUpdatedState({announcement: {
+            ...this.state.announcement,
+            end_at: newEndAt
+        }}, this.state));
+    }
+
     handleAvatarChange = newAvatar => {
         this.setState(getUpdatedState({announcement: {
             ...this.state.announcement,
@@ -82,7 +89,8 @@ class AdminAnnouncementItem extends React.Component {
         putAnnouncementService(
             this.state.announcement.id,
             this.state.announcement.avatar,
-            this.state.announcement.start_at
+            this.state.announcement.start_at,
+            this.state.announcement.end_at
         ).then(() => {
             this.setState(getUpdatedState({isError: false}, this.state));
             this.getAnnouncement();
@@ -113,6 +121,13 @@ class AdminAnnouncementItem extends React.Component {
                                 date={this.state.announcement.start_at}
                                 label='Start At'
                                 onDateChange={this.handleDateChange}
+                                isEdit={this.state.isEdit}
+                                isError={this.state.isError}
+                            />
+                            <AdminDateField
+                                date={this.state.announcement.end_at}
+                                label='End At'
+                                onDateChange={this.handleEndAtChange}
                                 isEdit={this.state.isEdit}
                                 isError={this.state.isError}
                             />
