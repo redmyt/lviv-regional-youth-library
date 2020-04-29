@@ -25,6 +25,7 @@ SECRET_KEY = ''
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 
@@ -45,7 +46,9 @@ INSTALLED_APPS = [
     'presspost',
     'customuser',
     'admin',
-    'project'
+    'project',
+    'googleoauth',
+    'googlemybusiness'
 ]
 
 
@@ -215,6 +218,20 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5
 }
+
+
+# Settings for the Google Console Application
+
+GOOGLE_APPLICATION_CREDENTIALS = {
+    'google-secrets': {
+        'data': 'secret'
+    }
+}
+
+
+# Google My Business service settings
+
+GOOGLE_MY_BUSINESS_REDIRECT_URL = 'http://localhost/redirect_url'
 
 
 # Actual version of the product API

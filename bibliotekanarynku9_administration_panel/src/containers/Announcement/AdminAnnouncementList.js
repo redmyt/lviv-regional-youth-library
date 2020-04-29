@@ -29,6 +29,7 @@ class AdminAnnouncementList extends React.Component {
                                 avatar={announcement.avatar}
                                 translations={announcement.translations}
                                 startAt={formatDateToView(announcement.start_at)}
+                                endAt={formatDateToView(announcement.end_at)}
                                 createdAt={formatDateToView(announcement.created_at)}
                                 updatedAt={formatDateToView(announcement.updated_at)}
                                 onClick={this.handelClick}

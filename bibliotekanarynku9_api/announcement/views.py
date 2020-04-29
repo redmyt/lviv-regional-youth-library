@@ -2,6 +2,8 @@
 
 from rest_framework import viewsets
 from rest_framework.response import Response
+
+from announcement.googlemybusiness import ANNOUNCEMENT_GOOGLE_MY_BUSINESS_SERVICE
 from announcement.models import (Announcement,
                                  AnnouncementTranslation,
                                  AnnouncementTranslationLink)
@@ -15,7 +17,8 @@ from utils.responses import (RESPONSE_200_DELETED,
                              RESPONSE_400_INVALID_DATA,
                              RESPONSE_403_PERMISSIONS_REQUIRED,
                              RESPONSE_404_NOT_FOUND,
-                             RESPONSE_404_NOT_FOUND_RELATED_OBJECT)
+                             RESPONSE_404_NOT_FOUND_RELATED_OBJECT,
+                             RESPONSE_400_GOOGLE_BUSINESS_ANNOUNCEMENT_SYNCHRONIZATION_FAILURE)
 
 
 POST_CREATE_PERM = 'announcement.add_announcement'
@@ -140,6 +143,13 @@ class AnnouncementTranslationViewSet(viewsets.ModelViewSet):
         ann_transl = serializer.save()
         if not ann_transl:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
+
+        synced_translation = ANNOUNCEMENT_GOOGLE_MY_BUSINESS_SERVICE.synchronize_translation_post(
+            request.user,
+            ann_transl
+        )
+        if not synced_translation:
+            return RESPONSE_400_GOOGLE_BUSINESS_ANNOUNCEMENT_SYNCHRONIZATION_FAILURE
 
         return Response(serializer.data, 201)
 

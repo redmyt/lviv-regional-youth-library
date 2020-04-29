@@ -22,6 +22,7 @@ from presspost.views import (PressPostViewSet,
 from project.views import (ProjectViewSet,
                            ProjectTranslationViewSet,
                            ProjectTranslationLinkViewSet)
+from googlemybusiness.views import GoogleMyBusinessViewSet
 
 
 API_PREF = f'api/v{settings.API_VERSION}/'
@@ -36,6 +37,7 @@ router.register(API_PREF + 'press_post', PressPostViewSet, 'presspost')
 router.register(API_PREF + 'announcement', AnnouncementViewSet, 'announcement')
 router.register(API_PREF + 'book', BookViewSet, 'book')
 router.register(API_PREF + 'project', ProjectViewSet, 'project')
+router.register(API_PREF + 'googlemybusiness', GoogleMyBusinessViewSet, 'googlemybusiness')
 
 urlpatterns = router.urls
 
