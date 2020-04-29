@@ -32,6 +32,7 @@ export default class AdminAnnouncementListItem extends React.Component {
                     <CardContent>
                         <p>Translations: {this.props.translations.length}</p>
                         <p>Start at: {this.props.startAt}</p>
+                        <p>End at: {this.props.endAt}</p>
                         <p>Create at: {this.props.createdAt}</p>
                         <p>Update at: {this.props.updatedAt}</p>
                     </CardContent>
