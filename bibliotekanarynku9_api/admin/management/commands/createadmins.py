@@ -4,6 +4,9 @@ from django.contrib.auth.models import Group
 from django.core.management import BaseCommand
 
 
+ADMINS_GROUP_NAME = 'admins'
+
+
 class Command(BaseCommand):
     """Command for Admins group creation."""
 
@@ -12,7 +15,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """Actions provided by using command."""
 
-        admins = Group.objects.get_or_create(name='admins')
+        admins = Group.objects.get_or_create(name=ADMINS_GROUP_NAME)
 
         if not admins:
             self.stdout.write(
