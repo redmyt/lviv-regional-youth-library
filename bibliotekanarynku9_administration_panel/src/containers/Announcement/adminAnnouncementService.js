@@ -13,10 +13,13 @@ export const getAnnouncementById = (announcementId) => {
     return axios.get(url);
 };
 
-export const postAnnouncementService = (avatar, startAt) => {
+export const postAnnouncementService = (avatar, startAt, endAt) => {
     const url = `${apiPath}${announcementPath}`;
-    let data = {avatar: processUserImageData(avatar)};
-    if (startAt) {data.start_at = startAt;}
+    let data = {
+        avatar: processUserImageData(avatar),
+        start_at: startAt,
+        end_at: endAt
+    };
     return axios.post(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()
@@ -51,12 +54,13 @@ export const postAnnouncementTranslationLinkService = (announcementId, translati
     });
 };
 
-export const putAnnouncementService = (announcementId, avatarData, startAt) => {
+export const putAnnouncementService = (announcementId, avatarData, startAt, endAt) => {
     const url = `${apiPath}${announcementPath}${announcementId}/`,
         data = {},
         avatar = processUserImageData(avatarData);
     if (avatar) {data.avatar = avatar;}
-    if (startAt) {data.start_at = startAt;}
+    data.start_at = startAt;
+    data.end_at = endAt;
     return axios.put(url, data, {
         headers: {
             'X-CSRFToken': getCSRFToken()

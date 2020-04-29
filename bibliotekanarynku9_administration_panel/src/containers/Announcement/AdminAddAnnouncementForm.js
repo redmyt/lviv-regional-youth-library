@@ -38,7 +38,8 @@ export default class AdminAddAnnouncementForm extends React.Component {
         this.state = {
             isOpen: props.isOpen,
             avatar: null,
-            startAt: (new Date()).toISOString()
+            startAt: (new Date()).toISOString(),
+            endAt: (new Date()).toISOString()
         };
     }
 
@@ -58,11 +59,16 @@ export default class AdminAddAnnouncementForm extends React.Component {
         this.setState(getUpdatedState({startAt: startAt}, this.state));
     }
 
+    handleEndAtChange = endAt => {
+        this.setState(getUpdatedState({endAt: endAt}, this.state));
+    }
+
     handleSaveClick = () => {
-        this.props.onAddSaveClick(this.state.avatar, this.state.startAt);
+        this.props.onAddSaveClick(this.state.avatar, this.state.startAt, this.state.endAt);
         this.setState(getUpdatedState({
             avatar: null,
-            startAt: (new Date()).toISOString()
+            startAt: (new Date()).toISOString(),
+            endAt: (new Date()).toISOString()
         }, this.state));
     }
 
@@ -86,6 +92,13 @@ export default class AdminAddAnnouncementForm extends React.Component {
                         label='Start at'
                         date={this.state.startAt}
                         onDateChange={this.handleStartAtChange}
+                        isEdit={true}
+                        style={startAtStyle}
+                    />
+                    <AdminDateField
+                        label='End at'
+                        date={this.state.endAt}
+                        onDateChange={this.handleEndAtChange}
                         isEdit={true}
                         style={startAtStyle}
                     />
