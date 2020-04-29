@@ -60,7 +60,7 @@ class AnnouncementGoogleMyBusinessLocationPost(AbstractModel):
     announcement_translation = models.OneToOneField(
         AnnouncementTranslation, on_delete=models.CASCADE
     )
-    service_post_name = models.CharField(max_length=100)
+    service_post_name = models.CharField(max_length=92)
     last_sync_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)

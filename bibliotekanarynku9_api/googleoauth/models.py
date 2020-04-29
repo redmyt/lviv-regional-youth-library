@@ -29,6 +29,7 @@ class GoogleOAuthSession(AbstractModel):
     service = models.IntegerField(choices=SERVICE_CHOICES)
     access_token = models.CharField(max_length=171)
     refresh_token = models.CharField(max_length=103)
+    expires_at = models.DateTimeField()
 
     class Meta:
         """Meta settings for GoogleOAuthSession."""

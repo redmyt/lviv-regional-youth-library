@@ -3,6 +3,7 @@ Module that represent logic of common Google OAuth flow provider.
 Contains classes and method that facilitate interaction with Google OAuth logic.
 """
 
+import datetime
 import requests
 
 from django.conf import settings
@@ -63,6 +64,8 @@ class GoogleOAuthProvider:
                 "service": self.service,
                 "access_token": self.flow.credentials.token,
                 "refresh_token": self.flow.credentials.refresh_token,
+                # TODO: Take date from Google API data.
+                "expires_at": datetime.datetime.now(tz=datetime.timezone.utc),
             }
         )
         return bool(oauth_session)
