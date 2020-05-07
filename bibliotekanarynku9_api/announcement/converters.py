@@ -12,10 +12,9 @@ from typing_extensions import TypedDict
 
 from announcement.models import AnnouncementTranslation
 from utils.handlers import IMAGE_HANDLER
+from utils.language import Languages
 
 
-# TODO: Replace hardcoded code with Language Enum (also should be used at models)
-DEFAULT_LANGUAGE_CODE = "uk"
 DEFAULT_MEDIA_FORMAT = "PHOTO"
 
 # Data Structures
@@ -45,7 +44,7 @@ class AnnouncementTranslationLocationPostConverter:
         """
 
         return {
-            "languageCode": DEFAULT_LANGUAGE_CODE,
+            "languageCode": Languages(translation.language).name,
             "summary": translation.description,
             "event": cls.__create_google_business_event(translation),
             "media": cls.__create_google_business_media(translation),
