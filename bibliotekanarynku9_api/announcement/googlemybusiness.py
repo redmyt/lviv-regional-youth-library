@@ -5,7 +5,7 @@ Google My Business service's.
 
 import datetime
 
-from announcement.converters import convert_translation_to_location_post
+from announcement.converters import AnnouncementTranslationLocationPostConverter
 from announcement.models import AnnouncementTranslation, AnnouncementGoogleMyBusinessLocationPost
 from customuser.models import CustomUser
 from googlemybusiness.service import GOOGLE_MY_BUSINESS_API_SERVICE
@@ -19,6 +19,8 @@ class AnnouncementGoogleMyBusinessService:
     to check synchronization status of translation post.
     """
 
+    __TRANSLATION_LOCATION_POST_CONVERTER = AnnouncementTranslationLocationPostConverter()
+
     def __init__(self):
         self.api_service = GOOGLE_MY_BUSINESS_API_SERVICE
 
@@ -30,10 +32,10 @@ class AnnouncementGoogleMyBusinessService:
         :return: synced AnnouncementTranslation instance.
         """
 
-        location_post_data = convert_translation_to_location_post(
+        location_post = self.__TRANSLATION_LOCATION_POST_CONVERTER.translation_to_location_post(
             translation
         )
-        created_location_post = self.api_service.create_post(user, location_post_data)
+        created_location_post = self.api_service.create_post(user, location_post)
         if not created_location_post:
             LOGGER.error(
                 "Filed to create locationPost during the announcement translation synchronization."
