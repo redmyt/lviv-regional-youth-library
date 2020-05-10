@@ -87,6 +87,15 @@ class GoogleOAuthProvider:
         """
         return GoogleOAuthSession.get_service_access_token_by_user(self.service, user)
 
+    def get_refresh_token(self, user):
+        """
+        Method that retrieves previous generated refresh token from database.
+        It retrieves refresh token for the certain user and service.
+        :param user: CustomUser instance that represents the session user.
+        :return: str that represents refresh token.
+        """
+        return GoogleOAuthSession.get_service_refresh_token_by_user(self.service, user)
+
     def refresh_token(self, user, refresh_token):
         """
         Method that refreshes the outdated access token for the certain user.

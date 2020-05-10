@@ -30,10 +30,6 @@ RESPONSE_200_ACCESS_TOKEN_EXISTS = Response(
     "Access token is already generated for the user.", status=status.HTTP_200_OK
 )
 
-RESPONSE_200_ACCESS_TOKEN_REFRESHED = Response(
-    "Access token is sucessfully refreshed.", status=status.HTTP_200_OK
-)
-
 RESPONSE_201_GENERATED_ACCESS_TOKEN = Response(
     "Access token successfully generated for the user. Please go to the main site page.",
     status=status.HTTP_201_CREATED,
@@ -91,10 +87,6 @@ RESPONSE_400_GOOGLE_BUSINESS_ACCOUNT_SAVING_FAILURE = Response(
 RESPONSE_400_GOOGLE_BUSINESS_ANNOUNCEMENT_SYNCHRONIZATION_FAILURE = Response(
     "Cannot create locationPost entity for Announcement at Google My Business service.",
     status=status.HTTP_400_BAD_REQUEST,
-)
-
-RESPONSE_400_REFRESH_TOKEN_FAILURE = Response(
-    "Cannot refresh token for the user.", status=status.HTTP_400_BAD_REQUEST,
 )
 
 RESPONSE_403_USER_ALREADY_ADMIN = Response(

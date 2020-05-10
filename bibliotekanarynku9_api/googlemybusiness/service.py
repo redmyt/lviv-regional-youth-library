@@ -9,6 +9,23 @@ from googlemybusiness.models import GoogleMyBusinessAccount
 from utils.logger import LOGGER
 
 
+def api_call(api_call_method):
+    """
+    Decorator that wraps each method that makes calls to the Google API and updates
+    the access token when token is expired.
+    """
+
+    def prepared_api_call(api_service: "GoogleMyBusinessAPIService", user, *args, **kwargs):
+        """Wrapper for API method."""
+
+        if api_service.oauth_provider.is_access_token_expired(user):
+            refresh_token = api_service.oauth_provider.get_refresh_token(user)
+            api_service.oauth_provider.refresh_token(user, refresh_token)
+        return api_call_method(api_service, user, *args, **kwargs)
+
+    return prepared_api_call
+
+
 class GoogleMyBusinessAPIService:
     """
     Class that represents the Google My Business API service.
@@ -24,6 +41,7 @@ class GoogleMyBusinessAPIService:
     def __init__(self):
         self.oauth_provider = GOOGLE_MY_BUSINESS_OAUTH_PROVIDER
 
+    @api_call
     def create_post(self, user, post_data):
         """
         Method that send creation POST request to the Google My Business
@@ -65,6 +83,7 @@ class GoogleMyBusinessAPIService:
 
         return response.json()
 
+    @api_call
     def get_account(self, user):
         """
         Method that retrieves the Google My Business account for the current session user.

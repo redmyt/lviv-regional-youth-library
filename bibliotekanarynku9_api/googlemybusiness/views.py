@@ -10,8 +10,6 @@ from authentication.permissions import IsAdminsMember
 from googlemybusiness.models import GoogleMyBusinessAccount
 from googlemybusiness.provider import GOOGLE_MY_BUSINESS_OAUTH_PROVIDER
 from googlemybusiness.service import GOOGLE_MY_BUSINESS_API_SERVICE
-from googleoauth.models import GoogleOAuthSession
-from googleoauth.utils import GoogleServices
 from utils.responses import (
     RESPONSE_400_NO_OAUTH_CODE_PROVIDED,
     RESPONSE_400_ACCESS_TOKEN_GENERATION_FAILURE,
@@ -20,8 +18,6 @@ from utils.responses import (
     RESPONSE_201_GENERATED_ACCESS_TOKEN,
     RESPONSE_404_GOOGLE_BUSINESS_ACCOUNT_NOT_FOUND,
     RESPONSE_400_GOOGLE_BUSINESS_ACCOUNT_SAVING_FAILURE,
-    RESPONSE_400_REFRESH_TOKEN_FAILURE,
-    RESPONSE_200_ACCESS_TOKEN_REFRESHED,
 )
 
 
@@ -86,23 +82,3 @@ class GoogleMyBusinessViewSet(viewsets.ViewSet):
         if GOOGLE_MY_BUSINESS_OAUTH_PROVIDER.get_access_token(request.user):
             return RESPONSE_200_ACCESS_TOKEN_EXISTS
         return RESPONSE_404_ACCESS_TOKEN_NOT_FOUND
-
-    # TODO: Temporary endpoint for manual token refresh
-    @staticmethod
-    @action(methods=["get"], detail=False, permission_classes=[IsAdminsMember])
-    def refresh_token(request):
-        """
-        Method that refreshes token for the current session user.
-        """
-
-        session = GoogleOAuthSession.get_service_session_by_user(
-            GoogleServices.MY_BUSINESS.value, request.user
-        )
-        if not session:
-            return RESPONSE_404_ACCESS_TOKEN_NOT_FOUND
-        is_refreshed = GOOGLE_MY_BUSINESS_OAUTH_PROVIDER.refresh_token(
-            request.user, session.refresh_token
-        )
-        if not is_refreshed:
-            return RESPONSE_400_REFRESH_TOKEN_FAILURE
-        return RESPONSE_200_ACCESS_TOKEN_REFRESHED

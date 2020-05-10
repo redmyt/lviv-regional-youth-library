@@ -72,6 +72,23 @@ class GoogleOAuthSession(AbstractModel):
         return ""
 
     @classmethod
+    def get_service_refresh_token_by_user(cls, service, user):
+        """
+        Method that returns refresh token for the accepted service and user.
+        :param service: int that represents the one of the Google Services.
+        :param user: CustomUser instance that represent current session user.
+        :return: str that represents user's refresh token.
+        """
+        oauth_session = cls.get_service_session_by_user(service=service, user=user)
+        if oauth_session:
+            return oauth_session.refresh_token
+        LOGGER.error(
+            f"Cannot retrieve the access token for service: {service} and user: {user}. "
+            f"There is no {cls.__name__} instance."
+        )
+        return ""
+
+    @classmethod
     def get_access_token_expire_time(cls, service, user):
         """
         Method that returns the time when access token will become invalid.
