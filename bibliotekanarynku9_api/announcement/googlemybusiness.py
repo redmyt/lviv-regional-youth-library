@@ -61,8 +61,16 @@ class AnnouncementGoogleMyBusinessService:
     # TODO: Need to implement
     # def update_location_post(self, user, translation):
 
-    # TODO: Need to implement
-    # def delete_location_post(self, user, translation):
+    def delete_location_post(self, user, location_post_name):
+        """
+        Method that removes the previous synced Google Business location post object.
+        """
+
+        is_removed = self.api_service.delete_post(user, location_post_name)
+        if not is_removed:
+            LOGGER.error(
+                f"Filed to remove Google Business location post with name: {location_post_name}"
+            )
 
     def synchronize_translation_post(self, user: CustomUser, translation: AnnouncementTranslation):
         """

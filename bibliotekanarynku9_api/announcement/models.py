@@ -7,7 +7,7 @@ for the multilanguage support.
 
 from django.db import models
 
-from announcement.signals import ANNOUNCEMENT_TRANSLATION_CREATED
+from announcement.signals import ANNOUNCEMENT_TRANSLATION_CREATED, ANNOUNCEMENT_TRANSLATION_DELETED
 from link.models import Link
 from utils.abstract_model import AbstractModel
 from utils.language import LANGUAGE_CHOICES
@@ -47,6 +47,19 @@ class AnnouncementTranslation(AbstractModel):
 
         ANNOUNCEMENT_TRANSLATION_CREATED.send(
             sender=self.__class__, user=user, announcement_translation=self
+        )
+
+    def send_announcement_translation_deleted(self, user, location_post_name):
+        """
+        Send the signal that indicates deletion of the new AnnouncementTranslation instance.
+        Also method notates user who deletes the instance and Google Business location post name.
+        """
+
+        ANNOUNCEMENT_TRANSLATION_DELETED.send(
+            sender=self.__class__,
+            user=user,
+            announcement_translation=self,
+            google_business_post_name=location_post_name,
         )
 
     class Meta:
