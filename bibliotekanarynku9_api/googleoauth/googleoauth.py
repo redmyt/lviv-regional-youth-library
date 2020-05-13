@@ -3,7 +3,7 @@ Module that represent logic of common Google OAuth flow provider.
 Contains classes and method that facilitate interaction with Google OAuth logic.
 """
 
-import datetime
+from datetime import datetime, timedelta, timezone
 import requests
 
 from django.conf import settings
@@ -31,6 +31,15 @@ class GoogleOAuthProvider:
         self.service = service
         self.scopes = scopes
         self.flow.redirect_uri = redirect_url
+
+    @staticmethod
+    def __get_expires_at_time(token_ttl: int) -> datetime:
+        """
+        Method that converts the accepted token TTL in seconds and returns the
+        certain time when new access token will become invalid.
+        """
+
+        return datetime.now(tz=timezone.utc) + timedelta(seconds=token_ttl)
 
     def get_authorize_url(self):
         """
@@ -64,8 +73,7 @@ class GoogleOAuthProvider:
                 "service": self.service,
                 "access_token": self.flow.credentials.token,
                 "refresh_token": self.flow.credentials.refresh_token,
-                # TODO: Take date from Google API data.
-                "expires_at": datetime.datetime.now(tz=datetime.timezone.utc),
+                "expires_at": self.flow.credentials.expiry,
             }
         )
         return bool(oauth_session)
@@ -78,6 +86,15 @@ class GoogleOAuthProvider:
         :return: str that represents access token.
         """
         return GoogleOAuthSession.get_service_access_token_by_user(self.service, user)
+
+    def get_refresh_token(self, user):
+        """
+        Method that retrieves previous generated refresh token from database.
+        It retrieves refresh token for the certain user and service.
+        :param user: CustomUser instance that represents the session user.
+        :return: str that represents refresh token.
+        """
+        return GoogleOAuthSession.get_service_refresh_token_by_user(self.service, user)
 
     def refresh_token(self, user, refresh_token):
         """
@@ -101,7 +118,11 @@ class GoogleOAuthProvider:
             return ""
 
         data = response.json()
-        refreshed_access_token, scope = data.get("access_token"), data.get("scope")
+        refreshed_access_token, expires_at, scope = (
+            data.get("access_token"),
+            self.__get_expires_at_time(data.get("expires_in")),
+            data.get("scope"),
+        )
         if scope not in self.scopes:
             LOGGER.error(
                 f"Failure during refreshing the access token for the user: {user}. "
@@ -110,5 +131,14 @@ class GoogleOAuthProvider:
             return ""
 
         return GoogleOAuthSession.update_service_access_token_by_user(
-            self.service, user, refreshed_access_token
+            self.service, user, refreshed_access_token, expires_at
         )
+
+    def is_access_token_expired(self, user):
+        """
+        Method that returns status of current user access token. Shows is token
+        are valid in time slot.
+        """
+
+        expire_time = GoogleOAuthSession.get_access_token_expire_time(self.service, user)
+        return datetime.now(tz=timezone.utc) > expire_time

@@ -2,13 +2,25 @@
 Module for maintenance multi language support.
 """
 
+from enum import Enum
+
+
+class Languages(Enum):
+    """
+    Enum that represents all languages that could be used at library site.
+    """
+
+    UK = 1
+    EN = 2
+
+
 LANGUAGE_CHOICES = (
-    (1, 'uk'),
-    (2, 'en')
+    (Languages.UK.value, Languages.UK.name),
+    (Languages.EN.value, Languages.EN.name),
 )
 
 
-LANGUAGE_HEADER = 'HTTP_ACCEPT_LANGUAGE'
+LANGUAGE_HEADER = "HTTP_ACCEPT_LANGUAGE"
 DEFAULT_LANGUAGE_CODE = 0
 
 
@@ -32,8 +44,9 @@ def filter_serialized_translations(ser_data, request):
         lang_code = get_request_language(request)
 
         if lang_code:
-            translations = [transl for transl in ser_data['translations']
-                            if transl['language'] == lang_code]
-            ser_data.update({'translations': translations})
+            translations = [
+                transl for transl in ser_data["translations"] if transl["language"] == lang_code
+            ]
+            ser_data.update({"translations": translations})
 
     return ser_data
