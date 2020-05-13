@@ -195,9 +195,12 @@ class AnnouncementTranslationViewSet(viewsets.ModelViewSet):
         if not ann_transl.announcement.id == ann_pk:
             return RESPONSE_404_NOT_FOUND_RELATED_OBJECT
 
+        location_post_name = ann_transl.announcementgooglemybusinesslocationpost.service_post_name
         is_delete = AnnouncementTranslation.delete_by_id(ann_transl_pk)
         if not is_delete:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
+
+        ann_transl.send_announcement_translation_deleted(user, location_post_name)
 
         return RESPONSE_200_DELETED
 
