@@ -77,10 +77,11 @@ def api_call(api_call_method):
     ):
         """Wrapper for API method."""
 
-        request_handler = RequestHandler(api_service, user)
         if api_service.oauth_provider.is_access_token_expired(user):
             refresh_token = api_service.oauth_provider.get_refresh_token(user)
             api_service.oauth_provider.refresh_token(user, refresh_token)
+
+        request_handler = RequestHandler(api_service, user)
         return api_call_method(api_service, request_handler, *args, **kwargs)
 
     return prepared_api_call
