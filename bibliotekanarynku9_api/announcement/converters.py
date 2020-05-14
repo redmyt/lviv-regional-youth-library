@@ -7,8 +7,7 @@ default django models types to data structures that used at other (third-party) 
 # (Wrong hanging indentation before block) it's a known pylint issue.
 # It is caused by Black file formatter in this case
 
-# TODO Change to Typing when will move to Python 3.8
-from typing_extensions import TypedDict
+from typing import TypedDict
 
 from announcement.models import AnnouncementTranslation
 from utils.handlers import IMAGE_HANDLER
