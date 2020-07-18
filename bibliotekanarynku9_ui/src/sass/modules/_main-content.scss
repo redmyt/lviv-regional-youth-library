@@ -47,6 +47,13 @@
     &__not-found-message {
         color: $darkBrown;
     }
+
+    // TODO: Made wide default link style.
+    &__link {
+        &_style_default {
+            @extend .window-on-america__link
+        }
+    }
 }
 
 .main-content-article {
