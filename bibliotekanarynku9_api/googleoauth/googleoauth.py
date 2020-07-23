@@ -1,8 +1,10 @@
 """
-Module that represent logic of common Google OAuth flow provider.
-Contains classes and method that facilitate interaction with Google OAuth logic.
+Module that represents logic of abstract Google OAuth flow provider.
+Contains abstract class that facilitates base interaction with Google OAuth logic.
 """
 
+from abc import ABC, abstractmethod
+from collections import namedtuple
 from datetime import datetime, timedelta, timezone
 import requests
 
@@ -10,9 +12,16 @@ from django.conf import settings
 from google_auth_oauthlib.flow import Flow
 from oauthlib.oauth2.rfc6749.errors import OAuth2Error
 
+from googleoauth.exceptions import (
+    GoogleOAuthTokenGenerationError,
+    GoogleOAuthRefreshTokenError,
+    GoogleOAuthScopesDontMatchError,
+)
 from googleoauth.models import GoogleOAuthSession
 from utils.logger import LOGGER
 
+
+OAuthCredentials = namedtuple("credentials", ["access_token", "refresh_token", "expires_at"])
 
 CLIENT_ID = settings.GOOGLE_APPLICATION_CREDENTIALS["web"]["client_id"]
 CLIENT_SECRET = settings.GOOGLE_APPLICATION_CREDENTIALS["web"]["client_secret"]
@@ -20,88 +29,98 @@ REFRESH_GRANT_TYPE = "refresh_token"
 REFRESH_TOKEN_URL = "https://oauth2.googleapis.com/token"
 
 
-class GoogleOAuthProvider:
+class GoogleOAuthProvider(ABC):
     """
-    Class that facilitates the common operations with the Google OAuth flow.
+    Abstract Base Class that defines the common operations with the Google OAuth flow.
     Contains methods that help go though the Google Auth Code grant flow.
     """
 
-    def __init__(self, service, scopes, redirect_url):
-        self.flow = Flow.from_client_config(settings.GOOGLE_APPLICATION_CREDENTIALS, scopes=scopes)
-        self.service = service
-        self.scopes = scopes
-        self.flow.redirect_uri = redirect_url
+    @property
+    @abstractmethod
+    def email(self):
+        pass
 
-    @staticmethod
-    def __get_expires_at_time(token_ttl: int) -> datetime:
-        """
-        Method that converts the accepted token TTL in seconds and returns the
-        certain time when new access token will become invalid.
-        """
+    @property
+    @abstractmethod
+    def service(self):
+        pass
 
-        return datetime.now(tz=timezone.utc) + timedelta(seconds=token_ttl)
+    @property
+    @abstractmethod
+    def scopes(self):
+        pass
 
-    def get_authorize_url(self):
-        """
-        Method that generates the valid authorization URL for
-        the certain Google service.
-        :return: str that represents the auth URL.
-        """
-        auth_url, _ = self.flow.authorization_url()
+    @property
+    def redirect_uri(self):
+        auth_url, _ = self._flow.authorization_url()
         return auth_url
 
-    def generate_oauth_tokens(self, user, auth_code):
+    @property
+    def authorize_url(self):
+        return self._flow.redirect_uri
+
+    @property
+    def access_token(self):
+        return GoogleOAuthSession.get_service_access_token_by_email(self.service, self.email)
+
+    @property
+    def refresh_token(self):
+        return GoogleOAuthSession.get_service_refresh_token_by_email(self.service, self.email)
+
+    @property
+    def _flow(self):
+        return Flow.from_client_config(settings.GOOGLE_APPLICATION_CREDENTIALS, scopes=self.scopes)
+
+    def is_service_session_exist(self):
+        return bool(GoogleOAuthSession.get_service_session_by_email(self.service, self.email))
+
+    def generate_oauth_session_credentials(self, auth_code):
         """
-        Method that generates the access token for the certain user using the
+        Method that generates the Google OAuth credentials for the certain user using the
         accepted auth code. This method facilitates the final step of
         Auth Code grant type.
-        :param user: CustomUser instance that represents the session user.
         :param auth_code: str that represents the auth code generated at previous flow step.
-        :return: bool that indicates are access and refresh tokens generated.
         """
         try:
-            self.flow.fetch_token(code=auth_code)
+            self._flow.fetch_token(code=auth_code)
+            return OAuthCredentials(
+                self._flow.credentials.token,
+                self._flow.credentials.refresh_token,
+                self._flow.credentials.expiry,
+            )
         except OAuth2Error as err:
             LOGGER.error(
-                f"Exception occurs during the token fetching for user: {user}. " f"Exception: {err}"
+                f"Exception occurs during the token fetching for "
+                f"service: {self.service} user: {self.email}. "
+                f"Exception: {err}"
             )
-            return False
+            raise GoogleOAuthTokenGenerationError(self.service, self.email)
 
+    def save_oauth_session_credentials(self, credentials: OAuthCredentials):
         oauth_session = GoogleOAuthSession.create(
             {
-                "user": user,
+                "email": self.email,
                 "service": self.service,
-                "access_token": self.flow.credentials.token,
-                "refresh_token": self.flow.credentials.refresh_token,
-                "expires_at": self.flow.credentials.expiry,
+                "access_token": credentials.access_token,
+                "refresh_token": credentials.refresh_token,
+                "expires_at": credentials.expires_at,
             }
         )
-        return bool(oauth_session)
+        return oauth_session
 
-    def get_access_token(self, user):
+    def is_access_token_expired(self):
         """
-        Method that retrieves previous generated access token from database.
-        It retrieves access token for the certain user and service.
-        :param user: CustomUser instance that represents the session user.
-        :return: str that represents access token.
+        Method that returns status of current user access token. Shows is token
+        are valid in time slot.
         """
-        return GoogleOAuthSession.get_service_access_token_by_user(self.service, user)
 
-    def get_refresh_token(self, user):
-        """
-        Method that retrieves previous generated refresh token from database.
-        It retrieves refresh token for the certain user and service.
-        :param user: CustomUser instance that represents the session user.
-        :return: str that represents refresh token.
-        """
-        return GoogleOAuthSession.get_service_refresh_token_by_user(self.service, user)
+        expire_time = GoogleOAuthSession.get_access_token_expire_time(self.service, self.email)
+        return datetime.now(tz=timezone.utc) > expire_time
 
-    def refresh_token(self, user, refresh_token):
+    def refresh_access_token(self, refresh_token):
         """
         Method that refreshes the outdated access token for the certain user.
-        :param user: CustomUser instance that represents the session user.
         :param refresh_token: str that represents the user's refresh token.
-        :return: str that represents updated access token for user or None.
         """
         payload = {
             "client_id": CLIENT_ID,
@@ -113,32 +132,32 @@ class GoogleOAuthProvider:
         if not response:
             LOGGER.error(
                 f"Failed request to Google Auth for refresh access token. "
-                f"Cannot refresh token for user: {user}"
+                f"Cannot refresh token for user: {self.email}"
             )
-            return ""
+            raise GoogleOAuthRefreshTokenError(self.service, self.email)
 
         data = response.json()
         refreshed_access_token, expires_at, scope = (
             data.get("access_token"),
-            self.__get_expires_at_time(data.get("expires_in")),
+            self._get_expires_at_time(data.get("expires_in")),
             data.get("scope"),
         )
         if scope not in self.scopes:
             LOGGER.error(
-                f"Failure during refreshing the access token for the user: {user}. "
+                f"Failure during refreshing the access token for the user: {self.email}. "
                 f"Received scope ({scope}) no match provide's scopes ({self.scopes})"
             )
-            return ""
+            raise GoogleOAuthScopesDontMatchError(f"{self.scopes} not match to {scope}")
 
-        return GoogleOAuthSession.update_service_access_token_by_user(
-            self.service, user, refreshed_access_token, expires_at
+        return GoogleOAuthSession.update_service_access_token_by_email(
+            self.service, self.email, refreshed_access_token, expires_at
         )
 
-    def is_access_token_expired(self, user):
+    @staticmethod
+    def _get_expires_at_time(token_ttl: int) -> datetime:
         """
-        Method that returns status of current user access token. Shows is token
-        are valid in time slot.
+        Method that converts the accepted token TTL in seconds and returns the
+        certain time when new access token will become invalid.
         """
 
-        expire_time = GoogleOAuthSession.get_access_token_expire_time(self.service, user)
-        return datetime.now(tz=timezone.utc) > expire_time
+        return datetime.now(tz=timezone.utc) + timedelta(seconds=token_ttl)
