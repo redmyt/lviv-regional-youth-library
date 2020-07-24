@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+from django.db.models.signals import post_save
 
 
 class AnnouncementConfig(AppConfig):
@@ -10,23 +11,10 @@ class AnnouncementConfig(AppConfig):
         """
 
         from announcement.models import AnnouncementTranslation
-        from announcement.signals import (
-            ANNOUNCEMENT_TRANSLATION_CREATED,
-            ANNOUNCEMENT_TRANSLATION_DELETED,
-        )
-        from announcement.receivers import (
-            synchronize_announcement_translation,
-            remove_announcement_translation,
-        )
+        from announcement.receivers import synchronize_announcement_translation
 
-        ANNOUNCEMENT_TRANSLATION_CREATED.connect(
+        post_save.connect(
             synchronize_announcement_translation,
             sender=AnnouncementTranslation,
-            dispatch_uid="ANNOUNCEMENT_TRANSLATION_CREATED",
-        )
-
-        ANNOUNCEMENT_TRANSLATION_DELETED.connect(
-            remove_announcement_translation,
-            sender=AnnouncementTranslation,
-            dispatch_uid="ANNOUNCEMENT_TRANSLATION_DELETED",
+            dispatch_uid="announcement_translation_post_save_synchronization",
         )

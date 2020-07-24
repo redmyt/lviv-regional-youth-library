@@ -7,10 +7,11 @@ for the multilanguage support.
 
 from django.db import models
 
-from announcement.signals import ANNOUNCEMENT_TRANSLATION_CREATED, ANNOUNCEMENT_TRANSLATION_DELETED
+from announcement.exceptions import AnnouncementLocationPostDoesNotExist
 from link.models import Link
 from utils.abstract_model import AbstractModel
 from utils.language import LANGUAGE_CHOICES
+from utils.logger import LOGGER
 
 
 class Announcement(AbstractModel):
@@ -39,29 +40,6 @@ class AnnouncementTranslation(AbstractModel):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def send_announcement_translation_created(self, user):
-        """
-        Send the signal that indicates creation of the new AnnouncementTranslation instance.
-        Also method notates the user who creates the instance.
-        """
-
-        ANNOUNCEMENT_TRANSLATION_CREATED.send(
-            sender=self.__class__, user=user, announcement_translation=self
-        )
-
-    def send_announcement_translation_deleted(self, user, location_post_name):
-        """
-        Send the signal that indicates deletion of the new AnnouncementTranslation instance.
-        Also method notates user who deletes the instance and Google Business location post name.
-        """
-
-        ANNOUNCEMENT_TRANSLATION_DELETED.send(
-            sender=self.__class__,
-            user=user,
-            announcement_translation=self,
-            google_business_post_name=location_post_name,
-        )
-
     class Meta:
         unique_together = (("announcement", "language"),)
 
@@ -89,3 +67,25 @@ class AnnouncementGoogleMyBusinessLocationPost(AbstractModel):
     last_sync_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
+
+    @classmethod
+    def get_by_announcement_translation(cls, translation):
+        try:
+            return cls.objects.get(announcement_translation=translation)
+        except cls.DoesNotExist as err:
+            LOGGER.error(
+                f"Announcement location post with translation: {translation} doesn't exist. "
+                f"Exception: {err}"
+            )
+            raise AnnouncementLocationPostDoesNotExist
+
+    @classmethod
+    def get_by_service_post_name(cls, service_post_name):
+        try:
+            return cls.objects.get(service_post_name=service_post_name)
+        except cls.DoesNotExist as err:
+            LOGGER.error(
+                f"Announcement location post with name: {service_post_name} doesn't exist. "
+                f"Exception: {err}"
+            )
+            raise AnnouncementLocationPostDoesNotExist
