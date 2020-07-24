@@ -134,7 +134,13 @@ disable=logging-fstring-interpolation,
         next-method-defined,
         dict-items-not-iterating,
         dict-keys-not-iterating,
-        dict-values-not-iterating
+        dict-values-not-iterating,
+        missing-docstring,
+        C0330
+
+# pylint: disable=C0330
+# (Wrong hanging indentation before block) it's a known pylint issue.
+# It is caused by Black file formatter in this case
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
