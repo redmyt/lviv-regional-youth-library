@@ -1,14 +1,14 @@
 """
 Module that contains basic logic that binds the announcement app entities with
-Google My Business service's.
+Google My Business service.
 """
 
 import datetime
 
 from announcement.converters import AnnouncementTranslationLocationPostConverter
+from announcement.exceptions import AnnouncementLocationPostDoesNotExist
 from announcement.models import AnnouncementTranslation, AnnouncementGoogleMyBusinessLocationPost
-from customuser.models import CustomUser
-from googlemybusiness.service import GOOGLE_MY_BUSINESS_API_SERVICE
+from googlemybusiness.googlemybusiness import GOOGLE_MY_BUSINESS_API_SERVICE
 from utils.logger import LOGGER
 
 
@@ -19,30 +19,23 @@ class AnnouncementGoogleMyBusinessService:
     to check synchronization status of translation post.
     """
 
-    __TRANSLATION_LOCATION_POST_CONVERTER = AnnouncementTranslationLocationPostConverter()
+    _TRANSLATION_LOCATION_POST_CONVERTER = AnnouncementTranslationLocationPostConverter()
 
     def __init__(self):
         self.api_service = GOOGLE_MY_BUSINESS_API_SERVICE
+        self.translation_posts = AnnouncementGoogleMyBusinessLocationPost
 
-    def create_location_post(self, user, translation):
+    def create_location_post(self, translation):
         """
         Method that creates locationPost at Google Business service.
-        :param user: current session user
         :param translation: AnnouncementTranslation instance that should be synced.
         :return: synced AnnouncementTranslation instance.
         """
-
-        location_post = self.__TRANSLATION_LOCATION_POST_CONVERTER.translation_to_location_post(
+        location_post = self._TRANSLATION_LOCATION_POST_CONVERTER.translation_to_location_post(
             translation
         )
-        created_location_post = self.api_service.create_post(user, location_post)
-        if not created_location_post:
-            LOGGER.error(
-                "Filed to create locationPost during the announcement translation synchronization."
-            )
-            return None
-
-        synced_translation_post = AnnouncementGoogleMyBusinessLocationPost.create(
+        created_location_post = self.api_service.create_post(location_post)
+        synced_translation_post = self.translation_posts.create(
             {
                 "announcement_translation": translation,
                 "service_post_name": created_location_post["name"],
@@ -54,36 +47,25 @@ class AnnouncementGoogleMyBusinessService:
                 "Filed to create announcement synced post "
                 "database record translation synchronization."
             )
-            return None
-
         return synced_translation_post
 
-    # TODO: Need to implement
-    # def update_location_post(self, user, translation):
-
-    def delete_location_post(self, user, location_post_name):
-        """
-        Method that removes the previous synced Google Business location post object.
-        """
-
-        is_removed = self.api_service.delete_post(user, location_post_name)
-        if not is_removed:
-            LOGGER.error(
-                f"Filed to remove Google Business location post with name: {location_post_name}"
-            )
-
-    def synchronize_translation_post(self, user: CustomUser, translation: AnnouncementTranslation):
+    def synchronize_translation_post(self, translation: AnnouncementTranslation):
         """
         General method that creates or updates translation if it need to be synced.
-        :param user: current session user.
         :param translation: AnnouncementTranslation instance that need to be synced.
         :return: synced AnnouncementTranslation instance.
         """
-
-        synced_post = AnnouncementGoogleMyBusinessLocationPost.get_by_id(translation.id)
-        if not synced_post:
-            synced_post = self.create_location_post(user, translation)
+        try:
+            synced_post = self.translation_posts.get_by_announcement_translation(translation)
+        except AnnouncementLocationPostDoesNotExist:
+            synced_post = self.create_location_post(translation)
         return synced_post
+
+    # TODO: Need to implement
+    # def update_location_post(self, translation):
+
+    # TODO: Need to implement
+    # def delete_location_post(self, translation):
 
     # TODO: Need to implement
     # def get_synchronization_status
