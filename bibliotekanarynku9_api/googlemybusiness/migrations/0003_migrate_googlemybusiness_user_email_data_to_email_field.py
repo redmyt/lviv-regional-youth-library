@@ -20,7 +20,7 @@ def set_email_field_value(apps, _):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('googlemybusiness', '0002_googlemybusinessaccount_email'),
+        ('googlemybusiness', '0002_add_googlemybusiness_account_email'),
     ]
 
     operations = [
