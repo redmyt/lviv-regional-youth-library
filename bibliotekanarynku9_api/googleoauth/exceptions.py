@@ -19,3 +19,7 @@ class GoogleOAuthRefreshTokenError(GoogleOAuthError):
 
 class GoogleOAuthScopesDontMatchError(GoogleOAuthError):
     message = "Provider and Google OAuth credential scopes do not match."
+
+
+class GoogleOAuthSessionIntegrityError(GoogleOAuthError):
+    message = "Error during saving the GoogleOAuthSession object."
