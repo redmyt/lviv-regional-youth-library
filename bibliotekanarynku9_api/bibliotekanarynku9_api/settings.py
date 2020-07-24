@@ -231,7 +231,11 @@ GOOGLE_APPLICATION_CREDENTIALS = {
 
 # Google My Business service settings
 
+GOOGLE_MY_BUSINESS_ADMINISTRATION_EMAIL = 'some.test@email.com'
+
 GOOGLE_MY_BUSINESS_REDIRECT_URL = 'http://localhost/redirect_url'
+
+GOOGLE_MY_BUSINESS_SCOPE = "google_business_scope"
 
 
 # Actual version of the product API
