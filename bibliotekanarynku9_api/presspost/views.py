@@ -8,7 +8,7 @@ from presspost.models import (PressPost,
 from presspost.serializers import (PressPostSerializer,
                                    PressPostTranslationSerializer,
                                    PressPostTranslationLinkSerializer)
-from utils.handlers import IMAGE_HANDLER
+from utils.handlers import IMAGES_HANDLER
 from utils.responses import (RESPONSE_200_DELETED,
                              RESPONSE_204_UPDATED,
                              RESPONSE_400_DB_INTEGRATION_FAILURE,
@@ -43,7 +43,7 @@ class PressPostViewSet(viewsets.ModelViewSet):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
         ppost_data = request.data
-        ppost_data['avatar'] = IMAGE_HANDLER.parse(ppost_data.get('avatar'))
+        ppost_data['avatar'] = IMAGES_HANDLER.save_image(ppost_data.get('avatar'))
         serializer = PressPostSerializer(data=ppost_data)
 
         if not serializer.is_valid():
@@ -69,7 +69,7 @@ class PressPostViewSet(viewsets.ModelViewSet):
             return RESPONSE_404_NOT_FOUND
 
         ppost_data = request.data
-        ppost_avatar = IMAGE_HANDLER.parse(ppost_data.get('avatar'))
+        ppost_avatar = IMAGES_HANDLER.save_image(ppost_data.get('avatar'))
         if ppost_avatar:
             ppost_data['avatar'] = ppost_avatar
         serializer = PressPostSerializer(ppost, data=ppost_data, partial=True)
@@ -77,7 +77,7 @@ class PressPostViewSet(viewsets.ModelViewSet):
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        IMAGE_HANDLER.remove_image(ppost.avatar)
+        IMAGES_HANDLER.remove_image(ppost.avatar)
         ppost = serializer.save()
         if not ppost:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
@@ -102,7 +102,7 @@ class PressPostViewSet(viewsets.ModelViewSet):
         if not is_delete:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
-        IMAGE_HANDLER.remove_image(avatar)
+        IMAGES_HANDLER.remove_image(avatar)
         return RESPONSE_200_DELETED
 
 

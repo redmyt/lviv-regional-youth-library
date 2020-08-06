@@ -9,7 +9,7 @@ from announcement.models import (Announcement,
 from announcement.serializers import (AnnouncementSerializer,
                                       AnnouncementTranslationSerializer,
                                       AnnouncementTranslationLinkSerializer)
-from utils.handlers import IMAGE_HANDLER
+from utils.handlers import IMAGES_HANDLER
 from utils.responses import (RESPONSE_200_DELETED,
                              RESPONSE_204_UPDATED,
                              RESPONSE_400_DB_INTEGRATION_FAILURE,
@@ -44,7 +44,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
         ann_data = request.data
-        ann_data['avatar'] = IMAGE_HANDLER.parse(ann_data.get('avatar'))
+        ann_data['avatar'] = IMAGES_HANDLER.save_image(ann_data.get('avatar'))
         serializer = AnnouncementSerializer(data=ann_data)
 
         if not serializer.is_valid():
@@ -70,7 +70,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
             return RESPONSE_404_NOT_FOUND
 
         ann_data = request.data
-        ann_avatar = IMAGE_HANDLER.parse(ann_data.get('avatar'))
+        ann_avatar = IMAGES_HANDLER.save_image(ann_data.get('avatar'))
         if ann_avatar:
             ann_data['avatar'] = ann_avatar
         serializer = AnnouncementSerializer(ann, data=ann_data, partial=True)
@@ -78,7 +78,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        IMAGE_HANDLER.remove_image(ann.avatar)
+        IMAGES_HANDLER.remove_image(ann.avatar)
         ann = serializer.save()
         if not ann:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
@@ -103,7 +103,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
         if not is_delete:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
-        IMAGE_HANDLER.remove_image(avatar)
+        IMAGES_HANDLER.remove_image(avatar)
         return RESPONSE_200_DELETED
 
 

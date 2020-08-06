@@ -10,7 +10,7 @@ default django models types to data structures that used at other (third-party) 
 from typing import TypedDict
 
 from announcement.models import AnnouncementTranslation
-from utils.handlers import IMAGE_HANDLER
+from utils.handlers import IMAGES_HANDLER
 from utils.language import Languages
 
 
@@ -112,7 +112,7 @@ class AnnouncementTranslationLocationPostConverter:
         from accepted AnnouncementTranslation instance.
         """
 
-        avatar = IMAGE_HANDLER.get_public_image_path(translation.announcement.avatar)
+        avatar = IMAGES_HANDLER.get_public_image_path(translation.announcement.avatar)
         return {
             "mediaFormat": DEFAULT_MEDIA_FORMAT,
             "sourceUrl": avatar,
