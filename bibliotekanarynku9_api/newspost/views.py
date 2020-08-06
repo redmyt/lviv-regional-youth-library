@@ -8,7 +8,7 @@ from newspost.models import (NewsPost,
 from newspost.serializers import (NewsPostSerializer,
                                   NewsPostTranslationSerializer,
                                   NewsPostTranslationLinkSerializer)
-from utils.handlers import IMAGE_HANDLER
+from utils.handlers import IMAGES_HANDLER
 from utils.responses import (RESPONSE_200_DELETED,
                              RESPONSE_204_UPDATED,
                              RESPONSE_400_INVALID_DATA,
@@ -43,7 +43,7 @@ class NewsPostViewSet(viewsets.ModelViewSet):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
         npost_data = request.data
-        npost_data['avatar'] = IMAGE_HANDLER.parse(npost_data.get('avatar'))
+        npost_data['avatar'] = IMAGES_HANDLER.save_image(npost_data.get('avatar'))
         serializer = NewsPostSerializer(data=npost_data)
 
         if not serializer.is_valid():
@@ -69,7 +69,7 @@ class NewsPostViewSet(viewsets.ModelViewSet):
             return RESPONSE_404_NOT_FOUND
 
         npost_data = request.data
-        npost_avatar = IMAGE_HANDLER.parse(npost_data.get('avatar'))
+        npost_avatar = IMAGES_HANDLER.save_image(npost_data.get('avatar'))
         if npost_avatar:
             npost_data['avatar'] = npost_avatar
         serializer = NewsPostSerializer(npost, data=npost_data, partial=True)
@@ -77,7 +77,7 @@ class NewsPostViewSet(viewsets.ModelViewSet):
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        IMAGE_HANDLER.remove_image(npost.avatar)
+        IMAGES_HANDLER.remove_image(npost.avatar)
         npost = serializer.save()
         if not npost:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
@@ -102,7 +102,7 @@ class NewsPostViewSet(viewsets.ModelViewSet):
         if not is_delete:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
-        IMAGE_HANDLER.remove_image(avatar)
+        IMAGES_HANDLER.remove_image(avatar)
         return RESPONSE_200_DELETED
 
 

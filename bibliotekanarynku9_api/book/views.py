@@ -6,7 +6,7 @@ from book.models import (Book,
                          BookTranslation)
 from book.serializers import (BookSerializer,
                               BookTranslationSerializer)
-from utils.handlers import IMAGE_HANDLER
+from utils.handlers import IMAGES_HANDLER
 from utils.responses import (RESPONSE_200_DELETED,
                              RESPONSE_204_UPDATED,
                              RESPONSE_400_INVALID_DATA,
@@ -38,7 +38,7 @@ class BookViewSet(viewsets.ModelViewSet):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
         book_data = request.data
-        book_data['avatar'] = IMAGE_HANDLER.parse(book_data.get('avatar'))
+        book_data['avatar'] = IMAGES_HANDLER.save_image(book_data.get('avatar'))
         serializer = BookSerializer(data=book_data)
 
         if not serializer.is_valid():
@@ -64,7 +64,7 @@ class BookViewSet(viewsets.ModelViewSet):
             return RESPONSE_404_NOT_FOUND
 
         book_data = request.data
-        book_avatar = IMAGE_HANDLER.parse(book_data.get('avatar'))
+        book_avatar = IMAGES_HANDLER.save_image(book_data.get('avatar'))
         if book_avatar:
             book_data['avatar'] = book_avatar
         serializer = BookSerializer(book, data=book_data, partial=True)
@@ -72,7 +72,7 @@ class BookViewSet(viewsets.ModelViewSet):
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        IMAGE_HANDLER.remove_image(book.avatar)
+        IMAGES_HANDLER.remove_image(book.avatar)
         book = serializer.save()
         if not book:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
@@ -97,7 +97,7 @@ class BookViewSet(viewsets.ModelViewSet):
         if not is_delete:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
 
-        IMAGE_HANDLER.remove_image(avatar)
+        IMAGES_HANDLER.remove_image(avatar)
         return RESPONSE_200_DELETED
 
 

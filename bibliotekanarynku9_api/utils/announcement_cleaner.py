@@ -20,12 +20,15 @@ django.setup()
 
 # Deleting logic
 from announcement.models import Announcement
+from utils.handlers import IMAGES_HANDLER
 from utils.logger import LOGGER
 
 CURRENT_DATE = datetime.datetime.today()
 OUTDATED_ANNOUNCEMENTS = Announcement.objects.filter(start_at__lt=CURRENT_DATE)
 if OUTDATED_ANNOUNCEMENTS:
     ANNOUNCEMENTS_LENGTH = len(OUTDATED_ANNOUNCEMENTS)
+    for ann in OUTDATED_ANNOUNCEMENTS:
+        IMAGES_HANDLER.remove_image(ann.avatar)
     OUTDATED_ANNOUNCEMENTS.delete()
     LOGGER.info(
         f'Removed the {ANNOUNCEMENTS_LENGTH} outdated announcements '

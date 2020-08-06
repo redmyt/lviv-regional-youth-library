@@ -8,7 +8,7 @@ from project.models import (Project,
 from project.serializers import (ProjectSerializer,
                                  ProjectTranslationSerializer,
                                  ProjectTranslationLinkSerializer)
-from utils.handlers import IMAGE_HANDLER
+from utils.handlers import IMAGES_HANDLER
 from utils.responses import (RESPONSE_200_DELETED,
                              RESPONSE_204_UPDATED,
                              RESPONSE_400_INVALID_DATA,
@@ -43,7 +43,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
             return RESPONSE_403_PERMISSIONS_REQUIRED
 
         proj_data = request.data
-        proj_data['avatar'] = IMAGE_HANDLER.parse(proj_data.get('avatar'))
+        proj_data['avatar'] = IMAGES_HANDLER.save_image(proj_data.get('avatar'))
         serializer = ProjectSerializer(data=proj_data)
 
         if not serializer.is_valid():
@@ -69,7 +69,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
             return RESPONSE_404_NOT_FOUND
 
         proj_data = request.data
-        proj_avatar = IMAGE_HANDLER.parse(proj_data.get('avatar'))
+        proj_avatar = IMAGES_HANDLER.save_image(proj_data.get('avatar'))
         if proj_avatar:
             proj_data['avatar'] = proj_avatar
         serializer = ProjectSerializer(proj, data=proj_data, partial=True)
@@ -77,7 +77,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
         if not serializer.is_valid():
             return RESPONSE_400_INVALID_DATA
 
-        IMAGE_HANDLER.remove_image(proj.avatar)
+        IMAGES_HANDLER.remove_image(proj.avatar)
         proj = serializer.save()
         if not proj:
             return RESPONSE_400_DB_INTEGRATION_FAILURE
@@ -102,7 +102,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
         if not is_delete:
             return RESPONSE_404_NOT_FOUND
 
-        IMAGE_HANDLER.remove_image(avatar)
+        IMAGES_HANDLER.remove_image(avatar)
         return RESPONSE_200_DELETED
 
 
