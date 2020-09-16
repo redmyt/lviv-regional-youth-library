@@ -43,7 +43,8 @@
                 nav: false,
                 loop: true
             }
-        }
+        },
+        lazyLoad: true
     });
 
     // Stop the slider when user hover it and star one again after user's mouseleave.
