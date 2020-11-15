@@ -26,8 +26,8 @@ class GoogleOAuthSession(AbstractModel):
 
     email = models.EmailField(max_length=128)
     service = models.IntegerField(choices=SERVICE_CHOICES)
-    access_token = models.CharField(max_length=171)
-    refresh_token = models.CharField(max_length=103)
+    access_token = models.CharField(max_length=200)
+    refresh_token = models.CharField(max_length=110)
     expires_at = models.DateTimeField()
 
     class Meta:
