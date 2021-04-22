@@ -21,9 +21,6 @@ window.onhashchange = function() {
         case 'press':
             pressController(recourseId);
             break;
-        case 'woa':
-            woaController();
-            break;
         case 'book':
             bookController(recourseId);
             break;
@@ -47,6 +44,4 @@ function getRootPath(hashData) {
 }
 
 // Function for cleaning the other controllers timer objects.
-function cleanUpHashChangeHook(rootPath) {
-    woaCleanUpHook(rootPath);
-}
+function cleanUpHashChangeHook(rootPath) {}

@@ -162,31 +162,6 @@
 }
 
 .window-on-america {
-
-    &__opportunities-list {
-        @extend .page-paragraph__content-paragraph;
-    }
-
-    &__picture-wrapper {
-        position: relative;
-        height: 50vw;
-        width: 100%;
-
-        @media #{$media880pixels} {
-            height: 18vw;
-        }
-    }
-
-    &__animate-picture {
-        position: absolute;
-        opacity: 0;
-        max-height: 100%;
-    }
-
-    &__animate-picture_visible {
-        opacity: 1;
-    }
-
     &__link {
        color: $lightBlue;
     }
