@@ -23,8 +23,6 @@
         "./bibliotekanarynku9_ui/src/js/press/pressController.js",
         "./bibliotekanarynku9_ui/src/js/press/pressRenderer.js",
         "./bibliotekanarynku9_ui/src/js/press/pressService.js",
-        "./bibliotekanarynku9_ui/src/js/woa/woaController.js",
-        "./bibliotekanarynku9_ui/src/js/woa/woaRenderer.js",
         "./bibliotekanarynku9_ui/src/js/book/bookController.js",
         "./bibliotekanarynku9_ui/src/js/book/bookRenderer.js",
         "./bibliotekanarynku9_ui/src/js/book/bookService.js",
